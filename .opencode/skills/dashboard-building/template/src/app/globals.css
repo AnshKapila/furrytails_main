@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+}
+
+:root {
+  /*
+   * State and chart colors are intentionally separate from the company brand.
+   * Labels and icons remain required, so color is always a redundant cue.
+   */
+  --success: oklch(0.49 0.13 151);
+  --success-foreground: oklch(0.98 0.01 151);
+  --warning: oklch(0.58 0.13 70);
+  --warning-foreground: oklch(0.98 0.01 70);
+  --danger: oklch(0.52 0.18 25);
+  --danger-foreground: oklch(0.98 0.01 25);
+  --chart-1: var(--primary);
+  --chart-2: oklch(0.51 0.11 194);
+  --chart-3: oklch(0.5 0.16 292);
+  --chart-4: oklch(0.58 0.15 55);
+  --chart-5: oklch(0.48 0.13 245);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a,
+summary,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--primary) 20%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

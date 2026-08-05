@@ -1,0 +1,7 @@
+.next/
+node_modules/
+
+# Keep the vault-written env file out of the deploy upload (Kite publish step).
+.env
+.env.*
+!.env.example
