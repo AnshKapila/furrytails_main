@@ -904,16 +904,15 @@ export default function Home() {
           data-kite-surface="home.hero"
           data-kite-surface-type="hero"
         >
-          {/* Full-bleed background image */}
-          <Image
-            src="https://static.kite.ai/image/upload/c_crop,x_0.000,y_0.019,w_1.000,h_0.963/v1785902050/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/fn1uxf0r1brvlgnnjajn.png"
-            alt="Dog in natural morning light — Furrytail"
-            fill
-            priority
-            className="object-cover object-left"
-            sizes="100vw"
-            style={{  }}
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-left"
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
 
           {/* Subtle left-to-right overlay for copy legibility */}
           <div
