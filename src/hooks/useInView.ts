@@ -8,7 +8,7 @@ interface UseInViewOptions {
   triggerOnce?: boolean;
 }
 
-export function useInView({ threshold = 0.1, rootMargin = '0px', triggerOnce = true }: UseInViewOptions = {}) {
+export function useInView({ threshold = 0.3, rootMargin = '0px', triggerOnce = false }: UseInViewOptions = {}) {
   const [inView, setInView] = useState(false);
   // Change typing to ANY so it can be assigned to different element types easily without complex generic casting in simple components
   const ref = useRef<any>(null);

@@ -431,16 +431,16 @@ function ShopContent() {
                   <line x1="2.5" y1="6" x2="9.5" y2="6" />
                   <line x1="4" y1="9" x2="8" y2="9" />
                 </svg>
-                <span>{activeSort !== 'default' ? activeSortLabel : 'Sort'}</span>
+                <span>{activeSort !== 'default' ? activeSortLabel : 'Featured'}</span>
                 <ChevronIcon open={sortOpen} />
               </button>
 
-              {sortOpen && (
-                <div
-                  className="absolute right-0 top-full mt-1 w-48 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20"
-                  role="listbox"
-                  aria-label="Sort options"
-                >
+              <div
+                className={`absolute right-0 top-full mt-1 w-48 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20 dropdown-smooth-enter ${sortOpen ? 'open' : ''}`}
+                role="listbox"
+                aria-label="Sort options"
+              >
+                <div className="dropdown-smooth-inner">
                   {SORT_OPTIONS.map((opt) => (
                     <button
                       key={opt.value}
@@ -463,7 +463,7 @@ function ShopContent() {
                     </button>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
 
             {/* ── Filter dropdown ── */}
@@ -496,13 +496,12 @@ function ShopContent() {
                 <ChevronIcon open={filterOpen} />
               </button>
 
-              {filterOpen && (
-                <div
-                  className="absolute right-0 top-full mt-1 w-64 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20"
-                  role="dialog"
-                  aria-label="Filter products"
-                >
-
+              <div
+                className={`absolute right-0 top-full mt-1 w-64 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20 dropdown-smooth-enter ${filterOpen ? 'open' : ''}`}
+                role="dialog"
+                aria-label="Filter products"
+              >
+                <div className="dropdown-smooth-inner">
                   {/* ── Ritual accordion ── */}
                   <div
                     className="border-b border-[#E9E2D7]"
@@ -520,8 +519,8 @@ function ShopContent() {
                       <span>Ritual</span>
                       <ChevronIcon open={ritualOpen} />
                     </button>
-                    {ritualOpen && (
-                      <div className="px-4 pb-4 flex flex-wrap gap-1.5">
+                    <div className={`dropdown-smooth-enter ${ritualOpen ? 'open' : ''}`}>
+                      <div className="dropdown-smooth-inner px-4 pb-4 flex flex-wrap gap-1.5">
                         {RITUAL_FILTERS.map((cat) => (
                           <button
                             key={cat}
@@ -535,7 +534,7 @@ function ShopContent() {
                           </button>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
 
                   {/* ── Pet accordion ── */}
@@ -555,8 +554,8 @@ function ShopContent() {
                       <span>Pet</span>
                       <ChevronIcon open={petOpen} />
                     </button>
-                    {petOpen && (
-                      <div className="px-4 pb-4 flex flex-wrap gap-1.5">
+                    <div className={`dropdown-smooth-enter ${petOpen ? 'open' : ''}`}>
+                      <div className="dropdown-smooth-inner px-4 pb-4 flex flex-wrap gap-1.5">
                         {PET_FILTERS.map((pet) => (
                           <button
                             key={pet}
@@ -570,7 +569,7 @@ function ShopContent() {
                           </button>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
 
                   {/* ── Type accordion ── */}
@@ -589,8 +588,8 @@ function ShopContent() {
                       <span>Type</span>
                       <ChevronIcon open={typeOpen} />
                     </button>
-                    {typeOpen && (
-                      <div className="px-4 pb-4 flex flex-wrap gap-1.5">
+                    <div className={`dropdown-smooth-enter ${typeOpen ? 'open' : ''}`}>
+                      <div className="dropdown-smooth-inner px-4 pb-4 flex flex-wrap gap-1.5">
                         {TYPE_FILTERS.map((type) => (
                           <button
                             key={type}
@@ -604,12 +603,10 @@ function ShopContent() {
                           </button>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
-
                 </div>
-              )}
-            </div>
+              </div>
 
           </div>
         </div>

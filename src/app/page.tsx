@@ -455,16 +455,32 @@ function VideoPlaceholder({ src, alt, className = '' }: { src: string; alt: stri
 }
 
 // ─── Animated section wrapper ─────────────────────────────────────────────────
+function useReveal(threshold = 0.3) {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { setVisible(entry.isIntersecting); },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
 function RevealSection({ children, className = '', delay = 0, id, ...rest }: {
   children: React.ReactNode; className?: string; delay?: number; id?: string; [key: string]: unknown;
 }) {
-  const { ref, visible } = useReveal();
+  const { ref, visible } = useReveal(0.3);
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
       id={id}
-      className={`transition-[opacity,transform] ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'} ${className}`}
-      style={{ transitionDuration: '350ms', transitionDelay: `${delay}ms` }}
+      className={`anim-blur-slide ${visible ? 'in-view' : ''} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
       {...(rest as React.HTMLAttributes<HTMLElement>)}
     >
       {children}

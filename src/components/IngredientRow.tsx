@@ -20,8 +20,11 @@ type Story = {
 };
 
 export default function IngredientRow({ story, i }: { story: Story; i: number }) {
-  const { ref, inView } = useInView({ threshold: 0.2 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
   const isEven = i % 2 === 0;
+  // isEven => Image on LEFT => Expands from center (right edge of container) towards left
+  // !isEven => Image on RIGHT => Expands from center (left edge of container) towards right
+  const accordionClass = isEven ? 'anim-accordion-from-right' : 'anim-accordion-from-left';
 
   return (
     <div
@@ -30,13 +33,13 @@ export default function IngredientRow({ story, i }: { story: Story; i: number })
     >
       {/* Image */}
       <div
-        className={`relative aspect-[4/3] overflow-hidden bg-[#EDE7DF] anim-accordion ${inView ? 'in-view' : ''} ${isEven ? 'md:order-first' : 'md:order-last'}`}
+        className={`relative aspect-[4/3] overflow-hidden bg-[#EDE7DF] ${accordionClass} ${inView ? 'in-view' : ''} ${isEven ? 'md:order-first' : 'md:order-last'}`}
       >
         <Image
           src={story.ingredientImage.src}
           alt={story.ingredientImage.alt}
           fill
-          className="object-cover object-center transition-[transform,filter] duration-[800ms] ease-out [filter:saturate(50%)] group-hover:[filter:saturate(100%)] group-hover:scale-[1.04]"
+          className="object-cover object-center transition-[transform,filter] duration-[800ms] cubic-bezier(0.16,1,0.3,1) [filter:saturate(50%)] group-hover:[filter:saturate(100%)] group-hover:scale-[1.04]"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority={i === 0}
         />

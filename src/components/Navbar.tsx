@@ -54,9 +54,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      const heroH = window.innerHeight;
-      setScrolled(y > 40);
-      setAtHero(y < heroH - 80);
+      setScrolled(y > 10);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -85,11 +83,9 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isHome && atHero
-            ? 'bg-transparent border-b border-transparent'
-            : scrolled
-              ? 'bg-[#F8F5F1]/95 backdrop-blur-sm border-b border-[#E9E2D7] shadow-[0_1px_12px_rgba(59,58,56,0.06)]'
-              : 'bg-[#F8F5F1]/80 backdrop-blur-sm border-b border-[#E9E2D7]/40'
+          scrolled
+            ? 'bg-[#F8F5F1]/95 backdrop-blur-sm border-b border-[#E9E2D7] shadow-[0_1px_12px_rgba(59,58,56,0.06)]'
+            : 'bg-transparent border-b border-transparent'
         }`}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-4">
