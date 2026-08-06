@@ -953,7 +953,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-right"
           >
-            <source src="/Labrador_cat_curtains_plant_sunl…_202608061234.mp4" type="video/mp4" />
+            <source src="/Labrador_cat_curtains_plant_sunlight_202608061234.mp4" type="video/mp4" />
           </video>
 
           {/* Subtle left-to-right overlay for copy legibility */}
