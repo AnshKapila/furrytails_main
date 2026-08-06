@@ -227,25 +227,17 @@ export const brandStory = {
 
 export const brandPhilosophy = {
   eyebrow: 'WHY FURRYTAIL EXISTS',
-  heading: 'Built for the relationship, not the routine.',
+  heading: 'A Ritual for the Relationship.',
   body: [
-    'Most pet care products are designed around logistics.',
-    'Shelf life.',
-    'Margins.',
-    'Packaging.',
-    'The animal often comes second.',
-    'We started somewhere else.',
-    'With the quiet moments people share with the animals they love.',
-    'Everything we create begins there.',
-    'Not with trends.',
-    'Not with marketing.',
-    'With better ingredients.',
-    'Fewer products.',
-    'And everyday rituals that respect both the pet and the person caring for them.',
+    'Everything we create begins with the quiet moments you share with the animals you love, built on three essential principles.',
   ],
-  closing: 'Better ingredients. Fewer products. Nothing unnecessary.',
+  pointers: [
+    'Better ingredients, fewer products.',
+    'Everyday rituals that respect both pet and person.',
+    'Nothing unnecessary, ever.',
+  ],
   image: {
-    src: '/brand_philosophy_garden_lifestyle_1786042533875.jpg',
+    src: '/brand_philosophy_garden_lifestyle_zoomed.jpg',
     alt: 'A peaceful private garden morning where an owner gently strokes an adult Yellow Labrador Retriever affectionately leaning on them, while a fluffy orange cat plays with a tennis ball nearby.',
   },
 };
