@@ -609,6 +609,72 @@ export const ingredientStories = {
         alt: 'Paw Cleaner — Spearmint & Sea Salt',
       },
     },
+    {
+      index: 4,
+      ingredient: 'Coconut-Derived Cleansing Agents',
+      shortIntro: 'Plant-derived cleansing ingredients chosen for gentle everyday use.',
+      benefits: [
+        'Mild cleansing action that does not strip the coat',
+        'Gentle enough for frequent use and sensitive skin',
+        'A soft, natural lather without harsh synthetic sulfates',
+      ],
+      product: 'Gentle Daily Shampoo',
+      productId: 'gentle-daily-shampoo',
+      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+      price: '₹695',
+      ingredientImage: {
+        src: '/ingredient-coconut.jpg',
+        alt: 'Macro botanical photography of fresh white coconut flesh and a subtle ceramic bowl',
+      },
+      productImage: {
+        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+        alt: 'Gentle Daily Shampoo — Santal & White Tea',
+      },
+    },
+    {
+      index: 5,
+      ingredient: 'Vitamin E',
+      shortIntro: 'An antioxidant ingredient that helps support skin and coat conditioning.',
+      benefits: [
+        'Potent antioxidant support against environmental stress',
+        'Helps condition and soften the skin',
+        'Supports overall coat health and natural shine',
+      ],
+      product: 'Gentle Daily Shampoo',
+      productId: 'gentle-daily-shampoo',
+      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+      price: '₹695',
+      ingredientImage: {
+        src: '/ingredient-vitamin-e.jpg',
+        alt: 'Macro botanical photography of golden amber oil drops on a natural wood surface',
+      },
+      productImage: {
+        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+        alt: 'Gentle Daily Shampoo — Santal & White Tea',
+      },
+    },
+    {
+      index: 6,
+      ingredient: 'Leuconostoc / Radish Root Ferment Filtrate',
+      shortIntro: 'A naturally derived probiotic preservation ingredient used in place of conventional synthetic preservatives.',
+      benefits: [
+        'Provides naturally derived preservation for the formula',
+        'Helps maintain long-term product stability safely',
+        'Supports the brand’s strict probiotic preservation philosophy',
+      ],
+      product: 'Gentle Daily Shampoo',
+      productId: 'gentle-daily-shampoo',
+      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+      price: '₹695',
+      ingredientImage: {
+        src: '/ingredient-radish-root.jpg',
+        alt: 'Macro botanical photography of delicate sliced radish root next to a minimalist ceramic vessel',
+      },
+      productImage: {
+        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+        alt: 'Gentle Daily Shampoo — Santal & White Tea',
+      },
+    },
   ],
 };
 
