@@ -304,11 +304,6 @@ const TRUST_MARKERS = [
       </svg>
     ),
   },
-        <line x1="5" y1="16" x2="12" y2="9" />
-        <line x1="4" y1="4" x2="16" y2="16" />
-      </svg>
-    ),
-  },
 ] as const;
 
 function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
