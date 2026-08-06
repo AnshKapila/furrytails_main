@@ -101,7 +101,7 @@ export default function ShippingPage() {
             Policies
           </p>
           <h1
-            className="text-[#3B3A38] max-w-[640px]"
+            className="text-[#3B3A38] max-w-[640px] !mx-0 text-left"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 300, lineHeight: 1.06, letterSpacing: '-0.02em' }}
           >
             Shipping &amp; Returns

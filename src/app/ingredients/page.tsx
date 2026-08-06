@@ -39,7 +39,7 @@ export default function IngredientsPage() {
                 What goes in
               </p>
               <h1
-                className="text-[#3B3A38] mb-5"
+                className="text-[#3B3A38] mb-5 !mx-0 text-left"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2.75rem, 4.5vw, 3.75rem)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-0.02em' }}
               >
                 Nature behind every formula.
@@ -56,85 +56,9 @@ export default function IngredientsPage() {
             data-kite-surface="ingredients.list"
             data-kite-surface-type="features"
           >
-            {stories.map((story, i) => {
-              const isEven = i % 2 === 0;
-              return (
-                <div
-                  key={story.index}
-                  className={`grid grid-cols-1 md:grid-cols-2 gap-0 border-b border-[#E9E2D7] ${i === 0 ? '' : ''}`}
-                >
-                  {/* Image — alternates left/right on desktop */}
-                  <div
-                    className={`relative aspect-[4/3] overflow-hidden bg-[#EDE7DF] group ${isEven ? 'md:order-first' : 'md:order-last'}`}
-                  >
-                    <Image
-                      src={story.ingredientImage.src}
-                      alt={story.ingredientImage.alt}
-                      fill
-                      className="object-cover object-center transition-[transform,filter] duration-[800ms] ease-out [filter:saturate(50%)] group-hover:[filter:saturate(100%)] group-hover:scale-[1.04]"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      priority={i === 0}
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div
-                    className={`flex flex-col justify-center gap-6 py-12 md:py-16 ${isEven ? 'md:pl-14 md:pr-4' : 'md:pr-14 md:pl-4'}`}
-                  >
-                    {/* Eyebrow + name */}
-                    <div>
-                      <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-3">
-                        {String(i + 1).padStart(2, '0')} — Featured ingredient
-                      </p>
-                      <h2
-                        className="text-[#3B3A38]"
-                        style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-                      >
-                        {story.ingredient}
-                      </h2>
-                    </div>
-
-                    {/* Short intro */}
-                    <p className="text-[0.875rem] font-light text-[#3B3A38]/80 leading-[1.65]">
-                      {story.shortIntro}
-                    </p>
-
-                    {/* Benefits */}
-                    <div className="flex flex-col gap-3">
-                      {story.benefits.map((benefit) => (
-                        <div key={benefit} className="flex items-start gap-3">
-                          <div className="mt-[7px] flex-shrink-0 w-3 h-px bg-[#8D9A83]" aria-hidden="true" />
-                          <p className="text-[0.75rem] font-light text-[#68735F] leading-[1.55]">
-                            {benefit}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Featured-in link */}
-                    <div className="pt-2 border-t border-[#E9E2D7]">
-                      <p className="text-[0.5625rem] font-normal tracking-[0.18em] uppercase text-[#BEB8AF] mb-2">
-                        Featured in
-                      </p>
-                      <Link
-                        href={`/products/${story.productId}`}
-                        className="inline-flex items-center gap-2 text-[0.8125rem] font-light text-[#3B3A38] hover:text-[#68735F] transition-colors duration-[800ms] group focus:outline-none focus-visible:underline"
-                        data-kite-cta-id="ingredient-product-link"
-                        data-kite-role="secondary"
-                        data-kite-event="product_viewed"
-                        data-kite-item={story.productId}
-                      >
-                        {story.product}
-                        <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className="flex-shrink-0 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-[800ms]">
-                          <line x1="1" y1="7" x2="13" y2="7" />
-                          <polyline points="8,2 13,7 8,12" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            {stories.map((story, i) => (
+              <IngredientRow key={story.index} story={story} i={i} />
+            ))}
           </section>
 
           {/* ── CTA ──────────────────────────────────────────────────────────── */}

@@ -56,7 +56,7 @@ export default function AccountPage() {
             Your account
           </p>
           <h1
-            className="text-[#3B3A38] mb-6"
+            className="text-[#3B3A38] mb-6 !mx-0 text-left"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.02em' }}
           >
             Welcome back.

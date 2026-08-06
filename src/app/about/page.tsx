@@ -38,7 +38,7 @@ export default function AboutPage() {
               About Furrytail
             </p>
             <h1
-              className="text-[#3B3A38]"
+              className="text-[#3B3A38] !mx-0 text-left"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2.75rem, 4.5vw, 3.75rem)', fontWeight: 300, lineHeight: 1.08, letterSpacing: '-0.02em' }}
             >
               Fewer things, made more carefully.
