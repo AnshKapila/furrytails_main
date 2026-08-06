@@ -460,27 +460,7 @@ function VideoPlaceholder({ src, alt, className = '' }: { src: string; alt: stri
   );
 }
 
-// ─── Animated section wrapper ─────────────────────────────────────────────────
-// ─── Custom Reveal for Brand Philosophy Image ──────────────────────────────────
-function ImageRevealRightToLeft({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const { ref, visible } = useReveal(0.3);
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`w-full h-full relative ${className}`}
-    >
-      <div
-        className="absolute inset-0 w-full h-full overflow-hidden"
-        style={{
-          clipPath: visible ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
-          transition: 'clip-path 800ms cubic-bezier(0.25, 1, 0.5, 1)',
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
+
 
 
 function RevealSection({ children, className = '', delay = 0, id, ...rest }: {
@@ -1058,18 +1038,18 @@ export default function Home() {
               
               {/* Media col - 50% left, no margin, 100vh height */}
               <div className="relative h-[60vh] md:h-screen w-full">
-                <ImageRevealRightToLeft>
+                <RevealSection className="w-full h-full">
                   <div className="relative w-full h-full overflow-hidden group">
                     <Image
                       src={brandPhilosophy.image.src}
                       alt={brandPhilosophy.image.alt}
                       fill
-                      className="object-cover object-center transition-all duration-[1200ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] saturate-[0.8] brightness-[0.95] group-hover:saturate-100 group-hover:brightness-100 group-hover:scale-[1.04]"
+                      className="object-cover object-center transition-[transform] duration-[2500ms] ease-out hover:scale-[1.015]"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority
                     />
                   </div>
-                </ImageRevealRightToLeft>
+                </RevealSection>
               </div>
 
               {/* Copy col - Offset right, deliberate spacing */}
