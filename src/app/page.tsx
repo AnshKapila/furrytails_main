@@ -372,19 +372,18 @@ function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
       >
         {marker.icon}
       </div>
-      {/* Label — shifts to moss on hover for a clear whole-item response */}
-      <p
-        className="text-[0.75rem] font-normal leading-tight"
+      {/* Label — unified H3 styling for all cards */}
+      <h3
+        className="text-[1.125rem] leading-snug"
         style={{
-          fontFamily: marker.external ? 'var(--font-cormorant), Georgia, serif' : 'var(--font-inter)',
-          fontWeight: marker.external ? 400 : 400,
-          letterSpacing: marker.external ? '0.01em' : '0',
+          fontFamily: 'var(--font-cormorant), Georgia, serif',
+          fontWeight: 400,
           color: hovered ? '#68735F' : '#3B3A38',
           transition: 'color 250ms ease',
         }}
       >
         {marker.label}
-      </p>
+      </h3>
       {/* Caption — starts dimmer so the reveal is more noticeable */}
       <p
         className="text-[0.625rem] font-light leading-snug"
