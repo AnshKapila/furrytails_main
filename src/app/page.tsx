@@ -249,21 +249,36 @@ function ProductCard({ product }: { product: ProductItem }) {
 
 const TRUST_MARKERS = [
   {
-    id: 'iso-16128',
-    label: 'ISO 16128-2',
-    caption: 'Natural Origin Standard',
-    external: true,
+    id: 'natural-origin',
+    label: '99.5% Natural Origin',
+    caption: 'ISO 16128-2 Standard',
+    external: false,
     icon: (
-      // Shield outline — recognised standard / verification
+      // Shield with botanical sprig inside — standard & natural origin together
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M10 2L3 5.5v5c0 4 3 6.5 7 7.5 4-1 7-3.5 7-7.5v-5L10 2Z" />
-        <polyline points="7,10 9,12 13,8" />
+        <line x1="10" y1="13" x2="10" y2="7" />
+        <path d="M10 9 C8.5 8.5 7.5 9.5 8 11 C8.5 10.5 9.5 10 10 9Z" />
+        <path d="M10 9 C11.5 8.5 12.5 9.5 12 11 C11.5 10.5 10.5 10 10 9Z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'probiotic',
+    label: 'Probiotic Preserved',
+    caption: 'Free of Parabens, MIT & Phenoxyethanol',
+    external: false,
+    icon: (
+      // Droplet — gentle probiotic preservation
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M10 3c0 0-6 5.5-6 9.5a6 6 0 0 0 12 0C16 8.5 10 3 10 3Z" />
+        <path d="M7.5 13.5c.5-1.5 2-2.5 3.5-2" />
       </svg>
     ),
   },
   {
     id: 'ifra',
-    label: 'IFRA Compliant',
+    label: 'IFRA-Compliant Fragrance',
     caption: 'Fragrance Safety Standard',
     external: true,
     icon: (
@@ -275,40 +290,6 @@ const TRUST_MARKERS = [
     ),
   },
   {
-    id: 'natural-origin',
-    label: '99.5% Natural Origin',
-    caption: 'Calculated Per Batch',
-    external: false,
-    icon: (
-      // Botanical sprig — stem with two leaf pairs, simple nature symbol
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        {/* Central stem */}
-        <line x1="10" y1="17" x2="10" y2="4" />
-        {/* Upper left leaf */}
-        <path d="M10 7 C7 6 5 8 6 10 C7 9 9 8 10 7Z" />
-        {/* Upper right leaf */}
-        <path d="M10 7 C13 6 15 8 14 10 C13 9 11 8 10 7Z" />
-        {/* Lower left leaf */}
-        <path d="M10 12 C7 11 5 13 6 15 C7 14 9 13 10 12Z" />
-        {/* Lower right leaf */}
-        <path d="M10 12 C13 11 15 13 14 15 C13 14 11 13 10 12Z" />
-      </svg>
-    ),
-  },
-  {
-    id: 'probiotic',
-    label: 'Probiotic Preserved',
-    caption: 'Naturally Preserved',
-    external: false,
-    icon: (
-      // Droplet — gentle preservation / care
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M10 3c0 0-6 5.5-6 9.5a6 6 0 0 0 12 0C16 8.5 10 3 10 3Z" />
-        <path d="M7.5 13.5c.5-1.5 2-2.5 3.5-2" />
-      </svg>
-    ),
-  },
-  {
     id: 'vet-reviewed',
     label: 'Vet Reviewed',
     caption: 'Formulated with Veterinary Guidance',
@@ -316,25 +297,13 @@ const TRUST_MARKERS = [
     icon: (
       // Doctor — head with stethoscope draped at shoulders
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        {/* Head */}
         <circle cx="10" cy="5.5" r="2.5" />
-        {/* Shoulders / body */}
         <path d="M5 18c0-3.5 2.2-5.5 5-5.5s5 2 5 5.5" />
-        {/* Stethoscope — earpiece arc from left shoulder, loops down, ends in chest piece */}
         <path d="M7 12.5 C6 11 6 9.5 7.5 9.5 C9 9.5 9 11 9 12 C9 13.2 10 14 11 14 C12.5 14 13 13 13 11.5" />
         <circle cx="13" cy="11" r="0.8" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
-  {
-    id: 'free-from',
-    label: 'Parabens Free',
-    caption: 'No MIT \u2022 MCIT \u2022 Parabens \u2022 Phenoxyethanol',
-    external: false,
-    icon: (
-      // Leaf with a single diagonal rule — botanical "none of this" / free-from
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M5 16c3-7 8-10 12-11C16 11 12 15 5 16Z" />
         <line x1="5" y1="16" x2="12" y2="9" />
         <line x1="4" y1="4" x2="16" y2="16" />
       </svg>
