@@ -13,7 +13,7 @@ import {
   hero,
   heroImages,
   bestSellers,
-  brandStory,
+  brandPhilosophy,
   pillars,
   allProducts,
   ourRange,
@@ -1029,27 +1029,55 @@ export default function Home() {
           </div>
         </RevealSection>
 
-        {/* ── 5. MERGED BRAND STORY + COMMITMENTS ──────────────────────────── */}
-        {/* Single split layout: video/media left, copy + compact commitment list right */}
-        <RevealSection id="brand-story" className="py-16 md:py-20" data-kite-surface="home.brand-story" data-kite-surface-type="features">
-          <div id="trust" className="max-w-[1200px] mx-auto px-6 md:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-              {/* Media col */}
-              <div className="relative aspect-[4/3] overflow-hidden group">
-                <VideoPlaceholder src={brandStory.image.src} alt={brandStory.image.alt} className="w-full h-full" />
+        {/* ── 5. BRAND PHILOSOPHY ────────────────────────────────────────────── */}
+        <section id="brand-philosophy" className="py-24 md:py-32 relative bg-[#F8F5F1] overflow-hidden" data-kite-surface="home.brand-philosophy" data-kite-surface-type="features">
+          {/* Subtle background color blocking for architectural feel */}
+          <div className="absolute top-0 right-0 w-full md:w-5/12 h-2/3 md:h-full bg-[#F0EBE4]" aria-hidden="true" />
+          
+          <div className="max-w-[1200px] mx-auto px-6 md:px-8 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+              
+              {/* Media col - Left aligned */}
+              <div className="md:col-span-7 relative">
+                <RevealSection>
+                  <div className="relative aspect-[3/4] w-full max-w-[560px] md:-ml-4 shadow-[0_20px_40px_-15px_rgba(59,58,56,0.08)] overflow-hidden">
+                    <Image
+                      src={brandPhilosophy.image.src}
+                      alt={brandPhilosophy.image.alt}
+                      fill
+                      className="object-cover object-center transition-[transform] duration-[2500ms] ease-out hover:scale-[1.015]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </RevealSection>
               </div>
 
-              {/* Copy col */}
-              <div className="flex flex-col gap-4">
-                <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83]">{brandStory.eyebrow}</p>
-                <h2 className="text-[#3B3A38]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}>{brandStory.heading}</h2>
-                {brandStory.body.map((para, i) => (
-                  <p key={i} className="text-[0.875rem] font-light text-[#3B3A38]/80 leading-[1.6]">{para}</p>
-                ))}
+              {/* Copy col - Offset right, deliberate spacing */}
+              <div className="md:col-span-5 flex flex-col justify-center">
+                <RevealSection delay={200}>
+                  <div className="md:pl-4 lg:pl-10">
+                    <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8">{brandPhilosophy.eyebrow}</p>
+                    <h2 className="text-[#3B3A38] mb-8 md:mb-10" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
+                      {brandPhilosophy.heading}
+                    </h2>
+                    <div className="flex flex-col gap-3">
+                      {brandPhilosophy.body.map((line, i) => (
+                        <p key={i} className="text-[0.9375rem] font-light text-[#3B3A38]/85 leading-[1.7] max-w-[420px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                          {line}
+                        </p>
+                      ))}
+                      <div className="w-12 h-px bg-[#8D9A83]/40 mt-8 mb-6" aria-hidden="true" />
+                      <p className="text-[1.125rem] text-[#3B3A38] leading-[1.6]" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontStyle: 'italic' }}>
+                        {brandPhilosophy.closing}
+                      </p>
+                    </div>
+                  </div>
+                </RevealSection>
               </div>
+
             </div>
           </div>
-        </RevealSection>
+        </section>
 
         {/* ── 6. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
         <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
