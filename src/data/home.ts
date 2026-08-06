@@ -512,170 +512,260 @@ export const contact = {
 // Each story introduces one botanical ingredient and maps to its featured product.
 // Product names, IDs, and prices are the factual source of truth — do not alter them.
 
+export const ingredientChapters = [
+  {
+    id: 'chapter-1',
+    chapterNumber: 'Chapter 01',
+    title: 'Botanical Actives',
+    subtitle: 'Ingredients chosen primarily for skin and coat wellness.',
+    stories: [
+      {
+        index: 0,
+        ingredient: 'White Tea',
+        shortIntro: 'Chosen for its gentle antioxidant character and daily protection against environmental stress.',
+        benefits: [
+          'Shields coat from daily environmental stress',
+          'Soothes delicate skin without stripping oils',
+          'Leaves fur soft and naturally balanced',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+        price: '₹695',
+        ingredientImage: {
+          src: 'https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png',
+          alt: 'White tea leaves arranged on a warm stone surface',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+          alt: 'Gentle Daily Shampoo — Santal & White Tea',
+        },
+      },
+      {
+        index: 1,
+        ingredient: 'Vitamin E',
+        shortIntro: 'Selected for its nourishing depth that restores moisture to dry skin and fur.',
+        benefits: [
+          'Deeply nourishes dry skin and coat fibers',
+          'Restores natural coat flexibility and shine',
+          'Fortifies skin against daily moisture loss',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+        price: '₹695',
+        ingredientImage: {
+          src: '/ingredient-vitamin-e.jpg',
+          alt: 'Golden amber oil drops on a natural wood surface',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+          alt: 'Gentle Daily Shampoo — Santal & White Tea',
+        },
+      },
+    ],
+  },
+  {
+    id: 'chapter-2',
+    chapterNumber: 'Chapter 02',
+    title: 'Botanical Aromatics',
+    subtitle: "Ingredients selected to shape each product's sensory identity.",
+    stories: [
+      {
+        index: 2,
+        ingredient: 'Fig',
+        shortIntro: 'Chosen for its lush, green warmth that imparts a subtle botanical sweetness.',
+        benefits: [
+          'Subtle green aroma with soft sweetness',
+          'Hydrates coat fibers with botanical sap',
+          'Leaves a clean, velvety finish',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
+        price: '₹695',
+        ingredientImage: {
+          src: '/ingredient-fig.jpg',
+          alt: 'Fresh split fig resting on a warm travertine surface',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648855/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/j2sgtsiamihlvbryljwr.png',
+          alt: 'Gentle Daily Shampoo — Fig & Neroli',
+        },
+      },
+      {
+        index: 3,
+        ingredient: 'Neroli',
+        shortIntro: 'Selected for its delicate orange blossom notes that calm both pet and coat.',
+        benefits: [
+          'Delicate blossom scent that relaxes during grooming',
+          'Soothes dry skin with gentle flora',
+          'Uplifts coat freshness with subtle clarity',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
+        price: '₹695',
+        ingredientImage: {
+          src: '/ingredient-neroli.jpg',
+          alt: 'Delicate white neroli blossom flowers on warm linen',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648855/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/j2sgtsiamihlvbryljwr.png',
+          alt: 'Gentle Daily Shampoo — Fig & Neroli',
+        },
+      },
+      {
+        index: 4,
+        ingredient: 'Sandalwood',
+        shortIntro: 'Chosen for its grounding warmth that lingers softly on the coat long after washing.',
+        benefits: [
+          'Warm base note that lingers gently after grooming',
+          'Calms senses without masking natural scents',
+          'Sourced responsibly and formulated with restraint',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+        price: '₹695',
+        ingredientImage: {
+          src: 'https://static.kite.ai/image/upload/v1785786926/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-sandalwood-editorial-r2.png',
+          alt: 'Sandalwood bark and shavings in warm editorial light',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+          alt: 'Gentle Daily Shampoo — Santal & White Tea',
+        },
+      },
+      {
+        index: 5,
+        ingredient: 'Vetiver',
+        shortIntro: 'Selected for its earthy quietness and natural heritage as a gentle coat shield.',
+        benefits: [
+          'Earthy root essence that grounds the blend',
+          'Natural heritage protection for outdoors',
+          'Calms sensitive coats without heavy residue',
+        ],
+        product: 'Anti-Tick & Flea Spray',
+        productId: 'anti-tick-flea-spray',
+        productDesc: 'Natural everyday protection. Vetiver & Cypress.',
+        price: '₹595',
+        ingredientImage: {
+          src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-vetiver-editorial-r2.png',
+          alt: 'Vetiver grass roots in rich earthy tones',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648902/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/t6q1d4qrm398solinpel.png',
+          alt: 'Anti-Tick & Flea Spray — Vetiver & Cypress',
+        },
+      },
+      {
+        index: 6,
+        ingredient: 'Spearmint',
+        shortIntro: 'Chosen for its subtle cooling touch that freshens paws gently without sting.',
+        benefits: [
+          'Mild cooling touch for sensitive paw pads',
+          'Naturally refreshing botanical aroma',
+          'Clean comfort for daily paw care',
+        ],
+        product: 'Paw Cleaner',
+        productId: 'paw-cleaner',
+        productDesc: 'Clean paws after every walk. Spearmint & Sea Salt.',
+        price: '₹495',
+        ingredientImage: {
+          src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-spearmint-editorial-r2.png',
+          alt: 'Fresh spearmint leaves with soft natural light',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785646596/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter5/our-range-paw-cleaner.png',
+          alt: 'Paw Cleaner — Spearmint & Sea Salt',
+        },
+      },
+      {
+        index: 7,
+        ingredient: 'Yuzu',
+        shortIntro: 'Chosen for its bright citrus radiance that naturally clarifies and revives.',
+        benefits: [
+          'Bright citrus note that revives fur',
+          'Clarifies coat dullness without harsh stripping',
+          'Imparts a light, sun-warmed botanical scent',
+        ],
+        product: 'Dry Foam Shampoo',
+        productId: 'dry-foam-shampoo',
+        productDesc: 'Waterless cleanse between baths. Mimosa & Tonka.',
+        price: '₹595',
+        ingredientImage: {
+          src: '/ingredient-yuzu.jpg',
+          alt: 'Fresh whole and sliced Yuzu fruit on warm matte ceramic',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785646597/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter5/our-range-dry-foam-shampoo.png',
+          alt: 'Dry Foam Shampoo — Mimosa & Tonka',
+        },
+      },
+    ],
+  },
+  {
+    id: 'chapter-3',
+    chapterNumber: 'Chapter 03',
+    title: 'Formula Science',
+    subtitle: 'Ingredients that explain our formulation philosophy.',
+    stories: [
+      {
+        index: 8,
+        ingredient: 'Coconut-Derived Cleansing Agents',
+        shortIntro: 'Selected as a gentle plant alternative to harsh sulfates for pure, low-foaming care.',
+        benefits: [
+          'Gentle plant cleansing without stripping moisture',
+          'Low-foaming rinse that leaves no residue',
+          'Ideal for sensitive, easily irritated coats',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+        price: '₹695',
+        ingredientImage: {
+          src: '/ingredient-coconut.jpg',
+          alt: 'Fresh white coconut flesh and a subtle ceramic bowl',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+          alt: 'Gentle Daily Shampoo — Santal & White Tea',
+        },
+      },
+      {
+        index: 9,
+        ingredient: 'Probiotic Preservative',
+        shortIntro: 'Chosen as a natural probiotic preserver in place of conventional synthetic chemicals.',
+        benefits: [
+          'Probiotic fermentation protects formula freshness',
+          'Gentle alternative to harsh synthetic preservers',
+          'Skin-friendly and microbiome supportive',
+        ],
+        product: 'Gentle Daily Shampoo',
+        productId: 'gentle-daily-shampoo',
+        productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
+        price: '₹695',
+        ingredientImage: {
+          src: '/ingredient-radish-root.jpg',
+          alt: 'Sliced radish root next to a minimalist ceramic vessel',
+        },
+        productImage: {
+          src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
+          alt: 'Gentle Daily Shampoo — Santal & White Tea',
+        },
+      },
+    ],
+  },
+];
+
 export const ingredientStories = {
   eyebrow: 'What goes in',
   heading: 'Nature behind every formula.',
   body: 'Every ingredient earns its place. Nothing added for fragrance alone, nothing left in because it was easier to keep.',
   cta: 'How we source',
   ctaHref: '/about#how-we-source',
-  stories: [
-    {
-      index: 0,
-      ingredient: 'White Tea',
-      // Short intro — two lines max, always visible
-      shortIntro: 'White tea is one of the most gentle antioxidants available. It protects the coat from oxidative stress without stripping natural oils.',
-      // Three botanical benefits — revealed on hover (desktop) / always visible (mobile)
-      benefits: [
-        'Shields the coat from daily oxidative stress',
-        'Soothes the scalp without disrupting natural oils',
-        'Leaves the fur calm, soft and honestly clean',
-      ],
-      product: 'Gentle Daily Shampoo',
-      productId: 'gentle-daily-shampoo',
-      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-      price: '₹695',
-      ingredientImage: {
-        src: 'https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png',
-        alt: 'White tea leaves arranged on a warm stone surface',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
-        alt: 'Gentle Daily Shampoo — Santal & White Tea',
-      },
-    },
-    {
-      index: 1,
-      ingredient: 'Sandalwood',
-      shortIntro: 'Sandalwood is one of the oldest aromatic woods in recorded use. Its warmth is soft and long-lasting on fabric and fur.',
-      benefits: [
-        'Warm base note that lingers gently after the wash',
-        'Calms the senses without masking the natural coat scent',
-        'Sourced responsibly, used with restraint',
-      ],
-      product: 'Gentle Daily Shampoo',
-      productId: 'gentle-daily-shampoo',
-      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-      price: '₹695',
-      ingredientImage: {
-        src: 'https://static.kite.ai/image/upload/v1785786926/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-sandalwood-editorial-r2.png',
-        alt: 'Sandalwood bark and shavings in warm editorial light',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
-        alt: 'Gentle Daily Shampoo — Santal & White Tea',
-      },
-    },
-    {
-      index: 2,
-      ingredient: 'Vetiver',
-      shortIntro: 'Extracted from the root of a grass native to India. Vetiver has been used as a natural insect deterrent for generations — steadily, not aggressively.',
-      benefits: [
-        'Disrupts tick and flea activity as a natural scent barrier',
-        'Grounded, woody character that stays calm on the coat',
-        'Gentle on sensitive skin — no harsh chemical residue',
-      ],
-      product: 'Anti-Tick & Flea Spray',
-      productId: 'anti-tick-flea-spray',
-      productDesc: 'Natural everyday protection. Vetiver & Cypress.',
-      price: '\u20b9595',
-      ingredientImage: {
-        src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-vetiver-editorial-r2.png',
-        alt: 'Vetiver grass roots in rich earthy tones',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648902/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/t6q1d4qrm398solinpel.png',
-        alt: 'Anti-Tick & Flea Spray — Vetiver & Cypress',
-      },
-    },
-    {
-      index: 3,
-      ingredient: 'Spearmint',
-      shortIntro: 'A milder alternative to peppermint — cooling and antiseptic without the harshness that irritates sensitive paw skin.',
-      benefits: [
-        'Cools and soothes paw pads after walks',
-        'Mild antiseptic action without skin irritation',
-        'Pairs with sea salt to gently draw out moisture and debris',
-      ],
-      product: 'Paw Cleaner',
-      productId: 'paw-cleaner',
-      productDesc: 'Clean paws after every walk. Spearmint & Sea Salt.',
-      price: '\u20b9495',
-      ingredientImage: {
-        src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-spearmint-editorial-r2.png',
-        alt: 'Fresh spearmint leaves with soft natural light',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785646596/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter5/our-range-paw-cleaner.png',
-        alt: 'Paw Cleaner — Spearmint & Sea Salt',
-      },
-    },
-    {
-      index: 4,
-      ingredient: 'Coconut-Derived Cleansing Agents',
-      shortIntro: 'Plant-derived cleansing ingredients chosen for gentle everyday use.',
-      benefits: [
-        'Mild cleansing action that does not strip the coat',
-        'Gentle enough for frequent use and sensitive skin',
-        'A soft, natural lather without harsh synthetic sulfates',
-      ],
-      product: 'Gentle Daily Shampoo',
-      productId: 'gentle-daily-shampoo',
-      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-      price: '₹695',
-      ingredientImage: {
-        src: '/ingredient-coconut.jpg',
-        alt: 'Macro botanical photography of fresh white coconut flesh and a subtle ceramic bowl',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
-        alt: 'Gentle Daily Shampoo — Santal & White Tea',
-      },
-    },
-    {
-      index: 5,
-      ingredient: 'Vitamin E',
-      shortIntro: 'An antioxidant ingredient that helps support skin and coat conditioning.',
-      benefits: [
-        'Potent antioxidant support against environmental stress',
-        'Helps condition and soften the skin',
-        'Supports overall coat health and natural shine',
-      ],
-      product: 'Gentle Daily Shampoo',
-      productId: 'gentle-daily-shampoo',
-      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-      price: '₹695',
-      ingredientImage: {
-        src: '/ingredient-vitamin-e.jpg',
-        alt: 'Macro botanical photography of golden amber oil drops on a natural wood surface',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
-        alt: 'Gentle Daily Shampoo — Santal & White Tea',
-      },
-    },
-    {
-      index: 6,
-      ingredient: 'Leuconostoc / Radish Root Ferment Filtrate',
-      shortIntro: 'A naturally derived probiotic preservation ingredient used in place of conventional synthetic preservatives.',
-      benefits: [
-        'Provides naturally derived preservation for the formula',
-        'Helps maintain long-term product stability safely',
-        'Supports the brand’s strict probiotic preservation philosophy',
-      ],
-      product: 'Gentle Daily Shampoo',
-      productId: 'gentle-daily-shampoo',
-      productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-      price: '₹695',
-      ingredientImage: {
-        src: '/ingredient-radish-root.jpg',
-        alt: 'Macro botanical photography of delicate sliced radish root next to a minimalist ceramic vessel',
-      },
-      productImage: {
-        src: 'https://static.kite.ai/image/upload/v1785648889/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/ueua3svmrxa4n1awqytg.png',
-        alt: 'Gentle Daily Shampoo — Santal & White Tea',
-      },
-    },
-  ],
+  stories: ingredientChapters.flatMap((ch) => ch.stories),
 };
 
 // ── Footer ───────────────────────────────────────────────────────────────────

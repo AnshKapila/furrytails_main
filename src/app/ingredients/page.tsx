@@ -3,24 +3,24 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
-import { ingredientStories } from '@/data/home';
+import { ingredientChapters } from '@/data/home';
 import IngredientRow from '@/components/IngredientRow';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Our Ingredients — Furrytail',
-  description: 'Every botanical Furrytail uses, explained. What each ingredient is, why it is in the formula, and where it comes from.',
+  description: 'Every botanical Furrytail uses, explained across three chapters. What each ingredient is, why it is in the formula, and where it comes from.',
   alternates: { canonical: '/ingredients' },
   openGraph: {
     url: '/ingredients',
     title: 'Our Ingredients — Furrytail',
-    description: 'Every botanical Furrytail uses, explained. What each ingredient is, why it is in the formula, and where it comes from.',
+    description: 'Every botanical Furrytail uses, explained across three chapters. What each ingredient is, why it is in the formula, and where it comes from.',
     images: ['https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png'],
   },
 };
 
 export default function IngredientsPage() {
-  const stories = ingredientStories.stories;
+  let globalIndex = 0;
 
   return (
     <ClientProviders>
@@ -46,21 +46,51 @@ export default function IngredientsPage() {
                 Nature behind every formula.
               </h1>
               <p className="text-[0.875rem] font-light text-[#3B3A38]/70 leading-[1.65] max-w-[560px]">
-                Every ingredient earns its place. Nothing is here for fragrance alone, nothing kept in because it was easier to leave it. Below is each botanical we use, explained.
+                Every ingredient earns its place. Nothing is here for fragrance alone, nothing kept in because it was easier to leave it. Below is each botanical we use, organized across three chapters of formula philosophy.
               </p>
             </div>
           </section>
 
-          {/* ── Ingredient blocks ────────────────────────────────────────────── */}
-          <section
-            className="max-w-[1200px] mx-auto px-6 md:px-8"
+          {/* ── Ingredient chapters ──────────────────────────────────────────── */}
+          <div
+            className="max-w-[1200px] mx-auto px-6 md:px-8 pb-12"
             data-kite-surface="ingredients.list"
             data-kite-surface-type="features"
           >
-            {stories.map((story, i) => (
-              <IngredientRow key={story.index} story={story} i={i} />
+            {ingredientChapters.map((chapter) => (
+              <section key={chapter.id} className="pt-12 pb-6 border-b border-[#E9E2D7] last:border-b-0">
+                {/* Chapter Header */}
+                <div className="py-8 border-b border-[#E9E2D7]/60 mb-8">
+                  <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">
+                    {chapter.chapterNumber}
+                  </p>
+                  <h2
+                    className="text-[#3B3A38] mb-2 text-left"
+                    style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(1.875rem, 3vw, 2.375rem)', fontWeight: 300 }}
+                  >
+                    {chapter.title}
+                  </h2>
+                  <p className="text-[0.875rem] font-light text-[#3B3A38]/70 max-w-[520px]">
+                    {chapter.subtitle}
+                  </p>
+                </div>
+
+                {/* Chapter Ingredient Rows */}
+                <div>
+                  {chapter.stories.map((story) => {
+                    const currentIndex = globalIndex++;
+                    return (
+                      <IngredientRow
+                        key={story.ingredient}
+                        story={{ ...story, index: currentIndex }}
+                        i={currentIndex}
+                      />
+                    );
+                  })}
+                </div>
+              </section>
             ))}
-          </section>
+          </div>
 
           {/* ── CTA ──────────────────────────────────────────────────────────── */}
           <section
