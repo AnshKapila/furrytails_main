@@ -146,14 +146,15 @@ function ProductCard({ product }: { product: Product }) {
             </p>
           )}
 
-          {'volume' in product && product.volume && (
-            <p className="text-[0.6875rem] font-light text-[#BEB8AF] tracking-[0.04em]" style={{ fontFamily: 'var(--font-inter)' }}>
+          {'volume' in product && (product as any).volume && (
+            <p className="hidden md:block text-[0.6875rem] font-light text-[#BEB8AF] tracking-[0.04em]" style={{ fontFamily: 'var(--font-inter)' }}>
               {(product as any).volume}
             </p>
           )}
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-3">
+        {/* ── DESKTOP LAYOUT (md:flex) ──────────────────────────────────────── */}
+        <div className="hidden md:flex items-center justify-between gap-2 pt-3">
           <div className="flex items-baseline gap-2">
             <span
               className="text-[1.125rem] text-[#3B3A38] leading-none"
@@ -175,6 +176,55 @@ function ProductCard({ product }: { product: Product }) {
             onClick={handleQuickAdd}
             aria-label={`Add ${product.name} to cart`}
             className="focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] flex-shrink-0 inline-flex items-center gap-1.5 border border-[#3B3A38] text-[#3B3A38] px-3 py-1.5 text-[0.6875rem] font-normal tracking-[0.06em] hover:bg-[#3B3A38] hover:text-[#F8F5F1] transition-colors duration-[800ms]"
+            style={{ fontFamily: 'var(--font-inter)', whiteSpace: 'nowrap' }}
+          >
+            {quickAdded ? (
+              <>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="1 6 4.5 9.5 11 2.5" />
+                </svg>
+                Added
+              </>
+            ) : (
+              <>
+                <BagIconOutline />
+                Add to cart
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* ── MOBILE LAYOUT (md:hidden) ─────────────────────────────────────── */}
+        <div className="flex flex-col gap-2.5 pt-2 md:hidden">
+          {/* Row 1: Volume on left, Price on right */}
+          <div className="flex items-baseline justify-between w-full">
+            <span className="text-[0.6875rem] font-light text-[#BEB8AF] tracking-[0.04em]" style={{ fontFamily: 'var(--font-inter)' }}>
+              {'volume' in product ? (product as any).volume ?? '' : ''}
+            </span>
+            <div className="flex items-baseline gap-1.5 ml-auto">
+              <span
+                className="text-[1.125rem] text-[#3B3A38] leading-none"
+                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }}
+              >
+                {displayPrice}
+              </span>
+              {product.standardPrice && (
+                <span
+                  className="text-[0.75rem] font-light text-[#BEB8AF]/70 line-through leading-none"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  {product.standardPrice}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Row 2: Add to cart button spanning full width from left to right */}
+          <button
+            type="button"
+            onClick={handleQuickAdd}
+            aria-label={`Add ${product.name} to cart`}
+            className="w-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] inline-flex items-center justify-center gap-1.5 border border-[#3B3A38] text-[#3B3A38] px-3 py-2 text-[0.6875rem] font-normal tracking-[0.06em] hover:bg-[#3B3A38] hover:text-[#F8F5F1] active:bg-[#3B3A38] active:text-[#F8F5F1] transition-colors duration-[400ms]"
             style={{ fontFamily: 'var(--font-inter)', whiteSpace: 'nowrap' }}
           >
             {quickAdded ? (
