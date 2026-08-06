@@ -603,6 +603,7 @@ function ShopContent() {
                           </button>
                         ))}
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
