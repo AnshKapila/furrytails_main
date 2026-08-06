@@ -246,14 +246,27 @@ function ShopContent() {
   // Sort state
   const [activeSort, setActiveSort] = useState<SortValue>('default');
 
-  // Dropdown open states
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [sortOpen, setSortOpen] = useState(false);
+  // Dropdown hover & pinned states
+  const [filterHovered, setFilterHovered] = useState(false);
+  const [filterPinned, setFilterPinned] = useState(false);
+  const filterOpen = filterHovered || filterPinned;
 
-  // Nested accordion open states inside the filter panel
-  const [ritualOpen, setRitualOpen] = useState(true);
-  const [petOpen, setPetOpen] = useState(false);
-  const [typeOpen, setTypeOpen] = useState(false);
+  const [sortHovered, setSortHovered] = useState(false);
+  const [sortPinned, setSortPinned] = useState(false);
+  const sortOpen = sortHovered || sortPinned;
+
+  // Nested accordion hover & pinned states inside the filter panel
+  const [ritualHovered, setRitualHovered] = useState(false);
+  const [ritualPinned, setRitualPinned] = useState(true);
+  const ritualOpen = ritualHovered || ritualPinned;
+
+  const [petHovered, setPetHovered] = useState(false);
+  const [petPinned, setPetPinned] = useState(false);
+  const petOpen = petHovered || petPinned;
+
+  const [typeHovered, setTypeHovered] = useState(false);
+  const [typePinned, setTypePinned] = useState(false);
+  const typeOpen = typeHovered || typePinned;
 
   // Refs for outside-click detection
   const filterRef = useRef<HTMLDivElement>(null);
@@ -273,10 +286,12 @@ function ShopContent() {
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
-        setFilterOpen(false);
+        setFilterHovered(false);
+        setFilterPinned(false);
       }
       if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
-        setSortOpen(false);
+        setSortHovered(false);
+        setSortPinned(false);
       }
     }
     document.addEventListener('mousedown', handleClick);
@@ -286,7 +301,12 @@ function ShopContent() {
   // Close on Escape
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') { setFilterOpen(false); setSortOpen(false); }
+      if (e.key === 'Escape') {
+        setFilterHovered(false);
+        setFilterPinned(false);
+        setSortHovered(false);
+        setSortPinned(false);
+      }
     }
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
@@ -389,10 +409,15 @@ function ShopContent() {
           <div className="flex items-center gap-2">
 
             {/* ── Sort dropdown ── */}
-            <div className="relative" ref={sortRef}>
+            <div
+              className="relative"
+              ref={sortRef}
+              onMouseEnter={() => setSortHovered(true)}
+              onMouseLeave={() => setSortHovered(false)}
+            >
               <button
                 type="button"
-                onClick={() => { setSortOpen((v) => !v); setFilterOpen(false); }}
+                onClick={() => { setSortPinned((v) => !v); setFilterPinned(false); }}
                 className={`${triggerBase} ${activeSort !== 'default' ? triggerActive : triggerIdle}`}
                 style={{ fontFamily: 'var(--font-inter)' }}
                 aria-expanded={sortOpen}
@@ -422,7 +447,11 @@ function ShopContent() {
                       type="button"
                       role="option"
                       aria-selected={activeSort === opt.value}
-                      onClick={() => { setActiveSort(opt.value); setSortOpen(false); }}
+                      onClick={() => {
+                        setActiveSort(opt.value);
+                        setSortHovered(false);
+                        setSortPinned(false);
+                      }}
                       className={`w-full text-left px-4 py-2.5 text-[0.625rem] font-normal transition-colors duration-[800ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] ${
                         activeSort === opt.value
                           ? 'bg-[#3B3A38] text-[#F8F5F1]'
@@ -438,10 +467,15 @@ function ShopContent() {
             </div>
 
             {/* ── Filter dropdown ── */}
-            <div className="relative" ref={filterRef}>
+            <div
+              className="relative"
+              ref={filterRef}
+              onMouseEnter={() => setFilterHovered(true)}
+              onMouseLeave={() => setFilterHovered(false)}
+            >
               <button
                 type="button"
-                onClick={() => { setFilterOpen((v) => !v); setSortOpen(false); }}
+                onClick={() => { setFilterPinned((v) => !v); setSortPinned(false); }}
                 className={`${triggerBase} ${hasActiveFilter ? triggerActive : triggerIdle}`}
                 style={{ fontFamily: 'var(--font-inter)' }}
                 aria-expanded={filterOpen}
@@ -470,10 +504,14 @@ function ShopContent() {
                 >
 
                   {/* ── Ritual accordion ── */}
-                  <div className="border-b border-[#E9E2D7]">
+                  <div
+                    className="border-b border-[#E9E2D7]"
+                    onMouseEnter={() => setRitualHovered(true)}
+                    onMouseLeave={() => setRitualHovered(false)}
+                  >
                     <button
                       type="button"
-                      onClick={() => setRitualOpen((v) => !v)}
+                      onClick={() => setRitualPinned((v) => !v)}
                       className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] transition-colors duration-[800ms] focus:outline-none"
                       style={{ fontFamily: 'var(--font-inter)' }}
                       aria-expanded={ritualOpen}
@@ -501,10 +539,14 @@ function ShopContent() {
                   </div>
 
                   {/* ── Pet accordion ── */}
-                  <div className="border-b border-[#E9E2D7]">
+                  <div
+                    className="border-b border-[#E9E2D7]"
+                    onMouseEnter={() => setPetHovered(true)}
+                    onMouseLeave={() => setPetHovered(false)}
+                  >
                     <button
                       type="button"
-                      onClick={() => setPetOpen((v) => !v)}
+                      onClick={() => setPetPinned((v) => !v)}
                       className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] transition-colors duration-[800ms] focus:outline-none"
                       style={{ fontFamily: 'var(--font-inter)' }}
                       aria-expanded={petOpen}
@@ -532,10 +574,13 @@ function ShopContent() {
                   </div>
 
                   {/* ── Type accordion ── */}
-                  <div>
+                  <div
+                    onMouseEnter={() => setTypeHovered(true)}
+                    onMouseLeave={() => setTypeHovered(false)}
+                  >
                     <button
                       type="button"
-                      onClick={() => setTypeOpen((v) => !v)}
+                      onClick={() => setTypePinned((v) => !v)}
                       className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] transition-colors duration-[800ms] focus:outline-none"
                       style={{ fontFamily: 'var(--font-inter)' }}
                       aria-expanded={typeOpen}
