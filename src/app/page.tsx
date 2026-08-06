@@ -19,8 +19,8 @@ import {
   ourRange,
   founderNote,
   contact,
+  ingredientStories,
 } from '@/data/home';
-import { ingredientStories } from '@/data/ingredients';
 import { PawPrint } from 'lucide-react';
 
 // ─── Scroll-reveal hook ───────────────────────────────────────────────────────
