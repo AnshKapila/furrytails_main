@@ -65,13 +65,13 @@ export default function IngredientsPage() {
                 >
                   {/* Image — alternates left/right on desktop */}
                   <div
-                    className={`relative aspect-[4/3] overflow-hidden bg-[#EDE7DF] ${isEven ? 'md:order-first' : 'md:order-last'}`}
+                    className={`relative aspect-[4/3] overflow-hidden bg-[#EDE7DF] group ${isEven ? 'md:order-first' : 'md:order-last'}`}
                   >
                     <Image
                       src={story.ingredientImage.src}
                       alt={story.ingredientImage.alt}
                       fill
-                      className="object-cover object-center [filter:saturate(80%)] hover:[filter:saturate(100%)] transition-[filter] duration-[800ms] ease-out"
+                      className="object-cover object-center transition-[transform,filter] duration-[800ms] ease-out [filter:saturate(50%)] group-hover:[filter:saturate(100%)] group-hover:scale-[1.04]"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority={i === 0}
                     />
