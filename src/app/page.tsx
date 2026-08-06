@@ -310,10 +310,8 @@ function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
-      className="flex flex-col items-center text-center gap-3 flex-shrink-0 px-2 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] rounded-[1px]"
+      className="flex flex-col items-center text-center gap-3 w-full px-2 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] rounded-[1px]"
       style={{
-        minWidth: '120px',
-        maxWidth: '160px',
         transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
         transition: 'transform 250ms ease',
         cursor: 'default',
@@ -350,13 +348,12 @@ function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
       </h3>
       {/* Caption — starts dimmer so the reveal is more noticeable */}
       <p
-        className="text-[0.625rem] font-light leading-snug"
+        className="text-[0.625rem] font-light leading-snug max-w-[180px]"
         style={{
           fontFamily: 'var(--font-inter)',
           color: '#8D9A83',
           opacity: hovered ? 1 : 0.55,
           transition: 'opacity 250ms ease',
-          maxWidth: '120px',
         }}
       >
         {marker.caption}
@@ -386,15 +383,10 @@ function TrustMarkersSection() {
           </p>
         </div>
 
-        {/* Markers — desktop: single flex row; mobile: horizontal scroll */}
-        <div
-          className="flex items-start justify-between gap-6 overflow-x-auto md:overflow-visible snap-x md:snap-none pb-2 md:pb-0"
-          style={{ scrollbarWidth: 'none' } as React.CSSProperties}
-        >
+        {/* Markers — 2x2 grid on mobile, 4-column equidistant full-width on desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full justify-between items-start">
           {TRUST_MARKERS.map((marker) => (
-            <div key={marker.id} className="flex items-start flex-shrink-0 md:flex-shrink md:flex-1">
-              <TrustMarkerItem marker={marker} />
-            </div>
+            <TrustMarkerItem key={marker.id} marker={marker} />
           ))}
         </div>
       </div>
@@ -511,6 +503,61 @@ function ContactForm() {
   );
 }
 
+function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx: number }) {
+  const [userToggled, setUserToggled] = useState<boolean | null>(null);
+  const [inView, setInView] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      { threshold: 0.35 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const isOpen = userToggled !== null ? userToggled : inView;
+  const num = String(idx + 1).padStart(2, '0');
+  const handleToggle = () => setUserToggled(!isOpen);
+
+  return (
+    <article
+      ref={ref as React.RefObject<HTMLElement>}
+      key={pillar.id}
+      className="relative overflow-hidden cursor-pointer"
+      style={{ height: isOpen ? '360px' : '88px', transition: 'height 800ms cubic-bezier(0.4, 0, 0.2, 1)' }}
+      onClick={handleToggle}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleToggle(); }}
+      tabIndex={0}
+      role="button"
+      aria-label={`Learn about ${pillar.name}`}
+      aria-expanded={isOpen}
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <Image src={pillar.image?.src ?? ''} alt={pillar.image?.alt ?? pillar.name} fill className="object-cover transition-[filter] duration-[800ms] ease-out" style={{ objectPosition: pillar.id === 'defense' ? 'center 30%' : 'center', filter: isOpen ? 'saturate(90%)' : 'saturate(30%)', transform: pillar.id === 'defense' ? 'scale(1.35)' : undefined }} sizes="100vw" />
+        <div className="absolute inset-0 transition-opacity duration-[800ms]" style={{ background: isOpen ? 'linear-gradient(to top, rgba(30,28,26,0.85) 0%, rgba(30,28,26,0.30) 55%, rgba(30,28,26,0.06) 100%)' : 'linear-gradient(to top, rgba(30,28,26,0.72) 0%, rgba(30,28,26,0.20) 60%, transparent 100%)' }} />
+      </div>
+      <div className="relative z-10 flex flex-col justify-end h-full px-5 py-5">
+        <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase text-[#D8CFC4]/50 mb-1">{num}</p>
+        <h3 className="text-[#F8F5F1]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.name}</h3>
+        <div className="overflow-hidden" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
+          <div className="w-6 h-px bg-[#F8F5F1]/25 mb-3" />
+          <p className="text-[#E8E0D6] mb-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
+          <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed">{pillar.body}</p>
+          <Link href={pillar.href} className="inline-block mt-4 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 // ─── Pillar accordion row ─────────────────────────────────────────────────────
 function PillarAccordionRow() {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -547,30 +594,11 @@ function PillarAccordionRow() {
           );
         })}
       </div>
-      {/* Mobile */}
+      {/* Mobile — Auto opens on scroll into view */}
       <div className="flex flex-col gap-px md:hidden">
-        {pillars.map((pillar, idx) => {
-          const isOpen = activeIdx === idx;
-          const num = String(idx + 1).padStart(2, '0');
-          return (
-            <article key={pillar.id} className="relative overflow-hidden cursor-pointer" style={{ height: isOpen ? '360px' : '88px', transition: 'height 800ms cubic-bezier(0.4, 0, 0.2, 1)' }} onClick={() => handleToggle(idx)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleToggle(idx); }} tabIndex={0} role="button" aria-label={`Learn about ${pillar.name}`} aria-expanded={isOpen}>
-              <div className="absolute inset-0 pointer-events-none">
-                <Image src={pillar.image?.src ?? ''} alt={pillar.image?.alt ?? pillar.name} fill className="object-cover transition-[filter] duration-[800ms] ease-out" style={{ objectPosition: pillar.id === 'defense' ? 'center 30%' : 'center', filter: isOpen ? 'saturate(90%)' : 'saturate(30%)', transform: pillar.id === 'defense' ? 'scale(1.35)' : undefined }} sizes="100vw" />
-                <div className="absolute inset-0 transition-opacity duration-[800ms]" style={{ background: isOpen ? 'linear-gradient(to top, rgba(30,28,26,0.85) 0%, rgba(30,28,26,0.30) 55%, rgba(30,28,26,0.06) 100%)' : 'linear-gradient(to top, rgba(30,28,26,0.72) 0%, rgba(30,28,26,0.20) 60%, transparent 100%)' }} />
-              </div>
-              <div className="relative z-10 flex flex-col justify-end h-full px-5 py-5">
-                <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase text-[#D8CFC4]/50 mb-1">{num}</p>
-                <h3 className="text-[#F8F5F1]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.name}</h3>
-                <div className="overflow-hidden" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
-                  <div className="w-6 h-px bg-[#F8F5F1]/25 mb-3" />
-                  <p className="text-[#E8E0D6] mb-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
-                  <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed">{pillar.body}</p>
-                  <Link href={pillar.href} className="inline-block mt-4 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
-                </div>
-              </div>
-            </article>
-          );
-        })}
+        {pillars.map((pillar, idx) => (
+          <MobilePillarItem key={pillar.id} pillar={pillar} idx={idx} />
+        ))}
       </div>
     </>
   );
@@ -873,7 +901,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover object-left"
+            className="absolute inset-0 w-full h-full object-cover object-right"
           >
             <source src="/hero-video.mp4" type="video/mp4" />
           </video>
@@ -975,7 +1003,7 @@ export default function Home() {
         </RevealSection>
 
         {/* ── 6. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
-        <FeaturedIngredients stories={ingredientStories.stories} />
+        <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
 
         {/* ── 7. OUR RANGE EXHIBITION GALLERY ──────────────────────────────── */}
         <OurRangeGallery />
