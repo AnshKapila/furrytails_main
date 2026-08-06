@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import { ingredientStories } from '@/data/home';
+import IngredientRow from '@/components/IngredientRow';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
