@@ -463,17 +463,21 @@ function VideoPlaceholder({ src, alt, className = '' }: { src: string; alt: stri
 // ─── Animated section wrapper ─────────────────────────────────────────────────
 // ─── Custom Reveal for Brand Philosophy Image ──────────────────────────────────
 function ImageRevealRightToLeft({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const { ref, visible } = useReveal(0.2);
+  const { ref, visible } = useReveal(0.3);
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className={`w-full h-full ${className}`}
-      style={{
-        clipPath: visible ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
-        transition: 'clip-path 1.4s cubic-bezier(0.25, 1, 0.5, 1)',
-      }}
+      className={`w-full h-full relative ${className}`}
     >
-      {children}
+      <div
+        className="absolute inset-0 w-full h-full overflow-hidden"
+        style={{
+          clipPath: visible ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
+          transition: 'clip-path 800ms cubic-bezier(0.25, 1, 0.5, 1)',
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 }
