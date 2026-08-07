@@ -1012,14 +1012,14 @@ export default function Home() {
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
-            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2 md:mb-3">{hero.eyebrow}</p>
-            <h1 className="text-[#3B3A38] text-[clamp(2.25rem,4.2vw,3.75rem)] font-light leading-[1.1] tracking-[-0.015em] mb-3 md:mb-4" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-[8px]">{hero.eyebrow}</p>
+            <h1 className="text-[#3B3A38] text-[clamp(2.25rem,4.2vw,3.75rem)] font-light leading-[1.1] tracking-[-0.015em] mb-[8px]" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
               {hero.headline}
             </h1>
-            <p className="text-[0.75rem] md:text-[0.8125rem] font-light text-[#68735F] tracking-[0.02em] leading-relaxed mb-6 md:mb-8 max-w-[520px]" style={{ fontFamily: 'var(--font-inter)' }}>
+            <p className="intro text-[0.75rem] md:text-[0.8125rem] font-light text-[#68735F] tracking-[0.02em] leading-relaxed mb-[16px] max-w-[520px]" style={{ fontFamily: 'var(--font-inter)', marginTop: '8px' }}>
               {hero.subline}
             </p>
-            <div className="hero-actions hero-actions-left">
+            <div className="hero-actions hero-actions-left mt-[16px]">
               <Link href={hero.primaryHref || '/shop'} className="hero-btn-primary" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
                 {hero.primaryCta}<BtnArrow />
               </Link>

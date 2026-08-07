@@ -38,16 +38,16 @@ h2 { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(2rem, 
 h1 em { font-weight: 300; }
 /* Price h1 on product detail pages — full H1 visual treatment, no centering constraint */
 h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(3rem, 5vw, 4rem); font-weight: 300; line-height: 1.06; letter-spacing: -.03em; max-width: none; margin: 0; }
-/* .intro inside .hero-copy-left sits 32px below the h1; left-aligned, full container width */
-.hero-copy-left .intro { max-width: 520px; margin: 32px 0 0; text-align: left; font-size: 1rem; line-height: 1.65; }
-.intro { max-width: 550px; margin: 28px auto 0; font-size: 1rem; line-height: 1.65; }
+/* .intro inside .hero-copy-left sits 8px below the h1; left-aligned, full container width */
+.hero-copy-left .intro { max-width: 520px; margin: 8px 0 0; text-align: left; font-size: 1rem; line-height: 1.65; }
+.intro { max-width: 550px; margin: 8px auto 0; font-size: 1rem; line-height: 1.65; }
 .form-privacy { width: 100%; margin: 4px 0 0; color: #BEB8AF; font-size: .68rem; font-weight: 300; text-align: center; letter-spacing: .04em; }
 
 /* ── Hero button actions ── */
 /* Primary: charcoal bg — calm, premium restraint */
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin: 36px auto 0; width: min(550px, 100%); }
-/* Left-aligned actions: 32px below the intro paragraph, flush with left edge */
-.hero-actions-left { justify-content: flex-start; margin-left: 0; margin-right: 0; margin-top: 32px; width: auto; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin: 16px auto 0; width: min(550px, 100%); }
+/* Left-aligned actions: 16px below the intro paragraph, flush with left edge */
+.hero-actions-left { justify-content: flex-start; margin-left: 0; margin-right: 0; margin-top: 16px; width: auto; }
 .hero-btn-primary { display: inline-flex; flex-direction: row; align-items: center; gap: 8px; min-height: 48px; padding: 0 28px; background: #3B3A38; color: #F8F5F1; font-size: .9375rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; border: none; transition: background-color 220ms ease-in-out, color 220ms ease-in-out; outline: none; white-space: nowrap; }
 .hero-btn-primary:hover, .hero-btn-primary:focus-visible { background: #3B3A38; color: #F8F5F1; }
 .hero-btn-primary .btn-arrow { opacity: 0.6; transform: translateX(0); transition: transform 400ms ease, opacity 400ms ease; }
@@ -82,15 +82,15 @@ h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size
   .hero.hero-fullbleed { justify-content: flex-end; padding-left: 20px; padding-right: 20px; padding-bottom: 48px; }
   .hero-copy-left { text-align: left; max-width: 100%; }
   /* Reset intro and actions margins proportionally for mobile */
-  .hero-copy-left .intro { margin-top: 20px; font-size: .9375rem; }
-  .hero-actions-left { margin-top: 20px; }
+  .hero-copy-left .intro { margin-top: 8px; font-size: .9375rem; }
+  .hero-actions-left { margin-top: 16px; }
   .brand-logo { top: 74px; left: 22px; width: 112px; }
   .hero-copy { order: 1; max-width: 340px; margin-top: 0; }
   .eyebrow { display: none; }
   h1 { font-size: clamp(2.4rem, 10vw, 3rem); line-height: 1.06; }
-  .intro { margin-top: 16px; font-size: .9375rem; line-height: 1.6; }
+  .intro { margin-top: 8px; font-size: .9375rem; line-height: 1.6; }
   /* Hero actions on mobile */
-  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 20px; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 16px; }
   .hero-actions-left { align-items: flex-start; }
   .hero-btn-primary { justify-content: center; min-height: 44px; font-size: .875rem; background: #3B3A38; }
   .hero-btn-secondary { justify-content: center; font-size: .875rem; opacity: 0.8; }
@@ -105,10 +105,10 @@ h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size
 @media (max-height: 690px) and (max-width: 600px) {
   .hero { padding-top: 76px; padding-bottom: 24px; }
   .brand-logo { top: 68px; }
-  .intro { margin-top: 11px; }
-  .hero-copy-left .intro { margin-top: 14px; }
-  .hero-actions { margin-top: 14px; }
-  .hero-actions-left { margin-top: 14px; }
+  .intro { margin-top: 8px; }
+  .hero-copy-left .intro { margin-top: 8px; }
+  .hero-actions { margin-top: 16px; }
+  .hero-actions-left { margin-top: 16px; }
 }
 
 /* ── Scroll indicator animation ── */
