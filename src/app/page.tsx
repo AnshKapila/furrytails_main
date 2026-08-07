@@ -1180,7 +1180,7 @@ export default function Home() {
                       src={brandPhilosophy.image.src}
                       alt={brandPhilosophy.image.alt}
                       fill
-                      className="object-cover object-center transition-[transform] duration-[2500ms] ease-out hover:scale-[1.015]"
+                      className="object-cover object-center transition-all duration-[1200ms] ease-out hover:scale-[1.015] saturate-[80%] hover:saturate-[110%] sepia-[20%] hover:sepia-0"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority
                     />
