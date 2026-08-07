@@ -1012,20 +1012,17 @@ export default function Home() {
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
-            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3">{hero.eyebrow}</p>
-            <h1 className="text-[#3B3A38] text-[clamp(2.5rem,4.5vw,4rem)] font-light leading-[1.08] tracking-[-0.015em] mb-4" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2 md:mb-3">{hero.eyebrow}</p>
+            <h1 className="text-[#3B3A38] text-[clamp(2.25rem,4.2vw,3.75rem)] font-light leading-[1.1] tracking-[-0.015em] mb-3 md:mb-4" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
               {hero.headline}
             </h1>
-            <p className="text-[0.75rem] md:text-[0.8125rem] font-light text-[#68735F] tracking-[0.02em] leading-relaxed mb-8 max-w-[540px]" style={{ fontFamily: 'var(--font-inter)' }}>
+            <p className="text-[0.75rem] md:text-[0.8125rem] font-light text-[#68735F] tracking-[0.02em] leading-relaxed mb-6 md:mb-8 max-w-[520px]" style={{ fontFamily: 'var(--font-inter)' }}>
               {hero.subline}
             </p>
-            <div className="hero-actions hero-actions-left flex flex-wrap items-center gap-4">
+            <div className="hero-actions hero-actions-left">
               <Link href={hero.primaryHref || '/shop'} className="hero-btn-primary" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
                 {hero.primaryCta}<BtnArrow />
               </Link>
-              <SecondaryOutlineBtn href={hero.secondaryHref || '/shop?ritual=Daily%20Ritual'} data-kite-cta-id="hero-begin-ritual" data-kite-role="secondary" data-kite-event="ritual_clicked">
-                {hero.secondaryCta}
-              </SecondaryOutlineBtn>
             </div>
           </div>
         </section>
@@ -1102,21 +1099,21 @@ export default function Home() {
                 </RevealSection>
               </div>
 
-              {/* Copy col - Offset right, deliberate spacing */}
-              <div className="relative h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-16 md:py-0 bg-[#F0EBE4]">
+              {/* Copy col - Aligned to design system padding and gaps */}
+              <div className="relative h-full flex flex-col justify-center px-6 md:px-12 lg:px-16 py-12 md:py-16 bg-[#F0EBE4]">
                 <RevealSection delay={200}>
-                  <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8">{brandPhilosophy.eyebrow}</p>
-                  <h2 className="text-[#3B3A38] mb-8 md:mb-10" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
+                  <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3 md:mb-4">{brandPhilosophy.eyebrow}</p>
+                  <h2 className="text-[#3B3A38] mb-4 md:mb-6" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.75rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
                     {brandPhilosophy.heading}
                   </h2>
-                  <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-4 md:gap-5">
                     {brandPhilosophy.body.map((line, i) => (
-                      <p key={i} className="text-[1.0625rem] font-light text-[#3B3A38]/90 leading-[1.7] max-w-[500px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                      <p key={i} className="text-[1rem] md:text-[1.0625rem] font-light text-[#3B3A38]/90 leading-[1.65] max-w-[520px]" style={{ fontFamily: 'var(--font-inter)' }}>
                         {line}
                       </p>
                     ))}
                     {brandPhilosophy.cta && (
-                      <div className="mt-4">
+                      <div className="mt-2 md:mt-3">
                         <Link href={brandPhilosophy.href || '/about'} className="inline-block text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#3B3A38] border-b border-[#3B3A38]/30 hover:border-[#3B3A38] hover:text-[#68735F] transition-all duration-300 pb-1" data-kite-cta-id="brand-story-cta" data-kite-role="secondary" data-kite-event="about_clicked">
                           {brandPhilosophy.cta}
                         </Link>
