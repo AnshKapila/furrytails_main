@@ -17,13 +17,14 @@ export const navLinks = [
 // ── Hero ─────────────────────────────────────────────────────────────────────
 
 export const hero = {
-  eyebrow: 'Natural care, considered',
-  headline: 'A new morning ritual,',
-  headlineEm: 'for you and your dog.',
-  body:
-    'Real ingredients. No filler. No hype. A considered range of daily care pet products held to your standard, made for theirs.',
+  eyebrow: 'For the pet parent who reads every label.',
+  headline: 'Your standard. Now for your pet.',
+  subline:
+    '99.5% Natural Origin Index per ISO 16128-2 · Probiotic preserved · Made in India, to a global standard',
   primaryCta: 'Shop Collection',
-  secondaryCta: 'Our Story',
+  secondaryCta: 'Begin the Ritual',
+  primaryHref: '/shop',
+  secondaryHref: '/shop?ritual=Daily%20Ritual',
 };
 
 // Five portrait-format hero images — approved mascot-consistent assets
@@ -227,15 +228,12 @@ export const brandStory = {
 
 export const brandPhilosophy = {
   eyebrow: 'WHY FURRYTAIL EXISTS',
-  heading: 'A Ritual for the Relationship.',
+  heading: "The pet care shelf wasn't built for the label reader. Furry Tail is.",
   body: [
-    'Everything we create begins with the quiet moments you share with the animals you love, built on three essential principles.',
+    "Most people who care about what goes on their own skin — who read ingredient lists, who switched to a natural deodorant, who know what 'INCI name' means — are buying whatever is on the shelf for their dog. Not because they do not care. Because there has been nothing designed for someone who does. Furry Tail is the first pet care range built for the person holding it, not just the animal wearing it.",
   ],
-  pointers: [
-    'Better ingredients, fewer products.',
-    'Everyday rituals that respect both pet and person.',
-    'Nothing unnecessary, ever.',
-  ],
+  cta: 'Read our story →',
+  href: '/about',
   image: {
     src: '/brand_philosophy_garden_lifestyle_zoomed.jpg',
     alt: 'A peaceful private garden morning where an owner gently strokes an adult Yellow Labrador Retriever affectionately leaning on them, while a fluffy orange cat plays with a tennis ball nearby.',
@@ -248,49 +246,53 @@ export const pillars = [
   {
     id: 'ritual',
     name: 'Ritual',
-    tagline: 'Daily care as a considered habit.',
-    body: 'Morning supplements, coat oils, and daily routines designed to work quietly in the background of a day you already have.',
+    tagline: 'Gentle Daily Shampoo',
+    body: 'Santal & White Tea · Fig & Neroli · Hinoki & Bamboo. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
+    badge: 'Dogs & Cats',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-ritual-bath-r2.png',
       alt: 'Ritual bath products arranged on a warm surface',
     },
-    cta: 'Shop Ritual',
+    cta: 'Explore →',
     href: '/shop?ritual=Daily%20Ritual',
   },
   {
     id: 'defense',
     name: 'Defense',
-    tagline: 'Protection from the outside in.',
-    body: 'Balms, barriers, and seasonal shields. For the dog that runs through everything and the cat that sits in the sun too long.',
+    tagline: 'Anti-Tick & Flea Spray',
+    body: 'Vetiver & Cypress. Before every walk. Plant-derived actives that help deter ticks and fleas with a fragrance that actually belongs on a good shelf. Not a chemical smell. Vetiver root and cypress resin.',
+    badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-defense-entry-r2.png',
       alt: 'Entry mat with paw care products beside a door',
     },
-    cta: 'Shop Defense',
+    cta: 'Explore →',
     href: '/shop?ritual=Defense',
   },
   {
     id: 'remedy',
     name: 'Remedy',
-    tagline: 'For when something needs to settle.',
-    body: 'Botanical blends for anxious days, sore patches, and the kind of restlessness that just needs something calm and considered to help.',
+    tagline: 'Paw Cleaner',
+    body: 'Spearmint & Sea Salt. The ritual at the door. Cool spearmint and sea salt — a waterless cleaner for paws coming in from the street, the park, the monsoon. No rinsing required.',
+    badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-remedy-paw-r2.png',
       alt: 'Gentle paw care and remedy products on a linen surface',
     },
-    cta: 'Shop Remedy',
+    cta: 'Explore →',
     href: '/shop?ritual=Remedy',
   },
   {
     id: 'refresh',
     name: 'Refresh',
-    tagline: 'Between washes, after walks.',
-    body: 'Coat mists, rinses, and dry-day fresheners. Not to mask the dog smell. Just to keep things clean and calm.',
+    tagline: 'Between Bath Days',
+    body: 'Dry Foam Shampoo · Refreshing Mist. No water, no fuss. Mimosa and tonka in a dry foam that freshens the coat. Yuzu and white musk in a light mist. The between-bath ritual, properly done.',
+    badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-refresh-livingroom-r2.png',
       alt: 'Living room setting with refresh products on a side table',
     },
-    cta: 'Shop Refresh',
+    cta: 'Explore →',
     href: '/shop?ritual=Refresh',
   },
 ];
@@ -504,12 +506,12 @@ export const allProducts = {
 // ── Founder note (Trust section 2) ───────────────────────────────────────────
 
 export const founderNote = {
-  eyebrow: 'From Bhargav',
+  eyebrow: 'Our Intention',
   pullQuote:
-    'I am not trying to build the largest pet care brand. I am trying to build the most honest one.',
+    'We are not trying to build the largest pet care brand. We are trying to build the most honest one.',
   body:
-    'When people try Furrytail, I will share their words here — without editing them, without cherry-picking. For now, this is where I hold that intention.',
-  attribution: 'Bhargav Das, Furrytail',
+    'When people try Furrytail, we will share their words here - without editing them, without cherry-picking. For now, this is where we hold that intention.',
+  attribution: null,
 };
 
 // ── Contact ───────────────────────────────────────────────────────────────────

@@ -439,6 +439,34 @@ function TrustMarkersSection() {
             <TrustMarkerItem key={marker.id} marker={marker} />
           ))}
         </div>
+
+        {/* Core commitments copy */}
+        <div className="mt-14 pt-12 border-t border-[#E9E2D7] grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          <div>
+            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+              &ldquo;The 99.5% is certified. Not estimated.&rdquo;
+            </h3>
+            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
+              Most brands that say &ldquo;natural&rdquo; use a loosely defined term. Ours is calculated under ISO 16128-2, the international standard for natural origin measurement. Every batch has a number that can be verified.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+              &ldquo;We replaced the preservatives. All of them.&rdquo;
+            </h3>
+            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
+              Standard pet care uses MIT, MCIT, parabens, or phenoxyethanol. We use a probiotic system — Leuconostoc/Radish Root Ferment — that does the same job without any of those.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+              &ldquo;Fine fragrance, not cover-up scent.&rdquo;
+            </h3>
+            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
+              IFRA-compliant fragrance profiles built from the same raw material vocabulary as premium personal care.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -596,7 +624,14 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
         <div className="absolute inset-0 transition-opacity duration-[800ms]" style={{ background: isOpen ? 'linear-gradient(to top, rgba(30,28,26,0.85) 0%, rgba(30,28,26,0.30) 55%, rgba(30,28,26,0.06) 100%)' : 'linear-gradient(to top, rgba(30,28,26,0.72) 0%, rgba(30,28,26,0.20) 60%, transparent 100%)' }} />
       </div>
       <div className="relative z-10 flex flex-col justify-end h-full px-5 py-5">
-        <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase text-[#D8CFC4]/50 mb-1">{num}</p>
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase text-[#D8CFC4]/50">{num}</p>
+          {pillar.badge && (
+            <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]">
+              {pillar.badge}
+            </span>
+          )}
+        </div>
         <h3 className="text-[#F8F5F1]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.name}</h3>
         <div className="overflow-hidden" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
           <div className="w-6 h-px bg-[#F8F5F1]/25 mb-3" />
@@ -632,7 +667,14 @@ function PillarAccordionRow() {
               </div>
               {/* Cards 0+1 expand rightward → content anchored left; cards 2+3 expand leftward → content anchored right */}
               <div className={`relative z-10 flex flex-col justify-end h-full px-5 py-6 lg:px-6 lg:py-7 ${idx >= 2 ? 'items-end text-right' : 'items-start text-left'}`}>
-                <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase transition-all duration-[800ms]" style={{ color: isActive ? 'rgba(248,245,241,0.6)' : 'rgba(216,207,196,0.5)' }}>{num}</p>
+                <div className={`flex items-center gap-2 mb-1 ${idx >= 2 ? 'flex-row-reverse' : ''}`}>
+                  <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase transition-all duration-[800ms]" style={{ color: isActive ? 'rgba(248,245,241,0.6)' : 'rgba(216,207,196,0.5)' }}>{num}</p>
+                  {pillar.badge && (
+                    <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]">
+                      {pillar.badge}
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-[#F8F5F1] mt-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: isActive ? '1.75rem' : '1.5rem', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.2, transition: 'font-size 800ms cubic-bezier(0.4, 0, 0.2, 1)' }}>{pillar.name}</h3>
                 <div className="overflow-hidden" style={{ maxHeight: isActive ? '240px' : '0px', opacity: isActive ? 1 : 0, marginTop: isActive ? '14px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
                   <div className={`w-8 h-px bg-[#F8F5F1]/25 mb-4 ${idx >= 2 ? 'ml-auto' : ''}`} />
@@ -838,7 +880,7 @@ function OurRangeGallery() {
             data-kite-role="secondary"
             data-kite-event="shop_clicked"
           >
-            View all
+            Shop Collection
           </SecondaryOutlineBtn>
         </div>
 
@@ -970,12 +1012,20 @@ export default function Home() {
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
-            <h1>{hero.headline} <em>{hero.headlineEm}</em></h1>
-            <p className="intro">{hero.body}</p>
-            <div className="hero-actions hero-actions-left">
-              <Link href="/shop" className="hero-btn-primary" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
+            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3">{hero.eyebrow}</p>
+            <h1 className="text-[#3B3A38] text-[clamp(2.5rem,4.5vw,4rem)] font-light leading-[1.08] tracking-[-0.015em] mb-4" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+              {hero.headline}
+            </h1>
+            <p className="text-[0.75rem] md:text-[0.8125rem] font-light text-[#68735F] tracking-[0.02em] leading-relaxed mb-8 max-w-[540px]" style={{ fontFamily: 'var(--font-inter)' }}>
+              {hero.subline}
+            </p>
+            <div className="hero-actions hero-actions-left flex flex-wrap items-center gap-4">
+              <Link href={hero.primaryHref || '/shop'} className="hero-btn-primary" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
                 {hero.primaryCta}<BtnArrow />
               </Link>
+              <SecondaryOutlineBtn href={hero.secondaryHref || '/shop?ritual=Daily%20Ritual'} data-kite-cta-id="hero-begin-ritual" data-kite-role="secondary" data-kite-event="ritual_clicked">
+                {hero.secondaryCta}
+              </SecondaryOutlineBtn>
             </div>
           </div>
         </section>
@@ -990,11 +1040,11 @@ export default function Home() {
               </div>
               <SecondaryOutlineBtn
                 href="/shop"
-                data-kite-cta-id="pillars-shop-cta"
+                data-kite-cta-id="pillars-explore-all"
                 data-kite-role="secondary"
-                data-kite-event="shop_clicked"
+                data-kite-event="range_explored"
               >
-                Check out full range
+                Shop Collection
               </SecondaryOutlineBtn>
             </div>
             <PillarAccordionRow />
@@ -1018,7 +1068,7 @@ export default function Home() {
                 data-kite-role="secondary"
                 data-kite-event="range_explored"
               >
-                View all products
+                Shop Collection
               </SecondaryOutlineBtn>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
@@ -1056,26 +1106,22 @@ export default function Home() {
               <div className="relative h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 py-16 md:py-0 bg-[#F0EBE4]">
                 <RevealSection delay={200}>
                   <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8">{brandPhilosophy.eyebrow}</p>
-                  <h2 className="text-[#3B3A38] mb-8 md:mb-10" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2.25rem, 4vw, 3.25rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
+                  <h2 className="text-[#3B3A38] mb-8 md:mb-10" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
                     {brandPhilosophy.heading}
                   </h2>
-                  <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-6">
                     {brandPhilosophy.body.map((line, i) => (
-                      <p key={i} className="text-[1.125rem] font-light text-[#3B3A38]/90 leading-[1.7] max-w-[480px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                      <p key={i} className="text-[1.0625rem] font-light text-[#3B3A38]/90 leading-[1.7] max-w-[500px]" style={{ fontFamily: 'var(--font-inter)' }}>
                         {line}
                       </p>
                     ))}
-                    
-                    <ul className="flex flex-col gap-5 mt-2">
-                      {brandPhilosophy.pointers?.map((pointer, i) => (
-                        <li key={i} className="flex items-start gap-4">
-                          <PawPrint className="w-[18px] h-[18px] flex-shrink-0 text-[#8D9A83] mt-1" aria-hidden="true" strokeWidth={1.5} />
-                          <span className="text-[1.0625rem] font-light text-[#3B3A38]/90 leading-[1.6] max-w-[420px]" style={{ fontFamily: 'var(--font-inter)' }}>
-                            {pointer}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    {brandPhilosophy.cta && (
+                      <div className="mt-4">
+                        <Link href={brandPhilosophy.href || '/about'} className="inline-block text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#3B3A38] border-b border-[#3B3A38]/30 hover:border-[#3B3A38] hover:text-[#68735F] transition-all duration-300 pb-1" data-kite-cta-id="brand-story-cta" data-kite-role="secondary" data-kite-event="about_clicked">
+                          {brandPhilosophy.cta}
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </RevealSection>
               </div>
@@ -1084,11 +1130,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── 6. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
-        <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
-
-        {/* ── 7. OUR RANGE EXHIBITION GALLERY ──────────────────────────────── */}
+        {/* ── 6. OUR RANGE EXHIBITION GALLERY ──────────────────────────────── */}
         <OurRangeGallery />
+
+        {/* ── 7. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
+        <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
 
         {/* ── 8. FOUNDER NOTE ──────────────────────────────────────────────── */}
         <RevealSection id="founder-note" className="py-16 md:py-20 bg-[#3B3A38]" data-kite-surface="home.founder-note" data-kite-surface-type="testimonial">
@@ -1102,7 +1148,6 @@ export default function Home() {
             </blockquote>
             <div className="w-8 h-px bg-[#68735F] mx-auto mb-6" />
             <p className="text-[0.875rem] font-light text-[#D8CFC4] leading-[1.6] mb-5">{founderNote.body}</p>
-            <p className="text-[0.625rem] font-normal tracking-[0.2em] uppercase text-[#8D9A83]">{founderNote.attribution}</p>
           </div>
         </RevealSection>
 
