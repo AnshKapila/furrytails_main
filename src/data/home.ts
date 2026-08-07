@@ -250,8 +250,8 @@ export const pillars = [
     body: 'Santal & White Tea · Fig & Neroli · Hinoki & Bamboo. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
     badge: 'Dogs & Cats',
     image: {
-      src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-ritual-bath-r2.png',
-      alt: 'Ritual bath products arranged on a warm surface',
+      src: '/pillar_ritual_update.jpg',
+      alt: 'Ritual bath products arranged on a warm surface with a dog and cat',
     },
     cta: 'Explore →',
     href: '/shop?ritual=Daily%20Ritual',
@@ -263,8 +263,8 @@ export const pillars = [
     body: 'Vetiver & Cypress. Before every walk. Plant-derived actives that help deter ticks and fleas with a fragrance that actually belongs on a good shelf. Not a chemical smell. Vetiver root and cypress resin.',
     badge: 'Dogs only',
     image: {
-      src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-defense-entry-r2.png',
-      alt: 'Entry mat with paw care products beside a door',
+      src: '/pillar_defense_update.jpg',
+      alt: 'Entry mat with paw care products beside a door with a dog',
     },
     cta: 'Explore →',
     href: '/shop?ritual=Defense',

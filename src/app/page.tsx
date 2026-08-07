@@ -716,7 +716,7 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
         <div className="flex items-center justify-between gap-2 mb-1">
           <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase text-[#D8CFC4]/50">{num}</p>
           {pillar.badge && (
-            <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]">
+            <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]" style={{ opacity: isOpen ? 1 : 0, transition: 'opacity 800ms ease-out' }}>
               {pillar.badge}
             </span>
           )}
@@ -759,7 +759,7 @@ function PillarAccordionRow() {
                 <div className={`flex items-center gap-2 mb-1 ${idx >= 2 ? 'flex-row-reverse' : ''}`}>
                   <p className="text-[0.625rem] font-normal tracking-[0.28em] uppercase transition-all duration-[800ms]" style={{ color: isActive ? 'rgba(248,245,241,0.6)' : 'rgba(216,207,196,0.5)' }}>{num}</p>
                   {pillar.badge && (
-                    <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]">
+                    <span className="text-[0.5625rem] font-normal tracking-[0.1em] uppercase text-[#F8F5F1]/80 bg-[#3B3A38]/70 px-2 py-0.5 rounded-[2px]" style={{ opacity: isActive ? 1 : 0, transition: 'opacity 800ms ease-out' }}>
                       {pillar.badge}
                     </span>
                   )}
