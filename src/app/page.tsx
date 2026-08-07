@@ -536,10 +536,10 @@ function TrustMarkersSection() {
             className="text-[#3B3A38] mb-3"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
           >
-            Your Standard is Now for Your Pet
+            Thoughtfully Formulated. Transparently Made.
           </h2>
           <p className="text-[0.8125rem] font-light text-[#8D9A83] leading-relaxed max-w-[520px]">
-            Every formula is guided by globally recognised standards and transparent formulation principles.
+            Because the standards you expect for yourself should never be lower for the ones who trust you most.
           </p>
         </div>
 
@@ -594,6 +594,58 @@ function RevealSection({ children, className = '', delay = 0, id, ...rest }: {
     >
       {children}
     </section>
+  );
+}
+
+function RetailersSection() {
+  return (
+    <RevealSection className="py-16 md:py-20 bg-[#EDE7DF] border-y border-[#D8CFC4]" data-kite-surface="home.retailers" data-kite-surface-type="logos">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8 text-center flex flex-col items-center">
+        <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">Where else you can find us</p>
+        <h2 className="text-[#3B3A38] mb-8 max-w-[540px]" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)', fontWeight: 300, lineHeight: 1.15 }}>
+          Present at multiple places for your convenience.
+        </h2>
+        <div className="flex items-center justify-center gap-10 md:gap-16">
+          <a href="https://amazon.in" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity duration-300" aria-label="Amazon">
+            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#3B3A38]" style={{ fontFamily: 'var(--font-inter)' }}>amazon</span>
+          </a>
+          <a href="https://flipkart.com" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity duration-300" aria-label="Flipkart">
+            <span className="text-2xl md:text-3xl font-bold tracking-tight text-[#3B3A38] italic" style={{ fontFamily: 'var(--font-inter)', color: '#2874F0' }}>Flipkart</span>
+          </a>
+        </div>
+      </div>
+    </RevealSection>
+  );
+}
+
+function InstagramSection() {
+  return (
+    <RevealSection className="py-16 md:py-24 bg-[#F8F5F1]" data-kite-surface="home.instagram" data-kite-surface-type="community">
+      <div className="max-w-[1000px] mx-auto px-6 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="flex flex-col items-start max-w-[420px] mx-auto md:mx-0 text-center md:text-left">
+            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4 w-full">Our Community</p>
+            <h2 className="text-[#3B3A38] mb-5 w-full" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.75rem)', fontWeight: 300, lineHeight: 1.15 }}>
+              Share your story.
+            </h2>
+            <p className="text-[0.9375rem] font-light text-[#68735F] leading-relaxed mb-8">
+              We are building a community for pets and the people who love them. Join us on Instagram to share your experience and see how Furrytail is making relationships better.
+            </p>
+            <div className="w-full flex justify-center md:justify-start">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[0.75rem] font-medium tracking-[0.1em] uppercase text-[#F8F5F1] bg-[#3B3A38] px-8 py-3.5 hover:bg-[#68735F] transition-colors duration-300">
+                Follow Us
+              </a>
+            </div>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-[260px] h-[540px] rounded-[38px] border-[10px] border-[#3B3A38] shadow-2xl overflow-hidden bg-white transform rotate-[-2deg] hover:rotate-0 transition-transform duration-700 ease-out">
+              <div className="absolute top-0 inset-x-0 h-5 bg-[#3B3A38] rounded-b-[16px] mx-16 z-10" />
+              <img src="/instagram_screenshot.png" alt="Furrytail Instagram Community" className="w-full h-full object-cover object-top" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </RevealSection>
   );
 }
 
@@ -1233,6 +1285,12 @@ export default function Home() {
 
         {/* ── 7. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
         <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
+
+        {/* ── 7.1 RETAILERS ─────────────────────────────────────────────────── */}
+        <RetailersSection />
+
+        {/* ── 7.2 INSTAGRAM COMMUNITY ──────────────────────────────────────── */}
+        <InstagramSection />
 
         {/* ── 8. FOUNDER NOTE ──────────────────────────────────────────────── */}
         <RevealSection id="founder-note" className="py-16 md:py-20 bg-[#3B3A38]" data-kite-surface="home.founder-note" data-kite-surface-type="testimonial">

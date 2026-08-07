@@ -228,9 +228,9 @@ export const brandStory = {
 
 export const brandPhilosophy = {
   eyebrow: 'WHY FURRYTAIL EXISTS',
-  heading: "The pet care shelf wasn't built for the label reader. Furry Tail is.",
+  heading: "The pet care shelf wasn't built for the label reader. Furrytail is.",
   body: [
-    "Most people who care about what goes on their own skin — who read ingredient lists, who switched to a natural deodorant, who know what 'INCI name' means — are buying whatever is on the shelf for their dog. Not because they do not care. Because there has been nothing designed for someone who does. Furry Tail is the first pet care range built for the person holding it, not just the animal wearing it.",
+    "Most people who care about what goes on their own skin — who read ingredient lists, who switched to a natural deodorant, who know what 'INCI name' means — are buying whatever is on the shelf for their dog. Not because they do not care. Because there has been nothing designed for someone who does. Furrytail is the first pet care range built for the person holding it, not just the animal wearing it.",
   ],
   cta: 'Read our story →',
   href: '/about',
@@ -272,8 +272,8 @@ export const pillars = [
   {
     id: 'remedy',
     name: 'Remedy',
-    tagline: 'Paw Cleaner',
-    body: 'Spearmint & Sea Salt. The ritual at the door. Cool spearmint and sea salt — a waterless cleaner for paws coming in from the street, the park, the monsoon. No rinsing required.',
+    tagline: 'Paw Cleaner & Dry Foam Shampoo',
+    body: 'Spearmint & Sea Salt. The ritual at the door. Cool spearmint and sea salt — a waterless cleaner for paws, alongside a dry foam shampoo for waterless freshness. No rinsing required.',
     badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-remedy-paw-r2.png',
@@ -285,8 +285,8 @@ export const pillars = [
   {
     id: 'refresh',
     name: 'Refresh',
-    tagline: 'Between Bath Days',
-    body: 'Dry Foam Shampoo · Refreshing Mist. No water, no fuss. Mimosa and tonka in a dry foam that freshens the coat. Yuzu and white musk in a light mist. The between-bath ritual, properly done.',
+    tagline: 'Refreshing Mist',
+    body: 'Refreshing Mist. No water, no fuss. Yuzu and white musk in a light mist that freshens the coat. The between-bath ritual, properly done.',
     badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-refresh-livingroom-r2.png',
