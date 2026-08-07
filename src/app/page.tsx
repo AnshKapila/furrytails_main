@@ -412,6 +412,116 @@ function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
   );
 }
 
+const CORE_COMMITMENTS = [
+  {
+    id: 'certified-natural',
+    numberTag: '01 · Standard',
+    title: 'The 99.5% is certified. Not estimated.',
+    description:
+      'Most brands that say "natural" use a loosely defined term. Ours is calculated under ISO 16128-2, the international standard for natural origin measurement. Every batch has a number that can be verified.',
+    imageSrc: '/commitment_certified_natural.jpg',
+    imageAlt: 'Calm golden retriever resting peacefully beside natural botanical extracts',
+  },
+  {
+    id: 'probiotic-preservation',
+    numberTag: '02 · Safety',
+    title: 'We replaced the preservatives. All of them.',
+    description:
+      'Standard pet care uses MIT, MCIT, parabens, or phenoxyethanol. We use a probiotic system — Leuconostoc/Radish Root Ferment — that does the same job without any of those.',
+    imageSrc: '/commitment_probiotic_preservation.jpg',
+    imageAlt: 'Caring human hands gently stroking a fluffy cat resting on clean linen',
+  },
+  {
+    id: 'fine-fragrance',
+    numberTag: '03 · Wellness',
+    title: 'Fine fragrance, not cover-up scent.',
+    description:
+      'IFRA-compliant fragrance profiles built from the same raw material vocabulary as premium personal care.',
+    imageSrc: '/commitment_fine_fragrance.jpg',
+    imageAlt: 'Botanical fine fragrance ingredients beside a happy dog in a quiet garden setting',
+  },
+];
+
+function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENTS[number] }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <article
+      className="group relative overflow-hidden rounded-[2px] cursor-pointer min-h-[340px] md:min-h-[400px] flex flex-col justify-end p-6 md:p-8 transition-all duration-700 ease-out border border-[#E9E2D7]/60 hover:border-[#8D9A83]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
+      tabIndex={0}
+      role="article"
+      aria-expanded={isHovered}
+    >
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <Image
+          src={commitment.imageSrc}
+          alt={commitment.imageAlt}
+          fill
+          className="object-cover object-center transition-all duration-700 ease-out"
+          style={{
+            transform: isHovered ? 'scale(1.08)' : 'scale(1.0)',
+            filter: isHovered ? 'saturate(100%) brightness(0.85)' : 'saturate(55%) brightness(0.72)',
+          }}
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        {/* Soft Editorial Gradient Overlay */}
+        <div
+          className="absolute inset-0 transition-opacity duration-700 ease-out"
+          style={{
+            background: isHovered
+              ? 'linear-gradient(to top, rgba(28,26,24,0.94) 0%, rgba(28,26,24,0.55) 55%, rgba(28,26,24,0.2) 100%)'
+              : 'linear-gradient(to top, rgba(28,26,24,0.84) 0%, rgba(28,26,24,0.40) 65%, rgba(28,26,24,0.15) 100%)',
+          }}
+        />
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10 flex flex-col justify-end text-left">
+        <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#D8CFC4]/70 mb-2">
+          {commitment.numberTag}
+        </p>
+
+        {/* Heading */}
+        <h3
+          className="text-[#F8F5F1] transition-all duration-500 ease-out"
+          style={{
+            fontFamily: 'var(--font-cormorant), Georgia, serif',
+            fontSize: isHovered ? 'clamp(1.35rem, 2vw, 1.65rem)' : 'clamp(1.2rem, 1.75vw, 1.45rem)',
+            fontWeight: 300,
+            lineHeight: 1.22,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          &ldquo;{commitment.title}&rdquo;
+        </h3>
+
+        {/* Expandable Description */}
+        <div
+          className="overflow-hidden transition-all duration-500 ease-out"
+          style={{
+            maxHeight: isHovered ? '200px' : '0px',
+            opacity: isHovered ? 1 : 0,
+            marginTop: isHovered ? '12px' : '0px',
+          }}
+        >
+          <div className="w-8 h-px bg-[#8D9A83]/50 mb-3" />
+          <p
+            className="text-[0.8125rem] font-light text-[#D8CFC4] leading-relaxed"
+            style={{ fontFamily: 'var(--font-inter)' }}
+          >
+            {commitment.description}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function TrustMarkersSection() {
   return (
     <section
@@ -440,32 +550,11 @@ function TrustMarkersSection() {
           ))}
         </div>
 
-        {/* Core commitments copy */}
-        <div className="mt-14 pt-12 border-t border-[#E9E2D7] grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          <div>
-            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
-              &ldquo;The 99.5% is certified. Not estimated.&rdquo;
-            </h3>
-            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
-              Most brands that say &ldquo;natural&rdquo; use a loosely defined term. Ours is calculated under ISO 16128-2, the international standard for natural origin measurement. Every batch has a number that can be verified.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
-              &ldquo;We replaced the preservatives. All of them.&rdquo;
-            </h3>
-            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
-              Standard pet care uses MIT, MCIT, parabens, or phenoxyethanol. We use a probiotic system — Leuconostoc/Radish Root Ferment — that does the same job without any of those.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-[#3B3A38] text-[1.125rem] font-normal mb-2" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
-              &ldquo;Fine fragrance, not cover-up scent.&rdquo;
-            </h3>
-            <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed" style={{ fontFamily: 'var(--font-inter)' }}>
-              IFRA-compliant fragrance profiles built from the same raw material vocabulary as premium personal care.
-            </p>
-          </div>
+        {/* Core commitments interactive cards */}
+        <div className="mt-14 pt-12 border-t border-[#E9E2D7] grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {CORE_COMMITMENTS.map((commitment) => (
+            <CommitmentCardItem key={commitment.id} commitment={commitment} />
+          ))}
         </div>
       </div>
     </section>
