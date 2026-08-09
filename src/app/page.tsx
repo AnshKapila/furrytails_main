@@ -304,7 +304,7 @@ function ProductCard({ product }: { product: ProductItem }) {
 
 // ─── Trust Markers ────────────────────────────────────────────────────────────
 
-const TRUST_MARKERS = [
+export const TRUST_MARKERS = [
   {
     id: 'natural-origin',
     label: '99.5% Natural Origin',
@@ -363,7 +363,7 @@ const TRUST_MARKERS = [
   },
 ] as const;
 
-function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
+export function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[number] }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
