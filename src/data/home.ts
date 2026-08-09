@@ -10,7 +10,8 @@ export const LOGO_URL =
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Shop', href: '/shop' },
-  { label: 'About', href: '/about' },
+  { label: 'Our Story', href: '/about' },
+  { label: 'Journal', href: '/journal' },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -799,8 +800,9 @@ export const footer = {
     { label: 'Refresh', href: '/shop?ritual=Refresh' },
   ],
   companyLinks: [
-    { label: 'About', href: '/about' },
+    { label: 'Our Story', href: '/about' },
     { label: 'Our Ingredients', href: '/ingredients' },
+    { label: 'Journal', href: '/journal' },
     { label: 'How We Source', href: '/about#how-we-source' },
     { label: 'Contact', href: '/#contact' },
   ],

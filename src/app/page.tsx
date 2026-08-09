@@ -10,17 +10,24 @@ import FeaturedIngredients from '@/components/FeaturedIngredients';
 import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
 import { useCart, parsePrice } from '@/lib/cart';
 import {
+  getHomeContent,
+  getGlobalSettings,
+  getIngredientsContent,
+  WooProduct,
+} from '@/services/api';
+
+const {
   hero,
   heroImages,
   bestSellers,
   brandPhilosophy,
   pillars,
-  allProducts,
-  ourRange,
   founderNote,
-  contact,
-  ingredientStories,
-} from '@/data/home';
+  ourRange,
+} = getHomeContent();
+
+const { contact } = getGlobalSettings();
+const { stories } = getIngredientsContent();
 import { PawPrint } from 'lucide-react';
 
 // ─── Scroll-reveal hook ───────────────────────────────────────────────────────
@@ -105,7 +112,7 @@ function SpeciesBadge({ species, className = '' }: { species: 'dog' | 'cat' | 'b
 // ─── Product card ─────────────────────────────────────────────────────────────
 // Hierarchy: image → name → variant/volume → price → add to cart
 // Hover: card scale+tilt, image zoom 3-4%, border → sage
-type ProductItem = typeof allProducts.products[0];
+type ProductItem = WooProduct;
 
 function ProductCard({ product }: { product: ProductItem }) {
   const [quickAdded, setQuickAdded] = useState(false);
@@ -1284,7 +1291,7 @@ export default function Home() {
         <OurRangeGallery />
 
         {/* ── 7. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
-        <FeaturedIngredients stories={ingredientStories.stories.slice(0, 4)} />
+        <FeaturedIngredients stories={stories.slice(0, 4)} />
 
         {/* ── 7.1 RETAILERS ─────────────────────────────────────────────────── */}
         <RetailersSection />

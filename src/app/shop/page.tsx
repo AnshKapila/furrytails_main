@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
-import { allProducts } from '@/data/home';
+import { getAllProducts, getShopContent, WooProduct } from '@/services/api';
 import { useCart, parsePrice } from '@/lib/cart';
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -68,7 +68,10 @@ function SpeciesBadge({ species, className = '' }: { species: 'dog' | 'cat' | 'b
 
 // ─── Product card ─────────────────────────────────────────────────────────────
 
-type Product = typeof allProducts.products[number];
+type Product = WooProduct;
+
+const shopContent = getShopContent();
+const productsList = getAllProducts();
 
 function ProductCard({ product }: { product: Product }) {
   const [quickAdded, setQuickAdded] = useState(false);
@@ -275,9 +278,9 @@ type SortValue = typeof SORT_OPTIONS[number]['value'];
 
 // ─── Page constants ───────────────────────────────────────────────────────────
 
-const RITUAL_FILTERS = allProducts.filterCategories;
-const PET_FILTERS = allProducts.filterPets;
-const TYPE_FILTERS = allProducts.filterTypes;
+const RITUAL_FILTERS = shopContent.filterCategories;
+const PET_FILTERS = shopContent.filterPets;
+const TYPE_FILTERS = shopContent.filterTypes;
 
 // ─── ShopContent ─────────────────────────────────────────────────────────────
 
@@ -372,7 +375,7 @@ function ShopContent() {
   }, [router]);
 
   // Filter logic — AND across all active dimensions
-  const baseFiltered = allProducts.products.filter((p) => {
+  const baseFiltered = productsList.filter((p) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const prod = p as any;
     const ritualMatch = activeRitual === 'All' || p.category === activeRitual;
@@ -420,16 +423,16 @@ function ShopContent() {
       {/* ── Page header ─────────────────────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
         <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">
-          {allProducts.eyebrow}
+          {shopContent.eyebrow}
         </p>
         <h1
           className="text-[#3B3A38] !mx-0 text-left"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 300, lineHeight: 1.06, letterSpacing: '-0.02em' }}
         >
-          {allProducts.heading}
+          {shopContent.heading}
         </h1>
         <p className="text-[0.875rem] font-light text-[#68735F] leading-[1.6] max-w-[360px] mt-4">
-          {allProducts.subheading}
+          {shopContent.subheading}
         </p>
       </section>
 

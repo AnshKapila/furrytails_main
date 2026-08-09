@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { LOGO_URL, navLinks } from '@/data/home';
+import { getGlobalSettings } from '@/services/api';
 import { useCart } from '@/lib/cart';
 import SearchOverlay from '@/components/SearchOverlay';
 
@@ -41,6 +41,7 @@ function BagIcon() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Navbar() {
+  const { logoUrl: LOGO_URL, navLinks } = getGlobalSettings();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [atHero, setAtHero] = useState(true);

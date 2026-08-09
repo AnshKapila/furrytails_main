@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
-import { allProducts } from '@/data/home';
+import { getProductById, WooProduct } from '@/services/api';
 import { useCart, parsePrice } from '@/lib/cart';
 import { notFound } from 'next/navigation';
 
@@ -46,7 +46,7 @@ function CatIcon() {
 // ─── Product content — rendered inside CartProvider via ClientProviders ────────
 // useCart() is safe here because this component only renders inside the provider.
 
-type Product = (typeof allProducts.products)[number];
+type Product = WooProduct;
 
 function ProductContent({ product }: { product: Product }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -393,7 +393,7 @@ function ProductContent({ product }: { product: Product }) {
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const productFound = allProducts.products.find((p) => p.id === id);
+  const productFound = getProductById(id);
 
   if (!productFound) notFound();
 

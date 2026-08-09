@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
-import { ingredientChapters } from '@/data/home';
+import { getIngredientsContent } from '@/services/api';
 import IngredientRow from '@/components/IngredientRow';
 import type { Metadata } from 'next';
 
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function IngredientsPage() {
+  const { chapters } = getIngredientsContent();
   let globalIndex = 0;
 
   return (
@@ -57,7 +58,7 @@ export default function IngredientsPage() {
             data-kite-surface="ingredients.list"
             data-kite-surface-type="features"
           >
-            {ingredientChapters.map((chapter) => (
+            {chapters.map((chapter) => (
               <section key={chapter.id} className="pt-12 pb-6 border-b border-[#E9E2D7] last:border-b-0">
                 {/* Chapter Header */}
                 <div className="py-8 border-b border-[#E9E2D7]/60 mb-8">

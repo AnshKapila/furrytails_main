@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { LOGO_URL, footer } from '@/data/home';
+import { getGlobalSettings } from '@/services/api';
 
 export default function Footer() {
+  const { logoUrl: LOGO_URL, footer } = getGlobalSettings();
   const year = new Date().getFullYear();
 
   return (
