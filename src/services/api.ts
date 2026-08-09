@@ -34,6 +34,7 @@ export interface WooProduct {
   id: string;
   name: string;
   price?: string;
+  standardPrice?: string;
   badge?: string;
   isNew?: boolean;
   category?: string;
