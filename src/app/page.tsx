@@ -92,7 +92,8 @@ function BagIconOutline() {
 }
 
 // ─── Species badge — matches Best Seller pill style (ivory bg, charcoal text) ──
-function SpeciesBadge({ species, className = '' }: { species: 'dog' | 'cat' | 'both'; className?: string }) {
+function SpeciesBadge({ species, className = '' }: { species?: 'dog' | 'cat' | 'both'; className?: string }) {
+  if (!species) return null;
   return (
     <span
       className={`inline-flex flex-row items-center gap-1 px-2 py-0.5 bg-[#F8F5F1]/85 text-[#3B3A38] text-[0.6875rem] font-normal tracking-[0.14em] uppercase leading-none ${className}`}
