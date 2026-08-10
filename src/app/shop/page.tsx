@@ -92,8 +92,8 @@ function ProductCard({ product }: { product: Product }) {
     addItem({
       id: product.id,
       name: product.name,
-      price: displayPrice,
-      priceNum: parsePrice(displayPrice),
+      price: displayPrice ?? '',
+      priceNum: parsePrice(displayPrice ?? ''),
       image: displayImage?.src ?? '',
       imageAlt: displayImage?.alt ?? product.name,
       variantId: firstVariant?.id,
