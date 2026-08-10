@@ -4,7 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
-import { TRUST_MARKERS, TrustMarkerItem } from '@/components/TrustMarkers';
+import { TrustMarkerItem } from '@/components/TrustMarkers';
+import { TRUST_MARKERS } from '@/components/TrustMarkersData';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

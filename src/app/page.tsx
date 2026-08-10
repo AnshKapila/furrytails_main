@@ -8,7 +8,8 @@ import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import FeaturedIngredients from '@/components/FeaturedIngredients';
 import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
-import { TRUST_MARKERS, TrustMarkerItem } from '@/components/TrustMarkers';
+import { TrustMarkerItem } from '@/components/TrustMarkers';
+import { TRUST_MARKERS } from '@/components/TrustMarkersData';
 import { useCart, parsePrice } from '@/lib/cart';
 import {
   getHomeContent,
