@@ -27,6 +27,8 @@ export interface WooProductVariant {
   id: string;
   label: string;
   price: string;
+  standardPrice?: string;
+  shortDesc?: string;
   image?: WooImage;
 }
 
@@ -46,7 +48,7 @@ export interface WooProduct {
   volume?: string;
   variants?: WooProductVariant[];
   slug?: string;
-  shortDescription?: string;
+  shortDesc?: string;
   descriptor?: string;
   productType?: string;
   species?: 'dog' | 'cat' | 'both';
