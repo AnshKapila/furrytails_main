@@ -169,7 +169,7 @@ function ProductCard({ product }: { product: ProductItem }) {
           src={displayImage?.src ?? ''}
           alt={displayImage?.alt ?? product.name}
           fill
-          className="object-cover object-center transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+          className="object-cover object-center transition-transform duration-[800ms] ease-out group-hover:scale-[1.04] group-hover:-rotate-[30deg]"
           sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 25vw"
         />
         {product.badge && (
@@ -1106,7 +1106,7 @@ export default function Home() {
         <TrustMarkersSection />
 
         {/* ── 4. FEATURED PRODUCTS ─────────────────────────────────────────── */}
-        <RevealSection id="best-sellers" className="py-16 md:py-20 bg-[#EDE7DF]" data-kite-surface="home.best-sellers" data-kite-surface-type="features">
+        <RevealSection id="best-sellers" className="group py-16 md:py-20 bg-[#EDE7DF]" data-kite-surface="home.best-sellers" data-kite-surface-type="features">
           <div className="max-w-[1200px] mx-auto px-6 md:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
               <div>
@@ -1125,7 +1125,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {bestSellers.products.map((product, i) => (
-                <div key={product.id} className="transition-[opacity,transform] ease-out" style={{ transitionDuration: '350ms', transitionDelay: `${i * 60}ms` }}>
+                <div key={product.id} className="opacity-0 translate-y-8 rotate-[30deg] group-[.in-view]:opacity-100 group-[.in-view]:translate-y-0 group-[.in-view]:rotate-0 transition-all ease-out" style={{ transitionDuration: '800ms', transitionDelay: `${i * 100}ms` }}>
                   <ProductCard product={product} />
                 </div>
               ))}
