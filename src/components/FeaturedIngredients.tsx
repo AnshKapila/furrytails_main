@@ -279,6 +279,7 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
             {/* Right: secondary CTA */}
             <SecondaryOutlineBtn
               href="/ingredients"
+              className="hidden md:inline-flex"
               data-kite-cta-id="ingredients-view-all"
               data-kite-role="secondary"
               data-kite-event="ingredients_explored"
@@ -744,6 +745,18 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Mobile View All Ingredients Button */}
+        <div className="md:hidden w-full flex justify-center py-10 bg-[#F8F5F1] border-t border-[#E9E2D7]">
+          <SecondaryOutlineBtn
+            href="/ingredients"
+            data-kite-cta-id="ingredients-view-all-mobile"
+            data-kite-role="secondary"
+            data-kite-event="ingredients_explored"
+          >
+            View All Ingredients
+          </SecondaryOutlineBtn>
         </div>
 
         {/* sr-only chapter markers for a11y */}

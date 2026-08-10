@@ -340,6 +340,8 @@ const CORE_COMMITMENTS = [
 
 function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENTS[number] }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
+  const isOpen = isHovered || isToggled;
 
   return (
     <article
@@ -348,6 +350,7 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      onClick={() => setIsToggled(!isToggled)}
       tabIndex={0}
       role="article"
       aria-expanded={isHovered}
@@ -360,8 +363,8 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
           fill
           className="object-cover object-center transition-all duration-700 ease-out"
           style={{
-            transform: isHovered ? 'scale(1.08)' : 'scale(1.0)',
-            filter: isHovered ? 'saturate(100%) brightness(0.85)' : 'saturate(55%) brightness(0.72)',
+            transform: isOpen ? 'scale(1.08)' : 'scale(1.0)',
+            filter: isOpen ? 'saturate(100%) brightness(0.85)' : 'saturate(55%) brightness(0.72)',
           }}
           sizes="(max-width: 768px) 100vw, 33vw"
         />
@@ -369,7 +372,7 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
         <div
           className="absolute inset-0 transition-opacity duration-700 ease-out"
           style={{
-            background: isHovered
+            background: isOpen
               ? 'linear-gradient(to top, rgba(28,26,24,0.94) 0%, rgba(28,26,24,0.55) 55%, rgba(28,26,24,0.2) 100%)'
               : 'linear-gradient(to top, rgba(28,26,24,0.84) 0%, rgba(28,26,24,0.40) 65%, rgba(28,26,24,0.15) 100%)',
           }}
@@ -387,7 +390,7 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
           className="text-[#F8F5F1] transition-all duration-500 ease-out"
           style={{
             fontFamily: 'var(--font-cormorant), Georgia, serif',
-            fontSize: isHovered ? 'clamp(1.35rem, 2vw, 1.65rem)' : 'clamp(1.2rem, 1.75vw, 1.45rem)',
+            fontSize: isOpen ? 'clamp(1.35rem, 2vw, 1.65rem)' : 'clamp(1.2rem, 1.75vw, 1.45rem)',
             fontWeight: 300,
             lineHeight: 1.22,
             letterSpacing: '-0.01em',
@@ -397,12 +400,16 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
         </h3>
 
         {/* Expandable Description */}
+        <div className="absolute right-6 bottom-6 md:hidden text-[#F8F5F1] transition-transform duration-500" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </div>
+
         <div
-          className="overflow-hidden transition-all duration-500 ease-out"
+          className="overflow-hidden transition-all duration-500 ease-out pr-8 md:pr-0"
           style={{
-            maxHeight: isHovered ? '200px' : '0px',
-            opacity: isHovered ? 1 : 0,
-            marginTop: isHovered ? '12px' : '0px',
+            maxHeight: isOpen ? '200px' : '0px',
+            opacity: isOpen ? 1 : 0,
+            marginTop: isOpen ? '12px' : '0px',
           }}
         >
           <div className="w-8 h-px bg-[#8D9A83]/50 mb-3" />
@@ -502,11 +509,11 @@ function RetailersSection() {
           Present at multiple places for your convenience.
         </h2>
         <div className="flex items-center justify-center gap-10 md:gap-16">
-          <a href="https://amazon.in" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity duration-300" aria-label="Amazon">
-            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#3B3A38]" style={{ fontFamily: 'var(--font-inter)' }}>amazon</span>
+          <a href="https://amazon.in" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Amazon">
+            <img src="/amazon_logo.png" alt="Amazon" className="w-full object-contain" />
           </a>
-          <a href="https://flipkart.com" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity duration-300" aria-label="Flipkart">
-            <span className="text-2xl md:text-3xl font-bold tracking-tight text-[#3B3A38] italic" style={{ fontFamily: 'var(--font-inter)', color: '#2874F0' }}>Flipkart</span>
+          <a href="https://flipkart.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Flipkart">
+            <img src="/flipkart_logo.png" alt="Flipkart" className="w-full object-contain" />
           </a>
         </div>
       </div>
@@ -534,7 +541,7 @@ function InstagramSection() {
             </div>
           </div>
           <div className="flex justify-center md:justify-end">
-            <div className="relative w-[260px] h-[540px] rounded-[38px] border-[10px] border-[#3B3A38] shadow-2xl overflow-hidden bg-white transform rotate-[-2deg] hover:rotate-0 transition-transform duration-700 ease-out">
+            <div className="relative w-[260px] h-[540px] rounded-[38px] border-[10px] border-[#3B3A38] shadow-2xl overflow-hidden bg-white transform rotate-0 transition-transform duration-700 ease-out">
               <div className="absolute top-0 inset-x-0 h-5 bg-[#3B3A38] rounded-b-[16px] mx-16 z-10" />
               <img src="/instagram_screenshot.png" alt="Furrytail Instagram Community" className="w-full h-full object-cover object-top" />
             </div>
@@ -620,28 +627,10 @@ function ContactForm() {
 }
 
 function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx: number }) {
-  const [userToggled, setUserToggled] = useState<boolean | null>(null);
-  const [inView, setInView] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
-      },
-      { threshold: 0.35 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const isOpen = userToggled !== null ? userToggled : inView;
   const num = String(idx + 1).padStart(2, '0');
-  const handleToggle = () => setUserToggled(!isOpen);
+  const handleToggle = () => setIsOpen(!isOpen);
 
   return (
     <article
@@ -670,7 +659,12 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
           )}
         </div>
         <h3 className="text-[#F8F5F1]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.name}</h3>
-        <div className="overflow-hidden" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
+        
+        <div className="absolute right-5 top-[32px] text-[#F8F5F1] transition-transform duration-500" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </div>
+
+        <div className="overflow-hidden pr-6" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
           <div className="w-6 h-px bg-[#F8F5F1]/25 mb-3" />
           <p className="text-[#E8E0D6] mb-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
           <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed">{pillar.body}</p>
@@ -1086,6 +1080,7 @@ export default function Home() {
               </div>
               <SecondaryOutlineBtn
                 href="/shop"
+                className="hidden sm:inline-flex"
                 data-kite-cta-id="pillars-explore-all"
                 data-kite-role="secondary"
                 data-kite-event="range_explored"
@@ -1094,6 +1089,16 @@ export default function Home() {
               </SecondaryOutlineBtn>
             </div>
             <PillarAccordionRow />
+            <div className="sm:hidden mt-8 flex justify-center">
+              <SecondaryOutlineBtn
+                href="/shop"
+                data-kite-cta-id="pillars-explore-all-mobile"
+                data-kite-role="secondary"
+                data-kite-event="range_explored"
+              >
+                Shop Collection
+              </SecondaryOutlineBtn>
+            </div>
           </div>
         </section>
 
@@ -1110,6 +1115,7 @@ export default function Home() {
               </div>
               <SecondaryOutlineBtn
                 href="/shop"
+                className="hidden sm:inline-flex"
                 data-kite-cta-id="bestsellers-view-all"
                 data-kite-role="secondary"
                 data-kite-event="range_explored"
@@ -1123,6 +1129,16 @@ export default function Home() {
                   <ProductCard product={product} />
                 </div>
               ))}
+            </div>
+            <div className="sm:hidden mt-10 flex justify-center">
+              <SecondaryOutlineBtn
+                href="/shop"
+                data-kite-cta-id="bestsellers-view-all-mobile"
+                data-kite-role="secondary"
+                data-kite-event="range_explored"
+              >
+                Shop Collection
+              </SecondaryOutlineBtn>
             </div>
           </div>
         </RevealSection>
@@ -1140,7 +1156,7 @@ export default function Home() {
                       src={brandPhilosophy.image.src}
                       alt={brandPhilosophy.image.alt}
                       fill
-                      className="object-cover object-center transition-all duration-[1200ms] ease-out hover:scale-[1.015] saturate-[80%] hover:saturate-[110%] sepia-[20%] hover:sepia-0"
+                      className="object-cover object-center transition-all duration-[1200ms] ease-out hover:scale-[1.015] saturate-[50%] hover:saturate-[100%] sepia-[20%] hover:sepia-0"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority
                     />
