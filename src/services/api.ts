@@ -27,7 +27,7 @@ export interface WooProductVariant {
   id: string;
   label: string;
   price: string;
-  standardPrice?: string;
+  standardPrice?: string | null;
   shortDesc?: string;
   image?: WooImage;
 }
@@ -36,8 +36,9 @@ export interface WooProduct {
   id: string;
   name: string;
   price: string;
-  standardPrice?: string;
-  badge?: string;
+  standardPrice?: string | null;
+  badge?: string | null;
+  foundingPriceLabel?: string | null;
   isNew?: boolean;
   category: string;
   image: WooImage;
