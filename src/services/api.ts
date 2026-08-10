@@ -35,12 +35,12 @@ export interface WooProductVariant {
 export interface WooProduct {
   id: string;
   name: string;
-  price?: string;
+  price: string;
   standardPrice?: string;
   badge?: string;
   isNew?: boolean;
-  category?: string;
-  image?: WooImage;
+  category: string;
+  image: WooImage;
   hoverImage?: WooImage;
   rating?: number;
   reviews?: number;
