@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { allProducts } from '@/data/home';
+import { getAllProducts } from '@/services/api';
 
 // Flatten all products from allProducts for search
-const PRODUCT_CATALOG = allProducts.products;
+const PRODUCT_CATALOG = getAllProducts();
 
 // Search terms that should match each product (name + category)
 function matches(query: string, product: (typeof PRODUCT_CATALOG)[0]): boolean {

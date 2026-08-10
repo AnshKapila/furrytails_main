@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
-import { getProductById, WooProduct } from '@/services/api';
+import { getProductById, getAllProducts, WooProduct } from '@/services/api';
 import { useCart, parsePrice } from '@/lib/cart';
 import { notFound } from 'next/navigation';
 
@@ -76,7 +76,7 @@ function ProductContent({ product }: { product: Product }) {
   const volume: string | undefined = prod.volume;
 
   // Related products — up to 3 others from the same category, or any other products
-  const related = allProducts.products
+  const related = getAllProducts()
     .filter((p) => p.id !== product.id)
     .sort((a, b) => (a.category === product.category ? -1 : 1) - (b.category === product.category ? -1 : 1))
     .slice(0, 3);
