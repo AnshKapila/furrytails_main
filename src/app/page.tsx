@@ -1292,7 +1292,7 @@ export default function Home() {
         <OurRangeGallery />
 
         {/* ── 7. FEATURED INGREDIENTS — scroll-pinned split editorial ──────── */}
-        <FeaturedIngredients stories={stories.slice(0, 4)} />
+        <FeaturedIngredients stories={stories.stories.slice(0, 4)} />
 
         {/* ── 7.1 RETAILERS ─────────────────────────────────────────────────── */}
         <RetailersSection />
