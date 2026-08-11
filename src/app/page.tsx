@@ -1042,19 +1042,23 @@ export default function Home() {
             <source src="/Labrador_cat_curtains_plant_sunlight_202608061234.mp4" type="video/mp4" />
           </video>
 
-          {/* Subtle left-to-right overlay for copy legibility */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)',
-              pointerEvents: 'none',
-            }}
-          />
+
 
           {/* Copy — left-aligned */}
-          <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
+          <div className={`hero-copy hero-copy-left relative transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
+            
+            {/* Seamless localized dark overlay behind text */}
+            <div
+              aria-hidden="true"
+              className="absolute pointer-events-none -z-10"
+              style={{
+                top: '-15%',
+                bottom: '-15%',
+                left: '-20%',
+                right: '-30%',
+                background: 'radial-gradient(ellipse at 40% 50%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.27) 45%, rgba(0,0,0,0.03) 75%, transparent 100%)',
+              }}
+            />
             <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#D8CFC4]/70 mb-[8px]">{hero.eyebrow}</p>
             <h1 className="text-[#F8F5F1] text-[clamp(2.25rem,4.2vw,3.75rem)] font-light leading-[1.1] tracking-[-0.015em] mb-[8px]" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
               {hero.headline}
