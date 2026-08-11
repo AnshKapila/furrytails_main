@@ -169,7 +169,7 @@ function ProductCard({ product }: { product: ProductItem }) {
           src={displayImage?.src ?? ''}
           alt={displayImage?.alt ?? product.name}
           fill
-          className="object-cover object-center transition-transform duration-[800ms] ease-out group-hover:scale-[1.04] group-hover:-rotate-[30deg]"
+          className="object-cover object-center transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
           sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 25vw"
         />
         {product.badge && (
@@ -956,8 +956,8 @@ function OurRangeGallery() {
                   loading="eager"
                   className="absolute inset-0 w-full h-full object-cover object-center"
                   style={{ transition: 'transform 900ms ease-out' }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.07)'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)'; }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.04) rotate(-30deg)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1) rotate(0deg)'; }}
                 />
                 {/* Soft editorial vignette */}
                 <div
@@ -1049,9 +1049,9 @@ export default function Home() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, transparent 10%, black 30%, black 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, transparent 10%, black 30%, black 100%)',
+              background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
               pointerEvents: 'none',
             }}
           />
