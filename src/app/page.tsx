@@ -1063,7 +1063,7 @@ export default function Home() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'radial-gradient(120% 70% at 50% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.05) 80%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 25%, transparent 50%)',
               pointerEvents: 'none',
             }}
           />
