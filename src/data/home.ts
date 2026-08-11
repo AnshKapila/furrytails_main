@@ -21,7 +21,7 @@ export const hero = {
   eyebrow: 'For the pet parent who reads every label.',
   headline: 'Your standard. Now for your pet.',
   subline:
-    '99.5% Natural Origin Index per ISO 16128-2 · Probiotic preserved · Made in India, to a global standard',
+    "Formulated to the same standard you'd expect on your own skin. Because they deserve it too.",
   primaryCta: 'Shop Collection',
   secondaryCta: 'Begin the Ritual',
   primaryHref: '/shop',
