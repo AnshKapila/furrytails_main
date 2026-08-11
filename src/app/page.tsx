@@ -1049,6 +1049,8 @@ export default function Home() {
               position: 'absolute',
               inset: 0,
               background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, transparent 0px, transparent 100px, black 250px, black 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, transparent 100px, black 250px, black 100%)',
               pointerEvents: 'none',
             }}
           />
