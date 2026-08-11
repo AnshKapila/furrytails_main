@@ -215,17 +215,6 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between px-6 h-16 border-b border-[#E9E2D7] flex-shrink-0">
           <span className="text-[0.65rem] tracking-[0.2em] uppercase text-[#BEB8AF] font-normal">Menu</span>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="w-8 h-8 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F]"
-            aria-label="Close navigation"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <line x1="2" y1="2" x2="14" y2="14" stroke="#3B3A38" strokeWidth="1.2" strokeLinecap="round" />
-              <line x1="14" y1="2" x2="2" y2="14" stroke="#3B3A38" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-          </button>
         </div>
 
         <nav className="flex-1 flex flex-col px-6 pt-8 gap-1" aria-label="Mobile navigation">
