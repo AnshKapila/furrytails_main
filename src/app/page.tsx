@@ -1042,15 +1042,28 @@ export default function Home() {
             <source src="/Labrador_cat_curtains_plant_sunlight_202608061234.mp4" type="video/mp4" />
           </video>
 
-          {/* Subtle left-to-right overlay for copy legibility */}
+          {/* Desktop & Tablet Overlay: left-to-right, masked top 10% to avoid navbar */}
           <div
             aria-hidden="true"
+            className="hidden md:block"
             style={{
               position: 'absolute',
               inset: 0,
               background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, transparent 0px, transparent 100px, black 250px, black 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, transparent 100px, black 250px, black 100%)',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, transparent 10%, black 30%, black 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, transparent 10%, black 30%, black 100%)',
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Mobile Overlay: centered at the bottom to cover the stacked text */}
+          <div
+            aria-hidden="true"
+            className="block md:hidden"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'radial-gradient(120% 70% at 50% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.05) 80%, transparent 100%)',
               pointerEvents: 'none',
             }}
           />
