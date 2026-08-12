@@ -219,7 +219,7 @@ export const brandStory = {
   heading: 'Built for the relationship, not the routine.',
   body: [
     'Most pet care products are made around logistics. Shelf life, margin, packaging cost. The animal is an afterthought to the supply chain.',
-    'It started with a dog that deserved better. Not marketing-better. Actually better. That meant fewer products, better sourced, made by someone who lives with animals rather than just selling to them.',
+    'It started with a dog that deserved better. Not marketing-better. Actually better. That meant fewer products, better crafted, made by someone who lives with animals rather than just selling to them.',
   ],
   image: {
     src: 'https://static.kite.ai/image/upload/v1785338589/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter4/about-brand-story.png',
@@ -642,7 +642,7 @@ export const ingredientChapters = [
         benefits: [
           'Warm base note that lingers gently after grooming',
           'Calms senses without masking natural scents',
-          'Sourced responsibly and formulated with restraint',
+          'Crafted responsibly and formulated with restraint',
         ],
         product: 'Gentle Daily Shampoo',
         productId: 'gentle-daily-shampoo',
@@ -783,8 +783,8 @@ export const ingredientStories = {
   eyebrow: 'What goes in',
   heading: 'Nature behind every formula.',
   body: 'Every ingredient earns its place. Nothing added for fragrance alone, nothing left in because it was easier to keep.',
-  cta: 'How we source',
-  ctaHref: '/about#how-we-source',
+  cta: 'Our Story',
+  ctaHref: '/about',
   stories: ingredientChapters.flatMap((ch) => ch.stories),
 };
 

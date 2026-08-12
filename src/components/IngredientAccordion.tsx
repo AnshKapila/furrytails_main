@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 const ITEMS = [
   { id: 'botanical-actives',      label: 'Botanical actives',      note: 'Plant-derived, selected for function not marketing appeal.' },
-  { id: 'carrier-oils',           label: 'Carrier oils',            note: 'Cold-pressed where possible, from verified sources.' },
+  { id: 'carrier-oils',           label: 'Carrier oils',            note: 'Cold-pressed where possible, from verified origins.' },
   { id: 'no-synthetic-fragrance', label: 'No synthetic fragrance',  note: 'Scent comes from the ingredients, not added perfume.' },
   { id: 'no-artificial-colour',   label: 'No artificial colour',    note: 'Natural tone only. If a product looks pale, that is correct.' },
 ] as const;

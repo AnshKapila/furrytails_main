@@ -102,7 +102,7 @@ export default function IngredientsPage() {
             <div className="max-w-[1200px] mx-auto px-6 md:px-8 flex flex-col md:flex-row md:items-end justify-between gap-8">
               <div>
                 <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3">
-                  How we source
+                  Our Story
                 </p>
                 <h2
                   className="text-[#3B3A38]"
@@ -113,13 +113,13 @@ export default function IngredientsPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/about#how-we-source"
+                  href="/about"
                   className="inline-flex items-center gap-2 text-[0.625rem] font-normal tracking-[0.14em] uppercase text-[#68735F] hover:text-[#3B3A38] transition-colors duration-[800ms] border border-[#D8CFC4] hover:border-[#8D9A83] px-5 py-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83]"
-                  data-kite-cta-id="ingredients-sourcing-link"
+                  data-kite-cta-id="ingredients-our-story-link"
                   data-kite-role="secondary"
-                  data-kite-event="sourcing_viewed"
+                  data-kite-event="story_viewed"
                 >
-                  Our sourcing
+                  Our Story
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className="flex-shrink-0">
                     <line x1="1" y1="7" x2="13" y2="7" />
                     <polyline points="8,2 13,7 8,12" />
