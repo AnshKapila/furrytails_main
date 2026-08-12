@@ -803,7 +803,6 @@ export const footer = {
     { label: 'Our Story', href: '/about' },
     { label: 'Our Ingredients', href: '/ingredients' },
     { label: 'Journal', href: '/journal' },
-    { label: 'How We Source', href: '/about#how-we-source' },
     { label: 'Contact', href: '/#contact' },
   ],
   legalLinks: [
