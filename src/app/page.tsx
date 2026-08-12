@@ -1042,7 +1042,17 @@ export default function Home() {
             <source src="/desktop_hero_cropped.mp4" type="video/mp4" />
           </video>
 
-
+          {/* Desktop Overlay: bottom-left quadrant radial gradient for text legibility */}
+          <div
+            aria-hidden="true"
+            className="hidden md:block"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'radial-gradient(80% 80% at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 75%)',
+              pointerEvents: 'none',
+            }}
+          />
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
