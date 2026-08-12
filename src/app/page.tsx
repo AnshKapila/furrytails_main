@@ -1039,34 +1039,10 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-right hidden md:block"
           >
-            <source src="/Labrador_cat_curtains_plant_sunlight_202608061234.mp4" type="video/mp4" />
+            <source src="/desktop_hero_cropped.mp4" type="video/mp4" />
           </video>
 
-          {/* Desktop & Tablet Overlay: left-to-right, masked top 10% to avoid navbar */}
-          <div
-            aria-hidden="true"
-            className="hidden md:block"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0) 100%)',
-              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
-              pointerEvents: 'none',
-            }}
-          />
 
-          {/* Mobile Overlay: centered at the bottom to cover the stacked text */}
-          <div
-            aria-hidden="true"
-            className="block md:hidden"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 25%, transparent 50%)',
-              pointerEvents: 'none',
-            }}
-          />
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
