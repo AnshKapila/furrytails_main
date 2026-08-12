@@ -1049,7 +1049,7 @@ export default function Home() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'radial-gradient(100% 100% at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 75%)',
+              background: 'radial-gradient(100% 110% at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 75%)',
               pointerEvents: 'none',
             }}
           />
@@ -1126,7 +1126,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {bestSellers.products.map((product, i) => (
-                <div key={product.id} className="opacity-0 translate-y-8 rotate-[30deg] group-[.in-view]:opacity-100 group-[.in-view]:translate-y-0 group-[.in-view]:rotate-0 transition-all ease-out" style={{ transitionDuration: '800ms', transitionDelay: `${i * 100}ms` }}>
+                <div key={product.id} className="opacity-0 translate-y-8 group-[.in-view]:opacity-100 group-[.in-view]:translate-y-0 transition-all ease-out" style={{ transitionDuration: '800ms', transitionDelay: `${i * 100}ms` }}>
                   <ProductCard product={product} />
                 </div>
               ))}
