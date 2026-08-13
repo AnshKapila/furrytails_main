@@ -812,3 +812,4 @@ export const footer = {
     { label: 'Cookie Settings', href: '#' },
   ],
 };
+

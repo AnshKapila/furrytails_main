@@ -48,10 +48,14 @@ h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; margin: 16px auto 0; width: min(550px, 100%); }
 /* Left-aligned actions: 16px below the intro paragraph, flush with left edge */
 .hero-actions-left { justify-content: flex-start; margin-left: 0; margin-right: 0; margin-top: 16px; width: auto; }
-.hero-btn-primary { display: inline-flex; flex-direction: row; align-items: center; gap: 8px; min-height: 48px; padding: 0 28px; background: #FFFFFF !important; color: #3B3A38 !important; font-size: .9375rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; border: none; transition: background-color 220ms ease-in-out, color 220ms ease-in-out; outline: none; white-space: nowrap; }
-.hero-btn-primary:hover, .hero-btn-primary:focus-visible { background: #F8F5F1 !important; color: #3B3A38 !important; }
+.hero-btn-primary { display: inline-flex; flex-direction: row; align-items: center; gap: 8px; min-height: 48px; padding: 0 28px; background: #3B3A38 !important; color: #FFFFFF !important; font-size: .9375rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; border: none; transition: background-color 220ms ease-in-out, color 220ms ease-in-out; outline: none; white-space: nowrap; }
+.hero-btn-primary:hover, .hero-btn-primary:focus-visible { background: #1C1B1A !important; color: #FFFFFF !important; }
 .hero-btn-primary .btn-arrow { opacity: 0.6; transform: translateX(0); transition: transform 400ms ease, opacity 400ms ease; }
 .hero-btn-primary:hover .btn-arrow, .hero-btn-primary:focus-visible .btn-arrow { opacity: 1; transform: translateX(4px); }
+
+/* Exception class for hero section homepage */
+.hero-btn-white { background: #FFFFFF !important; color: #3B3A38 !important; }
+.hero-btn-white:hover, .hero-btn-white:focus-visible { background: #F8F5F1 !important; color: #3B3A38 !important; }
 /* Secondary: charcoal text, transparent bg → sage tint on hover */
 .hero-btn-secondary { display: inline-flex; align-items: center; gap: 7px; color: #3B3A38; font-size: .9375rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; transition: color 220ms ease-in-out, opacity 220ms ease-in-out; outline: none; opacity: 0.75; }
 .hero-btn-secondary:hover, .hero-btn-secondary:focus-visible { color: #8D9A83; opacity: 1; }
@@ -97,7 +101,7 @@ h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size
   /* Hero actions on mobile */
   .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 16px; width: 100%; }
   .hero-actions-left { align-items: flex-start; }
-  .hero-btn-primary { justify-content: center; min-height: 48px; font-size: .875rem; background: #FFFFFF !important; width: 100%; }
+  .hero-btn-primary { justify-content: center; min-height: 48px; font-size: .875rem; width: 100%; }
   .hero-btn-secondary { justify-content: center; font-size: .875rem; opacity: 0.8; width: 100%; }
 }
 

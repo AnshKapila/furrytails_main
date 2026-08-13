@@ -17,6 +17,7 @@ import {
   getGlobalSettings,
   getIngredientsContent,
   WooProduct,
+  getAllProducts,
 } from '@/services/api';
 
 const {
@@ -685,10 +686,25 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </div>
 
-        <div className="overflow-hidden pr-6" style={{ maxHeight: isOpen ? '220px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
+        <div className="overflow-hidden pr-6" style={{ maxHeight: isOpen ? '450px' : '0px', opacity: isOpen ? 1 : 0, marginTop: isOpen ? '12px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
           <div className="w-6 h-px bg-[#F8F5F1]/25 mb-3" />
           <p className="text-[#E8E0D6] mb-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
-          <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed">{pillar.body}</p>
+          <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed mb-4">{pillar.body}</p>
+
+          <div className="flex flex-col gap-2 mb-4">
+            {getAllProducts().filter(p => p.category === ({ritual:'Daily Ritual', defense:'Defense', remedy:'Remedy', refresh:'Refresh'}[pillar.id as 'ritual'|'defense'|'remedy'|'refresh'])).map(p => (
+              <Link href={`/products/${p.id}`} key={p.id} className="group flex items-center gap-3 bg-[#F8F5F1]/5 hover:bg-[#F8F5F1]/10 p-2 rounded-sm border border-[#F8F5F1]/10 transition-colors" onClick={(e) => e.stopPropagation()}>
+                <div className="relative w-12 h-12 flex-shrink-0 bg-white/10 rounded-sm overflow-hidden">
+                  <Image src={p.image.src} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="48px" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[0.75rem] text-[#F8F5F1] font-medium leading-tight">{p.name}</p>
+                  <p className="text-[0.65rem] text-[#F8F5F1]/60 mt-0.5">{p.price}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
           <Link href={pillar.href} className="inline-block mt-4 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
         </div>
       </div>
@@ -728,10 +744,25 @@ function PillarAccordionRow() {
                   )}
                 </div>
                 <h3 className="text-[#F8F5F1] mt-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: isActive ? '1.75rem' : '1.5rem', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.2, transition: 'font-size 800ms cubic-bezier(0.4, 0, 0.2, 1)' }}>{pillar.name}</h3>
-                <div className="overflow-hidden" style={{ maxHeight: isActive ? '240px' : '0px', opacity: isActive ? 1 : 0, marginTop: isActive ? '14px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
+                <div className="overflow-hidden" style={{ maxHeight: isActive ? '450px' : '0px', opacity: isActive ? 1 : 0, marginTop: isActive ? '14px' : '0px', transition: 'max-height 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 700ms ease-out, margin-top 800ms ease-out' }}>
                   <div className={`w-8 h-px bg-[#F8F5F1]/25 mb-4 ${idx >= 2 ? 'ml-auto' : ''}`} />
                   <p className="text-[#E8E0D6] mb-3" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
-                  <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed">{pillar.body}</p>
+                  <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed mb-4">{pillar.body}</p>
+                  
+                  <div className={`flex flex-col gap-2 mb-4 ${idx >= 2 ? 'items-end' : 'items-start'}`}>
+                    {getAllProducts().filter(p => p.category === ({ritual:'Daily Ritual', defense:'Defense', remedy:'Remedy', refresh:'Refresh'}[pillar.id as 'ritual'|'defense'|'remedy'|'refresh'])).map(p => (
+                      <Link href={`/products/${p.id}`} key={p.id} className={`group flex items-center gap-3 bg-[#F8F5F1]/5 hover:bg-[#F8F5F1]/10 p-2 rounded-sm border border-[#F8F5F1]/10 transition-colors w-full max-w-[240px] ${idx >= 2 ? 'flex-row-reverse text-right' : 'text-left'}`} onClick={(e) => e.stopPropagation()}>
+                        <div className="relative w-12 h-12 flex-shrink-0 bg-white/10 rounded-sm overflow-hidden">
+                          <Image src={p.image.src} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="48px" />
+                        </div>
+                        <div>
+                          <p className="text-[0.75rem] text-[#F8F5F1] font-medium leading-tight line-clamp-1">{p.name}</p>
+                          <p className="text-[0.65rem] text-[#F8F5F1]/60 mt-0.5">{p.price}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
                   <Link href={pillar.href} className="inline-block mt-5 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
                 </div>
               </div>
@@ -1097,7 +1128,7 @@ export default function Home() {
               {hero.subline}
             </p>
             <div className="hero-actions hero-actions-left mt-[16px]">
-              <Link href={hero.primaryHref || '/shop'} className="hero-btn-primary" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
+              <Link href={hero.primaryHref || '/shop'} className="hero-btn-primary hero-btn-white" data-kite-cta-id="hero-shop-now" data-kite-role="primary" data-kite-event="shop_clicked">
                 {hero.primaryCta}<BtnArrow />
               </Link>
             </div>
@@ -1109,8 +1140,8 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 md:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
-                <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">Four categories</p>
-                <h2 className="text-[#3B3A38]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}>Everything has a reason.</h2>
+                <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">A Ritual Of Four Categories</p>
+                <h2 className="text-[#3B3A38]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}>Every Ritual Has A Purpose.</h2>
               </div>
               <SecondaryOutlineBtn
                 href="/shop"
@@ -1280,6 +1311,9 @@ export default function Home() {
     </ClientProviders>
   );
 }
+
+
+
 
 
 
