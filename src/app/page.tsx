@@ -11,6 +11,7 @@ import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
 import { TrustMarkerItem } from '@/components/TrustMarkers';
 import { TRUST_MARKERS } from '@/components/TrustMarkersData';
 import { useCart, parsePrice } from '@/lib/cart';
+import { useWishlist } from '@/lib/wishlist';
 import {
   getHomeContent,
   getGlobalSettings,
@@ -120,6 +121,7 @@ type ProductItem = WooProduct;
 function ProductCard({ product }: { product: ProductItem }) {
   const [quickAdded, setQuickAdded] = useState(false);
   const { addItem, openDrawer } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const prod = product as any;
@@ -131,6 +133,7 @@ function ProductCard({ product }: { product: ProductItem }) {
   // Single-variant label shown on card
   const singleVariantLabel: string | undefined = !hasVariants && prod.variantLabel ? prod.variantLabel : undefined;
   const volume: string | undefined = prod.volume;
+  const isWishlisted = isInWishlist(product.id);
 
   function handleQuickAdd(e: React.MouseEvent) {
     e.preventDefault();
@@ -180,7 +183,25 @@ function ProductCard({ product }: { product: ProductItem }) {
             {product.badge}
           </span>
         )}
-        <SpeciesBadge species={product.species} className="absolute bottom-3 left-3" />
+                <SpeciesBadge species={product.species} className="absolute bottom-3 left-3" />
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleWishlist({
+              id: product.id,
+              name: product.name,
+              price: displayPrice,
+              image: displayImage?.src ?? '',
+            });
+          }}
+          className="absolute bottom-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm transition-colors text-[#3B3A38] z-10"
+          aria-label="Toggle Wishlist"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill={isWishlisted ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </button>
       </div>
 
       {/* Card body — grows to fill remaining height, price row pinned to bottom */}
@@ -1029,7 +1050,19 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover object-center block md:hidden"
           >
             <source src="/mobile_hero_cropped.mp4" type="video/mp4" />
-          </video>
+                    </video>
+  
+          {/* Mobile Overlay: bottom-to-top gradient up to 40% height for text legibility */}
+          <div
+            aria-hidden="true"
+            className="block md:hidden"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 40%)',
+              pointerEvents: 'none',
+            }}
+          />
 
           {/* Desktop Video */}
           <video
@@ -1247,3 +1280,4 @@ export default function Home() {
     </ClientProviders>
   );
 }
+
