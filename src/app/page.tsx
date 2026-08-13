@@ -1059,7 +1059,7 @@ export default function Home() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 40%)',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%)',
               pointerEvents: 'none',
             }}
           />
@@ -1082,7 +1082,7 @@ export default function Home() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'radial-gradient(100% 130% at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 75%)',
+              background: 'radial-gradient(100% 150% at 0% 100%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0) 75%)',
               pointerEvents: 'none',
             }}
           />
@@ -1280,4 +1280,5 @@ export default function Home() {
     </ClientProviders>
   );
 }
+
 

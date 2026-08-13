@@ -134,7 +134,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] text-[#3B3A38] hover:text-[#68735F]"
+                className={`w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] ${isHome && !scrolled ? 'text-white hover:text-white/80' : 'text-[#3B3A38] hover:text-[#68735F]'}`}
                 aria-label="Search products"
                 data-kite-cta-id="nav-search"
                 data-kite-role="secondary"
@@ -146,7 +146,7 @@ export default function Navbar() {
               {/* Account */}
               <Link
                 href="/account"
-                className="w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] text-[#3B3A38] hover:text-[#68735F]"
+                className={`w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] ${isHome && !scrolled ? 'text-white hover:text-white/80' : 'text-[#3B3A38] hover:text-[#68735F]'}`}
                 aria-label="Your account"
                 data-kite-nav="account"
                 data-kite-nav-location="header"
@@ -158,7 +158,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={openDrawer}
-                className="relative w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] text-[#3B3A38] hover:text-[#68735F]"
+                className={`relative w-10 h-10 flex items-center justify-center transition-colors duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#68735F] ${isHome && !scrolled ? 'text-white hover:text-white/80' : 'text-[#3B3A38] hover:text-[#68735F]'}`}
                 aria-label={itemCount > 0 ? `Open bag — ${itemCount} ${itemCount === 1 ? 'item' : 'items'}` : 'Open bag'}
                 data-kite-cta-id="nav-cart"
                 data-kite-role="primary"
