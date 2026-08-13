@@ -1056,7 +1056,7 @@ export default function Home() {
 
           {/* Copy — left-aligned */}
           <div className={`hero-copy hero-copy-left transition-[opacity,transform] duration-700 ease-out ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[14px]'}`}>
-            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#D8CFC4]/70 mb-[8px]">{hero.eyebrow}</p>
+            <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-black mb-[8px]">{hero.eyebrow}</p>
             <h1 className="text-[#F8F5F1] text-[clamp(2.25rem,4.2vw,3.75rem)] font-light leading-[1.1] tracking-[-0.015em] mb-[8px]" style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
               {hero.headline}
             </h1>
