@@ -79,6 +79,7 @@ function ProductCard({ product }: { product: Product }) {
   const [quickAdded, setQuickAdded] = useState(false);
   const { addItem, openDrawer } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
+    const isWishlisted = isInWishlist(product.id);
 
   const hasVariants = 'variants' in product && Array.isArray(product.variants) && product.variants.length > 0;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -746,4 +747,5 @@ export default function ShopPage() {
     </ClientProviders>
   );
 }
+
 
