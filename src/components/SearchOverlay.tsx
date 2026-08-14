@@ -3,13 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllProducts } from '@/services/api';
-
-// Flatten all products from allProducts for search
-const PRODUCT_CATALOG = getAllProducts();
+import { useProducts } from '@/hooks/useProducts';
+import type { WooProduct } from '@/services/types';
 
 // Search terms that should match each product (name + category)
-function matches(query: string, product: (typeof PRODUCT_CATALOG)[0]): boolean {
+function matches(query: string, product: WooProduct): boolean {
   const q = query.toLowerCase().trim();
   if (!q) return false;
   const haystack = [product.name, product.category, product.shortDesc]
@@ -26,6 +24,9 @@ interface SearchOverlayProps {
 export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  // Catalogue comes from /api/products (same-origin), shared with the homepage
+  // rails via a module-level cache in the hook.
+  const { products } = useProducts();
 
   // Focus input when overlay opens; clear query when closing
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   }, [open, onClose]);
 
   const results = query.trim()
-    ? PRODUCT_CATALOG.filter((p) => matches(query, p))
+    ? products.filter((p) => matches(query, p))
     : [];
   const hasQuery = query.trim().length > 0;
 

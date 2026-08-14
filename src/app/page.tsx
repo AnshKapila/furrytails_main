@@ -16,9 +16,13 @@ import {
   getHomeContent,
   getGlobalSettings,
   getIngredientsContent,
-  WooProduct,
-  getAllProducts,
 } from '@/services/api';
+import type { WooProduct } from '@/services/types';
+// Homepage product rails read the catalogue client-side via /api/products.
+// Product SEO lives on /products/<slug>, which is server-rendered, so fetching
+// these below-the-fold rails on the client costs nothing and keeps this page
+// static — which matters on a 2-core shared host.
+import { useProducts } from '@/hooks/useProducts';
 
 const {
   hero,
@@ -648,7 +652,16 @@ function ContactForm() {
   );
 }
 
+// Maps a pillar id onto its WooCommerce category name.
+const PILLAR_CATEGORY: Record<string, string> = {
+  ritual: 'Daily Ritual',
+  defense: 'Defense',
+  remedy: 'Remedy',
+  refresh: 'Refresh',
+};
+
 function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx: number }) {
+  const { products } = useProducts();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const num = String(idx + 1).padStart(2, '0');
@@ -692,7 +705,7 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
           <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed mb-4">{pillar.body}</p>
 
           <div className="flex flex-col gap-2 mb-4">
-            {getAllProducts().filter(p => p.category === ({ritual:'Daily Ritual', defense:'Defense', remedy:'Remedy', refresh:'Refresh'}[pillar.id as 'ritual'|'defense'|'remedy'|'refresh'])).map(p => (
+            {products.filter(p => p.category === PILLAR_CATEGORY[pillar.id]).map(p => (
               <Link href={`/products/${p.id}`} key={p.id} className="group flex items-center gap-3 bg-[#F8F5F1]/5 hover:bg-[#F8F5F1]/10 p-2 rounded-sm border border-[#F8F5F1]/10 transition-colors" onClick={(e) => e.stopPropagation()}>
                 <div className="relative w-12 h-12 flex-shrink-0 bg-white/10 rounded-sm overflow-hidden">
                   <Image src={p.image.src} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="48px" />
@@ -714,6 +727,7 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
 
 // ─── Pillar accordion row ─────────────────────────────────────────────────────
 function PillarAccordionRow() {
+  const { products } = useProducts();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const handleToggle = (idx: number) => { setActiveIdx((prev) => (prev === idx ? null : idx)); };
@@ -750,7 +764,7 @@ function PillarAccordionRow() {
                   <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed mb-4">{pillar.body}</p>
                   
                   <div className={`flex flex-col gap-2 mb-4 ${idx >= 2 ? 'items-end' : 'items-start'}`}>
-                    {getAllProducts().filter(p => p.category === ({ritual:'Daily Ritual', defense:'Defense', remedy:'Remedy', refresh:'Refresh'}[pillar.id as 'ritual'|'defense'|'remedy'|'refresh'])).map(p => (
+                    {products.filter(p => p.category === PILLAR_CATEGORY[pillar.id]).map(p => (
                       <Link href={`/products/${p.id}`} key={p.id} className={`group flex items-center gap-3 bg-[#F8F5F1]/5 hover:bg-[#F8F5F1]/10 p-2 rounded-sm border border-[#F8F5F1]/10 transition-colors w-full max-w-[240px] ${idx >= 2 ? 'flex-row-reverse text-right' : 'text-left'}`} onClick={(e) => e.stopPropagation()}>
                         <div className="relative w-12 h-12 flex-shrink-0 bg-white/10 rounded-sm overflow-hidden">
                           <Image src={p.image.src} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="48px" />
@@ -787,6 +801,7 @@ function PillarAccordionRow() {
 // Uses the canonical website-scroll-management horizontal-motion contract.
 
 function OurRangeGallery() {
+  const { products } = useProducts();
   const sectionRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
@@ -974,7 +989,7 @@ function OurRangeGallery() {
           style={{ scrollbarWidth: 'none' } as React.CSSProperties}
           data-scroll-strip
         >
-          {ourRange.products.map((product, i) => (
+          {products.map((product, i) => (
             <Link
               key={product.id}
               href={`/products/${product.id}`}
@@ -1052,6 +1067,9 @@ function OurRangeGallery() {
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const [heroVisible, setHeroVisible] = useState(false);
+  // "Where most people begin" shows a subset of the range as an introduction.
+  const { products } = useProducts();
+  const bestSellers4 = products.slice(0, 4);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -1189,7 +1207,7 @@ export default function Home() {
               </SecondaryOutlineBtn>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {bestSellers.products.map((product, i) => (
+              {bestSellers4.map((product, i) => (
                 <div key={product.id} className="opacity-0 translate-y-8 group-[.in-view]:opacity-100 group-[.in-view]:translate-y-0 transition-all ease-out" style={{ transitionDuration: '800ms', transitionDelay: `${i * 100}ms` }}>
                   <ProductCard product={product} />
                 </div>

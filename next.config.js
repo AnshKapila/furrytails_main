@@ -28,6 +28,7 @@ const kiteSdkHash = fs.existsSync(kiteSdkPath)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   env: {
     NEXT_PUBLIC_KITE_SDK_HASH: kiteSdkHash,
   },

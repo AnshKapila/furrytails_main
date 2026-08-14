@@ -193,12 +193,40 @@ export function useCart(): CartContextValue {
   return ctx;
 }
 
-// Utility: parse "₹28" → 28
-export function parsePrice(price: string): number {
-  const n = parseFloat(price.replace(/[^\d.]/g, ''));
-  return isNaN(n) ? 0 : n;
+// Re-exported so existing client imports keep working. The implementation lives
+// in lib/price.ts because server components need it too and this file is
+// 'use client'.
+export { parsePrice } from './price';
+
+// ─── WooCommerce checkout handoff ────────────────────────────────────────────
+// The cart lives here (localStorage) for UI purposes only. On checkout the
+// browser navigates to WordPress, which rebuilds the cart authoritatively and
+// takes payment. Because it's a top-level navigation rather than a fetch, there
+// is no CORS involved and WooCommerce sets its own session cookie normally.
+//
+// Prices held here are display values. WooCommerce recalculates everything at
+// checkout and its numbers are the ones that count.
+
+export const WP_URL = process.env.NEXT_PUBLIC_WP_URL ?? '';
+
+/**
+ * Build the handoff URL. The ft-checkout endpoint (a small mu-plugin on the
+ * WordPress side) resolves the slugs, fills the Woo cart and redirects to the
+ * real checkout.
+ *
+ * Returns null when WP_URL is unset or the cart is empty, so callers can
+ * disable the button instead of navigating somewhere broken.
+ */
+export function buildCheckoutUrl(items: CartItem[]): string | null {
+  if (!WP_URL || items.length === 0) return null;
+  const parts = items
+    .map((i) => {
+      const slug = i.variantId ? `${i.id}:${i.variantId}` : i.id;
+      return `${slug}*${Math.max(1, Math.round(i.qty))}`;
+    })
+    .join(',');
+  return `${WP_URL}/?ft-checkout=1&items=${encodeURIComponent(parts)}`;
 }
 
-// WooCommerce checkout handoff URL
-// Replace this with the actual WooCommerce store checkout URL when available.
-export const CHECKOUT_URL = process.env.NEXT_PUBLIC_CHECKOUT_URL ?? '/checkout';
+/** Woo account area — real login, addresses and order history live there. */
+export const ACCOUNT_URL = WP_URL ? `${WP_URL}/my-account` : null;
