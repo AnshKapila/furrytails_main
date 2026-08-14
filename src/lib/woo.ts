@@ -14,6 +14,35 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { WooProduct, WooProductVariant, WooImage } from '@/services/types';
+import snapshotJson from '@/data/products.snapshot.json';
+
+// ─── Build-time fallback ─────────────────────────────────────────────────────
+// A committed snapshot of the catalogue, used ONLY when the Store API is
+// unreachable during a production build.
+//
+// Why: a deploy must never be blocked by WordPress being briefly unavailable.
+// This first bit during the apex domain migration — the build container hit an
+// SSL error reaching store.furrytailjoy.com while certificates were reissuing,
+// and the whole deploy failed.
+//
+// At RUNTIME the opposite behaviour is correct: a failed revalidation must
+// throw, so Next.js keeps serving the last good page rather than caching an
+// empty catalogue. See docs/resilience.md R3 and R4.
+//
+// Refresh with: curl -s <site>/api/products | jq .products > src/data/products.snapshot.json
+const SNAPSHOT = snapshotJson as unknown as WooProduct[];
+
+const IS_BUILD = process.env.NEXT_PHASE === 'phase-production-build';
+
+function buildFallback(context: string, err: unknown): WooProduct[] {
+  console.warn(
+    `[woo] ${context} failed during build — falling back to committed ` +
+      `snapshot (${SNAPSHOT.length} products). ISR will replace this with live ` +
+      `data on the first request after deploy. Cause:`,
+    err,
+  );
+  return SNAPSHOT;
+}
 
 export { WP_URL } from '@/lib/config';
 import { WP_URL } from '@/lib/config';
@@ -283,51 +312,74 @@ async function buildVariants(
  * revalidation window. See docs/resilience.md R3.
  */
 export async function fetchProducts(): Promise<WooProduct[]> {
-  const raw = await storeFetch<StoreApiProduct[]>('/products?per_page=100');
+  try {
+    const raw = await storeFetch<StoreApiProduct[]>('/products?per_page=100');
 
-  if (!Array.isArray(raw)) {
-    throw new Error('[woo] products response was not an array');
-  }
+    if (!Array.isArray(raw)) {
+      throw new Error('[woo] products response was not an array');
+    }
 
-  const products = await Promise.all(
-    raw.map(async (p) => {
-      const variants = p.type === 'variable' ? await buildVariants(p) : [];
-      return toWooProduct(p, variants);
-    }),
-  );
-
-  const valid = products.filter((p): p is WooProduct => p !== null);
-
-  if (valid.length === 0) {
-    throw new Error(
-      '[woo] catalogue is empty after validation — refusing to cache. ' +
-        'Check products are published and have featured images.',
+    const products = await Promise.all(
+      raw.map(async (p) => {
+        const variants = p.type === 'variable' ? await buildVariants(p) : [];
+        return toWooProduct(p, variants);
+      }),
     );
-  }
 
-  return valid;
+    const valid = products.filter((p): p is WooProduct => p !== null);
+
+    if (valid.length === 0) {
+      throw new Error(
+        '[woo] catalogue is empty after validation — refusing to cache. ' +
+          'Check products are published and have featured images.',
+      );
+    }
+
+    return valid;
+  } catch (err) {
+    // Build: ship the snapshot so the deploy succeeds.
+    if (IS_BUILD) return buildFallback('catalogue fetch', err);
+    // Runtime: rethrow so Next keeps serving the last good page.
+    throw err;
+  }
 }
 
 /** A single product by slug. Returns null when not found. */
 export async function fetchProductBySlug(
   slug: string,
 ): Promise<WooProduct | null> {
-  const raw = await storeFetch<StoreApiProduct[]>(
-    `/products?slug=${encodeURIComponent(slug)}`,
-  );
-  const p = Array.isArray(raw) ? raw[0] : undefined;
-  if (!p) return null;
+  try {
+    const raw = await storeFetch<StoreApiProduct[]>(
+      `/products?slug=${encodeURIComponent(slug)}`,
+    );
+    const p = Array.isArray(raw) ? raw[0] : undefined;
+    if (!p) return null;
 
-  const variants = p.type === 'variable' ? await buildVariants(p) : [];
-  return toWooProduct(p, variants);
+    const variants = p.type === 'variable' ? await buildVariants(p) : [];
+    return toWooProduct(p, variants);
+  } catch (err) {
+    if (IS_BUILD) {
+      return buildFallback(`product "${slug}"`, err).find((p) => p.id === slug) ?? null;
+    }
+    throw err;
+  }
 }
 
-/** Slugs for generateStaticParams. Never throws — an empty list is valid. */
+/**
+ * Slugs for generateStaticParams.
+ *
+ * Never throws. Falls back to the snapshot so a deploy still prerenders the
+ * known products when the Store API is briefly unreachable; anything missing is
+ * rendered on first request anyway, since dynamicParams is enabled.
+ */
 export async function fetchProductSlugs(): Promise<string[]> {
   try {
     const raw = await storeFetch<StoreApiProduct[]>('/products?per_page=100');
-    return Array.isArray(raw) ? raw.map((p) => p.slug).filter(Boolean) : [];
-  } catch {
-    return [];
+    const slugs = Array.isArray(raw) ? raw.map((p) => p.slug).filter(Boolean) : [];
+    if (slugs.length) return slugs;
+    throw new Error('[woo] no slugs returned');
+  } catch (err) {
+    console.warn('[woo] slug list unavailable, using snapshot:', err);
+    return SNAPSHOT.map((p) => p.id).filter(Boolean);
   }
 }
