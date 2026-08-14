@@ -7,6 +7,61 @@ Vercel/headless-endpoint plan that was abandoned. Ignore them.
 
 ---
 
+## STATUS — verified working
+
+The integration is live and proven end to end on a staging URL. §3 below is
+**done** and kept only as a record of what was built.
+
+| | |
+|---|---|
+| WordPress + WooCommerce | ✅ `store.furrytailjoy.com` |
+| 5 products / 7 SKUs, attributes, images | ✅ |
+| `ft-checkout` mu-plugin | ✅ |
+| Store API data layer, entity decoding, validation | ✅ |
+| Server components + metadata + Product JSON-LD | ✅ |
+| Catalogue live — prices, images, variants, copy | ✅ |
+| wp-admin edits reach the site with no redeploy | ✅ (5 min ISR) |
+| Cart → Woo checkout handoff | ✅ correct item and price |
+| Next.js on Hostinger Node (Business plan) | ✅ builds and runs |
+
+### Remaining before launch
+
+1. **Razorpay** — the only thing left blocking real orders. Live keys need KYC
+   approval, which is outside our control: start it first.
+2. Shipping zones · GST/HSN rates
+3. **LiteSpeed exclusions** — `/checkout`, `/cart`, `/my-account`,
+   `/wp-json/wc/store/*`, `/?ft-checkout=`. Verify with two browsers showing
+   different carts. Non-negotiable: cached carts leak between customers.
+4. Apex swap — delete old WP files from `public_html` (**keep `storewp/`**),
+   create a Web App on `furrytailjoy.com`, upload the same source zip.
+5. Monitoring — uptime on the Node app, plus a zero-orders alert.
+6. Overnight persistence test on the Node process (no UptimeRobot until after,
+   its pings keep the process warm and void the test).
+
+### Still outstanding on the frontend
+
+- **2.5D/3D homepage effects** (§3.8) — client-requested, not started.
+- Hero video double-load fix + poster frame (§3.9).
+- 48 `static.kite.ai` references in `src/data/home.ts` — a CDN dependency we
+  don't control. Product images are already migrated; these are the editorial
+  and ingredient images.
+- 25MB of unoptimised assets in `public/`.
+
+### Deploy notes
+
+- Hostinger Web Apps **builds from source** — upload `deploy/furrytail-source.zip`
+  (from `scripts/mksrc`-equivalent), not the standalone bundle.
+- Framework preset Next.js · Node 22.x · root `./` · default build settings.
+- Set `NEXT_PUBLIC_WP_URL` as an environment variable **before** deploying —
+  `NEXT_PUBLIC_*` is inlined at build time. There is a literal default in
+  `src/lib/config.ts` as a safety net.
+- `package.json` start script must stay `next start` with no `-p` flag, so the
+  app binds the host-provided `PORT`.
+
+---
+
+---
+
 ## 1. Architecture (final)
 
 ```
