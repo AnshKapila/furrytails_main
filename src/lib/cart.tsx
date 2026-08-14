@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import { WP_URL } from '@/lib/config';
 
 export interface CartItem {
   id: string;         // product id
@@ -207,7 +208,7 @@ export { parsePrice } from './price';
 // Prices held here are display values. WooCommerce recalculates everything at
 // checkout and its numbers are the ones that count.
 
-export const WP_URL = process.env.NEXT_PUBLIC_WP_URL ?? '';
+export { WP_URL } from '@/lib/config';
 
 /**
  * Build the handoff URL. The ft-checkout endpoint (a small mu-plugin on the

@@ -15,8 +15,8 @@
 
 import type { WooProduct, WooProductVariant, WooImage } from '@/services/types';
 
-export const WP_URL =
-  process.env.NEXT_PUBLIC_WP_URL ?? 'https://store.furrytailjoy.com';
+export { WP_URL } from '@/lib/config';
+import { WP_URL } from '@/lib/config';
 
 const STORE_API = `${WP_URL}/wp-json/wc/store/v1`;
 
