@@ -28,9 +28,18 @@ export async function GET() {
     console.error('[api/products]', err);
     // Deliberately not returning an empty product list with a 200 — callers
     // must be able to tell "catalogue unavailable" from "no products".
+    //
+    // no-store is essential: without it this error inherits the route's
+    // revalidate window and gets persisted to .next/cache, so a brief
+    // WordPress outage leaves the endpoint returning 503 long after the store
+    // recovers — and a process restart does not clear it, only a rebuild does.
+    // That happened in production during the domain migration.
     return NextResponse.json(
       { products: [], error: 'catalogue_unavailable' },
-      { status: 503 },
+      {
+        status: 503,
+        headers: { 'Cache-Control': 'no-store, must-revalidate' },
+      },
     );
   }
 }
