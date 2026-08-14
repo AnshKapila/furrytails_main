@@ -5,3 +5,6 @@ node_modules/
 
 deploy/
 .env.local
+
+# stray debug output from local verification
+*.tmp.json
