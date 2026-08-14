@@ -23,20 +23,36 @@ The integration is live and proven end to end on a staging URL. §3 below is
 | wp-admin edits reach the site with no redeploy | ✅ (5 min ISR) |
 | Cart → Woo checkout handoff | ✅ correct item and price |
 | Next.js on Hostinger Node (Business plan) | ✅ builds and runs |
+| **Live on `furrytailjoy.com`** | ✅ apex switch complete |
+
+### Final layout
+
+```
+furrytailjoy.com                      → Next.js Web App
+store.furrytailjoy.com                → WordPress + WooCommerce
+                                        (own document root + own SSL)
+maroon-gull-464135.hostingersite.com  → spare Web App, useful as staging
+furrytailjoy-com-668919.hostingersite.com → old placeholder WP, DELETE IT
+```
+
+⚠️ **The store must stay in its own document root** (`domains/store.furrytailjoy.com/public_html`),
+never inside the Web App's directory. When it was nested under
+`domains/furrytailjoy.com/public_html/storewp`, connecting the apex to a Web App
+displaced the whole site and took the store's docroot and SSL with it.
 
 ### Remaining before launch
 
 1. **Razorpay** — the only thing left blocking real orders. Live keys need KYC
    approval, which is outside our control: start it first.
-2. Shipping zones · GST/HSN rates
+2. Shipping zones · GST/HSN rates (needs HSN codes from the client)
 3. **LiteSpeed exclusions** — `/checkout`, `/cart`, `/my-account`,
    `/wp-json/wc/store/*`, `/?ft-checkout=`. Verify with two browsers showing
    different carts. Non-negotiable: cached carts leak between customers.
-4. Apex swap — delete old WP files from `public_html` (**keep `storewp/`**),
-   create a Web App on `furrytailjoy.com`, upload the same source zip.
-5. Monitoring — uptime on the Node app, plus a zero-orders alert.
-6. Overnight persistence test on the Node process (no UptimeRobot until after,
+4. Monitoring — uptime on the Node app, plus a zero-orders alert.
+5. Overnight persistence test on the Node process (no UptimeRobot until after,
    its pings keep the process warm and void the test).
+6. Delete the old placeholder WordPress site — an unmaintained WP install is
+   attack surface.
 
 ### Still outstanding on the frontend
 
