@@ -2,3 +2,9 @@
 node_modules/
 
 .next/
+
+deploy/
+.env.local
+
+# stray debug output from local verification
+*.tmp.json

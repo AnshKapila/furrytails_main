@@ -1,0 +1,137 @@
+[
+  {
+    "id": "gentle-daily-shampoo",
+    "name": "Gentle Daily Shampoo",
+    "price": "₹695",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Daily Ritual",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
+      "alt": "Gentle Daily Shampoo"
+    },
+    "productType": "Shampoo",
+    "species": "both",
+    "volume": "300 ml",
+    "variants": [
+      {
+        "id": "fig-neroli",
+        "label": "Fig & Neroli",
+        "price": "₹695",
+        "standardPrice": null,
+        "image": {
+          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
+          "alt": "Gentle Daily Shampoo"
+        }
+      },
+      {
+        "id": "hinoki-bamboo",
+        "label": "Hinoki & Bamboo",
+        "price": "₹695",
+        "standardPrice": null,
+        "image": {
+          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
+          "alt": "Gentle Daily Shampoo"
+        }
+      },
+      {
+        "id": "santal-white-tea",
+        "label": "Santal & White Tea",
+        "price": "₹695",
+        "standardPrice": null,
+        "image": {
+          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo-santal-white-tea.webp",
+          "alt": "Gentle Daily Shampoo"
+        }
+      }
+    ],
+    "shortDesc": "",
+    "description": "",
+    "slug": "gentle-daily-shampoo",
+    "inStock": true
+  },
+  {
+    "id": "refreshing-mist",
+    "name": "Refreshing Mist",
+    "price": "₹545",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Refresh",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/refreshing-mist.webp",
+      "alt": "Refreshing Mist"
+    },
+    "productType": "Mist",
+    "species": "dog",
+    "volume": "100 ml",
+    "variantLabel": "Yuzu & White Musk",
+    "shortDesc": "",
+    "description": "",
+    "slug": "refreshing-mist",
+    "sku": "SKU-07",
+    "inStock": true
+  },
+  {
+    "id": "dry-foam-shampoo",
+    "name": "Dry Foam Shampoo",
+    "price": "₹595",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Remedy",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/dry-foam-shampoo.webp",
+      "alt": "Dry Foam Shampoo"
+    },
+    "productType": "Shampoo",
+    "species": "dog",
+    "volume": "150 ml",
+    "variantLabel": "Mimosa & Tonka",
+    "shortDesc": "",
+    "description": "",
+    "slug": "dry-foam-shampoo",
+    "sku": "SKU-06",
+    "inStock": true
+  },
+  {
+    "id": "anti-tick-flea-spray",
+    "name": "Anti-Tick & Flea Spray",
+    "price": "₹595",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Defense",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/anti-tick-flea-spray.webp",
+      "alt": "Anti-Tick & Flea Spray"
+    },
+    "productType": "Spray",
+    "species": "dog",
+    "volume": "100 ml",
+    "variantLabel": "Vetiver & Cypress",
+    "shortDesc": "Not a pesticide. Plant-derived actives: vetiver root oil, cypress oil, citronella, neem. Avoid any claim that implies pesticidal efficacy.",
+    "description": "",
+    "slug": "anti-tick-flea-spray",
+    "sku": "SKU-04",
+    "inStock": true
+  },
+  {
+    "id": "paw-cleaner",
+    "name": "Paw Cleaner",
+    "price": "₹495",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Remedy",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/paw-cleaner.webp",
+      "alt": "Paw Cleaner"
+    },
+    "productType": "Cleaner",
+    "species": "dog",
+    "volume": "150 ml",
+    "variantLabel": "Spearmint & Sea Salt",
+    "shortDesc": "Cleans and soothes paw pads after walks. Spearmint & Sea Salt — cool, clean, and mild on skin.",
+    "description": "<h3>Key ingredients</h3>\n<p>Mentha Spicata · Maris Sal</p>\n<h3>How to use</h3>\n<p>Pump onto each paw or a damp cloth. Massage pads and between toes. Wipe with a clean damp cloth. No rinsing. Use after every walk.</p>\n<h3>Safety</h3>\n<p>Not suitable for cats. Formulated for dogs.</p>",
+    "slug": "paw-cleaner",
+    "sku": "SKU-05",
+    "inStock": true
+  }
+]

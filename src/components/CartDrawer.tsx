@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCart, CHECKOUT_URL } from '@/lib/cart';
+import { useCart, buildCheckoutUrl } from '@/lib/cart';
 
 // ─── Thin-stroke icons consistent with the nav icon set ───────────────────────
 
@@ -45,6 +45,7 @@ function RemoveIcon() {
 
 export default function CartDrawer() {
   const { items, drawerOpen, subtotal, closeDrawer, removeItem, updateQty } = useCart();
+  const checkoutUrl = buildCheckoutUrl(items);
 
   return (
     <>
@@ -254,17 +255,38 @@ export default function CartDrawer() {
             >
               Shipping and taxes are calculated at checkout.
             </p>
-            {/* Checkout CTA — hands off to WooCommerce native checkout */}
-            <a
-              href={CHECKOUT_URL}
-              className="hero-btn-primary justify-center w-full"
-              style={{ minHeight: '52px', fontSize: '0.875rem', letterSpacing: '0.04em' }}
-              data-kite-cta-id="cart-checkout"
-              data-kite-role="primary"
-              data-kite-event="checkout_started"
-            >
-              Proceed to checkout
-            </a>
+            {/* Checkout CTA — top-level navigation to the WooCommerce checkout.
+                When the handoff URL can't be built we disable the button with an
+                honest message rather than sending the customer to a dead link. */}
+            {checkoutUrl ? (
+              <a
+                href={checkoutUrl}
+                className="hero-btn-primary justify-center w-full"
+                style={{ minHeight: '52px', fontSize: '0.875rem', letterSpacing: '0.04em' }}
+                data-kite-cta-id="cart-checkout"
+                data-kite-role="primary"
+                data-kite-event="checkout_started"
+              >
+                Proceed to checkout
+              </a>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  disabled
+                  className="hero-btn-primary justify-center w-full opacity-50 cursor-not-allowed"
+                  style={{ minHeight: '52px', fontSize: '0.875rem', letterSpacing: '0.04em' }}
+                >
+                  Checkout unavailable
+                </button>
+                <p
+                  className="text-[0.6875rem] font-light text-[#8D9A83] leading-[1.5] text-center"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Checkout is briefly unavailable — your bag is saved.
+                </p>
+              </div>
+            )}
             <button
               type="button"
               onClick={closeDrawer}

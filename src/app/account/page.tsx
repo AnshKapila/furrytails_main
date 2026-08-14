@@ -4,16 +4,12 @@ import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import ProfileDashboard from '@/components/profile/ProfileDashboard';
 
+// A personal account area should never be indexed, so no canonical or
+// OpenGraph tags here — those would actively invite crawling.
 export const metadata = {
   title: 'Your account — Furrytail',
-  description: 'Manage your profile details, view order history, and access your wish list.',
-  alternates: { canonical: '/account' },
-  openGraph: {
-    url: '/account',
-    title: 'Your account — Furrytail',
-    description: 'Manage your profile details, view order history, and access your wish list.',
-    images: ['https://static.kite.ai/image/upload/v1785648855/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/j2sgtsiamihlvbryljwr.png'],
-  },
+  description: 'Your wish list, orders and account details.',
+  robots: { index: false, follow: false },
 };
 
 export default function AccountPage() {

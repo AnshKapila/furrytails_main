@@ -24,10 +24,21 @@ export function getBaseUrl(): string {
   return resolveBaseUrl().replace(/\/+$/, '');
 }
 
+// Production fallback. NEXT_PUBLIC_SITE_URL and the VERCEL_* vars are set by
+// Kite/Vercel and are absent on Hostinger, so without this the localhost
+// fallback below shipped to production: every canonical, og:url and sitemap
+// entry read "http://localhost:4321", telling crawlers the canonical version of
+// every page lived on localhost and breaking every social share preview.
+//
+// NEXT_PUBLIC_* is inlined at build time, so an env var alone is easy to forget
+// on a rebuild. A literal default means production can never emit localhost.
+const PRODUCTION_URL = 'https://furrytailjoy.com';
+
 function resolveBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
   const vercel =
     process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
   if (vercel) return `https://${vercel}`;
+  if (process.env.NODE_ENV === 'production') return PRODUCTION_URL;
   return 'http://localhost:4321';
 }

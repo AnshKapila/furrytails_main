@@ -216,3 +216,36 @@ nextjs-portal {
   min-height: 0;
 }
 
+
+/* Product detail prose — renders the WooCommerce product Description field,
+   which holds Key ingredients / How to use / Safety. Authored in wp-admin as
+   simple <h3> + <p> HTML; styles kept in the shared token vocabulary so the
+   copy can change without touching CSS. */
+.product-detail-prose h3 {
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8D9A83;
+  margin: 2rem 0 0.625rem;
+}
+.product-detail-prose h3:first-child { margin-top: 0; }
+.product-detail-prose p {
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(59, 58, 56, 0.8);
+  margin: 0 0 0.75rem;
+}
+.product-detail-prose ul { margin: 0 0 0.75rem; padding-left: 1.1rem; }
+.product-detail-prose li {
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(59, 58, 56, 0.8);
+  margin-bottom: 0.25rem;
+}
+.product-detail-prose strong { font-weight: 500; color: #3B3A38; }
