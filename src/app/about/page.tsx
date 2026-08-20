@@ -125,7 +125,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
               <div className="relative aspect-[4/5] overflow-hidden order-2 md:order-1">
                 <Image
-                  src="/about_craft_shelf.jpg"
+                  src="/designed-to-be-used.jpg"
                   alt="A beautifully designed pet shampoo bottle sitting naturally on a bathroom shelf beside rolled towels"
                   fill
                   className="object-cover object-center"
