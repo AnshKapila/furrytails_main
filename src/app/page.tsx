@@ -1117,7 +1117,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-right hidden md:block"
           >
-            <source src="/Labrador_cat_curtains_plant_sunlight_202608061234.mp4" type="video/mp4" />
+            <source src="/FT_HEro_BG_20_8.mp4" type="video/mp4" />
           </video>
 
           {/* Desktop Overlay: bottom-left quadrant radial gradient for text legibility */}
