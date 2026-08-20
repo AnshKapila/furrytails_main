@@ -1094,7 +1094,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-center block md:hidden"
           >
-            <source src="/mobile_hero_cropped.mp4" type="video/mp4" />
+            <source src="/mobile_hero_new.mp4" type="video/mp4" />
                     </video>
   
           {/* Mobile Overlay: bottom-to-top gradient up to 40% height for text legibility */}
@@ -1325,6 +1325,7 @@ export default function Home() {
     </ClientProviders>
   );
 }
+
 
 
 
