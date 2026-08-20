@@ -717,8 +717,6 @@ function MobilePillarItem({ pillar, idx }: { pillar: typeof pillars[number]; idx
               </Link>
             ))}
           </div>
-
-          <Link href={pillar.href} className="inline-block mt-4 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
         </div>
       </div>
     </article>
@@ -763,7 +761,7 @@ function PillarAccordionRow() {
                   <p className="text-[#E8E0D6] mb-3" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, lineHeight: 1.2 }}>{pillar.tagline}</p>
                   <p className="text-[0.875rem] font-light text-[#BEB8AF] leading-relaxed mb-4">{pillar.body}</p>
                   
-                  <div className={`flex flex-col gap-2 mb-4 ${idx >= 2 ? 'items-end' : 'items-start'}`}>
+                  <div className={`flex flex-row flex-wrap gap-2 mb-4 ${idx >= 2 ? 'justify-end' : 'justify-start'}`}>
                     {products.filter(p => p.category === PILLAR_CATEGORY[pillar.id]).map(p => (
                       <Link href={`/products/${p.id}`} key={p.id} className={`group flex items-center gap-3 bg-[#F8F5F1]/5 hover:bg-[#F8F5F1]/10 p-2 rounded-sm border border-[#F8F5F1]/10 transition-colors w-full max-w-[240px] ${idx >= 2 ? 'flex-row-reverse text-right' : 'text-left'}`} onClick={(e) => e.stopPropagation()}>
                         <div className="relative w-12 h-12 flex-shrink-0 bg-white/10 rounded-sm overflow-hidden">
@@ -776,8 +774,6 @@ function PillarAccordionRow() {
                       </Link>
                     ))}
                   </div>
-
-                  <Link href={pillar.href} className="inline-block mt-5 text-[0.58rem] font-normal tracking-[0.2em] uppercase text-[#F8F5F1]/70 border-b border-[#F8F5F1]/25 hover:text-[#F8F5F1] hover:border-[#F8F5F1]/60 transition-all duration-[800ms] focus:outline-none pb-px" onClick={(e) => e.stopPropagation()} data-kite-cta-id={`pillar-${pillar.id}-cta`} data-kite-role="secondary" data-kite-event="pillar_explored">{pillar.cta}</Link>
                 </div>
               </div>
             </article>
