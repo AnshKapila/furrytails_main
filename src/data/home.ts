@@ -143,14 +143,14 @@ export const bestSellers = {
           },
         },
         {
-          id: 'hinoki-bamboo',
-          label: 'Hinoki & Bamboo',
+          id: 'violet-leaf-muslin',
+          label: 'Violet Leaf & Muslin',
           price: '₹695',
           standardPrice: null,
           shortDesc: 'Clean and quietly green. A cool, forested note for daily washing.',
           image: {
             src: 'https://static.kite.ai/image/upload/v1785648855/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/j2sgtsiamihlvbryljwr.png',
-            alt: 'Gentle Daily Shampoo — Hinoki & Bamboo',
+            alt: 'Gentle Daily Shampoo — Violet Leaf & Muslin',
           },
         },
       ],
@@ -248,7 +248,7 @@ export const pillars = [
     id: 'ritual',
     name: 'Ritual',
     tagline: 'Gentle Daily Shampoo',
-    body: 'Santal & White Tea · Fig & Neroli · Hinoki & Bamboo. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
+    body: 'Santal & White Tea · Fig & Neroli · Violet Leaf & Muslin. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
     badge: 'Dogs & Cats',
     image: {
       src: '/pillar_ritual_update.jpg',
@@ -409,14 +409,14 @@ export const allProducts = {
           },
         },
         {
-          id: 'hinoki-bamboo',
-          label: 'Hinoki & Bamboo',
+          id: 'violet-leaf-muslin',
+          label: 'Violet Leaf & Muslin',
           price: '₹695',
           standardPrice: null,
           shortDesc: 'Clean and quietly green. A cool, forested note for daily washing.',
           image: {
             src: 'https://static.kite.ai/image/upload/v1785648855/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/j2sgtsiamihlvbryljwr.png',
-            alt: 'Gentle Daily Shampoo — Hinoki & Bamboo',
+            alt: 'Gentle Daily Shampoo — Violet Leaf & Muslin',
           },
         },
       ],
@@ -812,4 +812,5 @@ export const footer = {
     { label: 'Cookie Settings', href: '#' },
   ],
 };
+
 
