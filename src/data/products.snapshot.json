@@ -2,7 +2,7 @@
   {
     "id": "gentle-daily-shampoo",
     "name": "Gentle Daily Shampoo",
-    "price": "₹695",
+    "price": "₹669",
     "standardPrice": null,
     "badge": null,
     "category": "Daily Ritual",
@@ -17,17 +17,7 @@
       {
         "id": "fig-neroli",
         "label": "Fig & Neroli",
-        "price": "₹695",
-        "standardPrice": null,
-        "image": {
-          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
-          "alt": "Gentle Daily Shampoo"
-        }
-      },
-      {
-        "id": "violet-leaf-muslin",
-        "label": "Violet Leaf & Muslin",
-        "price": "₹695",
+        "price": "₹669",
         "standardPrice": null,
         "image": {
           "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
@@ -37,36 +27,46 @@
       {
         "id": "santal-white-tea",
         "label": "Santal & White Tea",
-        "price": "₹695",
+        "price": "₹669",
         "standardPrice": null,
         "image": {
           "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo-santal-white-tea.webp",
           "alt": "Gentle Daily Shampoo"
         }
+      },
+      {
+        "id": "violet-leaf-musline",
+        "label": "violet leaf & muslin",
+        "price": "₹669",
+        "standardPrice": null,
+        "image": {
+          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
+          "alt": "Gentle Daily Shampoo"
+        }
       }
     ],
-    "shortDesc": "",
-    "description": "",
+    "shortDesc": "A shampoo made for daily use — gentle enough for every wash, with fragrances that are quiet rather than loud. Leaves the coat clean, soft, and honestly fresh.",
+    "description": "<p><!-- GENTLE DAILY SHAMPOO --></p>\n<h3>Key ingredients</h3>\n<p>Santal &amp; White Tea — Santalum Album · Camellia Sinensis<br />\nFig &amp; Neroli — Ficus Carica · Citrus Aurantium<br />\nviolet leaf &amp;amp muslin — Chamaecyparis Obtusa · Bambusa Vulgaris</p>\n<h3>How to use</h3>\n<p>Wet coat; apply a small amount; lather neck to tail; leave 1–2 min; rinse; towel dry or low-heat dry. Weekly or bi-weekly.</p>\n<h3>Safety</h3>\n<p>Avoid eyes and mouth. Suitable over 12 weeks. Consult a vet for younger animals or known skin sensitivities.</p>",
     "slug": "gentle-daily-shampoo",
     "inStock": true
   },
   {
     "id": "refreshing-mist",
     "name": "Refreshing Mist",
-    "price": "₹545",
+    "price": "₹459",
     "standardPrice": null,
     "badge": null,
     "category": "Refresh",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/refreshing-mist.webp",
-      "alt": "Refreshing Mist"
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Refreshing-mist1.png",
+      "alt": "Refreshing Mist Pet cologne"
     },
     "productType": "Mist",
     "species": "dog",
     "volume": "100 ml",
     "variantLabel": "Yuzu & White Musk",
-    "shortDesc": "",
-    "description": "",
+    "shortDesc": "Japanese yuzu and white musk for a light coat refresh.",
+    "description": "<p><!-- REFRESHING MIST --></p>\n<h3>Key ingredients</h3>\n<p>Citrus Junos · White Musk Accord</p>\n<h3>How to use</h3>\n<p>Hold 25 cm from coat. Apply 3–5 sprays over back and flanks. Allow to settle and dry naturally. Use after Dry Foam or alone; can be used daily.</p>\n<h3>Safety</h3>\n<p>Formulated for dogs; not suitable for cats.</p>",
     "slug": "refreshing-mist",
     "sku": "SKU-07",
     "inStock": true
@@ -74,20 +74,20 @@
   {
     "id": "dry-foam-shampoo",
     "name": "Dry Foam Shampoo",
-    "price": "₹595",
+    "price": "₹429",
     "standardPrice": null,
     "badge": null,
     "category": "Remedy",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/dry-foam-shampoo.webp",
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Remedy-Dry-Foam-Shampoo.png",
       "alt": "Dry Foam Shampoo"
     },
     "productType": "Shampoo",
     "species": "dog",
-    "volume": "150 ml",
-    "variantLabel": "Mimosa & Tonka",
-    "shortDesc": "",
-    "description": "",
+    "volume": "250 ml",
+    "variantLabel": "Hinoki & Bamboo",
+    "shortDesc": "Hinoki & Bamboo for between-bath freshening.",
+    "description": "<p><!-- DRY FOAM SHAMPOO --></p>\n<h3>Key ingredients</h3>\n<p>Acacia Dealbata · Dipteryx Odorata</p>\n<h3>How to use</h3>\n<p>Shake. Hold 20 cm from coat and spray evenly. Work through with hands or soft brush. Focus on odour-prone areas. Allow to dry. No rinsing.</p>\n<h3>Safety</h3>\n<p>Formulated for dogs; not suitable for cats.</p>",
     "slug": "dry-foam-shampoo",
     "sku": "SKU-06",
     "inStock": true
@@ -95,7 +95,7 @@
   {
     "id": "anti-tick-flea-spray",
     "name": "Anti-Tick & Flea Spray",
-    "price": "₹595",
+    "price": "₹399",
     "standardPrice": null,
     "badge": null,
     "category": "Defense",
@@ -107,8 +107,8 @@
     "species": "dog",
     "volume": "100 ml",
     "variantLabel": "Vetiver & Cypress",
-    "shortDesc": "Not a pesticide. Plant-derived actives: vetiver root oil, cypress oil, citronella, neem. Avoid any claim that implies pesticidal efficacy.",
-    "description": "",
+    "shortDesc": "Vetiver root and cypress resin; designed for pre-walk protection.",
+    "description": "<p><!-- ANTI-TICK &amp; FLEA SPRAY --></p>\n<h3>Key ingredients</h3>\n<p>Vetiveria Zizanoides · Cupressus Sempervirens</p>\n<h3>How to use</h3>\n<p>Shake well. Spray evenly from 15–20 cm, focusing on legs, belly and neck. Let dry completely. Use before walks in tick/flea-active environments.</p>\n<h3>Safety</h3>\n<p>Not suitable for cats. Avoid eyes, nose and mouth. Patch-test sensitive dogs. For established infestations, consult a vet.</p>",
     "slug": "anti-tick-flea-spray",
     "sku": "SKU-04",
     "inStock": true
@@ -116,13 +116,13 @@
   {
     "id": "paw-cleaner",
     "name": "Paw Cleaner",
-    "price": "₹495",
+    "price": "₹519",
     "standardPrice": null,
     "badge": null,
     "category": "Remedy",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/paw-cleaner.webp",
-      "alt": "Paw Cleaner"
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Remedy-_Paw-Cleaner1.png",
+      "alt": "Paw Cleaner for Dogs"
     },
     "productType": "Cleaner",
     "species": "dog",
