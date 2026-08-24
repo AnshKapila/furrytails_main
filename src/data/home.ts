@@ -236,7 +236,7 @@ export const brandPhilosophy = {
   cta: 'Read our story →',
   href: '/about',
   image: {
-    src: '/brand_philosophy_garden_lifestyle_zoomed.jpg',
+    src: '/brand_philosophy_garden_lifestyle_zoomed.webp',
     alt: 'A peaceful private garden morning where an owner gently strokes an adult Yellow Labrador Retriever affectionately leaning on them, while a fluffy orange cat plays with a tennis ball nearby.',
   },
 };
@@ -252,7 +252,7 @@ export const pillars = [
     body: 'Santal & White Tea · Fig & Neroli · Violet Leaf & Muslin. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
     badge: 'Dogs & Cats',
     image: {
-      src: '/pillar_ritual_update.jpg',
+      src: '/pillar_ritual_update.webp',
       alt: 'Ritual bath products arranged on a warm surface with a dog and cat',
     },
     cta: 'Explore →',
@@ -266,7 +266,7 @@ export const pillars = [
     body: 'Vetiver & Cypress. Before every walk. Plant-derived actives that help deter ticks and fleas with a fragrance that actually belongs on a good shelf. Not a chemical smell. Vetiver root and cypress resin.',
     badge: 'Dogs only',
     image: {
-      src: '/pillar_defense_update.jpg',
+      src: '/pillar_defense_update.webp',
       alt: 'Entry mat with paw care products beside a door with a dog',
     },
     cta: 'Explore →',
@@ -579,7 +579,7 @@ export const ingredientChapters = [
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
         price: '₹695',
         ingredientImage: {
-          src: '/ingredient-vitamin-e.jpg',
+          src: '/ingredient-vitamin-e.webp',
           alt: 'Golden amber oil drops on a natural wood surface',
         },
         productImage: {
@@ -609,7 +609,7 @@ export const ingredientChapters = [
         productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
         price: '₹695',
         ingredientImage: {
-          src: '/ingredient-fig.jpg',
+          src: '/ingredient-fig.webp',
           alt: 'Fresh split fig resting on a warm travertine surface',
         },
         productImage: {
@@ -631,7 +631,7 @@ export const ingredientChapters = [
         productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
         price: '₹695',
         ingredientImage: {
-          src: '/ingredient-neroli.jpg',
+          src: '/ingredient-neroli.webp',
           alt: 'Delicate white neroli blossom flowers on warm linen',
         },
         productImage: {
@@ -719,7 +719,7 @@ export const ingredientChapters = [
         productDesc: 'Waterless cleanse between baths. Mimosa & Tonka.',
         price: '₹595',
         ingredientImage: {
-          src: '/ingredient-yuzu.jpg',
+          src: '/ingredient-yuzu.webp',
           alt: 'Fresh whole and sliced Yuzu fruit on warm matte ceramic',
         },
         productImage: {
@@ -749,7 +749,7 @@ export const ingredientChapters = [
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
         price: '₹695',
         ingredientImage: {
-          src: '/ingredient-coconut.jpg',
+          src: '/ingredient-coconut.webp',
           alt: 'Fresh white coconut flesh and a subtle ceramic bowl',
         },
         productImage: {
@@ -771,7 +771,7 @@ export const ingredientChapters = [
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
         price: '₹695',
         ingredientImage: {
-          src: '/ingredient-radish-root.jpg',
+          src: '/ingredient-radish-root.webp',
           alt: 'Sliced radish root next to a minimalist ceramic vessel',
         },
         productImage: {
@@ -816,6 +816,7 @@ export const footer = {
     { label: 'Cookie Settings', href: '#' },
   ],
 };
+
 
 
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: '/about',
     title: 'Our Story — Furrytail',
     description: 'Care, Extended. We didn\'t start with shampoo. We started with a question.',
-    images: ['/about_hero_door.jpg'],
+    images: ['/about_hero_door.webp'],
   },
 };
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/about_hero_door.jpg"
+                  src="/about_hero_door.webp"
                   alt="A Labrador retriever waiting attentively by a front door in warm entryway light"
                   fill
                   className="object-cover object-center"
@@ -64,7 +64,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
               <div className="relative aspect-[4/5] overflow-hidden order-2 md:order-1">
                 <Image
-                  src="/about_origin_notebook.jpg"
+                  src="/about_origin_notebook.webp"
                   alt="Hands holding an open notebook and an ingredient list on a wooden table, an orange tabby domestic shorthair cat resting quietly nearby"
                   fill
                   className="object-cover object-center"
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative aspect-square overflow-hidden">
                   <Image
-                    src="/about_standard_botanicals.jpg"
+                    src="/about_standard_botanicals.webp"
                     alt="A natural pet care product bottle on a textured surface, surrounded by loose natural botanical ingredients and herbs"
                     fill
                     className="object-cover object-center"
@@ -125,7 +125,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
               <div className="relative aspect-[4/5] overflow-hidden order-2 md:order-1">
                 <Image
-                  src="/designed-to-be-used.jpg"
+                  src="/designed-to-be-used.webp"
                   alt="A beautifully designed pet shampoo bottle sitting naturally on a bathroom shelf beside rolled towels"
                   fill
                   className="object-cover object-center"
@@ -161,7 +161,7 @@ export default function AboutPage() {
               
               <div className="relative w-full aspect-[16/9] mb-16 overflow-hidden">
                 <Image
-                  src="/about_promise_brushing.jpg"
+                  src="/about_promise_brushing.webp"
                   alt="A candid, warm evening moment of a person gently brushing a Labrador retriever in a cozy living room"
                   fill
                   className="object-cover object-center"
@@ -186,3 +186,4 @@ export default function AboutPage() {
     </ClientProviders>
   );
 }
+

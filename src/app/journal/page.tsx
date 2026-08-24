@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: '/journal',
     title: 'Journal — Furrytail',
     description: 'Slow reading for the pet parent who pays attention.',
-    images: ['/journal_featured.jpg'],
+    images: ['/journal_featured.webp'],
   },
 };
 
@@ -24,7 +24,7 @@ const ARTICLES = [
     readTime: '4 min read',
     title: 'The probiotic question.',
     description: 'Leuconostoc/Radish Root Ferment Filtrate. How a fermentation-derived system replaces the synthetic preservatives that most brands quietly rely on. What it is, how it works, and why it is harder to formulate with.',
-    imageSrc: '/journal_probiotic.jpg',
+    imageSrc: '/journal_probiotic.webp',
   },
   {
     id: 'santal-primer',
@@ -32,7 +32,7 @@ const ARTICLES = [
     readTime: '3 min read',
     title: 'Santal: a primer.',
     description: 'Sandalwood has been used in personal care for centuries. Here is what it actually is, what it does to the skin, and why we chose it as the anchor for our first fragrance. Steam-distilled heartwood, IFRA compliance, and the question of synthetic alternatives.',
-    imageSrc: '/journal_santal.jpg',
+    imageSrc: '/journal_santal.webp',
   },
   {
     id: 'monsoon-ritual',
@@ -40,7 +40,7 @@ const ARTICLES = [
     readTime: '4 min read',
     title: 'The monsoon ritual.',
     description: 'Mumbai, Chennai, Bangalore: monsoon season and a wet dog are a formulation challenge. What to use, when, and in what order. The Paw Cleaner, the Anti-Tick Spray, and the question of frequency during the high-humidity months.',
-    imageSrc: '/journal_monsoon.jpg',
+    imageSrc: '/journal_monsoon.webp',
   },
   {
     id: 'reading-inci-list',
@@ -48,7 +48,7 @@ const ARTICLES = [
     readTime: '6 min read',
     title: 'Reading the INCI list.',
     description: 'Every ingredient has two names. The one you know. The one on the label. A field guide to decoding what is actually in your pet\'s products — what to look for, what to avoid, and what the jargon means in plain language.',
-    imageSrc: '/journal_label.jpg',
+    imageSrc: '/journal_label.webp',
   },
 ];
 
@@ -91,7 +91,7 @@ export default function JournalPage() {
               <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] items-stretch">
                 <div className="relative aspect-square md:aspect-auto md:h-full overflow-hidden bg-[#1c1a18]">
                   <Image
-                    src="/journal_featured.jpg"
+                    src="/journal_featured.webp"
                     alt="Laboratory or formulation setting, natural pet care ingredients"
                     fill
                     className="object-cover object-center opacity-85 transition-transform duration-700 group-hover:scale-[1.03]"
@@ -224,3 +224,4 @@ export default function JournalPage() {
     </ClientProviders>
   );
 }
+

@@ -100,7 +100,7 @@ export default function Navbar() {
             aria-label="Furrytail: go to homepage"
           >
             <Image
-              src={isHome && !scrolled ? '/white_logo.png' : LOGO_URL}
+              src={isHome && !scrolled ? '/white_logo.webp' : LOGO_URL}
               alt="Furrytail"
               width={139}
               height={36}
@@ -276,4 +276,5 @@ export default function Navbar() {
     </>
   );
 }
+
 
