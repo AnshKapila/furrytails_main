@@ -113,7 +113,7 @@ export default function FAQPage() {
                 {section.items.map((item, i) => (
                   <div
                     key={item.label}
-                    className={lex flex-col gap-2 py-6 \}
+                    className={`flex flex-col gap-2 py-6 ${i < section.items.length - 1 ? "border-b border-[#E9E2D7]" : ""}`}
                   >
                     <p
                       className="text-[0.875rem] font-medium text-[#3B3A38] tracking-wide"
@@ -171,3 +171,4 @@ export default function FAQPage() {
     </ClientProviders>
   );
 }
+

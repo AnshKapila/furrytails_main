@@ -247,7 +247,8 @@ export const pillars = [
   {
     id: 'ritual',
     name: 'Ritual',
-    tagline: 'Gentle Daily Shampoo',
+      subheading: 'The bath is the ritual.',
+      tagline: 'Gentle Daily Shampoo',
     body: 'Santal & White Tea · Fig & Neroli · Violet Leaf & Muslin. Three fine-fragrance shampoo variants for bath day. Each uses the same 99.5% natural-origin base, probiotic preservation, and IFRA-compliant fragrance profile. The foundation of the routine.',
     badge: 'Dogs & Cats',
     image: {
@@ -260,7 +261,8 @@ export const pillars = [
   {
     id: 'defense',
     name: 'Defense',
-    tagline: 'Anti-Tick & Flea Spray',
+      subheading: 'Before the walk.',
+      tagline: 'Anti-Tick & Flea Spray',
     body: 'Vetiver & Cypress. Before every walk. Plant-derived actives that help deter ticks and fleas with a fragrance that actually belongs on a good shelf. Not a chemical smell. Vetiver root and cypress resin.',
     badge: 'Dogs only',
     image: {
@@ -273,7 +275,8 @@ export const pillars = [
   {
     id: 'remedy',
     name: 'Remedy',
-    tagline: 'Paw Cleaner & Dry Foam Shampoo',
+      subheading: 'After the walk.',
+      tagline: 'Paw Cleaner & Dry Foam Shampoo',
     body: 'Spearmint & Sea Salt. The ritual at the door. Cool spearmint and sea salt — a waterless cleaner for paws, alongside a dry foam shampoo for waterless freshness. No rinsing required.',
     badge: 'Dogs only',
     image: {
@@ -286,7 +289,8 @@ export const pillars = [
   {
     id: 'refresh',
     name: 'Refresh',
-    tagline: 'Refreshing Mist',
+      subheading: 'Between baths.',
+      tagline: 'Refreshing Mist',
     body: 'Refreshing Mist. No water, no fuss. Yuzu and white musk in a light mist that freshens the coat. The between-bath ritual, properly done.',
     badge: 'Dogs only',
     image: {
@@ -812,6 +816,8 @@ export const footer = {
     { label: 'Cookie Settings', href: '#' },
   ],
 };
+
+
 
 
 
