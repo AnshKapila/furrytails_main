@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getBaseUrl } from '@/lib/site-url';
 import { cormorant, inter } from './fonts';
 import './globals.css';
+import WhatsAppNudge from '@/components/WhatsAppNudge';
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
@@ -24,7 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${cormorant.variable} ${inter.variable}`}>
         {children}
+        <WhatsAppNudge />
       </body>
     </html>
   );
 }
+

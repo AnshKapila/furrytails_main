@@ -30,7 +30,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4 mt-1">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/furrytailjoy/"
               target="_blank"
               rel="noreferrer"
               className="text-[#BEB8AF] hover:text-[#F8F5F1] transition-colors duration-[800ms] focus:outline-none focus-visible:text-[#F8F5F1]"
@@ -108,3 +108,4 @@ export default function Footer() {
     </footer>
   );
 }
+
