@@ -12,7 +12,8 @@ export const navLinks = [
   { label: 'Shop', href: '/shop' },
   { label: 'Our Story', href: '/about' },
   { label: 'Journal', href: '/journal' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'FAQ', href: '/faq' },
+    { label: 'Contact', href: '/#contact' },
 ];
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
@@ -370,7 +371,7 @@ export const allProducts = {
   // Filter dimensions supported by the shop page
   filterCategories: ['All', 'Daily Ritual', 'Defense', 'Remedy', 'Refresh'] as const,
   filterPets: ['All pets', 'Dogs', 'Cats'] as const,
-  filterTypes: ['All types', 'Shampoo', 'Spray', 'Cleaner', 'Mist'] as const,
+  filterTypes: ['All types', 'Shampoo', 'Spray', 'Cleaner', 'Mist', 'Combos'] as const,
   products: [
     // ── 1. Gentle Daily Shampoo — 3 fragrance variants ──────────────────────
     {
@@ -807,15 +808,19 @@ export const footer = {
     { label: 'Our Story', href: '/about' },
     { label: 'Our Ingredients', href: '/ingredients' },
     { label: 'Journal', href: '/journal' },
+    { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/#contact' },
   ],
   legalLinks: [
     { label: 'Shipping & Returns', href: '/shipping' },
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Use', href: '#' },
-    { label: 'Cookie Settings', href: '#' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms of Use', href: '/terms-of-use' },
+    { label: 'Cookie Settings', href: '/cookie-settings' },
   ],
 };
+
+
+
 
 
 
