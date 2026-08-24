@@ -10,12 +10,12 @@ export default function WhatsAppNudge() {
       className="fixed bottom-6 right-6 z-[100] group flex items-center justify-end overflow-hidden transition-all duration-300 ease-out shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-transparent hover:border-[#25D366]"
       style={{
         backgroundColor: '#25D366',
-        borderRadius: '32px',
+        borderRadius: '26px',
         height: '64px',
         width: '64px',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.width = '240px';
+        e.currentTarget.style.width = '300px';
         e.currentTarget.style.backgroundColor = '#FFFFFF';
       }}
       onMouseLeave={(e) => {
@@ -23,7 +23,7 @@ export default function WhatsAppNudge() {
         e.currentTarget.style.backgroundColor = '#25D366';
       }}
     >
-      <span className="whitespace-nowrap text-[#25D366] text-[15px] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-16 mr-2">
+      <span className="whitespace-nowrap text-[#25D366] text-[15px] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-[104px]">
         Contact Us on WhatsApp
       </span>
       <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center">
@@ -38,3 +38,5 @@ export default function WhatsAppNudge() {
     </a>
   );
 }
+
+
