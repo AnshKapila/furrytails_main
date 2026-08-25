@@ -371,6 +371,7 @@ export default function ProductClient({
       )}
 
       {/* New Products Placeholders */}
+      {product.name.toLowerCase().includes("gentle daily shampoo") && (
       <section className="max-w-[1200px] mx-auto px-6 md:px-8 pb-24 pt-12 md:pt-16 border-t border-[#E9E2D7]">
         <div className="flex flex-col items-center mb-12 md:mb-16">
           <span
@@ -397,8 +398,10 @@ export default function ProductClient({
           ))}
         </div>
       </section>
+      )}
     </main>
   );
 }
+
 
 
