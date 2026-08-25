@@ -811,11 +811,13 @@ export const footer = {
   ],
   legalLinks: [
     { label: 'Shipping & Returns', href: '/shipping' },
+    { label: 'FAQ', href: '/faq' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms of Use', href: '/terms-of-use' },
     { label: 'Cookie Settings', href: '/cookie-settings' },
   ],
 };
+
 
 
 

@@ -1,174 +1,87 @@
-import React from 'react';
-import Link from 'next/link';
+import ClientProviders from '@/components/ClientProviders';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ClientProviders from '@/components/ClientProviders';
 
-// Content structure
-const sections = [
+const faqs = [
   {
-    number: '01',
-    heading: 'Products & Ingredients',
-    items: [
-      {
-        label: 'Are your products safe for both dogs and cats?',
-        body: 'Yes, our core range is formulated to be perfectly safe and pH-balanced for both dogs and cats, using natural origin ingredients.',
-      },
-      {
-        label: 'Do you use artificial fragrances?',
-        body: 'No. All our fragrances are IFRA-compliant and made without harsh synthetic chemicals, ensuring they are gentle on your pet\'s sensitive nose.',
-      },
-      {
-        label: 'Is the Paw Cleaner safe if my dog licks their paws?',
-        body: 'Yes, the Paw Cleaner is made with natural botanical extracts and probiotic preservation. While it is not meant to be ingested, it is entirely safe if they lick their paws after cleaning.',
-      },
-    ],
+    question: "What does 99.5% Natural Origin Index actually mean?",
+    answer: "It means 99.5% of the formula, by weight, is derived from natural sources — calculated under ISO 16128-2, the international standard for natural origin measurement. It is not a marketing claim. It is a calculated number that can be verified per batch. The 0.5% is disclosed. There is no ambiguity in it."
   },
   {
-    number: '02',
-    heading: 'Orders & Shipping',
-    items: [
-      {
-        label: 'How long does shipping take?',
-        body: 'Orders are typically dispatched within 1-2 business days. Delivery generally takes 3-5 working days depending on your location.',
-      },
-      {
-        label: 'Do you offer Cash on Delivery?',
-        body: 'Yes, we offer Cash on Delivery (COD) across most pincodes in India.',
-      },
-      {
-        label: 'How can I track my order?',
-        body: 'Once your order ships, we will send you a tracking link via email and SMS.',
-      },
-    ],
+    question: "What is probiotic preservation?",
+    answer: "Our formulas use Leuconostoc/Radish Root Ferment Filtrate — a fermentation-derived antimicrobial system — instead of synthetic preservatives like MIT, MCIT, parabens, or phenoxyethanol. It provides the same shelf stability without the synthetic chemistry. It is harder to formulate with, requires more rigorous pH management, and has a narrower operating range than synthetics. We chose it because the person reading our label deserved the alternative."
   },
   {
-    number: '03',
-    heading: 'Returns & Support',
-    items: [
-      {
-        label: 'What is your return policy?',
-        body: 'We accept returns on unopened products in their original condition. Please refer to our Shipping & Returns page for detailed information.',
-      },
-      {
-        label: 'How can I get in touch?',
-        body: 'You can reach us through our contact form, or connect with us directly on WhatsApp using the icon on the bottom right of your screen.',
-      },
-    ],
+    question: "Are the products safe for cats?",
+    answer: "The Gentle Daily Shampoo range — Santal & White Tea, Fig & Neroli, and Hinoki & Bamboo — is suitable for both dogs and cats. The natural-origin, probiotic-preserved formula is gentle enough for cats when used as directed. The remaining four products (Anti-Tick & Flea Spray, Paw Cleaner, Dry Foam Shampoo, and Refreshing Mist) are formulated for dogs only. Each uses fragrance actives or functional ingredients that are not safe for cats. See the For Cats page for a full breakdown."
   },
+  {
+    question: "What does IFRA-compliant mean?",
+    answer: "IFRA is the International Fragrance Association. Their guidelines set maximum usage levels for fragrance ingredients based on safety data. IFRA-compliant means our fragrance profiles have been built within those limits. It is the industry's safety standard for fine fragrance — the same standard applied to personal care products for humans. Note: IFRA-compliant is accurate. IFRA-certified is not a claim we make, as certification is a separate process."
+  },
+  {
+    question: "Can I use these products on puppies?",
+    answer: "We recommend consulting your vet for puppies under 12 weeks. For puppies over 12 weeks, the gentle surfactant system in our shampoos is suitable for regular use. The Anti-Tick & Flea Spray is intended for adult dogs in active tick or flea environments — consult your vet before using it on puppies."
+  },
+  {
+    question: "How often should I use the Gentle Daily Shampoo?",
+    answer: "The name says daily but we mean it is gentle enough for frequent use — weekly or bi-weekly bathing is typical for most dogs. The surfactant system is mild enough not to strip the coat's natural oils with regular use. Your vet can advise based on your dog's coat type, skin condition, and activity level."
+  },
+  {
+    question: "Do I need to rinse the Paw Cleaner?",
+    answer: "No. The Paw Cleaner is a rinse-free foam formula. Apply a small amount directly onto each paw or onto a damp cloth, gently massage each pad and between the toes, then wipe off with a clean damp cloth. No rinsing required. Use after every walk."
+  },
+  {
+    question: "How does the Anti-Tick & Flea Spray work?",
+    answer: "The spray uses plant-derived actives — vetiver root oil and cypress oil — alongside citronella and neem extract. These help deter ticks and fleas through scent masking and natural insect-repellent properties. It is not a pesticide and does not use synthetic chemical actives. It is designed to be used before every walk in tick or flea-active environments, not as a treatment after infestation. For an established infestation, consult your vet."
+  },
+  {
+    question: "What is the shelf life of the products?",
+    answer: "All Furry Tail products carry a 24-month shelf life from manufacture date, and a 12-month period after opening (PAO). The probiotic preservation system provides this stability without synthetic preservatives. Store in a cool, dry place away from direct sunlight."
+  },
+  {
+    question: "Are the bottles recyclable?",
+    answer: "The bottles are frosted matte PET — recyclable in most municipal systems. The brushed gold caps are currently not recyclable. We are working on an alternative for Phase 2. Please check your local recycling guidelines for PET plastics before disposal."
+  },
+  {
+    question: "Where are the products made?",
+    answer: "Furry Tail is India-made. Formulated and manufactured in India to the same standards we would hold a European or US product to — which is the point. The 99.5% Natural Origin Index is calculated and verified per batch. Made here. Held to the same standard as anywhere."
+  },
+  {
+    question: "How do I contact you?",
+    answer: "Email hello@furrytailjoy.com. We respond within one business day. You can also reach the contact page for the full form."
+  }
 ];
 
 export default function FAQPage() {
   return (
     <ClientProviders>
-    <div className="min-h-screen bg-[#F8F5F1]">
-      <Navbar />
-
-      <main
-        className="bg-[#F8F5F1] pt-24"
-        data-kite-page-id="faq"
-        data-kite-page-type="policy"
-      >
-
-        {/* Header */}
-        <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
-          <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4"
-            style={{ fontFamily: 'var(--font-inter)' }}>
-            Support
-          </p>
-          <h1
-            className="text-[#3B3A38] max-w-[640px] !mx-0 text-left"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 300, lineHeight: 1.06, letterSpacing: '-0.02em' }}
-          >
-            Frequently Asked Questions
-          </h1>
-          <p className="mt-5 text-[0.875rem] font-light text-[#68735F] leading-[1.6] max-w-[500px]">
-            Answers to common questions about our products, ingredients, and orders.
-          </p>
-        </section>
-
-        {/* Sections */}
-        {sections.map((section) => (
-          <section
-            key={section.number}
-            className="max-w-[1200px] mx-auto px-6 md:px-8 py-14 md:py-16 border-b border-[#E9E2D7]"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-              <div className="flex flex-col gap-1">
-                <p
-                  className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF]"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  {section.number}
-                </p>
-                <h2
-                  className="text-[#3B3A38]"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-                >
-                  {section.heading}
-                </h2>
-              </div>
-
-              <div className="flex flex-col gap-0">
-                {section.items.map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`flex flex-col gap-2 py-6 ${i < section.items.length - 1 ? "border-b border-[#E9E2D7]" : ""}`}
-                  >
-                    <p
-                      className="text-[0.875rem] font-medium text-[#3B3A38] tracking-wide"
-                      style={{ fontFamily: 'var(--font-inter)' }}
-                    >
-                      {item.label}
-                    </p>
-                    <p className="text-[0.875rem] font-light text-[#68735F] leading-[1.6]">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
+      <div className="min-h-screen bg-[#F8F5F1]">
+        <Navbar />
+        <main className="pt-32 pb-24 md:pt-40 md:pb-32 px-6">
+          <div className="max-w-[720px] mx-auto">
+            <h1 className="text-3xl md:text-5xl font-cormorant font-light text-[#3B3A38] mb-12">
+              The questions we get most.
+            </h1>
+            <p className="text-[#3B3A38] opacity-80 mb-16 text-lg">
+              Honest answers. No marketing language.
+            </p>
+            <div className="space-y-12">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border-b border-[#E5E0D8] pb-10">
+                  <h3 className="text-xl md:text-2xl font-cormorant font-medium text-[#3B3A38] mb-4">
+                    {faq.question}
+                  </h3>
+                  <p className="text-sm md:text-[15px] leading-relaxed text-[#3B3A38] opacity-80">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
             </div>
-          </section>
-        ))}
-
-        {/* CTA */}
-        <section
-          className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20"
-        >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-              <p
-                className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                Still have a question?
-              </p>
-              <h2
-                className="text-[#3B3A38]"
-                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-              >
-                We read every message ourselves.
-              </h2>
-            </div>
-            <Link
-              href="/#contact"
-              className="hero-btn-primary flex-shrink-0"
-              style={{ minHeight: '48px', padding: '0 28px' }}
-            >
-              Get in touch
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className="btn-arrow flex-shrink-0">
-                <line x1="1" y1="7" x2="13" y2="7" />
-                <polyline points="8,2 13,7 8,12" />
-              </svg>
-            </Link>
           </div>
-        </section>
-
-      </main>
-
-      <Footer />
-    </div>
+        </main>
+        <Footer />
+      </div>
     </ClientProviders>
   );
 }
-
