@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -112,13 +112,13 @@ export default function ProductClient({
 
           {/* GALLERY - Prototype Structure */}
           <div className="flex flex-col gap-4">
-            <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden bg-[#3F5A46] w-full flex items-center justify-center">
+            <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden bg-[#F0EBE4] w-full flex items-center justify-center">
               {displayImage?.src && (
                 <Image
                   src={displayImage.src}
                   alt={displayImage.alt ?? product.name}
                   fill
-                  className="object-cover object-center transition-opacity duration-300 mix-blend-multiply"
+                  className="object-cover object-center transition-opacity duration-300"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   priority
                 />
@@ -135,13 +135,13 @@ export default function ProductClient({
             
             {/* Thumb row */}
             <div className="grid grid-cols-4 gap-2 md:gap-4">
-              <div className="relative aspect-square bg-[#3F5A46] overflow-hidden cursor-pointer">
+              <div className="relative aspect-square bg-[#F0EBE4] overflow-hidden cursor-pointer">
                 {displayImage?.src && (
-                  <Image src={displayImage.src} alt="Thumbnail 1" fill className="object-cover mix-blend-multiply" />
+                  <Image src={displayImage.src} alt="Thumbnail 1" fill className="object-cover" />
                 )}
               </div>
               {thumbs.map((thumb, idx) => (
-                <div key={idx} className="relative aspect-square bg-[#3F5A46] text-[#F8F5F1] flex items-center justify-center p-2 text-center text-[0.625rem] md:text-[0.75rem] tracking-[0.05em] uppercase font-light opacity-80 cursor-pointer hover:opacity-100 transition-opacity">
+                <div key={idx} className="relative aspect-square bg-[#F0EBE4] text-[#3B3A38] flex items-center justify-center p-2 text-center text-[0.625rem] md:text-[0.75rem] tracking-[0.05em] uppercase font-light opacity-80 cursor-pointer hover:opacity-100 transition-opacity">
                   {thumb.label}
                 </div>
               ))}
@@ -369,6 +369,36 @@ export default function ProductClient({
           </Link>
         </section>
       )}
+
+      {/* New Products Placeholders */}
+      <section className="max-w-[1200px] mx-auto px-6 md:px-8 pb-24 pt-12 md:pt-16 border-t border-[#E9E2D7]">
+        <div className="flex flex-col items-center mb-12 md:mb-16">
+          <span
+            className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-4"
+            style={{ fontFamily: 'var(--font-inter)' }}
+          >
+            Coming Soon
+          </span>
+          <h2 className="text-3xl md:text-4xl font-cormorant font-light text-[#3B3A38]">
+            New Additions to the Ritual
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 opacity-70">
+          {[1, 2, 3].map((placeholder) => (
+            <div key={placeholder} className="group flex flex-col gap-3">
+              <div className="relative aspect-[3/4] overflow-hidden bg-[#E9E2D7] flex items-center justify-center">
+                <span className="text-[0.75rem] uppercase tracking-[0.15em] text-[#8D9A83] font-medium" style={{ fontFamily: 'var(--font-inter)' }}>Placeholder</span>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <p className="text-[0.875rem] font-medium text-[#3B3A38]" style={{ fontFamily: 'var(--font-inter)' }}>New Product</p>
+                <p className="text-[0.75rem] font-light text-[#8D9A83]" style={{ fontFamily: 'var(--font-inter)' }}>Coming Soon</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
+
+
