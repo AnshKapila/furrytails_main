@@ -1,18 +1,11 @@
 'use client';
 
-// Interactive half of the product page. The server component in page.tsx
-// resolves the product from WooCommerce and passes it in as a prop, so this
-// file holds only what needs client state: variant selection, add-to-bag,
-// wishlist toggling.
-
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart, parsePrice } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
 import type { WooProduct } from '@/services/types';
-
-// ─── Icons ────────────────────────────────────────────────────────────────────
 
 function BtnArrow({ className = '' }: { className?: string }) {
   return (
@@ -45,8 +38,6 @@ function CatIcon() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 export default function ProductClient({
   product,
   related,
@@ -54,34 +45,15 @@ export default function ProductClient({
   product: WooProduct;
   related: WooProduct[];
 }) {
-  const variants = product.variants ?? [];
-  const hasVariants = variants.length > 0;
-
-  // Single-fragrance products show their scent as static text, no selector.
-  const singleVariantLabel = !hasVariants ? product.variantLabel : undefined;
-
-  const [activeVariantId, setActiveVariantId] = useState<string | null>(
-    hasVariants ? variants[0].id : null,
-  );
   const [added, setAdded] = useState(false);
   const { addItem, openDrawer } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const isWishlisted = isInWishlist(product.id);
 
-  const activeVariant = hasVariants
-    ? variants.find((v) => v.id === activeVariantId) ?? variants[0]
-    : null;
-
-  const displayPrice = activeVariant ? activeVariant.price : product.price;
-  const displayStandardPrice = activeVariant
-    ? activeVariant.standardPrice
-    : product.standardPrice;
-  const displayDesc =
-    (activeVariant?.shortDesc || product.shortDesc) ?? '';
-  // Variations without their own image fall back to the parent's.
-  const displayImage = activeVariant?.image?.src
-    ? activeVariant.image
-    : product.image;
+  const displayPrice = product.price;
+  const displayStandardPrice = product.standardPrice;
+  const displayDesc = product.shortDesc ?? '';
+  const displayImage = product.image;
 
   const volume = product.volume;
   const soldOut = product.inStock === false;
@@ -95,26 +67,28 @@ export default function ProductClient({
       priceNum: parsePrice(displayPrice ?? ''),
       image: displayImage?.src ?? '',
       imageAlt: displayImage?.alt ?? product.name,
-      variantId: activeVariant?.id,
-      variantLabel: activeVariant?.label ?? singleVariantLabel,
+      variantId: undefined,
+      variantLabel: product.variantLabel,
     });
     setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-      openDrawer();
-    }, 800);
+    openDrawer();
+    setTimeout(() => setAdded(false), 2000);
   }
 
+  // Thumbnails placeholder structure matching prototype
+  const thumbs = [
+    { label: 'In use' },
+    { label: 'Texture' },
+    { label: 'Label detail' },
+  ];
+
   return (
-    <main
-      className="bg-[#F8F5F1] pt-24"
-      data-kite-page-id={`product-${product.id}`}
-      data-kite-page-type="product"
-    >
-      {/* ── Breadcrumb ─────────────────────────────────────────────── */}
-      <nav
-        className="max-w-[1200px] mx-auto px-6 md:px-8 pt-8 pb-0 flex items-center gap-2"
+    <main className="pt-24 md:pt-32 pb-16">
+      
+      {/* Breadcrumb nav */}
+      <nav 
         aria-label="Breadcrumb"
+        className="max-w-[1200px] mx-auto px-6 md:px-8 mb-8 md:mb-10 flex items-center gap-2"
       >
         <Link
           href="/shop"
@@ -128,134 +102,125 @@ export default function ProductClient({
         </span>
       </nav>
 
-      {/* ── Product layout ──────────────────────────────────────────── */}
+      {/* Product layout matching Prototype Structure */}
       <section
-        className="max-w-[1200px] mx-auto px-6 md:px-8 py-12 md:py-16"
+        className="max-w-[1200px] mx-auto px-6 md:px-8 py-4 md:py-6"
         data-kite-surface="product.detail"
         data-kite-surface-type="features"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-24 items-start">
 
-          {/* Image — swaps when active variant has its own image */}
-          <div className="relative aspect-[3/4] overflow-hidden bg-[#F0EBE4]">
-            <Image
-              src={displayImage?.src ?? ''}
-              alt={displayImage?.alt ?? product.name}
-              fill
-              className="object-cover object-center transition-opacity duration-300"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-            {product.badge && (
-              <span
-                className="absolute top-4 right-4 text-[0.6875rem] font-normal tracking-[0.14em] uppercase px-2 py-0.5 bg-[#F8F5F1]/90 text-[#3B3A38]"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {product.badge}
-              </span>
-            )}
+          {/* GALLERY - Prototype Structure */}
+          <div className="flex flex-col gap-4">
+            <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden bg-[#3F5A46] w-full flex items-center justify-center">
+              {displayImage?.src && (
+                <Image
+                  src={displayImage.src}
+                  alt={displayImage.alt ?? product.name}
+                  fill
+                  className="object-cover object-center transition-opacity duration-300 mix-blend-multiply"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  priority
+                />
+              )}
+              {product.badge && (
+                <span
+                  className="absolute top-4 right-4 text-[0.6875rem] font-normal tracking-[0.14em] uppercase px-2 py-0.5 bg-[#F8F5F1]/90 text-[#3B3A38]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  {product.badge}
+                </span>
+              )}
+            </div>
+            
+            {/* Thumb row */}
+            <div className="grid grid-cols-4 gap-2 md:gap-4">
+              <div className="relative aspect-square bg-[#3F5A46] overflow-hidden cursor-pointer">
+                {displayImage?.src && (
+                  <Image src={displayImage.src} alt="Thumbnail 1" fill className="object-cover mix-blend-multiply" />
+                )}
+              </div>
+              {thumbs.map((thumb, idx) => (
+                <div key={idx} className="relative aspect-square bg-[#3F5A46] text-[#F8F5F1] flex items-center justify-center p-2 text-center text-[0.625rem] md:text-[0.75rem] tracking-[0.05em] uppercase font-light opacity-80 cursor-pointer hover:opacity-100 transition-opacity">
+                  {thumb.label}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Details */}
-          <div className="flex flex-col gap-6">
+          {/* INFO - Prototype Structure */}
+          <div className="flex flex-col gap-5 md:gap-6 pt-4 lg:pt-8">
 
-            {/* Category + species row */}
-            <div className="flex items-center gap-3">
+            {/* pdp__family */}
+            <div className="flex items-center gap-2">
               <span
-                className="text-[0.625rem] font-normal tracking-[0.22em] uppercase text-[#8D9A83]"
+                className="text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#68735F]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
                 {product.category}
               </span>
-              <span className="w-px h-3 bg-[#D8CFC4]" aria-hidden="true" />
+              <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
               <span
-                className="inline-flex flex-row items-center gap-1 px-2 py-0.5 bg-[#3B3A38] text-[#F8F5F1]"
-                style={{ fontFamily: 'var(--font-inter)', fontSize: '0.625rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
-              >
-                {product.species === 'dog' && <><DogIcon /> Dog</>}
-                {product.species === 'cat' && <><CatIcon /> Cat</>}
-                {product.species === 'both' && <><DogIcon /><CatIcon /> Dog &amp; Cat</>}
-              </span>
-              {volume && (
-                <>
-                  <span className="w-px h-3 bg-[#D8CFC4]" aria-hidden="true" />
-                  <span
-                    className="text-[0.625rem] font-normal tracking-[0.14em] text-[#8D9A83]"
-                    style={{ fontFamily: 'var(--font-inter)' }}
-                  >
-                    {volume}
-                  </span>
-                </>
-              )}
-            </div>
-
-            {/* Name */}
-            <h2 className="text-[#3B3A38]">
-              {product.name}
-            </h2>
-
-            {/* Single-variant scent label — static, no selector */}
-            {singleVariantLabel && (
-              <p
-                className="text-[0.8125rem] font-light text-[#8D9A83] tracking-[0.04em]"
+                className="text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#68735F]"
                 style={{ fontFamily: 'var(--font-inter)' }}
               >
-                {singleVariantLabel}
-              </p>
-            )}
+                {product.badge || 'Ritual'}
+              </span>
+            </div>
 
-            {/* Description */}
-            <p className="text-[0.875rem] font-light text-[#3B3A38]/80 leading-[1.6]">
-              {displayDesc}
-            </p>
+            {/* pdp__name */}
+            <h1 className="text-4xl md:text-5xl font-cormorant font-light text-[#3B3A38]">
+              {product.name}
+            </h1>
 
-            {/* Fragrance selector — only when the product has multiple variants */}
-            {hasVariants && (
-              <div className="flex flex-col gap-3">
-                <p
-                  className="text-[0.625rem] font-normal tracking-[0.22em] uppercase text-[#BEB8AF]"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  Fragrance
-                </p>
-                <div className="flex flex-wrap gap-2" role="group" aria-label="Select fragrance">
-                  {variants.map((variant) => (
-                    <button
-                      key={variant.id}
-                      type="button"
-                      onClick={() => setActiveVariantId(variant.id)}
-                      className={`text-[0.875rem] font-light tracking-[0.02em] px-5 py-2.5 border transition-colors duration-[800ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] ${
-                        activeVariantId === variant.id
-                          ? 'bg-transparent text-[#3B3A38] border-[#3B3A38]'
-                          : 'bg-transparent text-[#68735F] border-[#D8CFC4] hover:border-[#8D9A83] hover:text-[#3B3A38]'
-                      }`}
-                      style={{ fontFamily: 'var(--font-inter)' }}
-                      aria-pressed={activeVariantId === variant.id}
-                    >
-                      {variant.label}
-                    </button>
-                  ))}
-                </div>
+            {/* pdp__fragrance */}
+            {(product.variantLabel) && (
+              <div 
+                className="text-[0.875rem] font-normal tracking-[0.05em] text-[#8D9A83]"
+                style={{ fontFamily: 'var(--font-inter)' }}
+              >
+                {product.variantLabel}
               </div>
             )}
 
-            {/* Pricing */}
-            <div className="flex items-end gap-4">
-              <h1 className="product-price text-[#3B3A38]">
+            {/* pdp__sensory */}
+            <p className="text-[1rem] font-light text-[#3B3A38] leading-[1.65]">
+              {displayDesc}
+            </p>
+
+            {/* pdp__price */}
+            <div className="flex items-end gap-3 mt-2">
+              <div className="text-2xl font-light text-[#3B3A38]">
                 {displayPrice}
-              </h1>
+              </div>
               {displayStandardPrice && (
-                <span
-                  className="text-[0.875rem] font-light text-[#BEB8AF]/70 line-through leading-none mb-2"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
+                <span className="text-[1rem] font-light text-[#BEB8AF] line-through leading-[1.3] mb-0.5">
                   {displayStandardPrice}
                 </span>
               )}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-3">
+            {/* pdp__size */}
+            <div className="flex items-center gap-2 mt-1">
+              <span
+                className="text-[0.75rem] font-normal tracking-[0.1em] text-[#68735F]"
+                style={{ fontFamily: 'var(--font-inter)' }}
+              >
+                {volume || '300ml'}
+              </span>
+              <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
+              <span
+                className="inline-flex flex-row items-center gap-1.5 text-[#68735F]"
+                style={{ fontFamily: 'var(--font-inter)', fontSize: '0.75rem', letterSpacing: '0.1em' }}
+              >
+                {product.species === 'dog' && <><DogIcon /> Dogs</>}
+                {product.species === 'cat' && <><CatIcon /> Cats</>}
+                {product.species === 'both' && <><DogIcon /><CatIcon /> Dogs &amp; Cats</>}
+              </span>
+            </div>
+
+            {/* pdp__cta-row */}
+            <div className="flex items-center gap-3 mt-6">
               {/* Add to bag */}
               <button
                 type="button"
@@ -273,12 +238,12 @@ export default function ProductClient({
                 ) : added ? (
                   <>
                     Added
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0 ml-2">
                       <polyline points="1 6 4.5 9.5 11 2.5" />
                     </svg>
                   </>
                 ) : (
-                  <>Add to Bag <BtnArrow /></>
+                  <>Add to the Ritual</>
                 )}
               </button>
 
@@ -290,7 +255,7 @@ export default function ProductClient({
                   toggleWishlist({
                     id: product.id,
                     name: product.name,
-                    price: displayPrice,
+                    price: displayPrice ?? '',
                     image: displayImage?.src ?? '',
                   });
                 }}
@@ -304,64 +269,43 @@ export default function ProductClient({
               </button>
             </div>
 
-            {/* Shipping note */}
-            <p className="text-[0.75rem] font-light text-[#8D9A83] leading-[1.55]">
-              Shipping details are shown at checkout.{' '}
-              <Link href="/shipping" className="underline underline-offset-2 hover:text-[#3B3A38] transition-colors duration-[800ms]">
-                Shipping &amp; returns
-              </Link>
-            </p>
-
-            {/* Divider */}
-            <div className="border-t border-[#E9E2D7]" />
-
-            {/* Commitment list */}
-            <div className="flex flex-col gap-3">
-              {[
-                'No synthetic fragrance or artificial colour',
-                'Every ingredient listed by name, with a reason',
-                'Small batch — reviewed before it ships',
-              ].map((line) => (
-                <div key={line} className="flex items-start gap-3">
-                  <div className="mt-[6px] flex-shrink-0 w-3 h-px bg-[#8D9A83]" aria-hidden="true" />
-                  <p className="text-[0.75rem] font-light text-[#68735F] leading-[1.55]">{line}</p>
-                </div>
-              ))}
-            </div>
+            {/* pdp__accordions */}
+            {product.description && (
+              <div className="mt-10 pt-8 border-t border-[#E9E2D7]">
+                <div
+                  className="product-detail-prose"
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                />
+              </div>
+            )}
+            
           </div>
-
         </div>
 
-        {/* ── Ingredients / how to use / safety ─────────────────────────
-            Authored in the WooCommerce product Description field as HTML, so
-            the copy is editable in wp-admin without a deploy. Content is
-            admin-authored, hence the inner HTML. */}
-        {product.description && (
-          <div className="mt-16 md:mt-20 pt-10 border-t border-[#E9E2D7] max-w-[720px]">
-            <div
-              className="product-detail-prose"
-              dangerouslySetInnerHTML={{ __html: product.description }}
-            />
-          </div>
-        )}
       </section>
 
-      {/* ── Related products ─────────────────────────────────────────── */}
+      {/* Related products */}
       {related.length > 0 && (
         <section
-          className="max-w-[1200px] mx-auto px-6 md:px-8 pb-20 border-t border-[#E9E2D7] pt-12"
+          className="max-w-[1200px] mx-auto px-6 md:px-8 pb-20 border-t border-[#E9E2D7] mt-16 md:mt-24 pt-12 md:pt-16"
           data-kite-surface="product.related"
           data-kite-surface-type="features"
         >
-          <p
-            className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-8"
-            style={{ fontFamily: 'var(--font-inter)' }}
-          >
-            Also from the range
-          </p>
+          <div className="flex flex-col items-center mb-12 md:mb-16">
+            <span
+              className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-4"
+              style={{ fontFamily: 'var(--font-inter)' }}
+            >
+              The Ritual family
+            </span>
+            <h2 className="text-3xl md:text-4xl font-cormorant font-light text-[#3B3A38]">
+              Also in the {product.category}.
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
             {related.map((rel) => {
-              const relImg = rel.variants?.[0]?.image ?? rel.image;
+              const relImg = rel.image;
               return (
                 <Link
                   key={rel.id}
@@ -397,7 +341,7 @@ export default function ProductClient({
                       className="text-[0.875rem] font-normal text-[#3B3A38] mt-0.5"
                       style={{ fontFamily: 'var(--font-inter)' }}
                     >
-                      {rel.variants?.[0]?.price ?? rel.price}
+                      {rel.price}
                     </p>
                   </div>
                 </Link>
@@ -407,7 +351,7 @@ export default function ProductClient({
         </section>
       )}
 
-      {/* ── Back to shop ─────────────────────────────────────────────── */}
+      {/* Back to shop */}
       {related.length === 0 && (
         <section className="max-w-[1200px] mx-auto px-6 md:px-8 pb-20 border-t border-[#E9E2D7] pt-10">
           <Link
