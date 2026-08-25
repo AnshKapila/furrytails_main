@@ -12,8 +12,7 @@ export const navLinks = [
   { label: 'Shop', href: '/shop' },
   { label: 'Our Story', href: '/about' },
   { label: 'Journal', href: '/journal' },
-  { label: 'FAQ', href: '/faq' },
-    { label: 'Contact', href: '/#contact' },
+      { label: 'Contact', href: '/#contact' },
 ];
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
@@ -808,8 +807,7 @@ export const footer = {
     { label: 'Our Story', href: '/about' },
     { label: 'Our Ingredients', href: '/ingredients' },
     { label: 'Journal', href: '/journal' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Contact', href: '/#contact' },
+        { label: 'Contact', href: '/#contact' },
   ],
   legalLinks: [
     { label: 'Shipping & Returns', href: '/shipping' },
@@ -818,6 +816,7 @@ export const footer = {
     { label: 'Cookie Settings', href: '/cookie-settings' },
   ],
 };
+
 
 
 
