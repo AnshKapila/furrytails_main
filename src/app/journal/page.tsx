@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -6,12 +6,12 @@ import ClientProviders from '@/components/ClientProviders';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Journal — Furrytail',
+  title: 'Journal â€” Furrytail',
   description: 'Slow reading for the pet parent who pays attention. Ingredient deep-dives, grooming rituals, and the science behind the label.',
   alternates: { canonical: '/journal' },
   openGraph: {
     url: '/journal',
-    title: 'Journal — Furrytail',
+    title: 'Journal â€” Furrytail',
     description: 'Slow reading for the pet parent who pays attention.',
     images: ['/journal_featured.webp'],
   },
@@ -47,7 +47,7 @@ const ARTICLES = [
     category: 'Guide',
     readTime: '6 min read',
     title: 'Reading the INCI list.',
-    description: 'Every ingredient has two names. The one you know. The one on the label. A field guide to decoding what is actually in your pet\'s products — what to look for, what to avoid, and what the jargon means in plain language.',
+    description: 'Every ingredient has two names. The one you know. The one on the label. A field guide to decoding what is actually in your pet\'s products â€” what to look for, what to avoid, and what the jargon means in plain language.',
     imageSrc: '/journal_label.webp',
   },
 ];
@@ -64,7 +64,7 @@ export default function JournalPage() {
           data-kite-page-type="blog"
         >
 
-          {/* SECTION 1 — Hero */}
+          {/* SECTION 1 â€” Hero */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
             <div className="max-w-[720px]">
               <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">
@@ -82,17 +82,17 @@ export default function JournalPage() {
             </div>
           </section>
 
-          {/* SECTION 2 — Featured Article */}
+          {/* SECTION 2 â€” Featured Article */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-24 border-b border-[#E9E2D7]">
             <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-6">
               Featured
             </p>
-            <Link href="#" className="group block border border-[#E9E2D7] transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#111610]/5 overflow-hidden rounded-[2px] bg-[#F8F5F1]">
+            <Link href="/journal/what-we-found-in-most-pet-shampoos" className="group block border border-[#E9E2D7] transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#111610]/5 overflow-hidden rounded-[2px] bg-[#F8F5F1]">
               <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] items-stretch">
                 <div className="relative aspect-square md:aspect-auto md:h-full overflow-hidden bg-[#1c1a18]">
                   <Image
-                    src="/journal_featured.webp"
-                    alt="Laboratory or formulation setting, natural pet care ingredients"
+                    src="/images/journal/what-we-found/main.png"
+                    alt="Pet shampoo bottle beside an open ingredient label and grooming essentials"
                     fill
                     className="object-cover object-center opacity-85 transition-transform duration-700 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 60vw"
@@ -109,10 +109,10 @@ export default function JournalPage() {
                     className="text-[#3B3A38] leading-[1.15] mb-4 transition-colors duration-300 group-hover:text-[#68735F]"
                     style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.5rem)', fontWeight: 300 }}
                   >
-                    What we found in most pet shampoos.
+                    What We Found in Most Pet Shampoos.
                   </h2>
                   <p className="text-[0.9375rem] font-light text-[#3B3A38]/80 leading-[1.65] mb-8">
-                    The preservative system in most pet care products would not pass the standard you hold for your own skincare. We went through the labels so you do not have to. MIT, MCIT, phenoxyethanol — what they are, why they are used, and what we chose instead.
+                    A shampoo can lather beautifully and still leave you with questions. We looked past the front label and into the formulation: cleansing agents, preservatives, fragrance, skin compatibility and the choices that matter.
                   </p>
                   <span className="text-[0.8125rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
                     Read the full article
@@ -126,7 +126,7 @@ export default function JournalPage() {
             </Link>
           </section>
 
-          {/* SECTION 3 — Article Grid */}
+          {/* SECTION 3 â€” Article Grid */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-24 border-b border-[#E9E2D7]">
             <div className="text-center mb-12 md:mb-16">
               <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-3">
@@ -180,7 +180,7 @@ export default function JournalPage() {
             </div>
           </section>
 
-          {/* SECTION 4 — Newsletter */}
+          {/* SECTION 4 â€” Newsletter */}
           <section className="bg-[#EDE7DF] py-20 md:py-28 text-center border-t border-[#D8CFC4]">
             <div className="max-w-[500px] mx-auto px-6 md:px-8">
               <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">
@@ -224,4 +224,7 @@ export default function JournalPage() {
     </ClientProviders>
   );
 }
+
+
+
 
