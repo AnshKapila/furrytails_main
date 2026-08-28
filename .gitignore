@@ -8,3 +8,7 @@ deploy/
 
 # stray debug output from local verification
 *.tmp.json
+
+# stray curl output from local verification
+*.tmp.json
+pdp.html
