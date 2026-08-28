@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
+import { useProducts } from '@/hooks/useProducts';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -29,7 +30,8 @@ export interface IngredientStory {
   product: string;
   productId: string;
   productDesc: string;
-  price: string;
+  /** @deprecated Prices come from WooCommerce; see liveFor() below. */
+  price?: string;
   ingredientImage: { src: string; alt: string };
   productImage: { src: string; alt: string };
 }
@@ -79,6 +81,15 @@ function ProgressDots({ total, active }: { total: number; active: number }) {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function FeaturedIngredients({ stories }: { stories: IngredientStory[] }) {
+  // Product name, description and price for each ingredient story come from
+  // WooCommerce, matched on the story's productId (the product slug). The
+  // values in src/data/home.ts are editorial copy written before the catalogue
+  // was live: they went stale the moment prices changed in wp-admin, and are
+  // kept only as a fallback for the first paint before /api/products resolves.
+  const { products } = useProducts();
+  const liveFor = (story: IngredientStory) =>
+    products.find((p) => p.id === story.productId);
+
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -667,7 +678,7 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
                       flexShrink: 0,
                     }}
                   >
-                    {story.product}
+                    {liveFor(story)?.name ?? story.product}
                   </p>
 
                   {/* Product description */}
@@ -682,7 +693,7 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
                       flexShrink: 0,
                     }}
                   >
-                    {story.productDesc}
+                    {liveFor(story)?.shortDesc ?? story.productDesc}
                   </p>
 
                   {/* Bottom row: price + CTA */}
@@ -705,7 +716,13 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
                         margin: 0,
                       }}
                     >
-                      {story.price}
+                      {/* Live price only. There is deliberately no fallback:
+                          the editorial copy in home.ts went stale the moment
+                          prices changed in wp-admin, and briefly flashing a
+                          wrong price - or showing one permanently if JS fails -
+                          is worse than showing none. Reserves its line height
+                          so the card does not jump when the price arrives. */}
+                      {liveFor(story)?.price ?? ' '}
                     </p>
 
                     <Link

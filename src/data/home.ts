@@ -553,9 +553,8 @@ export const ingredientChapters = [
           'Leaves fur soft and naturally balanced',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-santal-white-tea',
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-        price: '₹695',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png',
           alt: 'White tea leaves arranged on a warm stone surface',
@@ -575,9 +574,8 @@ export const ingredientChapters = [
           'Fortifies skin against daily moisture loss',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-santal-white-tea',
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-        price: '₹695',
         ingredientImage: {
           src: '/ingredient-vitamin-e.webp',
           alt: 'Golden amber oil drops on a natural wood surface',
@@ -605,9 +603,8 @@ export const ingredientChapters = [
           'Leaves a clean, velvety finish',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-fig-neroli',
         productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
-        price: '₹695',
         ingredientImage: {
           src: '/ingredient-fig.webp',
           alt: 'Fresh split fig resting on a warm travertine surface',
@@ -627,9 +624,8 @@ export const ingredientChapters = [
           'Uplifts coat freshness with subtle clarity',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-fig-neroli',
         productDesc: 'Daily cleansing for dogs and cats. Fig & Neroli.',
-        price: '₹695',
         ingredientImage: {
           src: '/ingredient-neroli.webp',
           alt: 'Delicate white neroli blossom flowers on warm linen',
@@ -649,9 +645,8 @@ export const ingredientChapters = [
           'Crafted responsibly and formulated with restraint',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-santal-white-tea',
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-        price: '₹695',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786926/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-sandalwood-editorial-r2.png',
           alt: 'Sandalwood bark and shavings in warm editorial light',
@@ -673,7 +668,6 @@ export const ingredientChapters = [
         product: 'Anti-Tick & Flea Spray',
         productId: 'anti-tick-flea-spray',
         productDesc: 'Natural everyday protection. Vetiver & Cypress.',
-        price: '₹595',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-vetiver-editorial-r2.png',
           alt: 'Vetiver grass roots in rich earthy tones',
@@ -695,7 +689,6 @@ export const ingredientChapters = [
         product: 'Paw Cleaner',
         productId: 'paw-cleaner',
         productDesc: 'Clean paws after every walk. Spearmint & Sea Salt.',
-        price: '₹495',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-spearmint-editorial-r2.png',
           alt: 'Fresh spearmint leaves with soft natural light',
@@ -717,7 +710,6 @@ export const ingredientChapters = [
         product: 'Dry Foam Shampoo',
         productId: 'dry-foam-shampoo',
         productDesc: 'Waterless cleanse between baths. Mimosa & Tonka.',
-        price: '₹595',
         ingredientImage: {
           src: '/ingredient-yuzu.webp',
           alt: 'Fresh whole and sliced Yuzu fruit on warm matte ceramic',
@@ -745,9 +737,8 @@ export const ingredientChapters = [
           'Ideal for sensitive, easily irritated coats',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-santal-white-tea',
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-        price: '₹695',
         ingredientImage: {
           src: '/ingredient-coconut.webp',
           alt: 'Fresh white coconut flesh and a subtle ceramic bowl',
@@ -767,9 +758,8 @@ export const ingredientChapters = [
           'Skin-friendly and microbiome supportive',
         ],
         product: 'Gentle Daily Shampoo',
-        productId: 'gentle-daily-shampoo',
+        productId: 'gentle-daily-shampoo-santal-white-tea',
         productDesc: 'Daily cleansing for dogs and cats. Santal & White Tea.',
-        price: '₹695',
         ingredientImage: {
           src: '/ingredient-radish-root.webp',
           alt: 'Sliced radish root next to a minimalist ceramic vessel',
