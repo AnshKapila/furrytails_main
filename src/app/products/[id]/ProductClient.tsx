@@ -240,7 +240,7 @@ export default function ProductClient({
 
             {/* pdp__cta-row */}
             <div className="flex items-center gap-3 mt-6">
-              {/* Add to bag */}
+              {/* Add to cart */}
               <button
                 type="button"
                 onClick={handleAdd}
@@ -262,7 +262,7 @@ export default function ProductClient({
                     </svg>
                   </>
                 ) : (
-                  <>Add to the Ritual</>
+                  <>Add to Cart</>
                 )}
               </button>
 

@@ -164,7 +164,7 @@ function ProductCard({ product }: { product: WooProduct }) {
           className="w-full h-[42px] border border-[#D8CFC4] text-[0.75rem] font-normal tracking-[0.1em] uppercase text-[#3B3A38] transition-colors duration-[800ms] hover:border-[#8D9A83] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center bg-transparent mt-auto"
           style={{ fontFamily: 'var(--font-inter)' }}
         >
-          {product.inStock === false ? 'Sold Out' : quickAdded ? 'Added to Bag' : 'Add to Bag'}
+          {product.inStock === false ? 'Sold Out' : quickAdded ? 'Added to Cart' : 'Add to Cart'}
         </button>
       </div>
     </Link>
