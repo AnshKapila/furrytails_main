@@ -8,6 +8,34 @@ authenticated SMTP, cache exclusions verified, Razorpay works in test mode.
 
 ---
 
+## 0. Deploy routine — purge the CDN
+
+```
+1. python scripts/make-deploy-zip.py
+2. upload + deploy in hPanel
+3. purge the CDN            <- easy to forget
+4. verify
+```
+
+**Step 3 is not optional.** Next.js marks fully-static pages
+`Cache-Control: s-maxage=31536000` (one year), and Hostinger's CDN honours it.
+Without a purge a deploy looks like it silently failed — this already happened
+once: the homepage served a 19-hour-old copy showing ₹695 for a product selling
+at ₹669, while the freshly deployed build was correct all along.
+
+Diagnose with:
+
+    curl -sI https://furrytailjoy.com/ | grep -i "age:\|x-hcdn-cache-status"
+
+`x-hcdn-cache-status: HIT` with a large `Age` means you are looking at a cached
+page, not your deploy. `DYNAMIC` means it is fresh.
+
+Only affects fully-static pages — homepage, about, faq, journal, ingredients,
+shipping. `/shop` and `/products/*` carry `revalidate = 300`, so their s-maxage
+is short and they refresh on their own.
+
+---
+
 ## 1. Razorpay — finish going live · Kshitij · HIGH
 
 Test mode works. Both COD and Razorpay render on checkout, and a test payment
