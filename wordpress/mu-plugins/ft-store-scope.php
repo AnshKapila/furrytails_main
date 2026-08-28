@@ -111,6 +111,18 @@ function ft_store_scope_redirect() {
 	if ( ft_store_scope_is_allowed() ) {
 		return;
 	}
+
+	// Never let the redirect itself be cached.
+	//
+	// Both LiteSpeed and Hostinger's CDN had cached the pre-plugin 200 response
+	// for '/' and kept serving it after this plugin was installed - the redirect
+	// only appeared when a query string bypassed the cache. Purging works, but
+	// the CDN caches per edge, so it recurs. Marking the response no-cache stops
+	// a redirect from ever being stored in the first place.
+	nocache_headers();
+	header( 'X-LiteSpeed-Cache-Control: no-cache', true );
+	do_action( 'litespeed_control_set_nocache', 'ft-store-scope: redirect response' );
+
 	wp_redirect( ft_store_scope_target(), 301 );
 	exit;
 }
