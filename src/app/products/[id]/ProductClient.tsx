@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart, parsePrice } from '@/lib/cart';
@@ -153,12 +153,7 @@ function ProductCard({ product }: { product: WooProduct }) {
             {displayPrice}
           </span>
         </div>
-        <p
-          className="text-[0.8125rem] font-light text-[#8D9A83] leading-snug mb-4"
-          style={{ fontFamily: 'var(--font-inter)' }}
-        >
-          {product.shortDesc}
-        </p>
+        
 
         <button
           type="button"
@@ -198,9 +193,31 @@ export default function ProductClient({
 }) {
   const { products } = useProducts();
     const [added, setAdded] = useState(false);
-  const { addItem, openDrawer } = useCart();
-  const { toggleWishlist, isInWishlist } = useWishlist();
-  const isWishlisted = isInWishlist(product.id);
+    const { addItem, openDrawer } = useCart();
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    const isWishlisted = isInWishlist(product.id);
+  
+    const scrollRef = useRef<HTMLDivElement>(null);
+  
+    useEffect(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const onWheel = (e: WheelEvent) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      };
+      el.addEventListener('wheel', onWheel, { passive: false });
+      return () => el.removeEventListener('wheel', onWheel);
+    }, []);
+
+    const scrollLeft = () => {
+      if (scrollRef.current) scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    };
+    const scrollRight = () => {
+      if (scrollRef.current) scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    };
 
   const displayPrice = product.price;
   const displayStandardPrice = product.standardPrice;
@@ -458,13 +475,21 @@ export default function ProductClient({
           data-kite-surface="product.related"
           data-kite-surface-type="features"
         >
-          <div className="flex flex-col items-center mb-12 md:mb-16">
-              <h2 className="text-h2 text-[#3B3A38]">
-                Explore All Our Products
-              </h2>
+          <div className="flex flex-col items-center mb-8 md:mb-12 relative">
+            <h2 className="text-h2 text-[#3B3A38]">
+              Explore All Our Products
+            </h2>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex gap-2">
+              <button onClick={scrollLeft} aria-label="Scroll left" className="p-2 border border-[#D8CFC4] rounded-full text-[#3B3A38] hover:border-[#8D9A83] hover:text-[#8D9A83] transition-colors focus:outline-none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button onClick={scrollRight} aria-label="Scroll right" className="p-2 border border-[#D8CFC4] rounded-full text-[#3B3A38] hover:border-[#8D9A83] hover:text-[#8D9A83] transition-colors focus:outline-none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
-  
-            <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-5 pb-8 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden" style={{ scrollPaddingLeft: "1.5rem", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          </div>
+
+          <div ref={scrollRef} className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-5 pb-8 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden" style={{ scrollPaddingLeft: "1.5rem", scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {products.map((rel, i) => (
                 <div key={rel.id} className="flex-shrink-0 w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[calc(25%-0.9375rem)] snap-start " style={{ transitionDuration: "800ms", transitionDelay: `${i * 100}ms` }}>
                   <ProductCard product={rel} />
@@ -496,6 +521,8 @@ export default function ProductClient({
     </main>
   );
 }
+
+
 
 
 

@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { WooProduct } from '@/services/types';
@@ -161,9 +161,7 @@ function ProductCard({ product }: { product: WooProduct }) {
           </p>
         )}
 
-        <p className="text-[0.8125rem] font-light text-[#68735F] leading-relaxed line-clamp-2 mt-auto mb-5">
-          {product.shortDesc}
-        </p>
+        
 
         <button
             type="button"
@@ -194,6 +192,14 @@ function ProductCard({ product }: { product: WooProduct }) {
   );
 }
 
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" aria-hidden="true" className={`flex-shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
+      <polyline points="2,3.5 5,6.5 8,3.5" />
+    </svg>
+  );
+}
+
 const CATEGORY_MAP = [
   {
     id: 'Daily Ritual',
@@ -218,6 +224,85 @@ const CATEGORY_MAP = [
 ];
 
 function ShopContent({ products }: { products: WooProduct[] }) {
+  const SORT_OPTIONS = [
+    { label: 'Recommended', value: 'default' },
+    { label: 'Price: Low to High', value: 'price-asc' },
+    { label: 'Price: High to Low', value: 'price-desc' },
+    { label: 'Alphabetical', value: 'name-asc' },
+  ] as const;
+  type SortValue = typeof SORT_OPTIONS[number]['value'];
+  
+  const [activeRitual, setActiveRitual] = useState<string>('All');
+  const [activePet, setActivePet] = useState<string>('All pets');
+  const [activeType, setActiveType] = useState<string>('All types');
+  const [activeSort, setActiveSort] = useState<SortValue>('default');
+
+  const [filterHovered, setFilterHovered] = useState(false);
+  const [filterPinned, setFilterPinned] = useState(false);
+  const filterOpen = filterHovered || filterPinned;
+
+  const [sortHovered, setSortHovered] = useState(false);
+  const [sortPinned, setSortPinned] = useState(false);
+  const sortOpen = sortHovered || sortPinned;
+
+  const [ritualHovered, setRitualHovered] = useState(false);
+  const [ritualPinned, setRitualPinned] = useState(true);
+  const ritualOpen = ritualHovered || ritualPinned;
+
+  const [petHovered, setPetHovered] = useState(false);
+  const [petPinned, setPetPinned] = useState(false);
+  const petOpen = petHovered || petPinned;
+
+  const [typeHovered, setTypeHovered] = useState(false);
+  const [typePinned, setTypePinned] = useState(false);
+  const typeOpen = typeHovered || typePinned;
+
+  const filterRef = useRef<HTMLDivElement>(null);
+  const sortRef = useRef<HTMLDivElement>(null);
+
+  const RITUAL_FILTERS = ['Daily Ritual', 'Special Care', 'Wellness & Health'];
+  const PET_FILTERS = ['Dog', 'Cat', 'Dog & Cat'];
+  const TYPE_FILTERS = ['Shampoo', 'Supplement', 'Balm'];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (filterOpen && filterRef.current && !filterRef.current.contains(event.target as Node)) {
+        setFilterHovered(false);
+        setFilterPinned(false);
+      }
+      if (sortOpen && sortRef.current && !sortRef.current.contains(event.target as Node)) {
+        setSortHovered(false);
+        setSortPinned(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [filterOpen, sortOpen]);
+
+  const baseFiltered = products.filter((p) => {
+    const prod = p as any;
+    const ritualMatch = activeRitual === 'All' || p.category === activeRitual;
+    const petMatch = activePet === 'All pets' || (prod.species && (prod.species.toLowerCase().includes(activePet.toLowerCase().split(' ')[0]) || activePet === 'Dog & Cat' && prod.species === 'both'));
+    
+    const typeMatch = activeType === 'All types' || (p.name.toLowerCase().includes(activeType.toLowerCase()));
+    
+    return ritualMatch && petMatch && typeMatch;
+  });
+
+  const filtered = [...baseFiltered].sort((a, b) => {
+    if (activeSort === 'price-asc') return parsePrice(a.price) - parsePrice(b.price);
+    if (activeSort === 'price-desc') return parsePrice(b.price) - parsePrice(a.price);
+    if (activeSort === 'name-asc') return a.name.localeCompare(b.name);
+    return 0;
+  });
+
+  const hasActiveFilter = activeRitual !== 'All' || activePet !== 'All pets' || activeType !== 'All types';
+  const activeFilterCount = (activeRitual !== 'All' ? 1 : 0) + (activePet !== 'All pets' ? 1 : 0) + (activeType !== 'All types' ? 1 : 0);
+  const activeSortLabel = SORT_OPTIONS.find((o) => o.value === activeSort)?.label ?? 'Sort';
+
+  const triggerBase = "inline-flex items-center gap-1.5 px-3 py-1.5 border rounded-full text-[0.625rem] font-normal tracking-[0.06em] uppercase transition-colors duration-[800ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83]";
+  const triggerIdle = "border-[#D8CFC4] text-[#3B3A38] bg-transparent hover:border-[#8D9A83] hover:text-[#68735F]";
+  const triggerActive = "border-[#3B3A38] bg-[#3B3A38] text-[#F8F5F1]";
   return (
     <main className="pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen bg-[#F8F5F1]">
       {/* Page Hero */}
@@ -236,9 +321,81 @@ function ShopContent({ products }: { products: WooProduct[] }) {
         </p>
       </section>
 
+            {/* ── Controls bar ── */}
+      <section className="max-w-[1200px] mx-auto px-6 md:px-8 pt-8 pb-12">
+        <div className="flex items-center justify-between gap-4">
+          {/* Left: result count + active filter summary */}
+          <p className="text-[0.5625rem] font-normal tracking-[0.12em] uppercase text-[#BEB8AF]" style={{ fontFamily: 'var(--font-inter)' }}>
+            {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
+            {hasActiveFilter && (
+              <button type="button" onClick={() => { setActiveRitual('All'); setActivePet('All pets'); setActiveType('All types'); }} className="ml-3 underline underline-offset-2 text-[#8D9A83] hover:text-[#3B3A38] transition-colors duration-[800ms] focus:outline-none">
+                Clear
+              </button>
+            )}
+          </p>
+          {/* Right: Sort + Filter controls */}
+          <div className="flex items-center gap-2">
+            {/* Sort dropdown */}
+            <div className="relative" ref={sortRef} onMouseEnter={() => setSortHovered(true)} onMouseLeave={() => setSortHovered(false)}>
+              <button type="button" onClick={() => { setSortPinned((v) => !v); setFilterPinned(false); }} className={`${triggerBase} ${activeSort !== 'default' ? triggerActive : triggerIdle}`} style={{ fontFamily: 'var(--font-inter)' }} aria-expanded={sortOpen}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true" className="flex-shrink-0"><line x1="1" y1="3" x2="11" y2="3" /><line x1="2.5" y1="6" x2="9.5" y2="6" /><line x1="4" y1="9" x2="8" y2="9" /></svg>
+                <span>{activeSort !== 'default' ? activeSortLabel : 'Featured'}</span>
+                <ChevronIcon open={sortOpen} />
+              </button>
+              <div className={`absolute right-0 top-full mt-1 w-48 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20 ${sortOpen ? 'block' : 'hidden'}`}>
+                <div className="py-1">
+                  {SORT_OPTIONS.map((opt) => (
+                    <button key={opt.value} type="button" onClick={() => { setActiveSort(opt.value); setSortHovered(false); setSortPinned(false); }} className={`w-full text-left px-4 py-2.5 text-[0.625rem] font-normal transition-colors focus:outline-none ${activeSort === opt.value ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'text-[#68735F] hover:bg-[#F0EBE4] hover:text-[#3B3A38]'}`}>
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* Filter dropdown */}
+            <div className="relative" ref={filterRef} onMouseEnter={() => setFilterHovered(true)} onMouseLeave={() => setFilterHovered(false)}>
+              <button type="button" onClick={() => { setFilterPinned((v) => !v); setSortPinned(false); }} className={`${triggerBase} ${hasActiveFilter ? triggerActive : triggerIdle}`} style={{ fontFamily: 'var(--font-inter)' }} aria-expanded={filterOpen}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0"><line x1="1" y1="2.5" x2="11" y2="2.5" /><circle cx="8.5" cy="6" r="1.2" fill="currentColor" stroke="none" /><circle cx="3.5" cy="9.5" r="1.2" fill="currentColor" stroke="none" /></svg>
+                <span>Filter{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}</span>
+                <ChevronIcon open={filterOpen} />
+              </button>
+              <div className={`absolute right-0 top-full mt-1 w-64 bg-[#F8F5F1] border border-[#E9E2D7] shadow-[0_4px_24px_rgba(59,58,56,0.08)] z-20 ${filterOpen ? 'block' : 'hidden'}`}>
+                <div>
+                  <button type="button" onClick={() => setRitualPinned((v) => !v)} onMouseEnter={() => setRitualHovered(true)} onMouseLeave={() => setRitualHovered(false)} className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] focus:outline-none border-b border-[#E9E2D7]">
+                    <span>Ritual</span><ChevronIcon open={ritualOpen} />
+                  </button>
+                  <div className={`px-4 pb-4 pt-2 flex flex-wrap gap-1.5 border-b border-[#E9E2D7] ${ritualOpen ? 'block' : 'hidden'}`}>
+                    {['All', ...RITUAL_FILTERS].map((cat) => (
+                      <button key={cat} type="button" onClick={() => setActiveRitual(cat)} className={`px-2.5 py-1 text-[0.625rem] font-normal tracking-[0.04em] rounded-[2px] transition-colors ${activeRitual === cat ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'bg-[#F0EBE4] text-[#68735F] hover:text-[#3B3A38]'}`}>{cat}</button>
+                    ))}
+                  </div>
+                  
+                  <button type="button" onClick={() => setPetPinned((v) => !v)} onMouseEnter={() => setPetHovered(true)} onMouseLeave={() => setPetHovered(false)} className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] focus:outline-none border-b border-[#E9E2D7]">
+                    <span>Pet</span><ChevronIcon open={petOpen} />
+                  </button>
+                  <div className={`px-4 pb-4 pt-2 flex flex-wrap gap-1.5 border-b border-[#E9E2D7] ${petOpen ? 'block' : 'hidden'}`}>
+                    {['All pets', ...PET_FILTERS].map((pet) => (
+                      <button key={pet} type="button" onClick={() => setActivePet(pet)} className={`px-2.5 py-1 text-[0.625rem] font-normal tracking-[0.04em] rounded-[2px] transition-colors ${activePet === pet ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'bg-[#F0EBE4] text-[#68735F] hover:text-[#3B3A38]'}`}>{pet}</button>
+                    ))}
+                  </div>
+
+                  <button type="button" onClick={() => setTypePinned((v) => !v)} onMouseEnter={() => setTypeHovered(true)} onMouseLeave={() => setTypeHovered(false)} className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] focus:outline-none">
+                    <span>Type</span><ChevronIcon open={typeOpen} />
+                  </button>
+                  <div className={`px-4 pb-4 pt-2 flex flex-wrap gap-1.5 ${typeOpen ? 'block' : 'hidden'}`}>
+                    {['All types', ...TYPE_FILTERS].map((type) => (
+                      <button key={type} type="button" onClick={() => setActiveType(type)} className={`px-2.5 py-1 text-[0.625rem] font-normal tracking-[0.04em] rounded-[2px] transition-colors ${activeType === type ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'bg-[#F0EBE4] text-[#68735F] hover:text-[#3B3A38]'}`}>{type}</button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Category Sections */}
       {CATEGORY_MAP.map((cat) => {
-        const catProducts = products.filter(p => p.category === cat.id);
+        const catProducts = filtered.filter(p => p.category === cat.id);
         
         if (catProducts.length === 0) return null;
 
@@ -294,6 +451,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
 export default function ShopClient({ products }: { products: WooProduct[] }) {
   return <ShopContent products={products} />;
 }
+
 
 
 
