@@ -389,35 +389,6 @@ export default function ProductClient({
         </section>
       )}
 
-      {/* New Products Placeholders */}
-      {product.name.toLowerCase().includes("gentle daily shampoo") && (
-      <section className="max-w-[1200px] mx-auto px-6 md:px-8 pb-24 pt-12 md:pt-16 border-t border-[#E9E2D7]">
-        <div className="flex flex-col items-center mb-12 md:mb-16">
-          <span
-            className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-4"
-            style={{ fontFamily: 'var(--font-inter)' }}
-          >
-            Coming Soon
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38]">
-            New Additions to the Ritual
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 opacity-70">
-          {[1, 2, 3].map((placeholder) => (
-            <div key={placeholder} className="group flex flex-col gap-3">
-              <div className="relative aspect-[3/4] overflow-hidden bg-[#E9E2D7] flex items-center justify-center">
-                <span className="text-[0.75rem] uppercase tracking-[0.15em] text-[#8D9A83] font-medium" style={{ fontFamily: 'var(--font-inter)' }}>Placeholder</span>
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <p className="text-[0.875rem] font-medium text-[#3B3A38]" style={{ fontFamily: 'var(--font-inter)' }}>New Product</p>
-                <p className="text-[0.75rem] font-light text-[#8D9A83]" style={{ fontFamily: 'var(--font-inter)' }}>Coming Soon</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      )}
     </main>
   );
 }
