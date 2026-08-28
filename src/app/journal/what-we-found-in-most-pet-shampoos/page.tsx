@@ -33,7 +33,7 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>5 min read</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-cormorant">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               What We Found in Most Pet Shampoos.
             </h1>
             <p className="text-[1.125rem] md:text-[1.25rem] font-light text-[#3B3A38]/80 leading-[1.6]">
@@ -80,7 +80,7 @@ export default function ArticlePage() {
               <Image src="/images/journal/what-we-found/img1.png" alt="Shampoo formulation and mixing" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">A shampoo is a formulation, not a list of fashionable ingredients</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">A shampoo is a formulation, not a list of fashionable ingredients</h2>
             <p>
               A good pet shampoo has a fairly simple brief: remove dirt, excess oil and residue without making the skin feel like it has been scrubbed clean.
             </p>
@@ -98,7 +98,7 @@ export default function ArticlePage() {
               If the answer is simply cleansing, the rest of the formula should support that job without unnecessary drama.
             </p>
 
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">Then there are the surfactants</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">Then there are the surfactants</h2>
             <p>
               <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">Surfactants</Link> are the working part of shampoo. They help water spread across the coat, loosen oils and dirt, and lift that material away when the shampoo is rinsed. They are also responsible for much of what we perceive as "lather".
             </p>
@@ -123,7 +123,7 @@ export default function ArticlePage() {
               <Image src="/images/journal/what-we-found/img4.png" alt="A clear bottle containing a flower" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">"Natural" is not the same as well formulated</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">"Natural" is not the same as well formulated</h2>
             <p>
               This is perhaps the most persistent problem with reading pet-care labels.
             </p>
@@ -157,7 +157,7 @@ export default function ArticlePage() {
               <Image src="/images/journal/what-we-found/img3.png" alt="Herbs and essential oils" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">Fragrance deserves more thought than "fresh"</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">Fragrance deserves more thought than "fresh"</h2>
             <p>
               Pet shampoo has traditionally been associated with a particular smell: unmistakably clean, often strong, sometimes difficult to place.
             </p>
@@ -178,7 +178,7 @@ export default function ArticlePage() {
             </p>
 
             <div className="my-16 p-8 bg-[#F0EBE4] border border-[#E9E2D7] rounded-[2px]">
-              <h3 className="text-2xl font-cormorant mb-4">The ingredient list is where the quiet details live</h3>
+              <h3 className="text-2xl font-display mb-4">The ingredient list is where the quiet details live</h3>
               <p className="mb-4">A front label might give you five words. The INCI list gives you the architecture. Look for the functional groups:</p>
               <ul className="list-disc pl-5 space-y-2 text-[#3B3A38]/80">
                 <li><strong>Cleansers / surfactants</strong> - what actually removes dirt and excess oil?</li>
@@ -199,7 +199,7 @@ export default function ArticlePage() {
             </p>
             <p className="font-medium text-lg text-center my-10 italic">Context changes everything.</p>
             
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">What should you actually look for?</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">What should you actually look for?</h2>
             <p>
               For an everyday grooming shampoo, start with the boring questions. They are usually the important ones.
             </p>
@@ -230,7 +230,7 @@ export default function ArticlePage() {
               <Image src="/images/journal/what-we-found/img2.png" alt="Dog being washed" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
-            <h2 className="text-3xl font-cormorant mt-16 mb-6">The better shampoo is not the louder one</h2>
+            <h2 className="text-3xl font-display mt-16 mb-6">The better shampoo is not the louder one</h2>
             <p>
               A well-formulated pet shampoo does not need to make ten promises. It needs to get a few things right.
             </p>
@@ -258,7 +258,7 @@ export default function ArticlePage() {
 
           {/* FAQs Section */}
           <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-cormorant mb-10 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
             
             <div className="space-y-8">
               <div>

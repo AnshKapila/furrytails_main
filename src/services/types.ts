@@ -27,6 +27,7 @@ export interface WooProduct {
   badge?: string | null;
   category: string; // e.g. "Daily Ritual"
   image: WooImage;
+  gallery?: WooImage[]; // full WooCommerce image gallery, featured image first
   productType?: string; // from pa_producttype, e.g. "Shampoo"
   species?: 'dog' | 'cat' | 'both'; // from pa_pet term slug
   volume?: string; // from pa_volume, e.g. "300 ml"

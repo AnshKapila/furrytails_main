@@ -1,53 +1,64 @@
 [
   {
-    "id": "gentle-daily-shampoo",
-    "name": "Gentle Daily Shampoo",
+    "id": "gentle-daily-shampoo-violet-leaf-muslin",
+    "name": "Gentle Daily Shampoo-Violet Leaf & Muslin",
+    "price": "₹669",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Daily Ritual",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Box-Bottle-Violet-Leaf-Muslin.png",
+      "alt": "Gentle Daily Shampoo-Violet Leaf & Muslin"
+    },
+    "species": "both",
+    "volume": "250 ml",
+    "variantLabel": "Violet leaf & Muslin",
+    "shortDesc": "",
+    "description": "",
+    "slug": "gentle-daily-shampoo-violet-leaf-muslin",
+    "sku": "SKU-03",
+    "inStock": true
+  },
+  {
+    "id": "gentle-daily-shampoo-fig-neroli",
+    "name": "Gentle Daily Shampoo-Fig & Neroli",
     "price": "₹669",
     "standardPrice": null,
     "badge": null,
     "category": "Daily Ritual",
     "image": {
       "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
-      "alt": "Gentle Daily Shampoo"
+      "alt": "Gentle Daily Shampoo-Fig & Neroli"
     },
     "productType": "Shampoo",
     "species": "both",
-    "volume": "300 ml",
-    "variants": [
-      {
-        "id": "fig-neroli",
-        "label": "Fig & Neroli",
-        "price": "₹669",
-        "standardPrice": null,
-        "image": {
-          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
-          "alt": "Gentle Daily Shampoo"
-        }
-      },
-      {
-        "id": "santal-white-tea",
-        "label": "Santal & White Tea",
-        "price": "₹669",
-        "standardPrice": null,
-        "image": {
-          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo-santal-white-tea.webp",
-          "alt": "Gentle Daily Shampoo"
-        }
-      },
-      {
-        "id": "violet-leaf-musline",
-        "label": "violet leaf & muslin",
-        "price": "₹669",
-        "standardPrice": null,
-        "image": {
-          "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo.webp",
-          "alt": "Gentle Daily Shampoo"
-        }
-      }
-    ],
-    "shortDesc": "A shampoo made for daily use — gentle enough for every wash, with fragrances that are quiet rather than loud. Leaves the coat clean, soft, and honestly fresh.",
-    "description": "<p><!-- GENTLE DAILY SHAMPOO --></p>\n<h3>Key ingredients</h3>\n<p>Santal &amp; White Tea — Santalum Album · Camellia Sinensis<br />\nFig &amp; Neroli — Ficus Carica · Citrus Aurantium<br />\nviolet leaf &amp;amp muslin — Chamaecyparis Obtusa · Bambusa Vulgaris</p>\n<h3>How to use</h3>\n<p>Wet coat; apply a small amount; lather neck to tail; leave 1–2 min; rinse; towel dry or low-heat dry. Weekly or bi-weekly.</p>\n<h3>Safety</h3>\n<p>Avoid eyes and mouth. Suitable over 12 weeks. Consult a vet for younger animals or known skin sensitivities.</p>",
-    "slug": "gentle-daily-shampoo",
+    "volume": "250 ml",
+    "variantLabel": "Fig & Neroli",
+    "shortDesc": "",
+    "description": "<p>The Gentle Daily Shampoo in Fig &amp; Neroli is the brighter, more expressive option in the Ritual family. The fragrance leads with sun-warmed fig and lifts with neroli from bitter orange blossom — together they create something with a quality of southern European warmth. The base formula is identical to all Gentle Daily Shampoo variants: 99.5% Natural Origin Index per ISO 16128-2, probiotic preservation, coconut-derived surfactants, gentle enough for weekly bathing.</p>",
+    "slug": "gentle-daily-shampoo-fig-neroli",
+    "sku": "SKU-02",
+    "inStock": true
+  },
+  {
+    "id": "gentle-daily-shampoo-santal-white-tea",
+    "name": "Gentle Daily Shampoo-Santal & White Tea",
+    "price": "₹669",
+    "standardPrice": null,
+    "badge": null,
+    "category": "Daily Ritual",
+    "image": {
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/gentle-daily-shampoo-santal-white-tea.webp",
+      "alt": "Gentle Daily Shampoo-Santal & White Tea"
+    },
+    "productType": "Shampoo",
+    "species": "both",
+    "volume": "250 ml",
+    "variantLabel": "Santal & White Tea",
+    "shortDesc": "",
+    "description": "",
+    "slug": "gentle-daily-shampoo-santal-white-tea",
+    "sku": "SKU-01",
     "inStock": true
   },
   {
@@ -58,8 +69,8 @@
     "badge": null,
     "category": "Refresh",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Refreshing-mist1.png",
-      "alt": "Refreshing Mist Pet cologne"
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/5.-PREMIUM-PRODUCT-STILL-LIFE.png",
+      "alt": "Refreshing Mist"
     },
     "productType": "Mist",
     "species": "dog",
@@ -79,12 +90,12 @@
     "badge": null,
     "category": "Remedy",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Remedy-Dry-Foam-Shampoo.png",
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Dry-Foam-Shampoo-Hinoki-Bamboo.png",
       "alt": "Dry Foam Shampoo"
     },
     "productType": "Shampoo",
-    "species": "dog",
-    "volume": "250 ml",
+    "species": "both",
+    "volume": "100 ml",
     "variantLabel": "Hinoki & Bamboo",
     "shortDesc": "Hinoki & Bamboo for between-bath freshening.",
     "description": "<p><!-- DRY FOAM SHAMPOO --></p>\n<h3>Key ingredients</h3>\n<p>Acacia Dealbata · Dipteryx Odorata</p>\n<h3>How to use</h3>\n<p>Shake. Hold 20 cm from coat and spray evenly. Work through with hands or soft brush. Focus on odour-prone areas. Allow to dry. No rinsing.</p>\n<h3>Safety</h3>\n<p>Formulated for dogs; not suitable for cats.</p>",
@@ -100,7 +111,7 @@
     "badge": null,
     "category": "Defense",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/anti-tick-flea-spray.webp",
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/IMAGE-7-—-DEFENSE-RITUAL-ROUTINE.png",
       "alt": "Anti-Tick & Flea Spray"
     },
     "productType": "Spray",
@@ -121,8 +132,8 @@
     "badge": null,
     "category": "Remedy",
     "image": {
-      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/Remedy-_Paw-Cleaner1.png",
-      "alt": "Paw Cleaner for Dogs"
+      "src": "https://store.furrytailjoy.com/wp-content/uploads/2026/08/3.-PRODUCT-HERO-—-PREMIUM-STILL-LIFE.png",
+      "alt": "Paw Cleaner"
     },
     "productType": "Cleaner",
     "species": "dog",

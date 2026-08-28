@@ -47,6 +47,25 @@ const nextConfig = {
     reactDebugChannel: false,
   },
 
+  // Gentle Daily Shampoo was one variable product with three fragrance
+  // variations. The client split it into three separate simple products, so the
+  // old slug no longer resolves. 301 to the closest successor (Fig & Neroli was
+  // the fragrance the parent product's own image showed) rather than letting it
+  // 404 - it is in the sitemap and may be linked externally.
+  //
+  // Without this the retired page also keeps serving from the ISR cache: when
+  // revalidation finds no product it calls notFound(), which throws, and Next
+  // deliberately keeps the last good page rather than caching an error.
+  async redirects() {
+    return [
+      {
+        source: '/products/gentle-daily-shampoo',
+        destination: '/products/gentle-daily-shampoo-fig-neroli',
+        permanent: true,
+      },
+    ];
+  },
+
   // Legacy: serve the chosen design as the live site. The backend writes
   // ``public/prototype.html`` (with its content JSONs in ``public/content/``)
   // and this rewrite makes any non-API, non-static request fall through to

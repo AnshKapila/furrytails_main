@@ -75,12 +75,15 @@ export default function ProductClient({
     setTimeout(() => setAdded(false), 2000);
   }
 
-  // Thumbnails placeholder structure matching prototype
-  const thumbs = [
-    { label: 'In use' },
-    { label: 'Texture' },
-    { label: 'Label detail' },
-  ];
+  // Gallery thumbnails come from the WooCommerce product gallery (featured
+  // image first). Capped at 4 to match the grid; the row is hidden entirely
+  // when a product only has its featured image, rather than padding it out
+  // with empty tiles.
+  const [activeImage, setActiveImage] = useState(0);
+  const gallery = (product.gallery?.length ? product.gallery : [product.image])
+    .filter((img) => Boolean(img?.src))
+    .slice(0, 4);
+  const heroImage = gallery[activeImage] ?? displayImage;
 
   return (
     <main className="pt-24 md:pt-32 pb-16">
@@ -113,10 +116,10 @@ export default function ProductClient({
           {/* GALLERY - Prototype Structure */}
           <div className="flex flex-col gap-4">
             <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden bg-[#F0EBE4] w-full flex items-center justify-center">
-              {displayImage?.src && (
+              {heroImage?.src && (
                 <Image
-                  src={displayImage.src}
-                  alt={displayImage.alt ?? product.name}
+                  src={heroImage.src}
+                  alt={heroImage.alt ?? product.name}
                   fill
                   className="object-cover object-center transition-opacity duration-300"
                   sizes="(max-width: 1024px) 100vw, 60vw"
@@ -133,19 +136,31 @@ export default function ProductClient({
               )}
             </div>
             
-            {/* Thumb row */}
-            <div className="grid grid-cols-4 gap-2 md:gap-4">
-              <div className="relative aspect-square bg-[#F0EBE4] overflow-hidden cursor-pointer">
-                {displayImage?.src && (
-                  <Image src={displayImage.src} alt="Thumbnail 1" fill className="object-cover" />
-                )}
+            {/* Thumb row - real gallery images, hidden when there is only one */}
+            {gallery.length > 1 && (
+              <div className="grid grid-cols-4 gap-2 md:gap-4">
+                {gallery.map((img, idx) => (
+                  <button
+                    key={img.src}
+                    type="button"
+                    onClick={() => setActiveImage(idx)}
+                    aria-label={`View image ${idx + 1} of ${gallery.length}`}
+                    aria-pressed={activeImage === idx}
+                    className={`relative aspect-square bg-[#F0EBE4] overflow-hidden transition-opacity duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] ${
+                      activeImage === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                    }`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt ?? product.name}
+                      fill
+                      className="object-cover"
+                      sizes="120px"
+                    />
+                  </button>
+                ))}
               </div>
-              {thumbs.map((thumb, idx) => (
-                <div key={idx} className="relative aspect-square bg-[#F0EBE4] text-[#3B3A38] flex items-center justify-center p-2 text-center text-[0.625rem] md:text-[0.75rem] tracking-[0.05em] uppercase font-light opacity-80 cursor-pointer hover:opacity-100 transition-opacity">
-                  {thumb.label}
-                </div>
-              ))}
-            </div>
+            )}
           </div>
 
           {/* INFO - Prototype Structure */}
@@ -159,17 +174,21 @@ export default function ProductClient({
               >
                 {product.category}
               </span>
-              <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
-              <span
-                className="text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#68735F]"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {product.badge || 'Ritual'}
-              </span>
+              {(product.badge || product.productType) && (
+                <>
+                  <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
+                  <span
+                    className="text-[0.6875rem] font-normal tracking-[0.2em] uppercase text-[#68735F]"
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                  >
+                    {product.badge || product.productType}
+                  </span>
+                </>
+              )}
             </div>
 
             {/* pdp__name */}
-            <h1 className="text-4xl md:text-5xl font-cormorant font-light text-[#3B3A38]">
+            <h1 className="text-4xl md:text-5xl font-display font-light text-[#3B3A38]">
               {product.name}
             </h1>
 
@@ -298,7 +317,7 @@ export default function ProductClient({
             >
               The Ritual family
             </span>
-            <h2 className="text-3xl md:text-4xl font-cormorant font-light text-[#3B3A38]">
+            <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38]">
               Also in the {product.category}.
             </h2>
           </div>
@@ -380,7 +399,7 @@ export default function ProductClient({
           >
             Coming Soon
           </span>
-          <h2 className="text-3xl md:text-4xl font-cormorant font-light text-[#3B3A38]">
+          <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38]">
             New Additions to the Ritual
           </h2>
         </div>

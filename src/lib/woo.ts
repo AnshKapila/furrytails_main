@@ -178,6 +178,13 @@ function firstImage(p: StoreApiProduct): WooImage | null {
   return { src: img.src, alt: decodeEntities(img.alt || p.name) };
 }
 
+/** Every gallery image, featured first. Entries without a src are dropped. */
+function allImages(p: StoreApiProduct): WooImage[] {
+  return (p.images ?? [])
+    .filter((i) => Boolean(i?.src))
+    .map((i) => ({ src: i.src, alt: decodeEntities(i.alt || p.name) }));
+}
+
 // ─── Fetch ────────────────────────────────────────────────────────────────────
 
 async function storeFetch<T>(path: string): Promise<T> {
@@ -231,6 +238,7 @@ function toWooProduct(
     badge: null,
     category: decodeEntities(p.categories?.[0]?.name ?? ''),
     image,
+    gallery: allImages(p),
     // NOTE: the Type attribute is pa_producttype, not pa_type — WordPress
     // reserves "type" as a query var so WooCommerce rejects it as a slug.
     productType: decodeEntities(term(p, 'pa_producttype')?.name ?? '') || undefined,

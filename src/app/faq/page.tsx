@@ -60,7 +60,7 @@ export default function FAQPage() {
         <Navbar />
         <main className="pt-32 pb-24 md:pt-40 md:pb-32 px-6">
           <div className="max-w-[720px] mx-auto">
-            <h1 className="text-3xl md:text-5xl font-cormorant font-light text-[#3B3A38] mb-12">
+            <h1 className="text-3xl md:text-5xl font-display font-light text-[#3B3A38] mb-12">
               The questions we get most.
             </h1>
             <p className="text-[#3B3A38] opacity-80 mb-16 text-lg">
@@ -69,7 +69,7 @@ export default function FAQPage() {
             <div className="space-y-12">
               {faqs.map((faq, index) => (
                 <div key={index} className="border-b border-[#E5E0D8] pb-10">
-                  <h3 className="text-xl md:text-2xl font-cormorant font-medium text-[#3B3A38] mb-4">
+                  <h3 className="text-xl md:text-2xl font-display font-medium text-[#3B3A38] mb-4">
                     {faq.question}
                   </h3>
                   <p className="text-sm md:text-[15px] leading-relaxed text-[#3B3A38] opacity-80">
