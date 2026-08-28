@@ -145,7 +145,7 @@ def main() -> int:
     mb = os.path.getsize(OUT) / 1024 / 1024
     print(f"\nDone: {OUT}  ({mb:.1f} MB, {count} files)")
     print("\nUpload via hPanel > Websites > Deploy Web App > Upload your files.")
-    print('Expect "Generating static pages (18/18)" in the build log.\n')
+    print('Expect "Generating static pages" to complete with one page per product plus the static routes.\n')
     return 0
 
 
