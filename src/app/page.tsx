@@ -461,10 +461,7 @@ function TrustMarkersSection() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Heading row */}
         <div className="mb-10 md:mb-12">
-          <h2
-            className="text-[#3B3A38] mb-3"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-          >
+          <h2 className="text-h2 text-[#3B3A38] mb-3">
             Thoughtfully Formulated. Transparently Made.
           </h2>
           <p className="text-[0.8125rem] font-light text-[#8D9A83] leading-relaxed max-w-[520px]">
@@ -1161,7 +1158,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
                 <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">A Ritual Of Four Categories</p>
-                <h2 className="text-[#3B3A38]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}>Every Ritual Has A Purpose.</h2>
+                <h2 className="text-h2 text-[#3B3A38]">Every Ritual Has A Purpose.</h2>
               </div>
               <SecondaryOutlineBtn
                 href="/shop"
@@ -1335,6 +1332,7 @@ export default function Home() {
     </ClientProviders>
   );
 }
+
 
 
 

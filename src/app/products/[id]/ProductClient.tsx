@@ -7,6 +7,14 @@ import { useCart, parsePrice } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
 import type { WooProduct } from '@/services/types';
 
+function BagIconOutline() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
+      <path d="M2 4h12l-1.5 9H3.5L2 4Z" />
+      <path d="M5 4V2.5a3 3 0 0 1 6 0V4" />
+    </svg>
+  );
+}
 function BtnArrow({ className = '' }: { className?: string }) {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className={`btn-arrow flex-shrink-0 ${className}`}>
@@ -188,50 +196,37 @@ export default function ProductClient({
             </div>
 
             {/* pdp__name */}
-            <h1 className="text-4xl md:text-5xl font-display font-light text-[#3B3A38]">
+            <h1 className="text-h1 text-[#3B3A38] mb-2">
               {product.name}
             </h1>
 
-            {/* pdp__fragrance */}
-            {(product.variantLabel) && (
-              <div 
-                className="text-[0.875rem] font-normal tracking-[0.05em] text-[#8D9A83]"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {product.variantLabel}
-              </div>
-            )}
-
-            {/* pdp__sensory */}
-            <p className="text-[1rem] font-light text-[#3B3A38] leading-[1.65]">
-              {displayDesc}
-            </p>
-
-            {/* pdp__price */}
-            <div className="flex items-end gap-3 mt-2">
-              <div className="text-2xl font-light text-[#3B3A38]">
-                {displayPrice}
-              </div>
-              {displayStandardPrice && (
-                <span className="text-[1rem] font-light text-[#BEB8AF] line-through leading-[1.3] mb-0.5">
-                  {displayStandardPrice}
-                </span>
+            {/* pdp__fragrance & pdp__price */}
+            <div className="flex flex-col gap-1">
+              {(product.variantLabel) && (
+                <div className="text-p1 text-[#8D9A83]">
+                  {product.variantLabel}
+                </div>
               )}
+              
+              <div className="flex items-end gap-3 mt-1">
+                <div className="text-h1 text-[#3B3A38]">
+                  {displayPrice}
+                </div>
+                {displayStandardPrice && (
+                  <span className="text-p1 text-[#BEB8AF] line-through leading-[1.3] mb-2">
+                    {displayStandardPrice}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* pdp__size */}
-            <div className="flex items-center gap-2 mt-1">
-              <span
-                className="text-[0.75rem] font-normal tracking-[0.1em] text-[#68735F]"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-p2 text-[#68735F] uppercase tracking-[0.1em]">
                 {volume || '300ml'}
               </span>
               <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
-              <span
-                className="inline-flex flex-row items-center gap-1.5 text-[#68735F]"
-                style={{ fontFamily: 'var(--font-inter)', fontSize: '0.75rem', letterSpacing: '0.1em' }}
-              >
+              <span className="inline-flex flex-row items-center gap-1.5 text-[#68735F] text-p2 uppercase tracking-[0.1em]">
                 {product.species === 'dog' && <><DogIcon /> Dogs</>}
                 {product.species === 'cat' && <><CatIcon /> Cats</>}
                 {product.species === 'both' && <><DogIcon /><CatIcon /> Dogs &amp; Cats</>}
@@ -239,14 +234,15 @@ export default function ProductClient({
             </div>
 
             {/* pdp__cta-row */}
-            <div className="flex items-center gap-3 mt-6">
-              {/* Add to cart */}
+            <div className="flex items-center gap-3 mt-5 mb-6">
+              {/* Add to bag */}
               <button
                 type="button"
                 onClick={handleAdd}
                 disabled={soldOut}
-                className="hero-btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ minHeight: '52px', padding: '0 32px' }}
+                aria-label={`Add ${product.name} to cart`}
+                className="flex-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] inline-flex items-center justify-center gap-1.5 border border-[#3B3A38] bg-transparent text-[#3B3A38] px-3 py-2 text-[0.6875rem] font-normal tracking-[0.06em] hover:bg-[#3B3A38] hover:text-[#F8F5F1] active:bg-[#3B3A38] active:text-[#F8F5F1] transition-colors duration-[400ms] disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ minHeight: '52px', fontFamily: 'var(--font-inter)', whiteSpace: 'nowrap' }}
                 data-kite-cta-id="product-add-to-bag"
                 data-kite-role="primary"
                 data-kite-event="add_to_bag"
@@ -257,12 +253,15 @@ export default function ProductClient({
                 ) : added ? (
                   <>
                     Added
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0 ml-2">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
                       <polyline points="1 6 4.5 9.5 11 2.5" />
                     </svg>
                   </>
                 ) : (
-                  <>Add to Cart</>
+                  <>
+                    <BagIconOutline />
+                    Add to Cart
+                  </>
                 )}
               </button>
 
@@ -278,8 +277,8 @@ export default function ProductClient({
                     image: displayImage?.src ?? '',
                   });
                 }}
-                className="flex items-center justify-center border border-[#D8CFC4] hover:border-[#8D9A83] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] aspect-square rounded-sm text-[#3B3A38]"
-                style={{ minHeight: '52px', padding: '0 16px' }}
+                className="flex items-center justify-center border border-[#D8CFC4] hover:border-[#8D9A83] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] aspect-square rounded-[1px] text-[#3B3A38]"
+                style={{ minHeight: '52px', minWidth: '52px' }}
                 aria-label={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -287,6 +286,11 @@ export default function ProductClient({
                 </svg>
               </button>
             </div>
+
+            {/* pdp__sensory */}
+            <p className="text-p2 text-[#3B3A38]">
+              {displayDesc}
+            </p>
 
             {/* pdp__accordions */}
             {product.description && (
@@ -392,6 +396,8 @@ export default function ProductClient({
     </main>
   );
 }
+
+
 
 
 

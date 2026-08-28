@@ -8,6 +8,14 @@ import { useCart, parsePrice } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
 
 // Icons
+function BagIconOutline() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
+      <path d="M2 4h12l-1.5 9H3.5L2 4Z" />
+      <path d="M5 4V2.5a3 3 0 0 1 6 0V4" />
+    </svg>
+  );
+}
 function BtnArrow({ className = '' }: { className?: string }) {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className={`btn-arrow flex-shrink-0 ${className}`}>
@@ -158,14 +166,29 @@ function ProductCard({ product }: { product: WooProduct }) {
         </p>
 
         <button
-          type="button"
-          onClick={handleQuickAdd}
-          disabled={product.inStock === false}
-          className="w-full h-[42px] border border-[#D8CFC4] text-[0.75rem] font-normal tracking-[0.1em] uppercase text-[#3B3A38] transition-colors duration-[800ms] hover:border-[#8D9A83] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center bg-transparent mt-auto"
-          style={{ fontFamily: 'var(--font-inter)' }}
-        >
-          {product.inStock === false ? 'Sold Out' : quickAdded ? 'Added to Cart' : 'Add to Cart'}
-        </button>
+            type="button"
+            onClick={handleQuickAdd}
+            disabled={product.inStock === false}
+            aria-label={`Add ${product.name} to cart`}
+            className="w-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] inline-flex items-center justify-center gap-1.5 border border-[#3B3A38] bg-transparent text-[#3B3A38] px-3 py-2 text-[0.6875rem] font-normal tracking-[0.06em] hover:bg-[#3B3A38] hover:text-[#F8F5F1] active:bg-[#3B3A38] active:text-[#F8F5F1] transition-colors duration-[400ms] mt-auto disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ minHeight: '42px', fontFamily: 'var(--font-inter)', whiteSpace: 'nowrap' }}
+          >
+            {product.inStock === false ? (
+              'Sold out'
+            ) : quickAdded ? (
+              <>
+                Added
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0 ml-1">
+                  <polyline points="1 6 4.5 9.5 11 2.5" />
+                </svg>
+              </>
+            ) : (
+              <>
+                <BagIconOutline />
+                Add to Cart
+              </>
+            )}
+          </button>
       </div>
     </Link>
   );
@@ -271,4 +294,6 @@ function ShopContent({ products }: { products: WooProduct[] }) {
 export default function ShopClient({ products }: { products: WooProduct[] }) {
   return <ShopContent products={products} />;
 }
+
+
 
