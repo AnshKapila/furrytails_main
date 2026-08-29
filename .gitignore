@@ -12,3 +12,8 @@ deploy/
 # stray curl output from local verification
 *.tmp.json
 pdp.html
+
+# TS incremental build cache - regenerated on every typecheck/build.
+# Must not reach the build server: with GitHub deploys the whole repo is the
+# build input, and a stale cache from another machine/TS version is noise.
+tsconfig.tsbuildinfo

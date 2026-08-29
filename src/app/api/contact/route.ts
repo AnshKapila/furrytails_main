@@ -64,6 +64,16 @@ function oneLine(value: string): string {
   return value.replace(/[\r\n]+/g, ' ').trim();
 }
 
+/** Escape before interpolating user input into the HTML part of the email. */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(req: Request) {
   const apiKey = process.env.BREVO_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
@@ -122,7 +132,31 @@ export async function POST(req: Request) {
         // So hitting reply in the inbox answers the customer directly.
         replyTo: { email, name },
         subject: `Website enquiry from ${name}`,
-        textContent: `${message}\n\n—\nFrom: ${name} <${email}>\nSent from the furrytailjoy.com contact form`,
+        // Sender details go FIRST, and without angle brackets. The previous
+        // version put them in a footer as "From: Name <a@b.com>" and the
+        // address was disappearing — a bare <a@b.com> parses as an unknown HTML
+        // tag and gets dropped, so the reply address never reached the inbox.
+        textContent: [
+          `Name:  ${name}`,
+          `Email: ${email}`,
+          '',
+          'Message:',
+          message,
+          '',
+          '--',
+          'Sent from the furrytailjoy.com contact form.',
+          'Reply to this email to answer the customer directly.',
+        ].join('\n'),
+        htmlContent: [
+          '<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#3B3A38;line-height:1.6">',
+          `<p style="margin:0 0 4px"><strong>Name:</strong> ${escapeHtml(name)}</p>`,
+          `<p style="margin:0 0 16px"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>`,
+          '<p style="margin:0 0 6px"><strong>Message:</strong></p>',
+          `<p style="margin:0;white-space:pre-wrap">${escapeHtml(message)}</p>`,
+          '<hr style="border:none;border-top:1px solid #E9E2D7;margin:20px 0">',
+          '<p style="margin:0;font-size:13px;color:#8D9A83">Sent from the furrytailjoy.com contact form. Reply to this email to answer the customer directly.</p>',
+          '</div>',
+        ].join(''),
       }),
       cache: 'no-store',
     });
