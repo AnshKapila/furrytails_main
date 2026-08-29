@@ -578,7 +578,7 @@ function InstagramSection() {
 // â”€â”€â”€ Contact form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', company: '' });
   const [errors, setErrors] = useState<Partial<typeof form>>({});
 
   function validate() {
@@ -602,7 +602,7 @@ function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message, company: '' }),
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message, company: form.company }),
       });
       if (!res.ok) throw new Error('Request failed');
       setStatus('success');
@@ -627,6 +627,15 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4" data-kite-form-type="contact" data-kite-conversion="contact" data-kite-event="contact_completed" data-kite-conversion-hook>
+      {/* Honeypot. A person never sees this, so a person never fills it; bots
+          fill every field they find. /api/contact drops any submission where it
+          has a value, and answers 200 so the bot gets no signal. Hidden with
+          off-screen positioning rather than display:none — some bots skip
+          display:none fields. */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+        <label htmlFor="contact-company">Company</label>
+        <input id="contact-company" name="company" type="text" tabIndex={-1} autoComplete="off" value={form.company} onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))} />
+      </div>
       <div className="flex flex-col gap-1.5">
         <label htmlFor="contact-name" className="text-[0.625rem] font-normal tracking-[0.15em] uppercase text-[#68735F]">Name</label>
         <input id="contact-name" name="name" type="text" autoComplete="name" required value={form.name} onChange={(e) => { setForm((f) => ({ ...f, name: e.target.value })); setErrors((er) => ({ ...er, name: undefined })); }} className={fieldClass(errors.name)} placeholder="Your name" />
@@ -1087,18 +1096,27 @@ export default function Home() {
           data-kite-surface="home.hero"
           data-kite-surface-type="hero"
         >
-          {/* Mobile Video (Cropped) */}
+          {/* Hero video — ONE element, not two.
+              Previously the mobile and desktop videos were separate <video>
+              elements toggled with `block md:hidden`. display:none does not
+              reliably stop a browser fetching a source, so a phone could pull
+              both: 1.6 MB + 2.3 MB of webm before anything rendered.
+              `media` on <source> makes the browser pick exactly one.
+              Evaluated once at load rather than on resize, which is fine here.
+              object-position differs per breakpoint, so it moves to the class. */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover object-center block md:hidden"
+            className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
           >
-            <source src="/mobile_hero.webm" type="video/webm" />
-            <source src="/mobile_hero_opt.mp4" type="video/mp4" />
-                    </video>
-  
+            <source src="/mobile_hero.webm" type="video/webm" media="(max-width: 767px)" />
+            <source src="/mobile_hero_opt.mp4" type="video/mp4" media="(max-width: 767px)" />
+            <source src="/desktop_hero.webm" type="video/webm" />
+            <source src="/desktop_hero_opt.mp4" type="video/mp4" />
+          </video>
+
           {/* Mobile Overlay: bottom-to-top gradient up to 40% height for text legibility */}
           <div
             aria-hidden="true"
@@ -1111,17 +1129,6 @@ export default function Home() {
             }}
           />
 
-          {/* Desktop Video */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover object-right hidden md:block"
-          >
-            <source src="/desktop_hero.webm" type="video/webm" />
-            <source src="/desktop_hero_opt.mp4" type="video/mp4" />
-          </video>
 
           {/* Desktop Overlay: bottom-left quadrant radial gradient for text legibility */}
           <div

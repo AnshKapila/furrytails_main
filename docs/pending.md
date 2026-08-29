@@ -2,6 +2,9 @@
 
 Canonical list of what's left. Updated 2026-08-28.
 
+**Ansh has handed over.** The 2.5D/3D homepage effects were dropped by the
+client and are not happening.
+
 **Live and working:** furrytailjoy.com serves the Next.js frontend, catalogue
 reads from WooCommerce, COD orders complete end to end, order emails deliver via
 authenticated SMTP, the contact form relays through Brevo, cache exclusions are
@@ -165,29 +168,12 @@ Full detail in `docs/client-requirements.md`. The two that block most:
 
 ---
 
-## 6. Frontend · Ansh
+## 6. Frontend · Ansh — handed over
 
-- [ ] **2.5D/3D homepage effects** — client-requested, still not started, and the
-      most visible gap. Approach in `docs/build-brief.md` §3.8: layered parallax
-      on the existing transparent PNGs, cursor tilt, sticky depth reveals. CSS
-      transforms rather than Three.js; disable on mobile; respect
-      `prefers-reduced-motion`.
-
-- [ ] **Hidden honeypot field on the contact form.** `/api/contact` already drops
-      submissions where a `company` field is filled, but the form has no such
-      hidden input, so the check never fires. A few lines, and the cheapest spam
-      defence available.
-
-- [ ] **Hero video double-load.** `src/app/page.tsx` has two `<video>` elements
-      toggled with `block md:hidden` / `hidden md:block`. `display:none` doesn't
-      reliably prevent the fetch, so mobile may download both. Fix with one
-      `<video>` and `<source media="...">`. Add a `poster` — the hero is blank
-      until the video starts.
-
-- [ ] **`src/app/page.tsx` is mangled** — 1,263 lines compressed to ~32, with a
-      BOM and corrupted UTF-8 in the comments (`â€"` for `—`). It builds and no
-      mojibake reaches the page, but it is effectively unmaintainable. Whatever
-      tool did this should not be run again.
+- [ ] **`src/app/page.tsx` still carries a BOM and mojibake in its comments**
+      (`â€"` for `—`). Ansh has reformatted the file, so it is readable again
+      (1358 lines), but the encoding damage in comments remains. Cosmetic —
+      no mojibake reaches the rendered page.
 
 ### What is load-bearing in ProductClient.tsx
 
