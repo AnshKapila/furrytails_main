@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 
@@ -21,7 +21,7 @@ export function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[numbe
       role="img"
       aria-label={`${marker.label}: ${marker.caption}`}
     >
-      {/* Icon — lifts further and shifts to moss on hover */}
+      {/* Icon â€” lifts further and shifts to moss on hover */}
       <div
         style={{
           color: hovered ? '#68735F' : '#BEB8AF',
@@ -31,19 +31,11 @@ export function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[numbe
       >
         {marker.icon}
       </div>
-      {/* Label — unified H3 styling for all cards */}
-      <h3
-        className="text-[1.125rem] leading-snug"
-        style={{
-          fontFamily: 'var(--font-cormorant), Georgia, serif',
-          fontWeight: 400,
-          color: hovered ? '#68735F' : '#3B3A38',
-          transition: 'color 250ms ease',
-        }}
-      >
+      {/* Label â€” unified H3 styling for all cards */}
+      <h3 className={`text-h3 transition-colors duration-[250ms] ${hovered ? 'text-[#68735F]' : 'text-[#3B3A38]'}`}>
         {marker.label}
       </h3>
-      {/* Caption — starts dimmer so the reveal is more noticeable */}
+      {/* Caption â€” starts dimmer so the reveal is more noticeable */}
       <p
         className="text-[0.625rem] font-light leading-snug max-w-[180px]"
         style={{
@@ -58,3 +50,4 @@ export function TrustMarkerItem({ marker }: { marker: typeof TRUST_MARKERS[numbe
     </div>
   );
 }
+
