@@ -278,6 +278,28 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [filterOpen, sortOpen]);
 
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        setActiveRitual('All');
+        setActivePet('All pets');
+        setActiveSort('default');
+        
+        setTimeout(() => {
+          const element = document.querySelector(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   const baseFiltered = products.filter((p) => {
     const prod = p as any;
     const ritualMatch = activeRitual === 'All' || p.category === activeRitual;
