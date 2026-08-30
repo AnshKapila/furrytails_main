@@ -617,7 +617,7 @@ function ContactForm() {
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8D9A83" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mb-6"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
           <h3 className="text-h3 text-[#3B3A38] mb-3">Message received</h3>
           <p className="text-p2 text-[#68735F]">We will be in touch within a day or two.</p>
-          <button onClick={() => { setStatus('idle'); setForm({ name: '', email: '', subject: 'general', message: '' }); }} className="mt-8 px-6 py-2 border border-[#3B3A38] text-[0.625rem] font-normal tracking-[0.15em] uppercase text-[#3B3A38] hover:bg-[#3B3A38] hover:text-[#F8F5F1] transition-colors duration-[400ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83]">
+          <button onClick={() => { setStatus('idle'); setForm({ name: '', email: '', company: '', message: '' }); }} className="mt-8 px-6 py-2 border border-[#3B3A38] text-[0.625rem] font-normal tracking-[0.15em] uppercase text-[#3B3A38] hover:bg-[#3B3A38] hover:text-[#F8F5F1] transition-colors duration-[400ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83]">
             Close
           </button>
         </div>
