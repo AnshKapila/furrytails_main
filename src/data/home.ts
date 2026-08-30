@@ -498,10 +498,10 @@ export const footer = {
   tagline: 'Natural care, considered.',
   shopLinks: [
     { label: 'All Products', href: '/shop' },
-    { label: 'Ritual', href: '/shop?ritual=Daily%20Ritual' },
-    { label: 'Defense', href: '/shop?ritual=Defense' },
-    { label: 'Remedy', href: '/shop?ritual=Remedy' },
-    { label: 'Refresh', href: '/shop?ritual=Refresh' },
+    { label: 'Ritual', href: '/shop#ritual' },
+    { label: 'Defense', href: '/shop#defense' },
+    { label: 'Remedy', href: '/shop#remedy' },
+    { label: 'Refresh', href: '/shop#refresh' },
   ],
   companyLinks: [
     { label: 'Our Story', href: '/about' },

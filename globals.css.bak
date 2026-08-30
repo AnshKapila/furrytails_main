@@ -282,5 +282,3 @@ nextjs-portal {
   font-weight: 300;
   line-height: 1.6;
 }
-
-html { scroll-behavior: smooth; }

@@ -417,7 +417,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
           if (catProducts.length === 0) return null;
 
           return (
-            <section key={cat.id} id={cat.title.toLowerCase()} className="max-w-[1200px] mx-auto px-6 md:px-8 mb-24 md:mb-32">
+            <section key={cat.id} id={cat.title.toLowerCase()} className="scroll-mt-32 max-w-[1200px] mx-auto px-6 md:px-8 mb-24 md:mb-32">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-12 border-b border-[#E9E2D7] pb-6">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38] mb-2">
