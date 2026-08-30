@@ -200,7 +200,7 @@ export const pillars = [
 
 export const ourRange = {
   eyebrow: 'Our range',
-  heading: 'Five products, made with care.',
+  heading: 'Seven products, made with care.',
 };
 
 // ── All Products ─────────────────────────────────────────────────────────────

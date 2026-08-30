@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
@@ -393,42 +393,65 @@ function ShopContent({ products }: { products: WooProduct[] }) {
           </div>
         </div>
       </section>
-      {/* Category Sections */}
-      {CATEGORY_MAP.map((cat) => {
-        const catProducts = filtered.filter(p => p.category === cat.id);
-        
-        if (catProducts.length === 0) return null;
-
-        return (
-          <section key={cat.id} id={cat.title.toLowerCase()} className="max-w-[1200px] mx-auto px-6 md:px-8 mb-24 md:mb-32">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-12 border-b border-[#E9E2D7] pb-6">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38] mb-2">
-                  {cat.title}
-                </h2>
-                <span
-                  className="text-[0.875rem] font-normal text-[#8D9A83]"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+      {/* Category Sections or Filtered Grid */}
+      {hasActiveFilter || activeSort !== 'default' ? (
+        <section className="max-w-[1200px] mx-auto px-6 md:px-8 mb-24 md:mb-32 min-h-[50vh]">
+          {filtered.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+              {filtered.map((product, i) => (
+                <div
+                  key={product.id}
+                  className="transition-[opacity,transform] ease-out"
+                  style={{ transitionDuration: '800ms', transitionDelay: `${(i % 12) * 50}ms` }}
                 >
-                  {cat.note}
-                </span>
-              </div>
-              <span
-                className="text-[0.75rem] font-normal tracking-[0.1em] uppercase text-[#BEB8AF]"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {catProducts.length} {catProducts.length === 1 ? 'product' : 'products'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {catProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                  <ProductCard product={product} />
+                </div>
               ))}
             </div>
-          </section>
-        );
-      })}
+          ) : (
+            <div className="flex flex-col items-center justify-center pt-12 pb-24 text-center">
+              <p className="text-[#3B3A38] text-h3 mb-2">No products found</p>
+              <p className="text-[#68735F] text-p2">Try adjusting your filters to find what you're looking for.</p>
+            </div>
+          )}
+        </section>
+      ) : (
+        CATEGORY_MAP.map((cat) => {
+          const catProducts = filtered.filter(p => p.category === cat.id);
+          
+          if (catProducts.length === 0) return null;
+
+          return (
+            <section key={cat.id} id={cat.title.toLowerCase()} className="max-w-[1200px] mx-auto px-6 md:px-8 mb-24 md:mb-32">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 md:mb-12 border-b border-[#E9E2D7] pb-6">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-display font-light text-[#3B3A38] mb-2">
+                    {cat.title}
+                  </h2>
+                  <span
+                    className="text-[0.875rem] font-normal text-[#8D9A83]"
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                  >
+                    {cat.note}
+                  </span>
+                </div>
+                <span
+                  className="text-[0.75rem] font-normal tracking-[0.1em] uppercase text-[#BEB8AF]"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  {catProducts.length} {catProducts.length === 1 ? 'product' : 'products'}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {catProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </section>
+          );
+        })
+      )}
 
       {/* Shipping link */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-8">

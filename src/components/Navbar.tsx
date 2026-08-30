@@ -115,7 +115,11 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="nav-link text-[0.72rem] font-normal tracking-[0.12em] uppercase transition-colors duration-500 relative after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-[#68735F] after:transition-all after:duration-[800ms] hover:after:w-full focus:outline-none text-[#3B3A38] hover:text-[#68735F] focus-visible:text-[#68735F]"
+                className={`nav-link text-[0.72rem] font-normal tracking-[0.12em] uppercase transition-colors duration-500 relative after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:transition-all after:duration-[800ms] hover:after:w-full focus:outline-none ${
+                  isHome && !scrolled 
+                    ? 'text-white hover:text-white/80 after:bg-white focus-visible:text-white/80' 
+                    : 'text-[#3B3A38] hover:text-[#68735F] after:bg-[#68735F] focus-visible:text-[#68735F]'
+                }`}
                 data-kite-nav={link.label.toLowerCase().replace(/\s+/g, '-')}
                 data-kite-nav-location="header"
               >
@@ -186,9 +190,9 @@ export default function Navbar() {
               aria-label={open ? 'Close navigation' : 'Open navigation'}
               aria-expanded={open}
             >
-              <span className={`block h-px bg-[#3B3A38] transition-all duration-300 ${open ? 'w-6 rotate-45 translate-y-[7px]' : 'w-6'}`} />
-              <span className={`block h-px bg-[#3B3A38] transition-all duration-200 ${open ? 'opacity-0 w-0' : 'w-4'}`} />
-              <span className={`block h-px bg-[#3B3A38] transition-all duration-300 ${open ? 'w-6 -rotate-45 -translate-y-[7px]' : 'w-6'}`} />
+              <span className={`block h-px transition-all duration-300 ${open ? 'w-6 rotate-45 translate-y-[7px] bg-[#3B3A38]' : `w-6 ${isHome && !scrolled ? 'bg-white' : 'bg-[#3B3A38]'}`}`} />
+              <span className={`block h-px transition-all duration-200 ${open ? 'opacity-0 w-0 bg-[#3B3A38]' : `w-4 ${isHome && !scrolled ? 'bg-white' : 'bg-[#3B3A38]'}`}`} />
+              <span className={`block h-px transition-all duration-300 ${open ? 'w-6 -rotate-45 -translate-y-[7px] bg-[#3B3A38]' : `w-6 ${isHome && !scrolled ? 'bg-white' : 'bg-[#3B3A38]'}`}`} />
             </button>
           </div>
 
