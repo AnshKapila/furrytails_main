@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -13,11 +13,11 @@ export async function POST(req: Request) {
 
     if (BRAZE_API_KEY) {
       // Connect to Braze
-      const res = await fetch(\\/users/track\, {
+      const res = await fetch(`${BRAZE_REST_ENDPOINT}/users/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: \Bearer \\,
+          Authorization: `Bearer ${BRAZE_API_KEY}`,
         },
         body: JSON.stringify({
           attributes: [
