@@ -157,8 +157,8 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
       rafRef.current = 0;
       if (isStatic() || pinRangeRef.current <= 0) return;
 
-      // Use scrollY relative to cached section top — unaffected by ancestor clip.
-      const scrolledIntoSection = window.scrollY - sectionTopRef.current;
+      // Use dynamically fetched section top - completely immune to layout shifts
+      const scrolledIntoSection = -root.getBoundingClientRect().top;
       const rawProgress = scrolledIntoSection / pinRangeRef.current;
       const progress = Math.min(1, Math.max(0, rawProgress));
 
@@ -271,20 +271,6 @@ export default function FeaturedIngredients({ stories }: { stories: IngredientSt
               >
                 Nature Behind Every Formula
               </h2>
-              <p
-                className="hidden md:block"
-                style={{
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: '0.5625rem',
-                  fontWeight: 300,
-                  letterSpacing: '0.04em',
-                  color: '#8D9A83',
-                  lineHeight: 1.4,
-                  margin: 0,
-                }}
-              >
-                Every botanical is selected with intention — gentle, purposeful and crafted for everyday pet wellness.
-              </p>
             </div>
 
             {/* Right: secondary CTA */}

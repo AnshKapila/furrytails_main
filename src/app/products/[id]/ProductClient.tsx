@@ -333,7 +333,7 @@ export default function ProductClient({
           </div>
 
           {/* INFO - Prototype Structure */}
-          <div className="flex flex-col gap-5 md:gap-6 pt-4 lg:pt-8">
+          <div className="flex flex-col gap-5 md:gap-6">
 
             {/* pdp__family */}
             <div className="flex items-center gap-2">
@@ -357,9 +357,9 @@ export default function ProductClient({
             </div>
 
             {/* pdp__name */}
-            <h1 className="text-h2 text-[#3B3A38] mb-2">
+            <h2 className="text-h2 text-[#3B3A38] mb-2">
               {product.name}
-            </h1>
+            </h2>
 
             {/* pdp__fragrance & pdp__price */}
             <div className="flex flex-col gap-1">
@@ -370,7 +370,7 @@ export default function ProductClient({
               )}
               
               <div className="flex items-end gap-3 mt-1">
-                <div className="text-h1 text-[#3B3A38]">
+                <div className="text-h2 text-[#3B3A38]">
                   {displayPrice}
                 </div>
                 {displayStandardPrice && (
