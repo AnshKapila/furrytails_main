@@ -234,6 +234,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
   
   const [activeRitual, setActiveRitual] = useState<string>('All');
   const [activePet, setActivePet] = useState<string>('All pets');
+  const [activeScent, setActiveScent] = useState<string>('All scents');
   const [activeSort, setActiveSort] = useState<SortValue>('default');
 
   const [filterHovered, setFilterHovered] = useState(false);
@@ -252,6 +253,10 @@ function ShopContent({ products }: { products: WooProduct[] }) {
   const [petPinned, setPetPinned] = useState(false);
   const petOpen = petHovered || petPinned;
 
+  const [scentHovered, setScentHovered] = useState(false);
+  const [scentPinned, setScentPinned] = useState(false);
+  const scentOpen = scentHovered || scentPinned;
+
   const filterRef = useRef<HTMLDivElement>(null);
   const sortRef = useRef<HTMLDivElement>(null);
 
@@ -262,6 +267,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     { label: 'Remedy', id: 'Remedy' }
   ];
   const PET_FILTERS = ['Dog', 'Cat', 'Dog & Cat'];
+  const SCENT_FILTERS = ['Santal & White Tea', 'Fig & Neroli', 'Hinoki & Bamboo', 'Mimosa & Tonka', 'Yuzu & White Musk'];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -281,10 +287,11 @@ function ShopContent({ products }: { products: WooProduct[] }) {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
-      if (hash) {
-        setActiveRitual('All');
-        setActivePet('All pets');
-        setActiveSort('default');
+        if (hash) {
+          setActiveRitual('All');
+          setActivePet('All pets');
+          setActiveScent('All scents');
+          setActiveSort('default');
         
         setTimeout(() => {
           const element = document.querySelector(hash);
@@ -311,7 +318,9 @@ function ShopContent({ products }: { products: WooProduct[] }) {
       else if (activePet === 'Cat') petMatch = prod.species === 'cat' || prod.species === 'both';
     }
     
-    return ritualMatch && petMatch;
+    const scentMatch = activeScent === 'All scents' || (prod.variantLabel && prod.variantLabel.includes(activeScent));
+
+    return ritualMatch && petMatch && scentMatch;
   });
 
   const filtered = [...baseFiltered].sort((a, b) => {
@@ -321,8 +330,8 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     return 0;
   });
 
-  const hasActiveFilter = activeRitual !== 'All' || activePet !== 'All pets';
-  const activeFilterCount = (activeRitual !== 'All' ? 1 : 0) + (activePet !== 'All pets' ? 1 : 0);
+  const hasActiveFilter = activeRitual !== 'All' || activePet !== 'All pets' || activeScent !== 'All scents';
+  const activeFilterCount = (activeRitual !== 'All' ? 1 : 0) + (activePet !== 'All pets' ? 1 : 0) + (activeScent !== 'All scents' ? 1 : 0);
   const activeSortLabel = SORT_OPTIONS.find((o) => o.value === activeSort)?.label ?? 'Sort';
 
   const triggerBase = "inline-flex items-center gap-1.5 px-3 py-1.5 border rounded-full text-[0.625rem] font-normal tracking-[0.06em] uppercase transition-colors duration-[800ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83]";
@@ -353,7 +362,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
           <p className="text-[0.5625rem] font-normal tracking-[0.12em] uppercase text-[#BEB8AF]" style={{ fontFamily: 'var(--font-inter)' }}>
             {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
             {hasActiveFilter && (
-              <button type="button" onClick={() => { setActiveRitual('All'); setActivePet('All pets'); }} className="ml-3 underline underline-offset-2 text-[#8D9A83] hover:text-[#3B3A38] transition-colors duration-[800ms] focus:outline-none">
+              <button type="button" onClick={() => { setActiveRitual('All'); setActivePet('All pets'); setActiveScent('All scents'); }} className="ml-3 underline underline-offset-2 text-[#8D9A83] hover:text-[#3B3A38] transition-colors duration-[800ms] focus:outline-none">
                 Clear
               </button>
             )}
@@ -402,6 +411,15 @@ function ShopContent({ products }: { products: WooProduct[] }) {
                   <div className={`px-4 pb-4 pt-2 flex flex-wrap gap-1.5 ${petOpen ? 'block' : 'hidden'}`}>
                     {['All pets', ...PET_FILTERS].map((pet) => (
                       <button key={pet} type="button" onClick={() => setActivePet(pet)} className={`px-2.5 py-1 text-[0.625rem] font-normal tracking-[0.04em] rounded-[2px] transition-colors ${activePet === pet ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'bg-[#F0EBE4] text-[#68735F] hover:text-[#3B3A38]'}`}>{pet}</button>
+                    ))}
+                  </div>
+
+                  <button type="button" onClick={() => setScentPinned((v) => !v)} onMouseEnter={() => setScentHovered(true)} onMouseLeave={() => setScentHovered(false)} className="w-full flex items-center justify-between px-4 py-3 text-[0.75rem] font-normal text-[#3B3A38] hover:text-[#68735F] focus:outline-none border-t border-[#E9E2D7]">
+                    <span>Scent</span><ChevronIcon open={scentOpen} />
+                  </button>
+                  <div className={`px-4 pb-4 pt-2 flex flex-wrap gap-1.5 ${scentOpen ? 'block' : 'hidden'}`}>
+                    {['All scents', ...SCENT_FILTERS].map((scent) => (
+                      <button key={scent} type="button" onClick={() => setActiveScent(scent)} className={`px-2.5 py-1 text-[0.625rem] font-normal tracking-[0.04em] rounded-[2px] transition-colors ${activeScent === scent ? 'bg-[#3B3A38] text-[#F8F5F1]' : 'bg-[#F0EBE4] text-[#68735F] hover:text-[#3B3A38]'}`}>{scent}</button>
                     ))}
                   </div>
                 </div>
