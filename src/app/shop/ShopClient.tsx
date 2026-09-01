@@ -267,7 +267,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     { label: 'Remedy', id: 'Remedy' }
   ];
   const PET_FILTERS = ['Dog', 'Cat', 'Dog & Cat'];
-  const SCENT_FILTERS = ['Santal & White Tea', 'Fig & Neroli', 'Hinoki & Bamboo', 'Mimosa & Tonka', 'Yuzu & White Musk'];
+  const SCENT_FILTERS = ['Santal & White Tea', 'Fig & Neroli', 'Hinoki & Bamboo', 'Yuzu & White Musk'];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
