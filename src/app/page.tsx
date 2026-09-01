@@ -1288,7 +1288,7 @@ export default function Home() {
         <OurRangeGallery />
 
         {/* â”€â”€ 7. FEATURED INGREDIENTS â€” scroll-pinned split editorial â”€â”€â”€â”€â”€â”€â”€â”€ */}
-        <FeaturedIngredients stories={stories.stories} />
+        <FeaturedIngredients stories={stories.stories.slice(0, 4)} />
 
         {/* â”€â”€ 7.1 RETAILERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <RetailersSection />
