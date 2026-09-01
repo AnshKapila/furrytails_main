@@ -1,4 +1,4 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -66,12 +66,12 @@ export default function JournalPage() {
 
           {/* SECTION 1 â€” Hero */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
-            <div className="max-w-[720px]">
-              <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">
-                The Journal
+            <div className="max-w-[800px]">
+              <p className="text-[0.6875rem] md:text-[0.75rem] font-medium tracking-[0.15em] uppercase text-[#8D9A83] mb-6">
+                THE JOURNAL
               </p>
               <h1
-                className="text-[#3B3A38] leading-[1.08] tracking-[-0.02em] mb-6"
+                className="text-[#3B3A38] leading-[1.08] tracking-[-0.02em] mb-8 md:mb-10"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2.75rem, 4.5vw, 4rem)', fontWeight: 300 }}
               >
                 Slow reading for the pet parent who pays attention.

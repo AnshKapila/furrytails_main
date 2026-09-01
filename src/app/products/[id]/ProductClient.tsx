@@ -357,7 +357,7 @@ export default function ProductClient({
             </div>
 
             {/* pdp__name */}
-            <h1 className="text-h1 text-[#3B3A38] mb-2">
+            <h1 className="text-h2 text-[#3B3A38] mb-2">
               {product.name}
             </h1>
 
