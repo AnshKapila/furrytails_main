@@ -50,6 +50,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/journal/what-we-found-in-most-pet-shampoos`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/journal/the-probiotic-question`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/shipping`,
       lastModified,
       changeFrequency: 'monthly',

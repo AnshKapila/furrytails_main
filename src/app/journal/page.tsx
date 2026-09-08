@@ -20,14 +20,16 @@ export const metadata: Metadata = {
 const ARTICLES = [
   {
     id: 'probiotic-question',
+    href: '/journal/the-probiotic-question',
     category: 'Ingredients',
-    readTime: '4 min read',
+    readTime: '6 min read',
     title: 'The probiotic question.',
     description: 'Leuconostoc/Radish Root Ferment Filtrate. How a fermentation-derived system replaces the synthetic preservatives that most brands quietly rely on. What it is, how it works, and why it is harder to formulate with.',
     imageSrc: '/journal_probiotic.webp',
   },
   {
     id: 'santal-primer',
+    href: '#',
     category: 'Fragrance',
     readTime: '3 min read',
     title: 'Santal: a primer.',
@@ -36,6 +38,7 @@ const ARTICLES = [
   },
   {
     id: 'monsoon-ritual',
+    href: '#',
     category: 'Seasonal',
     readTime: '4 min read',
     title: 'The monsoon ritual.',
@@ -44,6 +47,7 @@ const ARTICLES = [
   },
   {
     id: 'reading-inci-list',
+    href: '#',
     category: 'Guide',
     readTime: '6 min read',
     title: 'Reading the INCI list.',
@@ -141,8 +145,14 @@ export default function JournalPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              {ARTICLES.map((article) => (
-                <Link key={article.id} href="#" className="group flex flex-col gap-6 outline-none">
+              {ARTICLES.map((article) => {
+                // The written pieces get an underlined call to action so the one
+                // card a reader can actually open is distinguishable from the
+                // placeholders still pointing at '#'.
+                const isPublished = article.href !== '#';
+
+                return (
+                <Link key={article.id} href={article.href} className="group flex flex-col gap-6 outline-none">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] bg-[#E9E2D7]">
                     <Image
                       src={article.imageSrc}
@@ -167,7 +177,11 @@ export default function JournalPage() {
                     <p className="text-[0.875rem] font-light text-[#3B3A38]/80 leading-[1.65] mb-5">
                       {article.description}
                     </p>
-                    <span className="text-[0.75rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
+                    <span
+                      className={`text-[0.75rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1 ${
+                        isPublished ? 'underline decoration-[#8D9A83] decoration-1 underline-offset-4' : ''
+                      }`}
+                    >
                       Read the full article
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
                         <line x1="1" y1="6" x2="11" y2="6" />
@@ -176,7 +190,8 @@ export default function JournalPage() {
                     </span>
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </section>
 

@@ -113,7 +113,7 @@ export default function ArticlePage() {
               That does not mean every sulphate is automatically dangerous, or that every unfamiliar surfactant is better. It means formulation matters.
             </p>
             <p>
-              <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">Amino acid surfactants</Link> and other mild surfactant systems can be designed to cleanse effectively while taking a gentler approach to the skin. Furry Tail's <Link href="/products/gentle-daily-shampoo" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link>, for example, uses amino-acid-derived cleansing agents including sodium cocoyl isethionate, alongside cocamidopropyl betaine and decyl glucoside.
+              <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">Amino acid surfactants</Link> and other mild surfactant systems can be designed to cleanse effectively while taking a gentler approach to the skin. Furry Tail's <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link>, for example, uses amino-acid-derived cleansing agents including sodium cocoyl isethionate, alongside cocamidopropyl betaine and decyl glucoside.
             </p>
             <p>
               The result is intentionally less theatrical: less foam, more attention to what happens after the rinse.
