@@ -1114,9 +1114,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover object-center md:object-right"
           >
-            <source src="/mobile_hero.webm" type="video/webm" media="(max-width: 767px)" />
             <source src="/mobile_hero_opt.mp4" type="video/mp4" media="(max-width: 767px)" />
-            <source src="/desktop_hero.webm" type="video/webm" />
             <source src="/desktop_hero_opt.mp4" type="video/mp4" />
           </video>
 

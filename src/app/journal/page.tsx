@@ -95,7 +95,7 @@ export default function JournalPage() {
               <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] items-stretch">
                 <div className="relative aspect-square md:aspect-auto md:h-full overflow-hidden bg-[#1c1a18]">
                   <Image
-                    src="/images/journal/what-we-found/main.png"
+                    src="/images/journal/what-we-found/main.webp"
                     alt="Pet shampoo bottle beside an open ingredient label and grooming essentials"
                     fill
                     className="object-cover object-center opacity-85 transition-transform duration-700 group-hover:scale-[1.03]"

@@ -1,4 +1,4 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: '/journal/what-we-found-in-most-pet-shampoos',
     title: 'The pet shampoo label is telling you more than the front of the bottle.',
     description: 'A closer look at pet shampoo ingredients, surfactants, fragrance, preservatives and what a considered formula should actually do.',
-    images: ['/images/journal/what-we-found/main.png'],
+    images: ['/images/journal/what-we-found/main.webp'],
   },
 };
 
@@ -45,7 +45,7 @@ export default function ArticlePage() {
           <div className="max-w-[1000px] mx-auto px-6 md:px-8 mb-16 md:mb-24">
             <div className="relative aspect-[16/9] md:aspect-[21/9] w-full bg-[#E9E2D7] overflow-hidden rounded-[2px]">
               <Image 
-                src="/images/journal/what-we-found/main.png"
+                src="/images/journal/what-we-found/main.webp"
                 alt="Pet shampoo bottle beside an open ingredient label and grooming essentials"
                 fill
                 className="object-cover"
@@ -77,7 +77,7 @@ export default function ArticlePage() {
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img1.png" alt="Shampoo formulation and mixing" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img1.webp" alt="Shampoo formulation and mixing" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">A shampoo is a formulation, not a list of fashionable ingredients</h2>
@@ -120,7 +120,7 @@ export default function ArticlePage() {
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img4.png" alt="A clear bottle containing a flower" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img4.webp" alt="A clear bottle containing a flower" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">"Natural" is not the same as well formulated</h2>
@@ -154,7 +154,7 @@ export default function ArticlePage() {
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img3.png" alt="Herbs and essential oils" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img3.webp" alt="Herbs and essential oils" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">Fragrance deserves more thought than "fresh"</h2>
@@ -227,7 +227,7 @@ export default function ArticlePage() {
             </ul>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img2.png" alt="Dog being washed" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img2.webp" alt="Dog being washed" width={800} height={500} className="w-full rounded-[2px]" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">The better shampoo is not the louder one</h2>

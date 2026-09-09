@@ -35,7 +35,16 @@ const nextConfig = {
   reactStrictMode: true,
   devIndicators: false,
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'store.furrytailjoy.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.kite.ai',
+      }
+    ],
   },
   allowedDevOrigins: ['*.sandbox.kite.ai'],
 
