@@ -34,12 +34,29 @@ import { setCdnPurgeStatus } from '@/lib/cdn-purge-status';
 const API_BASE = 'https://developers.hostinger.com';
 
 export async function register() {
-  // Middleware and edge routes each get their own runtime; only purge from the
-  // Node server, and never from a dev server.
+  // Middleware and edge routes each get their own runtime; only the Node server
+  // should purge. Edge isolates have their own globalThis, so returning here
+  // cannot clobber the record the Node runtime writes below.
   if (process.env.NEXT_RUNTIME !== 'nodejs') return;
-  if (process.env.NODE_ENV !== 'production') return;
 
   const at = new Date().toISOString();
+  const nodeEnv = process.env.NODE_ENV ?? 'unset';
+
+  // Recorded before any further guard so that an early return still leaves
+  // evidence on /api/v1/health. Without this, "instrumentation did not run"
+  // was ambiguous: it could mean register() was never called, or that it bailed
+  // at a guard without recording. Overwritten by the real outcome below.
+  setCdnPurgeStatus({ at, ok: false, detail: `started (NODE_ENV=${nodeEnv})` });
+
+  // Skip an actual dev server only. This previously required
+  // NODE_ENV === 'production' and returned silently, which disabled the purge
+  // in any runtime where NODE_ENV was merely unset - and left no trace saying
+  // so. The credentials below are the real gate: without them this is a no-op,
+  // and a dev machine will not have them set.
+  if (nodeEnv === 'development') {
+    setCdnPurgeStatus({ at, ok: false, detail: 'skipped - development' });
+    return;
+  }
 
   const token = process.env.HOSTINGER_API_TOKEN;
   const username = process.env.HOSTINGER_ACCOUNT_USERNAME;
