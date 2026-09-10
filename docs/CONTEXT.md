@@ -74,7 +74,7 @@ source*, not a *runtime dependency*.
 | Node | >= 22.17.1 |
 | Dev port | **4321** (`next dev -p 4321`) |
 | Build output | `output: 'standalone'` — deployment depends on this, leave it |
-| Images | `images: { unoptimized: true }` — deliberate; the host has 2 cores, so pre-compress instead and let the CDN serve |
+| Images | Next's optimizer, enabled in `21295b3`. Was `unoptimized: true` (2 cores, pre-compress instead), but local PNGs were converted to WebP and the videos dropped in the same commit, which cut the payload enough to afford it. `remotePatterns` allows `store.furrytailjoy.com` and `static.kite.ai`; `/_next/image` is verified serving 200s in production |
 | Hosting | Hostinger (Business plan), Node.js Web App, 2 cores / 3 GB |
 
 Scripts: `dev`, `build`, `start`, `lint`, `typecheck` (`tsc --noEmit`),
@@ -639,27 +639,79 @@ easy mistake — Next's standalone output **excludes `.next/static` and
 `public/`**, and if they are missing the site loads with no CSS and no images,
 which looks exactly like a broken build.
 
-### Purge the CDN. Step 3 is not optional.
+### CDN staleness — fixed in three layers, but know the failure
+
+This was the single worst bug of the build. Hostinger's CDN does **not** purge
+on deploy, and Next marks fully-static pages `Cache-Control: s-maxage=31536000`
+(one year), which hcdn honours — a document was caught held at the edge with
+`Age: 67138` (~18 h). Chunk filenames are content-hashed, so that stale
+document asked for the *previous* build's `/_next/static/chunks/*`: the
+stylesheet 404'd and the page painted with **no CSS at all**. The visible
+symptom was one photo filling the whole viewport for ~5 s — a `next/image`
+`fill` element whose `relative` container had lost its Tailwind class — before
+the client gave up and reloaded. A successful deploy looked like it had
+silently failed.
+
+Three independent layers now, because no single one covers every request:
+
+| Layer | Covers | Verified |
+|---|---|---|
+| `middleware.ts` | Document requests (`Accept: text/html`) get `public, max-age=0, must-revalidate` | hcdn returns `x-hcdn-cache-status: DYNAMIC` — the HTML is no longer edge-cached |
+| `revalidate = 300` in `src/app/layout.tsx` + `expireTime: 3600` in `next.config.js` | Everything else, e.g. a crawler sending `Accept: */*`, which middleware deliberately skips | `s-maxage=300, stale-while-revalidate=3300` |
+| `src/instrumentation.ts` | Purges via the Hostinger API on server start — which on Hostinger *is* a redeploy; there is no deploy webhook | `/api/v1/health` reports `purged furrytailjoy.com` |
+
+`Cache-Control` cannot be set from `next.config.js`'s `headers()` — Next
+overwrites it for statically generated routes. Middleware works; that was
+measured, and the finding is recorded in `middleware.ts` so nobody retries it.
+
+**Purging is no longer a manual step**, provided these are set in hPanel →
+Web App → Environment (all three, or it skips):
 
 ```
-1. python scripts/make-deploy-zip.py
-2. upload + deploy in hPanel
-3. purge the CDN            <- easy to forget
-4. verify
+HOSTINGER_API_TOKEN         hpanel.hostinger.com/api  (Dev tools > API)
+HOSTINGER_ACCOUNT_USERNAME  u124723716   <- the account username, not the domain
+HOSTINGER_PURGE_DOMAIN      furrytailjoy.com
 ```
 
-Next.js marks fully-static pages `Cache-Control: s-maxage=31536000` (one year)
-and Hostinger's CDN honours it, so without a purge a successful deploy looks
-like it silently failed.
+Verify after a deploy — hPanel exposes only the **build** log, so the purge's
+stdout is unreachable and this endpoint is the only window onto it:
+
+```bash
+curl -s https://furrytailjoy.com/api/v1/health
+```
+
+`cdnPurge.detail` names the outcome: `purged <domain>`, `skipped - not set:
+<vars>`, `HTTP 4xx` (token invalid or unscoped), `started (NODE_ENV=…)`, or
+`instrumentation did not run`. `purgeEnv` reports whether each var is present
+(booleans only) read independently of instrumentation, so a missing var cannot
+be confused with instrumentation failing.
+
+Two traps when reading it:
+
+- **The app runs more than one worker.** Each runs `register()` separately, so
+  right after a deploy you may hit one still mid-purge — two different
+  `cdnPurge.at` timestamps were observed from the same deploy. Check twice.
+- **The purge is fire-and-forget**, so `started` a fraction of a second after
+  boot just means the API call is in flight. It is not a failure.
+
+`scripts/purge-cdn.ps1` purges on demand and is the fallback if the automatic
+one ever stops. It resolves the account username from the API and then polls
+until the served document's stylesheet actually resolves — a purge takes minutes
+to propagate globally, and checking once reports a false failure.
+
+Diagnosing it by hand:
 
 ```bash
 curl -sI https://furrytailjoy.com/ | grep -i "age:\|x-hcdn-cache-status"
 ```
 
 `x-hcdn-cache-status: HIT` with a large `Age` means you are looking at a cached
-page. `DYNAMIC` means it is fresh. **The faster tell: add a query string** — if
-`?cb=1` behaves differently from the plain URL, it is cache, not code. This
-masked a working change four times during the build.
+page; `DYNAMIC` means fresh. **The faster tell: add a query string** — if
+`?cb=1` behaves differently from the plain URL, it is cache, not code. That
+masked a working change four times during the build. Beware the inverse too:
+reading a cached response and concluding the *code* is broken. A CDN `HIT`
+replays the headers from whenever it was stored, so a fix can look inert when it
+is actually live — that happened while fixing this very bug.
 
 **The store subdomain has two cache layers and its own CDN entry.** A store-side
 change needs LiteSpeed purged *inside WordPress* (Toolbox → Purge All) **and**

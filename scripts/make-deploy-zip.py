@@ -77,6 +77,10 @@ EXCLUDED = {
     "update_components.js": "one-off dev script",
     "update_components.py": "one-off dev script",
     "Dog_and_cat_with_product_202608122340.mp4": "2.5 MB, unused, not in public/",
+    # Generator leftover, not part of the app - see CONTEXT.md section 4. Listed
+    # here rather than left unrecognised: a permanent warning on every run is
+    # what teaches you to skim the block, which is how the video above got in.
+    "title_logo.jpg": "generator leftover; the real logos are in public/",
     ".gitignore": "not a build input",
     ".gitattributes": "not a build input",
     ".git_init.lock": "leftover",
