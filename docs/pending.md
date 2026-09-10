@@ -186,6 +186,12 @@ Legal entity for invoices: **Clamique Personal Care Private Limited**.
 - [ ] **Zero-orders alert** during business hours. The only check that catches a
       silently broken payment path — uptime monitors return 200 throughout.
 
+- [ ] **Mail delivery check.** Now a proven silent-failure path (see Part Two).
+      An SMTP auth failure takes out order confirmations while the store keeps
+      accepting orders normally and returning 200 — invisible to uptime
+      monitoring and to the customer. Cheapest version: send a scheduled test
+      to a mailbox you read, and treat silence as the alarm.
+
 - [ ] **Verify a backup restore actually works**, on staging, once. An untested
       backup isn't a backup.
 
@@ -269,6 +275,14 @@ furrytailjoy.com serves the Next.js frontend, the catalogue reads from
 WooCommerce, orders complete end to end, order emails deliver via authenticated
 SMTP, the contact form relays through Brevo, cache exclusions are verified, and
 Razorpay works in test mode. COD is currently disabled.
+
+**Order emails are only as live as the SMTP credentials.** They broke once,
+2026-09-01 (`SMTP Error: Could not authenticate.`), taking down every
+WooCommerce email including order confirmations — and nothing surfaced it
+except an admin notice in wp-admin. Fixed and re-verified. Config and the
+diagnostic order are in `docs/build-brief.md` → Outbound mail; read that
+before debugging mail again, it rules out the cron and template false leads
+in one step.
 
 ---
 

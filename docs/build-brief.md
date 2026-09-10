@@ -95,6 +95,66 @@ no cart API, no CORS, no cookie handling, no custom JSON contract.
 Products added in wp-admin appear on the site automatically. `/products/[id]` is
 already a dynamic route, so new slugs work with no rebuild.
 
+### Outbound mail
+
+All WordPress/WooCommerce mail goes out over authenticated SMTP via **WP Mail
+SMTP**, from the store subdomain. The contact form on the apex is a separate
+path entirely (Brevo API, see the env var table in `pending.md`) — fixing one
+does not fix the other.
+
+```
+Mailer      smtp
+Host        smtp.hostinger.com
+Port        465
+SMTPSecure  ssl          (implicit TLS; correct for Hostinger)
+SMTPAuth    true
+Username    the FULL mailbox address, not the local part
+Credentials in the DATABASE, not wp-config.php constants
+```
+
+`SMTPAutoTLS` is left on and is a **no-op** on port 465 — the connection is
+already encrypted before it would apply. Don't spend time on it.
+
+**Port 465 + ssl is correct. Do not "fix" it to 587.**
+
+#### When mail stops
+
+Broke once, 2026-09-01: `SMTP Error: Could not authenticate.` — every
+WooCommerce email silently failed, order confirmations included.
+
+The trap is that **nothing surfaces this to a customer or to you.** WooCommerce
+reports the order as placed and shows no error; the failure only appears in the
+WP Mail SMTP admin notice, which needs someone logged into wp-admin to see it.
+
+Diagnose in this order:
+
+1. **Read the error string.** WP Mail SMTP's notice names the failing layer
+   precisely. `Source: WooCommerce - class-wc-email.php` means the mail reached
+   the mailer and died at the SMTP hop — so the email template is enabled, the
+   trigger fired, and WP-Cron is **not** involved. That rules out three
+   expensive false leads in one line.
+2. **`Could not authenticate` is credentials, nothing else.** Log into
+   Hostinger webmail with that exact mailbox and password. Same credentials as
+   SMTP, so one check settles wrong password, deleted mailbox, and expired mail
+   plan. If webmail refuses you, no WordPress setting will help.
+3. Confirm the username is the **full email address**.
+4. Re-enter the password by **typing, not pasting** — a trailing space is
+   invisible in the field and produces exactly this error.
+5. Confirm the From address matches the authenticated mailbox. Hostinger will
+   not let you authenticate as one mailbox and send as another.
+6. Only then consider a Hostinger-side block: repeated failed auth attempts and
+   hourly send-limit breaches both surface as auth failures.
+
+`SMTP Debug: [empty]` alongside an auth error is expected — the server closes
+the conversation before there is anything to log. It is not a second fault.
+
+**Verifying the fix needs two steps.** WP Mail SMTP → Tools → Email Test proves
+the transport. It does **not** prove WooCommerce mail, which is what actually
+broke — trigger a real order confirmation or new-account email as well.
+
+Versions at the time of the incident: WordPress 7.0.4, PHP 8.3.31,
+WP Mail SMTP 4.9.0.
+
 ---
 
 ## 2. Already verified — don't re-investigate
