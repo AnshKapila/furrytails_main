@@ -145,7 +145,37 @@ def main() -> int:
     mb = os.path.getsize(OUT) / 1024 / 1024
     print(f"\nDone: {OUT}  ({mb:.1f} MB, {count} files)")
     print("\nUpload via hPanel > Websites > Deploy Web App > Upload your files.")
-    print('Expect "Generating static pages" to complete with one page per product plus the static routes.\n')
+    print('Expect "Generating static pages" to complete with one page per product plus the static routes.')
+
+    # Set these BEFORE deploying. Hostinger builds and then starts the app in
+    # one go, and the CDN purge below runs at startup - so a var added
+    # afterwards misses the boot it was meant to affect and needs a restart.
+    print("\nEnv vars in hPanel (set BEFORE clicking deploy):")
+    print("  NEXT_PUBLIC_WP_URL          https://store.furrytailjoy.com")
+    print("                              NEXT_PUBLIC_* is inlined at BUILD time")
+    print("  BREVO_API_KEY               contact form; read at runtime")
+    print("  HOSTINGER_API_TOKEN         hpanel.hostinger.com/api > Generate token")
+    print("  HOSTINGER_ACCOUNT_USERNAME  u124723716")
+    print("  HOSTINGER_PURGE_DOMAIN      furrytailjoy.com")
+
+    # Hostinger's CDN pins the prerendered HTML at the edge (Next serves it
+    # with s-maxage=31536000) and does not purge on deploy. Every build gets
+    # fresh content-hashed chunk names, so a stale document requests chunks
+    # this build does not have: the stylesheet 404s and the site paints with
+    # NO CSS until the browser gives up and reloads. src/instrumentation.ts
+    # purges at startup once the three HOSTINGER_* vars above are set.
+    print("\nAfter the deploy finishes, check the Web App log for:")
+    print("  [cdn-purge] purged furrytailjoy.com")
+    print("Missing that line means the CDN is still serving the previous")
+    print("build's HTML and the site will load unstyled. Fix it with:")
+    print(r"  powershell -File scripts\purge-cdn.ps1")
+    print("or hPanel > Performance > CDN > Purge cache.")
+
+    # The hashes in this zip are irrelevant - Hostinger runs its own build, so
+    # only the deployed document can say which stylesheet is current.
+    print("\nVerify (the hash comes from Hostinger's build, not this zip):")
+    print(r'  curl -s https://furrytailjoy.com/ | grep -o "chunks/[a-z0-9]*\.css"')
+    print("then confirm that file returns 200, not 404.\n")
     return 0
 
 

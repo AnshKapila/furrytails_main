@@ -34,6 +34,19 @@ const nextConfig = {
   },
   reactStrictMode: true,
   devIndicators: false,
+
+  // Caps stale-while-revalidate on prerendered pages. Next's default is a year,
+  // so with src/app/layout.tsx's ``revalidate = 300`` the header would read
+  // ``s-maxage=300, stale-while-revalidate=31536000`` - letting a CDN serve
+  // year-old HTML while it refreshes behind the request. That is the failure
+  // this whole chain guards against: chunk filenames are content-hashed, so
+  // stale HTML asks for a previous build's chunks, the stylesheet 404s, and the
+  // page paints with no CSS.
+  //
+  // middleware.ts already stops document requests being cached at all; this
+  // covers the ``Accept: */*`` requests it deliberately skips, so a crawler or
+  // prefetch cannot leave a long-lived entry for browsers to inherit.
+  expireTime: 3600,
   images: {
     remotePatterns: [
       {

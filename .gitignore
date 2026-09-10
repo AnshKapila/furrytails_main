@@ -4,7 +4,13 @@ node_modules/
 .next/
 
 deploy/
+
+# Secrets. Only .env.local was ignored, which left a plain .env tracked - and
+# runtime secrets (Brevo key, Hostinger API token) belong in hPanel's Web App
+# environment, never in the repo.
+.env
 .env.local
+.env*.local
 
 # stray debug output from local verification
 *.tmp.json
