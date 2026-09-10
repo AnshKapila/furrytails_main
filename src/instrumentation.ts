@@ -1,3 +1,5 @@
+import { setCdnPurgeStatus } from '@/lib/cdn-purge-status';
+
 // Purge the Hostinger CDN cache once, when the server starts.
 //
 // Hostinger's CDN does not purge on deploy (unlike Vercel's, which Next's
@@ -25,6 +27,9 @@
 //   HOSTINGER_ACCOUNT_USERNAME  hosting account username (scripts/purge-cdn.ps1
 //                               prints it)
 //   HOSTINGER_PURGE_DOMAIN      e.g. furrytailjoy.com
+//
+// Every outcome is recorded for /api/v1/health, because hPanel does not expose
+// the runtime log - stdout here is effectively write-only.
 
 const API_BASE = 'https://developers.hostinger.com';
 
@@ -34,18 +39,33 @@ export async function register() {
   if (process.env.NEXT_RUNTIME !== 'nodejs') return;
   if (process.env.NODE_ENV !== 'production') return;
 
+  const at = new Date().toISOString();
+
   const token = process.env.HOSTINGER_API_TOKEN;
   const username = process.env.HOSTINGER_ACCOUNT_USERNAME;
   const domain = process.env.HOSTINGER_PURGE_DOMAIN;
 
-  if (!token || !username || !domain) return;
+  // Reported by name rather than silently skipped: a dropped env var is the
+  // likeliest way this safety net dies, and it is otherwise undetectable.
+  const missing = [
+    !token && 'HOSTINGER_API_TOKEN',
+    !username && 'HOSTINGER_ACCOUNT_USERNAME',
+    !domain && 'HOSTINGER_PURGE_DOMAIN',
+  ].filter(Boolean);
+
+  if (missing.length) {
+    const detail = `skipped - not set: ${missing.join(', ')}`;
+    setCdnPurgeStatus({ at, ok: false, detail });
+    console.log(`[cdn-purge] ${detail}`);
+    return;
+  }
 
   const url =
-    `${API_BASE}/api/hosting/v1/accounts/${encodeURIComponent(username)}` +
-    `/websites/${encodeURIComponent(domain)}/cache/clear`;
+    `${API_BASE}/api/hosting/v1/accounts/${encodeURIComponent(username!)}` +
+    `/websites/${encodeURIComponent(domain!)}/cache/clear`;
 
   // Deliberately not awaited: a purge must never delay or fail the boot that
-  // is meant to be serving the new build. Failures are logged, not thrown.
+  // is meant to be serving the new build. Failures are recorded, not thrown.
   void (async () => {
     try {
       const res = await fetch(url, {
@@ -58,17 +78,21 @@ export async function register() {
       });
 
       if (res.ok) {
+        setCdnPurgeStatus({ at, ok: true, detail: `purged ${domain}` });
         console.log(`[cdn-purge] purged ${domain}`);
         return;
       }
 
-      // Body carries the reason (bad token, wrong username, CDN not enabled on
-      // the plan), which is the whole difficulty of debugging this remotely.
+      // The body carries the reason (bad token, wrong username, CDN not enabled
+      // on the plan) and can name account details, so it goes to stdout only -
+      // /api/v1/health is public and records the status code alone.
       const body = await res.text().catch(() => '');
+      setCdnPurgeStatus({ at, ok: false, detail: `HTTP ${res.status}` });
       console.error(
         `[cdn-purge] failed for ${domain}: ${res.status} ${res.statusText} ${body.slice(0, 500)}`,
       );
     } catch (err) {
+      setCdnPurgeStatus({ at, ok: false, detail: 'request failed' });
       console.error(`[cdn-purge] request error for ${domain}:`, err);
     }
   })();
