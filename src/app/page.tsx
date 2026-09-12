@@ -532,10 +532,10 @@ function RetailersSection() {
           Present at multiple places for your convenience.
         </h2>
         <div className="flex items-center justify-center gap-10 md:gap-16">
-          <a href="https://amazon.in" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Amazon">
+          <a href="https://www.amazon.in/stores/Furrytailhappilyeverafter/page/97B098CD-267D-4C57-A394-8BBFDC3D4593?lp_asin=B0HGMDL3MN&ref_=cm_sw_r_apin_ast_store_JVCNK509GKQG866QJWKN" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Amazon">
             <img src="/amazon_logo.webp" alt="Amazon" className="w-full object-contain" />
           </a>
-          <a href="https://flipkart.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Flipkart">
+          <a href="https://dl.flipkart.com/s/ufyiOXNNNN" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Flipkart">
             <img src="/flipkart_logo.webp" alt="Flipkart" className="w-full object-contain" />
           </a>
         </div>
@@ -558,7 +558,7 @@ function InstagramSection() {
               We are building a community for pets and the people who love them. Join us on Instagram to share your experience and see how Furrytail is making relationships better.
             </p>
             <div className="w-full flex justify-center md:justify-start">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[0.75rem] font-medium tracking-[0.1em] uppercase text-[#F8F5F1] bg-[#3B3A38] px-8 py-3.5 hover:bg-[#68735F] transition-colors duration-300">
+              <a href="https://www.instagram.com/furrytailjoy/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[0.75rem] font-medium tracking-[0.1em] uppercase text-[#F8F5F1] bg-[#3B3A38] px-8 py-3.5 hover:bg-[#68735F] transition-colors duration-300">
                 Follow Us
               </a>
             </div>
