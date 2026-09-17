@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -445,6 +445,35 @@ export default function ProductClient({
                 <svg width="20" height="20" viewBox="0 0 24 24" fill={isWishlisted ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
+              </button>
+
+              {/* Share Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (navigator.share) {
+                    navigator.share({
+                      title: product.name,
+                      url: window.location.href,
+                    }).catch(console.error);
+                  } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert("Link copied to clipboard!");
+                  }
+                }}
+                className="flex items-center justify-center gap-1.5 transition-colors duration-[400ms] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] text-[#3B3A38] border border-[#D8CFC4] hover:border-[#8D9A83] aspect-square w-[52px] md:border-[#3B3A38] md:bg-transparent md:hover:bg-[#3B3A38] md:hover:border-[#3B3A38] md:hover:text-[#F8F5F1] md:px-6 md:w-auto md:aspect-auto text-[0.6875rem] tracking-[0.06em] uppercase rounded-[1px]"
+                style={{ minHeight: '52px', fontFamily: 'var(--font-inter)', whiteSpace: 'nowrap' }}
+                aria-label="Share product"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                </svg>
+                <span className="hidden md:inline">Share</span>
               </button>
             </div>
 
