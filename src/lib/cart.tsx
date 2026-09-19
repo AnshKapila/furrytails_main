@@ -9,6 +9,8 @@
 
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { WP_URL } from '@/lib/config';
+import { useProducts } from '@/hooks/useProducts';
+import { parsePrice } from '@/lib/price';
 
 export interface CartItem {
   id: string;         // product id
@@ -33,7 +35,8 @@ type CartAction =
   | { type: 'UPDATE_QTY'; id: string; variantId?: string; qty: number }
   | { type: 'OPEN_DRAWER' }
   | { type: 'CLOSE_DRAWER' }
-  | { type: 'HYDRATE'; items: CartItem[] };
+  | { type: 'HYDRATE'; items: CartItem[] }
+  | { type: 'SYNC_PRICES'; items: CartItem[] };
 
 function key(id: string, variantId?: string) {
   return variantId ? `${id}__${variantId}` : id;
@@ -42,6 +45,7 @@ function key(id: string, variantId?: string) {
 function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'HYDRATE':
+    case 'SYNC_PRICES':
       return { ...state, items: action.items };
 
     case 'ADD': {
@@ -117,6 +121,39 @@ const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, { items: [], drawerOpen: false });
+  const { products, loading } = useProducts();
+
+  // Sync prices with the live catalog to ensure the cart doesn't display stale prices
+  // from an old session, which would lead to a mismatch at checkout.
+  useEffect(() => {
+    if (loading || !products.length || state.items.length === 0) return;
+
+    let changed = false;
+    const syncedItems = state.items.map(item => {
+      const liveProduct = products.find(p => p.id === item.id);
+      if (!liveProduct) return item;
+
+      let livePriceStr = liveProduct.price;
+      if (item.variantId && liveProduct.variants) {
+        const liveVariant = liveProduct.variants.find(v => v.id === item.variantId);
+        if (liveVariant) {
+          livePriceStr = liveVariant.price;
+        }
+      }
+
+      const livePriceNum = parsePrice(livePriceStr);
+
+      if (item.price !== livePriceStr || item.priceNum !== livePriceNum) {
+        changed = true;
+        return { ...item, price: livePriceStr, priceNum: livePriceNum };
+      }
+      return item;
+    });
+
+    if (changed) {
+      dispatch({ type: 'SYNC_PRICES', items: syncedItems });
+    }
+  }, [products, loading, state.items]);
 
   // Hydrate from localStorage on mount.
   // Per-item validation: drop any item that is missing required fields or has
