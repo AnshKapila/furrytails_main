@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getBaseUrl } from '@/lib/site-url';
 import { cormorant, inter } from './fonts';
 import './globals.css';
+import Script from 'next/script';
 import WhatsAppNudge from '@/components/WhatsAppNudge';
 import NewsletterPopup from '@/components/NewsletterPopup';
 
@@ -38,6 +39,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${inter.variable}`}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-QT9TBR0HC7" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QT9TBR0HC7');
+          `}
+        </Script>
         {children}
         <WhatsAppNudge />
         <NewsletterPopup />
