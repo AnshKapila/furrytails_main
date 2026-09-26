@@ -38,7 +38,7 @@ const ARTICLES = [
   },
   {
     id: 'monsoon-ritual',
-    href: '#',
+    href: '/journal/the-monsoon-ritual',
     category: 'Seasonal',
     readTime: '4 min read',
     title: 'The monsoon ritual.',
