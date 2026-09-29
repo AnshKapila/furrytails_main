@@ -47,7 +47,7 @@ const ARTICLES = [
   },
   {
     id: 'reading-inci-list',
-    href: '#',
+    href: '/journal/reading-the-inci-list',
     category: 'Guide',
     readTime: '6 min read',
     title: 'Reading the INCI list.',
