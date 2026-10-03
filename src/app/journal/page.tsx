@@ -19,6 +19,15 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    id: 'ticks-fleas-indian-dog',
+    href: '/journal/ticks-fleas-and-the-indian-dog',
+    category: 'Care',
+    readTime: '7 min read',
+    title: 'Ticks, fleas & the Indian dog.',
+    description: 'The tick you can see is only part of the story. Where Indian dogs actually encounter ticks, why grooming isn\'t parasite control, what to do when you find one, and a five-step routine built around exposure.',
+    imageSrc: '/images/journal/ticks-fleas-indian-dog/main.webp',
+  },
+  {
     id: 'how-often-bathe-dog',
     href: '/journal/how-often-should-you-bathe-your-dog',
     category: 'Grooming',
