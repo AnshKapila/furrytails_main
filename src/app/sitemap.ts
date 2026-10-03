@@ -74,6 +74,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/journal/how-often-should-you-bathe-your-dog`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/shipping`,
       lastModified,
       changeFrequency: 'monthly',

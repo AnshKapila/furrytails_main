@@ -19,6 +19,15 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    id: 'how-often-bathe-dog',
+    href: '/journal/how-often-should-you-bathe-your-dog',
+    category: 'Grooming',
+    readTime: '7 min read',
+    title: 'How often should you bathe your dog?',
+    description: 'The question isn\'t monthly. Coat, lifestyle, outdoor exposure, skin health and climate tell you far more than a calendar does. When to brush, when to clean the paws, and when a full bath actually makes sense.',
+    imageSrc: '/images/journal/how-often-bathe-dog/main.webp',
+  },
+  {
     id: 'probiotic-question',
     href: '/journal/the-probiotic-question',
     category: 'Ingredients',
