@@ -146,22 +146,12 @@ function ProductCard({ product }: { product: WooProduct }) {
           >
             {product.name}
           </h3>
-          <div className="flex flex-col items-end flex-shrink-0">
-            <span
-              className="text-[0.875rem] font-normal text-[#3B3A38]"
-              style={{ fontFamily: 'var(--font-inter)' }}
-            >
-              {displayPrice}
-            </span>
-            {product.standardPrice && (
-              <span
-                className="text-[0.75rem] font-normal text-[#BEB8AF] line-through mt-0.5"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {product.standardPrice}
-              </span>
-            )}
-          </div>
+          <span
+            className="text-[0.875rem] font-normal text-[#3B3A38] flex-shrink-0"
+            style={{ fontFamily: 'var(--font-inter)' }}
+          >
+            {displayPrice}
+          </span>
         </div>
         
 
