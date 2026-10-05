@@ -373,11 +373,6 @@ export default function ProductClient({
                 <div className="text-h2 text-[#3B3A38]">
                   {displayPrice}
                 </div>
-                {displayStandardPrice && (
-                  <span className="text-p1 text-[#BEB8AF] line-through leading-[1.3] mb-2">
-                    {displayStandardPrice}
-                  </span>
-                )}
               </div>
             </div>
 

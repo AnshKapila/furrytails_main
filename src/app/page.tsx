@@ -245,14 +245,6 @@ function ProductCard({ product }: { product: ProductItem }) {
             >
               {displayPrice}
             </span>
-            {product.standardPrice && (
-              <span
-                className="text-[0.875rem] font-light text-[#BEB8AF]/70 line-through leading-none"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {product.standardPrice}
-              </span>
-            )}
           </div>
           {/* Add to Cart */}
           <button
@@ -292,14 +284,6 @@ function ProductCard({ product }: { product: ProductItem }) {
               >
                 {displayPrice}
               </span>
-              {product.standardPrice && (
-                <span
-                  className="text-[0.75rem] font-light text-[#BEB8AF]/70 line-through leading-none"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  {product.standardPrice}
-                </span>
-              )}
             </div>
           </div>
 
