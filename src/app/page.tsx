@@ -438,7 +438,8 @@ function CommitmentCardItem({ commitment }: { commitment: typeof CORE_COMMITMENT
 function TrustMarkersSection() {
   return (
     <section
-      className="py-16 md:py-20 bg-[#F8F5F1] border-t border-[#E9E2D7]"
+      id="thoughtfully-formulated"
+      className="py-16 md:py-20 bg-[#F8F5F1] border-t border-[#E9E2D7] scroll-mt-24"
       data-kite-surface="home.trust"
       data-kite-surface-type="testimonial"
     >
@@ -1068,6 +1069,18 @@ export default function Home() {
     const t = setTimeout(() => setHeroVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  // Deep links like /#thoughtfully-formulated: the page renders client-side and the
+  // product grid loads late, so the browser's native hash jump misses. Re-scroll once
+  // products have arrived and the layout above the target has settled.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const t = setTimeout(() => {
+      document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+    return () => clearTimeout(t);
+  }, [products.length]);
 
   return (
     <ClientProviders>
