@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getBaseUrl } from '../lib/site-url';
 import { fetchProductSlugs } from '../lib/woo';
+import { JOURNAL_ARTICLES, articlePath } from '../lib/journal';
 
 // Next.js serves this at `/sitemap.xml` automatically.
 //
@@ -46,44 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/journal`,
       lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/what-we-found-in-most-pet-shampoos`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/the-probiotic-question`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/the-monsoon-ritual`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/reading-the-inci-list`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/how-often-should-you-bathe-your-dog`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/journal/ticks-fleas-and-the-indian-dog`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
+      changeFrequency: 'weekly',
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/shipping`,
@@ -92,6 +57,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
   ];
+
+  // Journal entries come from the article registry, with real publish/modify
+  // dates so crawlers can tell which pieces actually changed.
+  const journalRoutes: MetadataRoute.Sitemap = JOURNAL_ARTICLES.map((a) => ({
+    url: `${baseUrl}${articlePath(a.slug)}`,
+    lastModified: new Date(a.dateModified),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    images: [`${baseUrl}${a.image.src}`],
+  }));
 
   const slugs = await fetchProductSlugs();
   const productRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
@@ -102,5 +77,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...productRoutes];
+  return [...staticRoutes, ...journalRoutes, ...productRoutes];
 }

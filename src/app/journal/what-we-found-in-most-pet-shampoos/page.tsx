@@ -3,25 +3,54 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'What We Found in Most Pet Shampoos | Furry Tail',
-  description: 'A closer look at pet shampoo ingredients, surfactants, fragrance, preservatives and what a considered formula should actually do.',
-  alternates: { canonical: '/journal/what-we-found-in-most-pet-shampoos' },
-  openGraph: {
-    url: '/journal/what-we-found-in-most-pet-shampoos',
-    title: 'The pet shampoo label is telling you more than the front of the bottle.',
-    description: 'A closer look at pet shampoo ingredients, surfactants, fragrance, preservatives and what a considered formula should actually do.',
-    images: ['/images/journal/what-we-found/main.webp'],
+const SLUG = 'what-we-found-in-most-pet-shampoos';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "What ingredients should be in a dog shampoo?",
+    a: "A routine dog shampoo generally needs an appropriate cleansing system plus ingredients that support the coat and skin, such as conditioners or moisturising components where appropriate. There is no universal \"best\" ingredient list because formulation depends on the product's purpose, the dog's skin and coat, and whether the shampoo is routine or medicated.",
   },
-};
+  {
+    q: "What ingredients should I avoid in pet shampoo?",
+    a: "Avoid thinking in terms of a universal blacklist. Some ingredients can be appropriate in one formulation and inappropriate in another depending on concentration, species and purpose. Particular care is warranted with strong detergents, fragrance ingredients and [essential oils, especially for cats](/journal/reading-the-inci-list). The finished formulation and intended use matter more than a simplistic \"natural versus synthetic\" label.",
+  },
+  {
+    q: "Are sulphates bad for dog shampoo?",
+    a: "Not every sulphate should be treated identically, but stronger detergent systems can be irritating or drying depending on the ingredient, concentration and exposure. A good shampoo should be judged by its complete cleansing system rather than by lather alone. Mild surfactant systems can provide effective cleansing without making maximum foam the goal.",
+  },
+  {
+    q: "Can cats use dog shampoo?",
+    a: "Only when the specific product is explicitly formulated and labelled for cats as well as dogs. Cats have different metabolic and grooming considerations, so a product suitable for dogs should not automatically be assumed to be suitable for cats. Furry Tail's current [Gentle Daily Shampoo](/products/gentle-daily-shampoo-santal-white-tea) range is designated for dogs and cats.",
+  },
+  {
+    q: "Are essential oils safe in pet shampoo?",
+    a: "Essential oils require species-specific consideration. Some essential oils and their constituents can be harmful to cats, and topical exposure can become ingestion through grooming. A product's fragrance system should therefore be evaluated as part of the complete formulation rather than judged simply by whether its ingredients are botanical.",
+  },
+  {
+    q: "What is the difference between cleansing and medicated pet shampoo?",
+    a: "Cleansing shampoos are primarily intended to remove dirt and excess oils from the coat. Medicated shampoos contain active ingredients intended to manage specific dermatological problems, such as bacterial or fungal conditions. They are not interchangeable, and therapeutic products may require veterinary guidance regarding application and contact time.",
+  },
+  {
+    q: "Does more foam mean a better pet shampoo?",
+    a: "No. Foam is largely a sensory and formulation characteristic; it is not a reliable measure of cleansing quality. A shampoo can clean effectively with a lower-lather surfactant system. What matters is how well the finished formula removes dirt and excess oil while remaining appropriate for the animal's skin and coat.",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
         
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +60,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Editorial</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>5 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               What We Found in Most Pet Shampoos.
@@ -50,6 +81,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -77,15 +109,15 @@ export default function ArticlePage() {
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img1.webp" alt="Shampoo formulation and mixing" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img1.webp" alt="A gentle pet shampoo formulation being mixed in a glass beaker" width={800} height={500} className="w-full rounded-[2px]" sizes="(max-width: 768px) 100vw, 700px" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">A shampoo is a formulation, not a list of fashionable ingredients</h2>
             <p>
-              A good pet shampoo has a fairly simple brief: remove dirt, excess oil and residue without making the skin feel like it has been scrubbed clean.
+              A good pet shampoo has a fairly simple brief: <Link href="/journal/the-monsoon-ritual" className="underline decoration-[#8D9A83] underline-offset-4">remove dirt</Link>, excess oil and residue without making the skin feel like it has been scrubbed clean.
             </p>
             <p>
-              Veterinary dermatology generally separates animal shampoos into three broad categories: <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">cleansing</Link>, antiparasitic and <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">medicated</Link>. A routine cleansing shampoo is fundamentally different from a product designed to manage infection, seborrhoea or parasites.
+              Veterinary dermatology generally separates animal shampoos into three broad categories: cleansing, <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">antiparasitic</Link> and medicated. A routine cleansing shampoo is fundamentally different from a product designed to manage infection, seborrhoea or parasites.
             </p>
             <p>
               This distinction matters. A shampoo containing chlorhexidine, for example, may have a legitimate place in veterinary dermatology. It does not automatically make sense as an everyday grooming shampoo. Medicated formulations are designed around a specific therapeutic purpose and should be used accordingly.
@@ -100,27 +132,27 @@ export default function ArticlePage() {
 
             <h2 className="text-3xl font-display mt-16 mb-6">Then there are the surfactants</h2>
             <p>
-              <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">Surfactants</Link> are the working part of shampoo. They help water spread across the coat, loosen oils and dirt, and lift that material away when the shampoo is rinsed. They are also responsible for much of what we perceive as "lather".
+              <Link href="/ingredients" className="underline decoration-[#8D9A83] underline-offset-4">Surfactants</Link> are the working part of shampoo. They help water spread across the coat, loosen oils and dirt, and lift that material away when the shampoo is rinsed. They are also responsible for much of what we perceive as "lather".
             </p>
             <p>
               And this is where marketing can distort the experience.<br />
               More foam does not necessarily mean more cleaning.
             </p>
             <p>
-              A review of companion-animal skin research notes that surfactants are common in pet shampoos and that their effect depends on the specific surfactant, concentration and exposure. Some detergents can irritate the <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">skin barrier</Link> and compromise function, particularly with inappropriate exposure.
+              A review of companion-animal skin research notes that surfactants are common in pet shampoos and that their effect depends on the specific surfactant, concentration and exposure. Some detergents can irritate the skin barrier and compromise function, particularly with inappropriate exposure.
             </p>
             <p>
               That does not mean every sulphate is automatically dangerous, or that every unfamiliar surfactant is better. It means formulation matters.
             </p>
             <p>
-              <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">Amino acid surfactants</Link> and other mild surfactant systems can be designed to cleanse effectively while taking a gentler approach to the skin. Furry Tail's <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link>, for example, uses amino-acid-derived cleansing agents including sodium cocoyl isethionate, alongside cocamidopropyl betaine and decyl glucoside.
+              Amino acid surfactants and other mild surfactant systems can be designed to cleanse effectively while taking a gentler approach to the skin. Furry Tail's <Link href="/products/gentle-daily-shampoo-santal-white-tea" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link>, for example, uses amino-acid-derived cleansing agents including sodium cocoyl isethionate, alongside cocamidopropyl betaine and decyl glucoside.
             </p>
             <p>
               The result is intentionally less theatrical: less foam, more attention to what happens after the rinse.
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img4.webp" alt="A clear bottle containing a flower" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img4.webp" alt="A clear glass bottle holding a single botanical flower, representing natural shampoo ingredients" width={800} height={500} className="w-full rounded-[2px]" sizes="(max-width: 768px) 100vw, 700px" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">"Natural" is not the same as well formulated</h2>
@@ -128,33 +160,33 @@ export default function ArticlePage() {
               This is perhaps the most persistent problem with reading pet-care labels.
             </p>
             <p>
-              An ingredient can be natural and still be inappropriate for a particular animal, concentration or formulation. An ingredient can also have a chemical-sounding <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">INCI</Link> name and perform a perfectly useful job.
+              An ingredient can be natural and still be inappropriate for a particular animal, concentration or formulation. An ingredient can also have a chemical-sounding <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">INCI</Link> name and perform a perfectly useful job.
             </p>
             <p>
               The word "natural" tells you very little on its own.
             </p>
             <p>
-              Take fragrance. A botanical essential oil may sound gentler than a synthetic fragrance molecule. But some <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">essential oils</Link> and their constituents can present species-specific risks, particularly for cats. Feline grooming behaviour also matters because topical substances may eventually be ingested through licking.
+              Take fragrance. A botanical essential oil may sound gentler than a synthetic fragrance molecule. But some <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">essential oils</Link> and their constituents can present species-specific risks, particularly for cats. Feline grooming behaviour also matters because topical substances may eventually be ingested through licking.
             </p>
             <p>
               This is why "natural" should never replace the more useful questions:<br />
               Which species? At what concentration? For what purpose? In what finished formula?
             </p>
             <p>
-              The same principle applies to <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">preservatives</Link>.
+              The same principle applies to <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">preservatives</Link>.
             </p>
             <p>
               A water-based product needs a preservation strategy. The absence of a conventional preservative does not automatically make a product better; the formula still needs to remain microbiologically stable.
             </p>
             <p>
-              Furry Tail's approach is different by design: the Gentle Daily Shampoo uses Leuconostoc/Radish Root Ferment Filtrate as part of its preservation system rather than synthetic preservatives, according to the current product formulation.
+              Furry Tail's approach is different by design: the Gentle Daily Shampoo uses <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">Leuconostoc/Radish Root Ferment Filtrate</Link> as part of its preservation system rather than synthetic preservatives, according to the current product formulation.
             </p>
             <p>
               The important point is not that one preservation philosophy is universally superior. It is that preservation is part of formulation, not an ingredient to remove for marketing purposes.
             </p>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img3.webp" alt="Herbs and essential oils" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img3.webp" alt="Fresh herbs and small bottles of essential oils used in pet shampoo fragrance" width={800} height={500} className="w-full rounded-[2px]" sizes="(max-width: 768px) 100vw, 700px" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">Fragrance deserves more thought than "fresh"</h2>
@@ -162,10 +194,10 @@ export default function ArticlePage() {
               Pet shampoo has traditionally been associated with a particular smell: unmistakably clean, often strong, sometimes difficult to place.
             </p>
             <p>
-              But <Link href="#" className="underline decoration-[#8D9A83] underline-offset-4">fragrance</Link> is not simply decoration.
+              But fragrance is not simply decoration.
             </p>
             <p>
-              For a premium grooming ritual, scent can change how the entire experience feels. At the same time, fragrance choices have to account for species, exposure and known sensitivities.
+              For a premium grooming ritual, scent can change how the entire experience feels (it is why we wrote <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">a whole primer on sandalwood</Link>). At the same time, fragrance choices have to account for species, exposure and known sensitivities.
             </p>
             <p>
               This becomes particularly important when dogs and cats share a product.
@@ -192,7 +224,7 @@ export default function ArticlePage() {
             </div>
 
             <p>
-              This is also why ingredient literacy is more valuable than memorising a blacklist.
+              This is also why <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">ingredient literacy</Link> is more valuable than memorising a blacklist.
             </p>
             <p>
               For example, veterinary sources recognise a wide range of legitimate ingredients in cleansing and medicated shampoos, depending on the intended use. Oatmeal, aloe, fatty acids, glycerin and other conditioning or moisturising components can appear in routine formulations, while ingredients such as chlorhexidine, miconazole or benzoyl peroxide have more targeted veterinary applications.
@@ -222,12 +254,12 @@ export default function ArticlePage() {
               </li>
               <li>
                 <strong>Is the product clearly a cleansing shampoo or a medicated treatment?</strong><br />
-                If your pet has persistent itching, redness, lesions, unusual hair loss or another skin problem, a grooming shampoo is not a substitute for veterinary assessment. Veterinary dermatology distinguishes routine cleansing from therapeutic treatment for good reason.
+                If your pet has persistent itching, redness, lesions, unusual hair loss or another skin problem, a grooming shampoo is not a substitute for veterinary assessment &ndash; and more baths are rarely the answer (see <Link href="/journal/how-often-should-you-bathe-your-dog" className="underline decoration-[#8D9A83] underline-offset-4">how often to bathe your dog</Link>). Veterinary dermatology distinguishes routine cleansing from therapeutic treatment for good reason.
               </li>
             </ul>
 
             <div className="my-16">
-              <Image src="/images/journal/what-we-found/img2.webp" alt="Dog being washed" width={800} height={500} className="w-full rounded-[2px]" />
+              <Image src="/images/journal/what-we-found/img2.webp" alt="A dog being washed with a gentle, low-lather pet shampoo" width={800} height={500} className="w-full rounded-[2px]" sizes="(max-width: 768px) 100vw, 700px" />
             </div>
 
             <h2 className="text-3xl font-display mt-16 mb-6">The better shampoo is not the louder one</h2>
@@ -255,48 +287,9 @@ export default function ArticlePage() {
             </div>
             
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-            
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What ingredients should be in a dog shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">A routine dog shampoo generally needs an appropriate cleansing system plus ingredients that support the coat and skin, such as conditioners or moisturising components where appropriate. There is no universal "best" ingredient list because formulation depends on the product's purpose, the dog's skin and coat, and whether the shampoo is routine or medicated.</p>
-              </div>
-              
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What ingredients should I avoid in pet shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Avoid thinking in terms of a universal blacklist. Some ingredients can be appropriate in one formulation and inappropriate in another depending on concentration, species and purpose. Particular care is warranted with strong detergents, fragrance ingredients and essential oils, especially for cats. The finished formulation and intended use matter more than a simplistic "natural versus synthetic" label.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are sulphates bad for dog shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Not every sulphate should be treated identically, but stronger detergent systems can be irritating or drying depending on the ingredient, concentration and exposure. A good shampoo should be judged by its complete cleansing system rather than by lather alone. Mild surfactant systems can provide effective cleansing without making maximum foam the goal.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can cats use dog shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Only when the specific product is explicitly formulated and labelled for cats as well as dogs. Cats have different metabolic and grooming considerations, so a product suitable for dogs should not automatically be assumed to be suitable for cats. Furry Tail's current Gentle Daily Shampoo range is designated for <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">dogs and cats</Link>.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are essential oils safe in pet shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Essential oils require species-specific consideration. Some essential oils and their constituents can be harmful to cats, and topical exposure can become ingestion through grooming. A product's fragrance system should therefore be evaluated as part of the complete formulation rather than judged simply by whether its ingredients are botanical.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What is the difference between cleansing and medicated pet shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Cleansing shampoos are primarily intended to remove dirt and excess oils from the coat. Medicated shampoos contain active ingredients intended to manage specific dermatological problems, such as bacterial or fungal conditions. They are not interchangeable, and therapeutic products may require veterinary guidance regarding application and contact time.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does more foam mean a better pet shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. Foam is largely a sensory and formulation characteristic; it is not a reliable measure of cleansing quality. A shampoo can clean effectively with a lower-lather surfactant system. What matters is how well the finished formula removes dirt and excess oil while remaining appropriate for the animal's skin and coat.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />

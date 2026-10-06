@@ -3,25 +3,58 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Ticks, Fleas & the Indian Dog: What Actually Works | Furry Tail',
-  description: 'Where Indian dogs actually encounter ticks, why grooming isn’t parasite control, what to do when you find a tick, and a five-step routine for tick and flea prevention.',
-  alternates: { canonical: '/journal/ticks-fleas-and-the-indian-dog' },
-  openGraph: {
-    url: '/journal/ticks-fleas-and-the-indian-dog',
-    title: 'Ticks, fleas & the Indian dog.',
-    description: 'Don’t build your parasite routine around the tick you can see. Build it around the exposure you can manage.',
-    images: ['/images/journal/ticks-fleas-indian-dog/main.webp'],
+const SLUG = 'ticks-fleas-and-the-indian-dog';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "How do I prevent ticks on my dog?",
+    a: "Effective tick prevention generally combines regular inspection with appropriate veterinary parasite control and sensible exposure management. Grooming can help you detect ticks early, while veterinarian-recommended preventives are designed specifically for parasite control. The right approach depends on the dog’s location, lifestyle, exposure and health.",
   },
-};
+  {
+    q: "How do dogs get ticks in India?",
+    a: "Dogs can encounter ticks through outdoor environments including vegetation, gardens and other areas where suitable hosts and tick habitats overlap. Indian research has documented ticks on dogs in both urban and rural settings, including Delhi and Mumbai. Exposure varies by geography, climate, habitat and season.",
+  },
+  {
+    q: "Can indoor dogs get ticks?",
+    a: "Yes. Indoor living reduces some outdoor exposure but does not eliminate risk. Dogs can bring ticks indoors after outdoor activity, and certain tick species can persist in indoor environments. Regular inspection and appropriate parasite prevention therefore remain relevant even for predominantly indoor dogs.",
+  },
+  {
+    q: "Does bathing a dog prevent ticks?",
+    a: "Bathing cleans the coat but should not automatically be considered tick prevention. Some specially formulated products may have antiparasitic properties, but ordinary grooming shampoo is not equivalent to a veterinary tick preventive. Bathing is best viewed as [one part of grooming and inspection](/journal/how-often-should-you-bathe-your-dog) rather than a complete parasite-control strategy.",
+  },
+  {
+    q: "Does shampoo kill ticks?",
+    a: "It depends entirely on the formulation. Some shampoos contain specific antiparasitic ingredients, while ordinary cleansing shampoos do not have the same purpose. Always check the product’s [documented claims and ingredients](/journal/reading-the-inci-list) rather than assuming that any shampoo labelled for grooming controls ticks.",
+  },
+  {
+    q: "Can fleas live in the house?",
+    a: "Yes. Flea eggs can fall from an infested animal into bedding, carpets and other protected areas, where immature stages develop. Consequently, an established flea infestation may involve both the pet and its environment.",
+  },
+  {
+    q: "What should I do if I find a tick on my dog?",
+    a: "Remove an attached tick promptly using an appropriate tick-removal tool or fine-tipped tweezers, grasping close to the skin and pulling steadily. Avoid petroleum jelly, chemicals and heat-based methods. If there are many ticks, repeated infestations or signs of illness, contact a veterinarian.",
+  },
+  {
+    q: "Can grooming replace tick and flea prevention?",
+    a: "No. Grooming is valuable because it helps maintain coat hygiene and makes inspection easier, but it does not automatically prevent parasites. Effective parasite management may require veterinary preventives, environmental measures and ongoing inspection depending on the dog’s circumstances.",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
 
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +64,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Care</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>7 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               Ticks, fleas &amp; the Indian dog: what actually works.
@@ -50,6 +85,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover object-[center_60%]"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -112,7 +148,7 @@ export default function ArticlePage() {
               The idea of a single Indian &ldquo;tick season&rdquo; is too simple.
             </p>
             <p>
-              Tick populations respond to temperature, humidity, rainfall, habitat and host availability. Research in Tamil Nadu found seasonal variation in tick abundance and reported that rainfall, relative humidity and temperature influenced tick activity. A recent longitudinal study in Wayanad similarly found substantial seasonal variation, with tick abundance highest during the monsoon across the animals studied.
+              Tick populations respond to temperature, humidity, rainfall, habitat and host availability. Research in Tamil Nadu found seasonal variation in tick abundance and reported that rainfall, relative humidity and temperature influenced tick activity. A recent longitudinal study in Wayanad similarly found substantial seasonal variation, with tick abundance highest <Link href="/journal/the-monsoon-ritual" className="underline decoration-[#8D9A83] underline-offset-4">during the monsoon</Link> across the animals studied.
             </p>
             <p className="font-medium">
               That does not mean every dog in India faces its highest risk during the monsoon.
@@ -174,12 +210,12 @@ export default function ArticlePage() {
 
             <h3 className="text-xl font-medium mt-10 mb-3">Shampoo</h3>
             <p>
-              A shampoo is primarily a cleansing format. Some shampoos contain antiparasitic active ingredients, but a conventional grooming shampoo should not automatically be assumed to kill ticks or fleas.
+              A shampoo is primarily a cleansing format. Some shampoos contain antiparasitic active ingredients, but a <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">conventional grooming shampoo</Link> should not automatically be assumed to kill ticks or fleas.
             </p>
 
             <h3 className="text-xl font-medium mt-10 mb-3">Spray</h3>
             <p>
-              A spray is a leave-on format whose function depends entirely on its formulation and documented claims. &ldquo;Spray&rdquo; does not automatically mean &ldquo;kills parasites.&rdquo;
+              A spray is a leave-on format whose function depends entirely on its formulation and <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">documented claims</Link>. &ldquo;Spray&rdquo; does not automatically mean &ldquo;kills parasites.&rdquo;
             </p>
 
             <h3 className="text-xl font-medium mt-10 mb-3">Veterinary antiparasitic</h3>
@@ -203,7 +239,7 @@ export default function ArticlePage() {
               That distinction prevents a grooming product from being mistaken for a complete veterinary parasite-control programme.
             </p>
 
-            <h2 className="text-3xl font-display mt-16 mb-6">What to do when you find a tick</h2>
+            <h2 id="what-to-do-when-you-find-a-tick" className="text-3xl font-display mt-16 mb-6 scroll-mt-28">What to do when you find a tick</h2>
             <p>
               First, don&rsquo;t panic.
             </p>
@@ -265,7 +301,7 @@ export default function ArticlePage() {
               </li>
               <li>
                 <strong>Clean</strong><br />
-                Keep the coat, paws, bedding and appropriate living areas clean. Use bathing and grooming according to the dog&rsquo;s actual needs.
+                Keep the coat, <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paws</Link>, bedding and appropriate living areas clean. Use bathing and grooming <Link href="/journal/how-often-should-you-bathe-your-dog" className="underline decoration-[#8D9A83] underline-offset-4">according to the dog&rsquo;s actual needs</Link>.
               </li>
               <li>
                 <strong>Deter</strong><br />
@@ -301,7 +337,7 @@ export default function ArticlePage() {
               Defense should not be understood as a veterinary treatment, a cure for infestation, guaranteed protection, treatment for tick-borne disease or a substitute for veterinarian-recommended antiparasitic protocols.
             </p>
             <p>
-              The role of a thoughtful grooming product is narrower &ndash; and more honest.
+              The role of a thoughtful grooming product is narrower &ndash; and more honest. It is the same principle behind how we describe the <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">probiotic ferment</Link> and the <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">sandalwood oil</Link> in our shampoo.
             </p>
             <p>
               It can be one part of the routine.
@@ -364,53 +400,9 @@ export default function ArticlePage() {
             </div>
 
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How do I prevent ticks on my dog?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Effective tick prevention generally combines regular inspection with appropriate veterinary parasite control and sensible exposure management. Grooming can help you detect ticks early, while veterinarian-recommended preventives are designed specifically for parasite control. The right approach depends on the dog&rsquo;s location, lifestyle, exposure and health.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How do dogs get ticks in India?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Dogs can encounter ticks through outdoor environments including vegetation, gardens and other areas where suitable hosts and tick habitats overlap. Indian research has documented ticks on dogs in both urban and rural settings, including Delhi and Mumbai. Exposure varies by geography, climate, habitat and season.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can indoor dogs get ticks?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Yes. Indoor living reduces some outdoor exposure but does not eliminate risk. Dogs can bring ticks indoors after outdoor activity, and certain tick species can persist in indoor environments. Regular inspection and appropriate parasite prevention therefore remain relevant even for predominantly indoor dogs.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does bathing a dog prevent ticks?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Bathing cleans the coat but should not automatically be considered tick prevention. Some specially formulated products may have antiparasitic properties, but ordinary grooming shampoo is not equivalent to a veterinary tick preventive. Bathing is best viewed as one part of grooming and inspection rather than a complete parasite-control strategy.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does shampoo kill ticks?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">It depends entirely on the formulation. Some shampoos contain specific antiparasitic ingredients, while ordinary cleansing shampoos do not have the same purpose. Always check the product&rsquo;s documented claims and ingredients rather than assuming that any shampoo labelled for grooming controls ticks.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can fleas live in the house?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Yes. Flea eggs can fall from an infested animal into bedding, carpets and other protected areas, where immature stages develop. Consequently, an established flea infestation may involve both the pet and its environment.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What should I do if I find a tick on my dog?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Remove an attached tick promptly using an appropriate tick-removal tool or fine-tipped tweezers, grasping close to the skin and pulling steadily. Avoid petroleum jelly, chemicals and heat-based methods. If there are many ticks, repeated infestations or signs of illness, contact a veterinarian.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can grooming replace tick and flea prevention?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. Grooming is valuable because it helps maintain coat hygiene and makes inspection easier, but it does not automatically prevent parasites. Effective parasite management may require veterinary preventives, environmental measures and ongoing inspection depending on the dog&rsquo;s circumstances.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />

@@ -3,25 +3,58 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Reading the INCI List | Furry Tail',
-  description: 'What INCI actually means, how to read a pet-care ingredient list without memorising it, and why "natural" is a description rather than a safety verdict.',
-  alternates: { canonical: '/journal/reading-the-inci-list' },
-  openGraph: {
-    url: '/journal/reading-the-inci-list',
-    title: 'Reading the INCI list.',
-    description: 'The front tells you the story. The back tells you the formulation.',
-    images: ['/images/journal/reading-inci-list/main.webp'],
+const SLUG = 'reading-the-inci-list';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "What does INCI mean on a pet-care product?",
+    a: "INCI stands for International Nomenclature of Cosmetic Ingredients. It is a standardised system for identifying cosmetic ingredients. An INCI name tells you how an ingredient is formally identified on a label; it does not by itself mean that the ingredient is approved, safe in every use, or appropriate for every species.",
   },
-};
+  {
+    q: "Are ingredients listed from highest to lowest concentration?",
+    a: "Generally, yes, under major cosmetic labelling systems. However, there are important exceptions. In the US and EU frameworks, ingredients at or below 1% can generally appear in a different order after the ingredients above that threshold. Therefore, the beginning of a list is more informative about relative prominence than the final few ingredients.",
+  },
+  {
+    q: "Does a chemical-sounding ingredient mean it is harmful?",
+    a: "No. Chemical names often sound unfamiliar simply because they are technical names. Safety depends on the ingredient’s identity, concentration, exposure, formulation and intended use. An unfamiliar name should prompt investigation, not an automatic verdict.",
+  },
+  {
+    q: "Are natural ingredients always safer for dogs and cats?",
+    a: "No. “Natural” describes origin, not automatically safety. Concentrated essential oils, for example, can cause toxic effects in animals, and cats are particularly sensitive to some exposures. The appropriate question is how an ingredient is formulated, at what concentration, and for which species.",
+  },
+  {
+    q: "What should I look for in a dog shampoo ingredient list?",
+    a: "Look at the [cleansing ingredients](/journal/what-we-found-in-most-pet-shampoos), conditioning or humectant components, preservatives, fragrance and botanical ingredients. Then check the intended use and directions. Avoid judging the product solely by whether the names sound natural or synthetic; formulation context matters more than vocabulary.",
+  },
+  {
+    q: "What does “parfum” or “fragrance” mean on an ingredient list?",
+    a: "Fragrance can represent a fragrance composition rather than one single substance. Labelling conventions vary by jurisdiction, and some fragrance components may need to be identified individually under applicable rules. The EU, for example, has specific requirements for certain fragrance allergens above defined thresholds.",
+  },
+  {
+    q: "Are essential oils safe for cats?",
+    a: "Essential oils deserve particular caution around cats. Veterinary references note that cats can be especially vulnerable because of differences in metabolism, and exposure can occur through skin, ingestion or inhalation. Concentrated essential oils should not be directly applied to pets unless specifically directed by an appropriate veterinary professional.",
+  },
+  {
+    q: "Is a shorter ingredient list automatically better?",
+    a: "Not necessarily. A finished formula needs ingredients that perform different functions, including cleansing, stability, [preservation](/journal/the-probiotic-question) and sensory properties. A short list can be useful, but ingredient count alone does not tell you whether a formulation is well designed.",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
 
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +64,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Guide</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>6 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               Reading the INCI list.
@@ -50,6 +85,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -182,7 +218,7 @@ export default function ArticlePage() {
               They help water interact with oils, dirt and other substances so they can be removed during washing.
             </p>
             <p>
-              Different surfactants have different properties, and a formulation can combine several of them to achieve a particular cleansing experience.
+              Different surfactants have <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">different properties</Link>, and a formulation can combine several of them to achieve a particular cleansing experience.
             </p>
             <p>
               So seeing a technical surfactant name isn&rsquo;t a reason to panic.
@@ -209,7 +245,7 @@ export default function ArticlePage() {
 
             <h3 className="text-xl font-medium mt-10 mb-3">Preservatives</h3>
             <p>
-              Water-containing products need protection against microbial growth.
+              Water-containing products need protection against microbial growth. (We look at one alternative preservation approach in <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">the probiotic question</Link>.)
             </p>
             <p>
               This is one reason the idea that a product should contain &ldquo;nothing chemical&rdquo; doesn&rsquo;t really make formulation sense. A well-designed formula needs ingredients for stability as well as sensory performance.
@@ -220,7 +256,7 @@ export default function ArticlePage() {
               These can provide a variety of formulation purposes, but their presence should not automatically be interpreted as proof of a therapeutic effect.
             </p>
             <p>
-              A plant name on a label is not a medical claim.
+              A plant name on a label is not a medical claim. The same applies to <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">anti-tick and flea claims</Link>: read what the formula is actually designed to do.
             </p>
 
             <h2 className="text-3xl font-display mt-16 mb-6">4. The ingredient you recognise may not tell the whole story</h2>
@@ -340,7 +376,7 @@ export default function ArticlePage() {
               Neither should be read in isolation.
             </p>
             <p>
-              At Furry Tail, this is the thinking behind <strong>The Standard</strong>: ingredients should have a reason for being there, and formulation decisions should be explainable rather than hidden behind marketing language.
+              At Furry Tail, this is the thinking behind <Link href="/ingredients" className="underline decoration-[#8D9A83] underline-offset-4"><strong>The Standard</strong></Link>: ingredients should have a reason for being there, and formulation decisions should be explainable rather than hidden behind marketing language.
             </p>
             <p>
               That doesn&rsquo;t mean a shorter ingredient list is automatically better.
@@ -352,7 +388,7 @@ export default function ArticlePage() {
               Take Furry Tail&rsquo;s <Link href="/products/gentle-daily-shampoo-santal-white-tea" className="underline decoration-[#8D9A83] underline-offset-4">Santal &amp; White Tea Gentle Daily Shampoo</Link>. The fragrance story begins with Santal, but the formulation conversation is larger than the name on the front. The product&rsquo;s documented formulation includes <strong>Santalum Album Wood Oil</strong> and <strong>Camellia Sinensis Leaf Extract</strong>, with defined formulation ranges and documentation requirements including GC-MS for the sandalwood oil and IFRA Category 4 compliance for its rinse-off fragrance application.
             </p>
             <p>
-              That is the difference between saying an ingredient is present and being able to explain <strong>why it is present and how it is controlled</strong>.
+              That is the difference between saying an ingredient is present and being able to explain <strong>why it is present and how it is controlled</strong>. (We go deeper on that ingredient in <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">Santal: a primer</Link>.)
             </p>
 
             <div className="my-16">
@@ -377,7 +413,7 @@ export default function ArticlePage() {
             <p className="font-medium">Identify the cleansing system.</p>
             <p className="font-medium">Look for preservatives and fragrance.</p>
             <p className="font-medium">Understand the botanical names rather than fearing them.</p>
-            <p className="font-medium">Check the intended species and directions.</p>
+            <p className="font-medium">Check the intended species and directions &ndash; and use the product <Link href="/journal/how-often-should-you-bathe-your-dog" className="underline decoration-[#8D9A83] underline-offset-4">only as often as your dog actually needs</Link>, <Link href="/journal/the-monsoon-ritual" className="underline decoration-[#8D9A83] underline-offset-4">monsoon included</Link>.</p>
             <p className="font-medium">Treat &ldquo;natural&rdquo; as a description, not a safety verdict.</p>
             <p>
               And if your pet has a known allergy, skin condition or unusual reaction, take the complete product label to your veterinarian rather than trying to diagnose the problem from an ingredient list.
@@ -407,53 +443,9 @@ export default function ArticlePage() {
             </div>
 
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What does INCI mean on a pet-care product?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">INCI stands for International Nomenclature of Cosmetic Ingredients. It is a standardised system for identifying cosmetic ingredients. An INCI name tells you how an ingredient is formally identified on a label; it does not by itself mean that the ingredient is approved, safe in every use, or appropriate for every species.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are ingredients listed from highest to lowest concentration?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Generally, yes, under major cosmetic labelling systems. However, there are important exceptions. In the US and EU frameworks, ingredients at or below 1% can generally appear in a different order after the ingredients above that threshold. Therefore, the beginning of a list is more informative about relative prominence than the final few ingredients.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does a chemical-sounding ingredient mean it is harmful?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. Chemical names often sound unfamiliar simply because they are technical names. Safety depends on the ingredient&rsquo;s identity, concentration, exposure, formulation and intended use. An unfamiliar name should prompt investigation, not an automatic verdict.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are natural ingredients always safer for dogs and cats?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. &ldquo;Natural&rdquo; describes origin, not automatically safety. Concentrated essential oils, for example, can cause toxic effects in animals, and cats are particularly sensitive to some exposures. The appropriate question is how an ingredient is formulated, at what concentration, and for which species.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What should I look for in a dog shampoo ingredient list?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Look at the cleansing ingredients, conditioning or humectant components, preservatives, fragrance and botanical ingredients. Then check the intended use and directions. Avoid judging the product solely by whether the names sound natural or synthetic; formulation context matters more than vocabulary.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What does &ldquo;parfum&rdquo; or &ldquo;fragrance&rdquo; mean on an ingredient list?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Fragrance can represent a fragrance composition rather than one single substance. Labelling conventions vary by jurisdiction, and some fragrance components may need to be identified individually under applicable rules. The EU, for example, has specific requirements for certain fragrance allergens above defined thresholds.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are essential oils safe for cats?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Essential oils deserve particular caution around cats. Veterinary references note that cats can be especially vulnerable because of differences in metabolism, and exposure can occur through skin, ingestion or inhalation. Concentrated essential oils should not be directly applied to pets unless specifically directed by an appropriate veterinary professional.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Is a shorter ingredient list automatically better?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Not necessarily. A finished formula needs ingredients that perform different functions, including cleansing, stability, preservation and sensory properties. A short list can be useful, but ingredient count alone does not tell you whether a formulation is well designed.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />

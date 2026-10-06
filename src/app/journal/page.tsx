@@ -4,81 +4,75 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import type { Metadata } from 'next';
+import { getBaseUrl } from '@/lib/site-url';
+import { FEATURED_SLUG, JOURNAL_ARTICLES, PUBLISHER_NAME, articlePath, getArticle } from '@/lib/journal';
 
 export const metadata: Metadata = {
-  title: 'Journal â€” Furrytail',
-  description: 'Slow reading for the pet parent who pays attention. Ingredient deep-dives, grooming rituals, and the science behind the label.',
+  title: 'Journal: Dog & Cat Grooming Guides | Furry Tail',
+  description:
+    'Slow reading for the pet parent who pays attention. Pet grooming guides, ingredient deep-dives, tick and flea prevention, and the science behind the label.',
   alternates: { canonical: '/journal' },
   openGraph: {
+    type: 'website',
     url: '/journal',
-    title: 'Journal â€” Furrytail',
+    siteName: PUBLISHER_NAME,
+    locale: 'en_IN',
+    title: 'The Furry Tail Journal',
     description: 'Slow reading for the pet parent who pays attention.',
     images: ['/journal_featured.webp'],
   },
 };
 
-const ARTICLES = [
-  {
-    id: 'ticks-fleas-indian-dog',
-    href: '/journal/ticks-fleas-and-the-indian-dog',
-    category: 'Care',
-    readTime: '7 min read',
-    title: 'Ticks, fleas & the Indian dog.',
-    description: 'The tick you can see is only part of the story. Where Indian dogs actually encounter ticks, why grooming isn\'t parasite control, what to do when you find one, and a five-step routine built around exposure.',
-    imageSrc: '/images/journal/ticks-fleas-indian-dog/main.webp',
-  },
-  {
-    id: 'how-often-bathe-dog',
-    href: '/journal/how-often-should-you-bathe-your-dog',
-    category: 'Grooming',
-    readTime: '7 min read',
-    title: 'How often should you bathe your dog?',
-    description: 'The question isn\'t monthly. Coat, lifestyle, outdoor exposure, skin health and climate tell you far more than a calendar does. When to brush, when to clean the paws, and when a full bath actually makes sense.',
-    imageSrc: '/images/journal/how-often-bathe-dog/main.webp',
-  },
-  {
-    id: 'probiotic-question',
-    href: '/journal/the-probiotic-question',
-    category: 'Ingredients',
-    readTime: '6 min read',
-    title: 'The probiotic question.',
-    description: 'Leuconostoc/Radish Root Ferment Filtrate. How a fermentation-derived system replaces the synthetic preservatives that most brands quietly rely on. What it is, how it works, and why it is harder to formulate with.',
-    imageSrc: '/journal_probiotic.webp',
-  },
-  {
-    id: 'santal-primer',
-    href: '#',
-    category: 'Fragrance',
-    readTime: '3 min read',
-    title: 'Santal: a primer.',
-    description: 'Sandalwood has been used in personal care for centuries. Here is what it actually is, what it does to the skin, and why we chose it as the anchor for our first fragrance. Steam-distilled heartwood, IFRA compliance, and the question of synthetic alternatives.',
-    imageSrc: '/journal_santal.webp',
-  },
-  {
-    id: 'monsoon-ritual',
-    href: '/journal/the-monsoon-ritual',
-    category: 'Seasonal',
-    readTime: '4 min read',
-    title: 'The monsoon ritual.',
-    description: 'Mumbai, Chennai, Bangalore: monsoon season and a wet dog are a formulation challenge. What to use, when, and in what order. The Paw Cleaner, the Anti-Tick Spray, and the question of frequency during the high-humidity months.',
-    imageSrc: '/journal_monsoon.webp',
-  },
-  {
-    id: 'reading-inci-list',
-    href: '/journal/reading-the-inci-list',
-    category: 'Guide',
-    readTime: '6 min read',
-    title: 'Reading the INCI list.',
-    description: 'Every ingredient has two names. The one you know. The one on the label. A field guide to decoding what is actually in your pet\'s products â€” what to look for, what to avoid, and what the jargon means in plain language.',
-    imageSrc: '/journal_label.webp',
-  },
-];
+const FEATURED = getArticle(FEATURED_SLUG);
+const GRID = JOURNAL_ARTICLES.filter((a) => a.slug !== FEATURED_SLUG);
+
+function JournalJsonLd() {
+  const base = getBaseUrl();
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Blog',
+        '@id': `${base}/journal#blog`,
+        url: `${base}/journal`,
+        name: `${PUBLISHER_NAME} Journal`,
+        description: 'Pet grooming guides, ingredient deep-dives and the science behind the label.',
+        inLanguage: 'en-IN',
+        publisher: { '@type': 'Organization', '@id': `${base}/#organization`, name: PUBLISHER_NAME, url: base },
+        blogPost: JOURNAL_ARTICLES.map((a) => ({
+          '@type': 'BlogPosting',
+          '@id': `${base}${articlePath(a.slug)}#article`,
+          headline: a.title.replace(/\.$/, ''),
+          url: `${base}${articlePath(a.slug)}`,
+          image: `${base}${a.image.src}`,
+          datePublished: a.datePublished,
+          dateModified: a.dateModified,
+          description: a.description,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: base },
+          { '@type': 'ListItem', position: 2, name: 'Journal', item: `${base}/journal` },
+        ],
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
+    />
+  );
+}
 
 export default function JournalPage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1]">
         <Navbar />
+        <JournalJsonLd />
 
         <main
           className="bg-[#F8F5F1] pt-24 pb-16 md:pb-24"
@@ -86,7 +80,7 @@ export default function JournalPage() {
           data-kite-page-type="blog"
         >
 
-          {/* SECTION 1 â€” Hero */}
+          {/* SECTION 1 — Hero */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
             <div className="max-w-[800px]">
               <p className="text-[0.6875rem] md:text-[0.75rem] font-medium tracking-[0.15em] uppercase text-[#8D9A83] mb-6">
@@ -104,17 +98,17 @@ export default function JournalPage() {
             </div>
           </section>
 
-          {/* SECTION 2 â€” Featured Article */}
+          {/* SECTION 2 — Featured Article */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-24 border-b border-[#E9E2D7]">
             <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-6">
               Featured
             </p>
-            <Link href="/journal/what-we-found-in-most-pet-shampoos" className="group block border border-[#E9E2D7] transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#111610]/5 overflow-hidden rounded-[2px] bg-[#F8F5F1]">
+            <Link href={articlePath(FEATURED.slug)} className="group block border border-[#E9E2D7] transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#111610]/5 overflow-hidden rounded-[2px] bg-[#F8F5F1]">
               <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] items-stretch">
                 <div className="relative aspect-square md:aspect-auto md:h-full overflow-hidden bg-[#1c1a18]">
                   <Image
-                    src="/images/journal/what-we-found/main.webp"
-                    alt="Pet shampoo bottle beside an open ingredient label and grooming essentials"
+                    src={FEATURED.image.src}
+                    alt={FEATURED.image.alt}
                     fill
                     className="object-cover object-center opacity-85 transition-transform duration-700 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 60vw"
@@ -123,18 +117,18 @@ export default function JournalPage() {
                 </div>
                 <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16">
                   <div className="text-[0.6875rem] font-normal tracking-[0.06em] text-[#8D9A83] uppercase mb-4 flex items-center gap-2">
-                    <span>Formulation</span>
+                    <span>{FEATURED.category}</span>
                     <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-                    <span>5 min read</span>
+                    <span>{FEATURED.readTime}</span>
                   </div>
                   <h2
                     className="text-[#3B3A38] leading-[1.15] mb-4 transition-colors duration-300 group-hover:text-[#68735F]"
                     style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.5rem)', fontWeight: 300 }}
                   >
-                    What We Found in Most Pet Shampoos.
+                    {FEATURED.title}
                   </h2>
                   <p className="text-[0.9375rem] font-light text-[#3B3A38]/80 leading-[1.65] mb-8">
-                    A shampoo can lather beautifully and still leave you with questions. We looked past the front label and into the formulation: cleansing agents, preservatives, fragrance, skin compatibility and the choices that matter.
+                                        {FEATURED.excerpt}
                   </p>
                   <span className="text-[0.8125rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
                     Read the full article
@@ -148,7 +142,7 @@ export default function JournalPage() {
             </Link>
           </section>
 
-          {/* SECTION 3 â€” Article Grid */}
+          {/* SECTION 3 — Article Grid */}
           <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-24 border-b border-[#E9E2D7]">
             <div className="text-center mb-12 md:mb-16">
               <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF] mb-3">
@@ -163,18 +157,12 @@ export default function JournalPage() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              {ARTICLES.map((article) => {
-                // The written pieces get an underlined call to action so the one
-                // card a reader can actually open is distinguishable from the
-                // placeholders still pointing at '#'.
-                const isPublished = article.href !== '#';
-
-                return (
-                <Link key={article.id} href={article.href} className="group flex flex-col gap-6 outline-none">
+              {GRID.map((article) => (
+                <Link key={article.slug} href={articlePath(article.slug)} className="group flex flex-col gap-6 outline-none">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] bg-[#E9E2D7]">
                     <Image
-                      src={article.imageSrc}
-                      alt={article.title}
+                      src={article.cardImageSrc ?? article.image.src}
+                      alt={article.image.alt}
                       fill
                       className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -193,13 +181,9 @@ export default function JournalPage() {
                       {article.title}
                     </h3>
                     <p className="text-[0.875rem] font-light text-[#3B3A38]/80 leading-[1.65] mb-5">
-                      {article.description}
+                      {article.excerpt}
                     </p>
-                    <span
-                      className={`text-[0.75rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1 ${
-                        isPublished ? 'underline decoration-[#8D9A83] decoration-1 underline-offset-4' : ''
-                      }`}
-                    >
+                    <span className="text-[0.75rem] font-medium tracking-[0.04em] text-[#3B3A38] uppercase flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1 underline decoration-[#8D9A83] decoration-1 underline-offset-4">
                       Read the full article
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
                         <line x1="1" y1="6" x2="11" y2="6" />
@@ -208,12 +192,11 @@ export default function JournalPage() {
                     </span>
                   </div>
                 </Link>
-                );
-              })}
+              ))}
             </div>
           </section>
 
-          {/* SECTION 4 â€” Newsletter */}
+          {/* SECTION 4 — Newsletter */}
           <section className="bg-[#EDE7DF] py-20 md:py-28 text-center border-t border-[#D8CFC4]">
             <div className="max-w-[500px] mx-auto px-6 md:px-8">
               <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4">

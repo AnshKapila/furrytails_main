@@ -15,6 +15,8 @@ import { getProductById, getRelatedProducts } from '@/services/api';
 import { fetchProductSlugs } from '@/lib/woo';
 import { parsePrice } from '@/lib/price';
 import { getBaseUrl } from '@/lib/site-url';
+import { getArticlesForProduct } from '@/lib/journal';
+import RelatedArticles from '@/components/journal/RelatedArticles';
 
 // Catalogue changes are picked up within this window without a redeploy.
 export const revalidate = 300;
@@ -103,6 +105,13 @@ export default async function ProductPage({
         />
         <Navbar />
         <ProductClient product={product} related={related} />
+        <div className="pb-24">
+          <RelatedArticles
+            articles={getArticlesForProduct(product.id).slice(0, 3)}
+            eyebrow="From the journal"
+            heading="Read before you pour."
+          />
+        </div>
         <Footer />
       </div>
     </ClientProviders>

@@ -3,25 +3,54 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'How Often Should You Bathe Your Dog? | Furry Tail',
-  description: 'There is no universal dog bath schedule. How coat type, lifestyle, outdoor exposure, skin health and the Indian climate should shape how often you bathe your dog.',
-  alternates: { canonical: '/journal/how-often-should-you-bathe-your-dog' },
-  openGraph: {
-    url: '/journal/how-often-should-you-bathe-your-dog',
-    title: 'How often should you bathe your dog?',
-    description: 'The question isn’t monthly. It’s whether your dog needs a bath today.',
-    images: ['/images/journal/how-often-bathe-dog/main.webp'],
+const SLUG = 'how-often-should-you-bathe-your-dog';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "How often should you bathe your dog?",
+    a: "There is no universal bathing schedule. Frequency depends on coat type, lifestyle, outdoor exposure, skin health and climate. Many healthy dogs need occasional rather than very frequent baths, while active dogs or dogs with specific dermatological conditions may need different routines. Veterinary guidance should take priority when a skin condition is involved.",
   },
-};
+  {
+    q: "How often should dogs be bathed in India?",
+    a: "Indian dogs do not automatically need more baths simply because of the climate. However, heat, dust, humidity, monsoon mud, swimming and outdoor exposure can change grooming needs. Rather than following a fixed monthly schedule, assess the dog’s coat and skin and use brushing or localised cleaning between full baths when appropriate.",
+  },
+  {
+    q: "Can I bathe my dog every week?",
+    a: "Weekly bathing may be appropriate in some circumstances, particularly when recommended for a specific coat or veterinary treatment, but it should not automatically become the routine for every dog. Frequent bathing can affect skin and coat condition, so the appropriate frequency depends on the individual dog and [the product being used](/journal/what-we-found-in-most-pet-shampoos).",
+  },
+  {
+    q: "Can I bathe my dog after every muddy walk?",
+    a: "If a dog becomes genuinely dirty or muddy, cleaning may be appropriate rather than waiting for a scheduled bath. However, a full shampoo bath is not necessarily required every time. Depending on the situation, rinsing, wiping or cleaning localised areas may be sufficient.",
+  },
+  {
+    q: "Does coat type affect dog bathing frequency?",
+    a: "Yes. Coat characteristics influence grooming requirements. Long, curly, dense and continuously growing coats can require more brushing and maintenance, while some dogs with thick or water-repellent coats may not benefit from frequent bathing. Coat type should be considered alongside lifestyle and skin health.",
+  },
+  {
+    q: "Should I bathe my dog more often during monsoon?",
+    a: "Not automatically. Monsoon conditions can increase exposure to mud, rain and damp environments, which may create more occasions when cleaning is necessary. But the appropriate response might be [drying, brushing, paw cleaning](/journal/the-monsoon-ritual) or a localised rinse rather than increasing full-body baths on a fixed schedule.",
+  },
+  {
+    q: "What if my dog smells even after bathing?",
+    a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate.",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
 
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +60,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Grooming</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>7 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               How often should you bathe your dog?
@@ -50,6 +81,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover object-[center_55%]"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -197,7 +229,7 @@ export default function ArticlePage() {
               Not every situation requires moving all the way to the last step.
             </p>
             <p>
-              This becomes especially relevant in Indian cities, where a dog&rsquo;s daily exposure can vary dramatically between seasons. A Delhi NCR walk in a dry, dusty spell is different from a Bengaluru afternoon in heavy rain. Mumbai&rsquo;s monsoon streets create another kind of exposure altogether.
+              This becomes especially relevant in Indian cities, where a dog&rsquo;s daily exposure can vary dramatically between seasons. A Delhi NCR walk in a dry, dusty spell is different from a Bengaluru afternoon in heavy rain. Mumbai&rsquo;s monsoon streets create another kind of exposure altogether &ndash; we cover that season in <Link href="/journal/the-monsoon-ritual" className="underline decoration-[#8D9A83] underline-offset-4">the monsoon ritual</Link>.
             </p>
 
             <div className="my-16">
@@ -327,17 +359,17 @@ export default function ArticlePage() {
             </p>
             <ul className="space-y-2 list-disc pl-5">
               <li>Brush according to the coat&rsquo;s needs.</li>
-              <li>Check the skin while grooming.</li>
-              <li>Clean paws or visibly dirty areas after messy walks.</li>
+              <li>Check the skin while grooming &ndash; and <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">look for ticks</Link> after outdoor walks.</li>
+              <li>Clean <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paws</Link> or visibly dirty areas after messy walks.</li>
               <li>Dry the coat properly after getting wet.</li>
-              <li>Use products formulated specifically for dogs.</li>
+              <li>Use products <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">formulated specifically for dogs</Link>.</li>
               <li>Adjust the routine when lifestyle or seasons change.</li>
             </ul>
             <p>
               Dog-specific shampoo matters because canine skin differs from human skin, and veterinary sources advise against using human shampoo for dogs.
             </p>
             <p>
-              For a routine bath, a gentle dog-specific cleanser can become part of a considered grooming ritual rather than something used simply because the calendar says it is time. Furry Tail&rsquo;s <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">Ritual &ndash; Gentle Daily Shampoo</Link> sits naturally within that philosophy: bathing as considered everyday care, rather than bathing for the sake of a schedule.
+              For a routine bath, a gentle dog-specific cleanser can become part of a considered grooming ritual rather than something used simply because the calendar says it is time. Furry Tail&rsquo;s <Link href="/products/gentle-daily-shampoo-santal-white-tea" className="underline decoration-[#8D9A83] underline-offset-4">Ritual &ndash; Gentle Daily Shampoo</Link> sits naturally within that philosophy: bathing as considered everyday care, rather than bathing for the sake of a schedule. If you want to know what is in the bottle, start with <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">how to read its ingredient list</Link>, <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">what its ferment-based preservation does</Link> and <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">why it smells of sandalwood</Link>.
             </p>
 
             <div className="my-16">
@@ -392,48 +424,9 @@ export default function ArticlePage() {
             </div>
 
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How often should you bathe your dog?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">There is no universal bathing schedule. Frequency depends on coat type, lifestyle, outdoor exposure, skin health and climate. Many healthy dogs need occasional rather than very frequent baths, while active dogs or dogs with specific dermatological conditions may need different routines. Veterinary guidance should take priority when a skin condition is involved.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How often should dogs be bathed in India?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Indian dogs do not automatically need more baths simply because of the climate. However, heat, dust, humidity, monsoon mud, swimming and outdoor exposure can change grooming needs. Rather than following a fixed monthly schedule, assess the dog&rsquo;s coat and skin and use brushing or localised cleaning between full baths when appropriate.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can I bathe my dog every week?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Weekly bathing may be appropriate in some circumstances, particularly when recommended for a specific coat or veterinary treatment, but it should not automatically become the routine for every dog. Frequent bathing can affect skin and coat condition, so the appropriate frequency depends on the individual dog and the product being used.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can I bathe my dog after every muddy walk?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">If a dog becomes genuinely dirty or muddy, cleaning may be appropriate rather than waiting for a scheduled bath. However, a full shampoo bath is not necessarily required every time. Depending on the situation, rinsing, wiping or cleaning localised areas may be sufficient.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does coat type affect dog bathing frequency?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Yes. Coat characteristics influence grooming requirements. Long, curly, dense and continuously growing coats can require more brushing and maintenance, while some dogs with thick or water-repellent coats may not benefit from frequent bathing. Coat type should be considered alongside lifestyle and skin health.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Should I bathe my dog more often during monsoon?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Not automatically. Monsoon conditions can increase exposure to mud, rain and damp environments, which may create more occasions when cleaning is necessary. But the appropriate response might be drying, brushing, paw cleaning or a localised rinse rather than increasing full-body baths on a fixed schedule.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What if my dog smells even after bathing?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />

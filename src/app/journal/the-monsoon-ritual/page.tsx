@@ -3,25 +3,54 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'The Monsoon Ritual | Furry Tail',
-  description: 'A practical monsoon grooming ritual for dogs in Mumbai, Chennai and Bengaluru: paws, drying, bathing frequency and consistent tick prevention.',
-  alternates: { canonical: '/journal/the-monsoon-ritual' },
-  openGraph: {
-    url: '/journal/the-monsoon-ritual',
-    title: 'The monsoon ritual.',
-    description: 'Four wet paws, a damp coat and mud between the toes - what monsoon grooming actually requires, and what it doesn’t.',
-    images: ['/images/journal/monsoon-ritual/main.webp'],
+const SLUG = 'the-monsoon-ritual';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "How often should I bathe my dog during monsoon?",
+    a: "There is [no universal bathing schedule](/journal/how-often-should-you-bathe-your-dog), monsoon or otherwise. Bathing depends on your dog’s coat, lifestyle, cleanliness and skin health. A dog that gets muddy may need a bath, while one that simply gets wet in the rain may only need thorough drying. Frequent bathing can contribute to dryness or irritation in some dogs.",
   },
-};
+  {
+    q: "Should I clean my dog’s paws after every rainy walk?",
+    a: "If your dog has walked through mud, dirty water or visibly contaminated areas, cleaning the paws is sensible. Pay particular attention to the spaces between the toes and around the pads, then dry thoroughly. A full bath is not necessary every time the paws need cleaning.",
+  },
+  {
+    q: "Does a wet dog always need a bath?",
+    a: "No. Wetness alone does not necessarily mean the coat is dirty. After ordinary rain, towel-drying and checking the coat may be sufficient. Bathing is more appropriate when the coat has accumulated mud, dirt, unpleasant residue or odour, or when a veterinarian has recommended a particular bathing routine.",
+  },
+  {
+    q: "Can I bathe my dog every week during monsoon?",
+    a: "Some dogs may require more frequent bathing for specific medical or lifestyle reasons, but weekly bathing should not automatically become the default simply because it is monsoon. Excessive bathing can affect the skin and coat. If your dog needs frequent baths, discuss the appropriate frequency and shampoo with your veterinarian.",
+  },
+  {
+    q: "How can I prevent ticks during monsoon?",
+    a: "Tick prevention should not depend entirely on the weather. Veterinary parasite guidance supports consistent, [year-round tick control](/journal/ticks-fleas-and-the-indian-dog), alongside checking your dog after outdoor exposure and reducing contact with tick-prone environments. Choose prevention appropriate for your dog with veterinary guidance and follow the product’s label.",
+  },
+  {
+    q: "Why is drying important after rain?",
+    a: "Thorough drying removes moisture from the coat and allows you to inspect the skin and fur at the same time. It can also help reduce matting and the characteristic wet-dog odour. Dogs with dense coats may require more careful drying because moisture can remain closer to the skin.",
+  },
+  {
+    q: "When should I speak to a veterinarian?",
+    a: "Persistent itching, redness, swelling, skin lesions, hair loss, unusual odour, repeated irritation or a heavy tick infestation deserves veterinary attention. Grooming products should not be used as substitutes for diagnosis or treatment of an underlying skin condition.",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
 
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +60,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Seasonal</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>4 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               The monsoon ritual.
@@ -50,6 +81,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -66,7 +98,7 @@ export default function ArticlePage() {
               In Mumbai, Chennai or Bengaluru, this can become a daily ritual for weeks.
             </p>
             <p>
-              The instinct is often to reach for the shampoo. But monsoon grooming is not necessarily a question of <strong>more bathing</strong>. Healthy dogs generally need bathing according to their coat, lifestyle and individual needs; bathing too frequently can strip natural oils and contribute to dryness or irritation.
+              The instinct is often to reach for the shampoo. But monsoon grooming is not necessarily a question of <strong>more bathing</strong>. Healthy dogs generally need bathing according to their coat, lifestyle and individual needs; <Link href="/journal/how-often-should-you-bathe-your-dog" className="underline decoration-[#8D9A83] underline-offset-4">bathing too frequently</Link> can strip natural oils and contribute to dryness or irritation.
             </p>
             <p>
               The better approach is to separate the problems.
@@ -187,12 +219,12 @@ export default function ArticlePage() {
               If the skin is irritated, unusually itchy or repeatedly problematic, speak with your veterinarian rather than simply increasing the number of baths.
             </p>
             <p>
-              And when you do bathe, use a <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">shampoo formulated specifically for dogs</Link>. Human shampoos are not designed around canine skin.
+              And when you do bathe, use a <Link href="/products/gentle-daily-shampoo-santal-white-tea" className="underline decoration-[#8D9A83] underline-offset-4">shampoo formulated specifically for dogs</Link>. Human shampoos are not designed around canine skin &ndash; and <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">not every pet shampoo is formulated the same way</Link>.
             </p>
 
             <h2 className="text-3xl font-display mt-16 mb-6">4. Monsoon is also a parasite season - but prevention is not a rainy-day decision</h2>
             <p>
-              Ticks are a different category of problem.
+              Ticks are a different category of problem &ndash; one we cover in depth in <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">Ticks, fleas &amp; the Indian dog</Link>.
             </p>
             <p>
               They are not something to address only after seeing one.
@@ -213,7 +245,7 @@ export default function ArticlePage() {
               And frequency matters: <strong>follow the product label rather than inventing a monsoon-specific schedule.</strong>
             </p>
             <p>
-              If you find an attached tick, don&rsquo;t improvise with household remedies. Prompt, careful removal is recommended, and a veterinarian should be involved when there is a heavy infestation or concerning signs.
+              If you find an attached tick, don&rsquo;t improvise with household remedies &ndash; here is <Link href="/journal/ticks-fleas-and-the-indian-dog#what-to-do-when-you-find-a-tick" className="underline decoration-[#8D9A83] underline-offset-4">what to do when you find a tick</Link>. Prompt, careful removal is recommended, and a veterinarian should be involved when there is a heavy infestation or concerning signs.
             </p>
 
             <h2 className="text-3xl font-display mt-16 mb-6">5. The ritual is really about sequence</h2>
@@ -259,7 +291,7 @@ export default function ArticlePage() {
               </li>
               <li>
                 <strong>Bathe when necessary</strong><br />
-                Use a dog-formulated shampoo when the coat genuinely needs a deeper clean.
+                Use a dog-formulated shampoo when the coat genuinely needs a deeper clean &ndash; and <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">read its ingredient list</Link> first: look for a <Link href="/journal/the-probiotic-question" className="underline decoration-[#8D9A83] underline-offset-4">deliberate preservation system</Link> and a <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">considered fragrance</Link>.
               </li>
               <li>
                 <strong>Maintain parasite prevention</strong><br />
@@ -352,48 +384,9 @@ export default function ArticlePage() {
             </div>
 
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How often should I bathe my dog during monsoon?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">There is no universal monsoon bathing schedule. Bathing depends on your dog&rsquo;s coat, lifestyle, cleanliness and skin health. A dog that gets muddy may need a bath, while one that simply gets wet in the rain may only need thorough drying. Frequent bathing can contribute to dryness or irritation in some dogs.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Should I clean my dog&rsquo;s paws after every rainy walk?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">If your dog has walked through mud, dirty water or visibly contaminated areas, cleaning the paws is sensible. Pay particular attention to the spaces between the toes and around the pads, then dry thoroughly. A full bath is not necessary every time the paws need cleaning.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does a wet dog always need a bath?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. Wetness alone does not necessarily mean the coat is dirty. After ordinary rain, towel-drying and checking the coat may be sufficient. Bathing is more appropriate when the coat has accumulated mud, dirt, unpleasant residue or odour, or when a veterinarian has recommended a particular bathing routine.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Can I bathe my dog every week during monsoon?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Some dogs may require more frequent bathing for specific medical or lifestyle reasons, but weekly bathing should not automatically become the default simply because it is monsoon. Excessive bathing can affect the skin and coat. If your dog needs frequent baths, discuss the appropriate frequency and shampoo with your veterinarian.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">How can I prevent ticks during monsoon?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Tick prevention should not depend entirely on the weather. Veterinary parasite guidance supports consistent, year-round tick control, alongside checking your dog after outdoor exposure and reducing contact with tick-prone environments. Choose prevention appropriate for your dog with veterinary guidance and follow the product&rsquo;s label.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Why is drying important after rain?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Thorough drying removes moisture from the coat and allows you to inspect the skin and fur at the same time. It can also help reduce matting and the characteristic wet-dog odour. Dogs with dense coats may require more careful drying because moisture can remain closer to the skin.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">When should I speak to a veterinarian?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Persistent itching, redness, swelling, skin lesions, hair loss, unusual odour, repeated irritation or a heavy tick infestation deserves veterinary attention. Grooming products should not be used as substitutes for diagnosis or treatment of an underlying skin condition.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />

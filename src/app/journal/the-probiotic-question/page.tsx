@@ -3,25 +3,54 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
+import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
+import RelatedArticles from '@/components/journal/RelatedArticles';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'The Probiotic Question | Furry Tail',
-  description: 'What "probiotic" actually means on a pet shampoo bottle: Leuconostoc/Radish Root Ferment Filtrate, the skin microbiome, and why preservation is a formulation decision.',
-  alternates: { canonical: '/journal/the-probiotic-question' },
-  openGraph: {
-    url: '/journal/the-probiotic-question',
-    title: 'The probiotic question.',
-    description: 'What "probiotic" actually means on a pet shampoo bottle - and why preservation is a formulation decision, not a marketing claim.',
-    images: ['/images/journal/probiotic-question/main.webp'],
+const SLUG = 'the-probiotic-question';
+const ARTICLE = getArticle(SLUG);
+
+export const metadata: Metadata = articleMetadata(SLUG);
+
+const FAQS: Faq[] = [
+  {
+    q: "What does probiotic mean in pet shampoo?",
+    a: "“Probiotic” traditionally refers to live microorganisms administered in adequate amounts to provide a health benefit. In pet shampoo, however, the term can be used in different ways. Some products contain live microorganisms, while others use fermentation-derived ingredients as part of their formulation. The specific ingredient, intended function and evidence should always be examined rather than assuming every probiotic-labelled shampoo works the same way.",
   },
-};
+  {
+    q: "Are probiotic shampoos good for dogs?",
+    a: "The answer depends on what the product means by “probiotic” and what benefit it claims. Research into topical probiotics and canine skin conditions is promising but still limited, and recent evidence has not established a universal clinical benefit for canine atopic dermatitis. A probiotic-labelled shampoo should therefore not automatically be considered a treatment for a skin condition.",
+  },
+  {
+    q: "Are probiotics in shampoo the same as oral probiotics?",
+    a: "No. Oral probiotics are administered through the gastrointestinal route, while a topical product interacts with the skin and is usually rinsed away. The microorganism, dose, delivery method and intended outcome can therefore be completely different. Evidence that supports a particular oral probiotic does not automatically prove that the same organism or concept works when applied in a shampoo.",
+  },
+  {
+    q: "What is Leuconostoc/Radish Root Ferment Filtrate?",
+    a: "Leuconostoc/Radish Root Ferment Filtrate is a fermentation-derived cosmetic ingredient used in Furry Tail’s [Gentle Daily Shampoo](/products/gentle-daily-shampoo-santal-white-tea) as part of its preservation system. The current formulation lists it as Leuconostoc/Radish Root Ferment Filtrate (Leucidal Liquid). It should be understood in that formulation context rather than automatically equated with a therapeutic live probiotic treatment.",
+  },
+  {
+    q: "Does probiotic shampoo restore a dog’s skin microbiome?",
+    a: "That is a stronger claim than the current evidence supports universally. The skin microbiome is a genuine biological ecosystem and topical probiotics are being studied, but results vary by microorganism, formulation, condition and study design. A 2025 systematic review of canine atopic dermatitis found no statistically significant overall effect from probiotic interventions on the measured disease scores.",
+  },
+  {
+    q: "Is probiotic shampoo suitable for cats?",
+    a: "It depends entirely on the individual product and formulation. A product designed for dogs should not automatically be assumed suitable for cats. Furry Tail’s current Gentle Daily Shampoo is specifically labelled for [dogs and cats](/products/gentle-daily-shampoo-santal-white-tea), but species eligibility should always be checked product by product.",
+  },
+  {
+    q: "Do pets need probiotic shampoo?",
+    a: "Not necessarily. [Routine grooming](/journal/how-often-should-you-bathe-your-dog) and therapeutic skin care are different questions. Probiotic products may be relevant in particular formulations or circumstances, but there is no universal requirement for healthy dogs or cats to use probiotic shampoo. Persistent itching, redness, lesions, odour or other skin changes warrant veterinary assessment rather than relying on a grooming product alone. The same goes for [ticks and fleas](/journal/ticks-fleas-and-the-indian-dog) and for [skin problems that recur through the monsoon](/journal/the-monsoon-ritual).",
+  },
+];
 
 export default function ArticlePage() {
   return (
     <ClientProviders>
       <div className="min-h-screen bg-[#F8F5F1] text-[#3B3A38] selection:bg-[#8D9A83]/20">
         <Navbar />
+        <ArticleJsonLd slug={SLUG} faqs={FAQS} />
 
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
@@ -31,7 +60,9 @@ export default function ArticlePage() {
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>Ingredients</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
-              <span>6 min read</span>
+              <span>{ARTICLE.readTime}</span>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               The probiotic question.
@@ -50,6 +81,7 @@ export default function ArticlePage() {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1000px) 100vw, 1000px"
               />
             </div>
           </div>
@@ -159,7 +191,7 @@ export default function ArticlePage() {
               Furry Tail takes a different route here.
             </p>
             <p>
-              Its <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link> uses <Link href="/ingredients" className="underline decoration-[#8D9A83] underline-offset-4">Leuconostoc/Radish Root Ferment Filtrate</Link>, described in the supplied formulation material as a probiotic ferment used as part of the preservation system. The current product label lists the ingredient as Leuconostoc/Radish Root Ferment Filtrate (Leucidal Liquid).
+              Its <Link href="/products/gentle-daily-shampoo-santal-white-tea" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link> uses <Link href="/ingredients" className="underline decoration-[#8D9A83] underline-offset-4">Leuconostoc/Radish Root Ferment Filtrate</Link>, described in the supplied formulation material as a probiotic ferment used as part of the preservation system. The current product label lists the ingredient as Leuconostoc/Radish Root Ferment Filtrate (Leucidal Liquid).
             </p>
             <p>
               This is an important distinction.
@@ -260,7 +292,7 @@ export default function ArticlePage() {
               </li>
             </ol>
             <p>
-              This last point is particularly important in grooming. Furry Tail&rsquo;s formulation process explicitly considers species eligibility, surfactant type and concentration, fragrance sensitivities and pH management before a formula is finalised.
+              This last point is particularly important in grooming. <Link href="/#thoughtfully-formulated" className="underline decoration-[#8D9A83] underline-offset-4">Our approach to formulation</Link> explicitly considers species eligibility, <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">surfactant type and concentration</Link>, <Link href="/journal/santal-a-primer" className="underline decoration-[#8D9A83] underline-offset-4">fragrance sensitivities</Link> and pH management before a formula is finalised.
             </p>
 
             <h2 className="text-3xl font-display mt-16 mb-6">The interesting part is what we don&rsquo;t know yet</h2>
@@ -312,7 +344,10 @@ export default function ArticlePage() {
               Good formulation rarely needs one.
             </p>
             <p>
-              The better habit is to turn the bottle around, read the <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">INCI list</Link> and ask what each ingredient is actually there to do.
+              The better habit is to turn the bottle around, read the <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">INCI list</Link> and ask what each ingredient is actually there to do.
+            </p>
+            <p>
+              <Link href="/ingredients" className="underline decoration-[#8D9A83] underline-offset-4">Every ingredient has a name and a reason</Link>.
             </p>
 
             <div className="my-16">
@@ -331,54 +366,15 @@ export default function ArticlePage() {
             </p>
 
             <div className="mt-16 text-center">
-              <Link href="/ingredients" className="inline-flex items-center gap-2 border border-[#3B3A38] text-[#3B3A38] px-8 py-4 text-[0.75rem] font-medium tracking-[0.08em] uppercase hover:bg-[#3B3A38] hover:text-[#F8F5F1] transition-colors duration-[400ms]">
-                Read more about our approach to formulation
+              <Link href="/journal" className="inline-flex items-center gap-2 border border-[#3B3A38] text-[#3B3A38] px-8 py-4 text-[0.75rem] font-medium tracking-[0.08em] uppercase hover:bg-[#3B3A38] hover:text-[#F8F5F1] transition-colors duration-[400ms]">
+                Explore the Journal
               </Link>
             </div>
 
           </article>
+          <ArticleFaqs faqs={FAQS} />
 
-          {/* FAQs Section */}
-          <section className="max-w-[800px] mx-auto px-6 md:px-8 mt-32 border-t border-[#E9E2D7] pt-16">
-            <h2 className="text-2xl md:text-3xl font-display mb-10 text-center">Frequently Asked Questions</h2>
-
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What does probiotic mean in pet shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">&ldquo;Probiotic&rdquo; traditionally refers to live microorganisms administered in adequate amounts to provide a health benefit. In pet shampoo, however, the term can be used in different ways. Some products contain live microorganisms, while others use fermentation-derived ingredients as part of their formulation. The specific ingredient, intended function and evidence should always be examined rather than assuming every probiotic-labelled shampoo works the same way.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are probiotic shampoos good for dogs?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">The answer depends on what the product means by &ldquo;probiotic&rdquo; and what benefit it claims. Research into topical probiotics and canine skin conditions is promising but still limited, and recent evidence has not established a universal clinical benefit for canine atopic dermatitis. A probiotic-labelled shampoo should therefore not automatically be considered a treatment for a skin condition.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Are probiotics in shampoo the same as oral probiotics?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">No. Oral probiotics are administered through the gastrointestinal route, while a topical product interacts with the skin and is usually rinsed away. The microorganism, dose, delivery method and intended outcome can therefore be completely different. Evidence that supports a particular oral probiotic does not automatically prove that the same organism or concept works when applied in a shampoo.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">What is Leuconostoc/Radish Root Ferment Filtrate?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Leuconostoc/Radish Root Ferment Filtrate is a fermentation-derived cosmetic ingredient used in Furry Tail&rsquo;s <Link href="/shop" className="underline decoration-[#8D9A83] underline-offset-4">Gentle Daily Shampoo</Link> as part of its preservation system. The current formulation lists it as Leuconostoc/Radish Root Ferment Filtrate (Leucidal Liquid). It should be understood in that formulation context rather than automatically equated with a therapeutic live probiotic treatment.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Does probiotic shampoo restore a dog&rsquo;s skin microbiome?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">That is a stronger claim than the current evidence supports universally. The skin microbiome is a genuine biological ecosystem and topical probiotics are being studied, but results vary by microorganism, formulation, condition and study design. A 2025 systematic review of canine atopic dermatitis found no statistically significant overall effect from probiotic interventions on the measured disease scores.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Is probiotic shampoo suitable for cats?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">It depends entirely on the individual product and formulation. A product designed for dogs should not automatically be assumed suitable for cats. Furry Tail&rsquo;s current Gentle Daily Shampoo is specifically labelled for dogs and cats, but species eligibility should always be checked product by product.</p>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-[1.0625rem] mb-2">Do pets need probiotic shampoo?</h3>
-                <p className="text-[#3B3A38]/80 text-[0.9375rem] leading-relaxed">Not necessarily. Routine grooming and therapeutic skin care are different questions. Probiotic products may be relevant in particular formulations or circumstances, but there is no universal requirement for healthy dogs or cats to use probiotic shampoo. Persistent itching, redness, lesions, odour or other skin changes warrant veterinary assessment rather than relying on a grooming product alone.</p>
-              </div>
-            </div>
-          </section>
+          <RelatedArticles articles={getRelatedArticles(SLUG)} />
 
         </main>
         <Footer />
