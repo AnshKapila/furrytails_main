@@ -83,6 +83,14 @@ Scripts: `dev`, `build`, `start`, `lint`, `typecheck` (`tsc --noEmit`),
 `start` must stay plain `next start` with **no `-p` flag**, so the app binds the
 host-provided `PORT`.
 
+`build` must stay `next build --webpack`. Next 16 defaults to Turbopack, which
+runs PostCSS (Tailwind) in separate Node worker processes; on Hostinger's build
+server those workers exit before Turbopack can connect, and the build dies with
+`TurbopackInternalError: [project]/src/app/globals.css ... node process exited
+before we could connect to it`. It passes locally, so it looks like a code bug
+— it is not. Webpack runs PostCSS in-process and builds the same site. Seen
+2026-10-05/06; the live site was stuck on a late-September build until then.
+
 ---
 
 ## 4. Repo layout
