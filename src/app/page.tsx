@@ -37,6 +37,7 @@ const {
 const { contact } = getGlobalSettings();
 const { stories } = getIngredientsContent();
 import { PawPrint } from 'lucide-react';
+import TrustTicker from '@/components/TrustTicker';
 
 // â”€â”€â”€ Scroll-reveal hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useReveal(threshold = 0.3) {
@@ -1156,6 +1157,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Running trust banner under the hero */}
+        <TrustTicker />
 
         {/* â”€â”€ 2. FOUR PILLARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <section id="pillars" className="py-16 md:py-20 bg-[#F8F5F1]" data-kite-surface="home.pillars" data-kite-surface-type="features">
