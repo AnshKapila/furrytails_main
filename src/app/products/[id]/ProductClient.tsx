@@ -7,6 +7,7 @@ import { useCart, parsePrice } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
 import type { WooProduct } from '@/services/types';
 import { useProducts } from '@/hooks/useProducts';
+import { REELS } from '@/data/reels';
 
 function BagIconOutline() {
   return (
@@ -244,15 +245,26 @@ export default function ProductClient({
     setTimeout(() => setAdded(false), 2000);
   }
 
-  // Gallery thumbnails come from the WooCommerce product gallery (featured
-  // image first). Capped at 4 to match the grid; the row is hidden entirely
-  // when a product only has its featured image, rather than padding it out
-  // with empty tiles.
+  // Gallery: the WooCommerce product gallery (featured image first) plus any
+  // customer videos tagged with this product in data/reels.ts. Featured image
+  // leads, then videos, then the remaining images - up to 8 tiles, which fill
+  // two rows of four. The row is hidden when there is only one item.
+  type GalleryItem =
+    | { kind: 'image'; src: string; alt?: string }
+    | { kind: 'video'; src: string; poster?: string; alt?: string };
   const [activeImage, setActiveImage] = useState(0);
-  const gallery = (product.gallery?.length ? product.gallery : [product.image])
+  const images: GalleryItem[] = (product.gallery?.length ? product.gallery : [product.image])
     .filter((img) => Boolean(img?.src))
-    .slice(0, 4);
-  const heroImage = gallery[activeImage] ?? displayImage;
+    .filter((img, i, all) => all.findIndex((o) => o.src === img.src) === i)
+    .map((img) => ({ kind: 'image', src: img.src, alt: img.alt }));
+  const videos: GalleryItem[] = REELS.filter((r) => r.product?.href === `/products/${product.id}`).map((r) => ({
+    kind: 'video',
+    src: r.src,
+    poster: r.poster,
+    alt: r.caption,
+  }));
+  const gallery: GalleryItem[] = [...images.slice(0, 1), ...videos, ...images.slice(1)].slice(0, 8);
+  const heroItem = gallery[activeImage] ?? (displayImage?.src ? { kind: 'image' as const, src: displayImage.src, alt: displayImage.alt } : undefined);
 
   return (
     <main className="pt-24 md:pt-32 pb-16">
@@ -284,17 +296,32 @@ export default function ProductClient({
 
           {/* GALLERY - Prototype Structure */}
           <div className="flex flex-col gap-4">
-            <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden bg-[#F0EBE4] w-full flex items-center justify-center">
-              {heroImage?.src && (
+            {/* Square frame + contain: product shots are square, so nothing is
+                cropped; portrait videos sit centred on the same background. */}
+            <div className="relative aspect-square overflow-hidden bg-[#F0EBE4] w-full flex items-center justify-center">
+              {heroItem?.kind === 'video' ? (
+                <video
+                  key={heroItem.src}
+                  src={heroItem.src}
+                  poster={heroItem.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="absolute inset-0 w-full h-full object-contain"
+                  aria-label={heroItem.alt || `${product.name} video`}
+                />
+              ) : heroItem?.src ? (
                 <Image
-                  src={heroImage.src}
-                  alt={heroImage.alt ?? product.name}
+                  src={heroItem.src}
+                  alt={heroItem.alt ?? product.name}
                   fill
-                  className="object-cover object-center transition-opacity duration-300"
+                  className="object-contain object-center transition-opacity duration-300"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   priority
                 />
-              )}
+              ) : null}
               {product.badge && (
                 <span
                   className="absolute top-4 right-4 text-[0.6875rem] font-normal tracking-[0.14em] uppercase px-2 py-0.5 bg-[#F8F5F1]/90 text-[#3B3A38]"
@@ -308,24 +335,29 @@ export default function ProductClient({
             {/* Thumb row - real gallery images, hidden when there is only one */}
             {gallery.length > 1 && (
               <div className="grid grid-cols-4 gap-2 md:gap-4">
-                {gallery.map((img, idx) => (
+                {gallery.map((item, idx) => (
                   <button
-                    key={img.src}
+                    key={item.src}
                     type="button"
                     onClick={() => setActiveImage(idx)}
-                    aria-label={`View image ${idx + 1} of ${gallery.length}`}
+                    aria-label={`View ${item.kind === 'video' ? 'video' : 'image'} ${idx + 1} of ${gallery.length}`}
                     aria-pressed={activeImage === idx}
                     className={`relative aspect-square bg-[#F0EBE4] overflow-hidden transition-opacity duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#8D9A83] ${
                       activeImage === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <Image
-                      src={img.src}
-                      alt={img.alt ?? product.name}
-                      fill
-                      className="object-cover"
-                      sizes="120px"
-                    />
+                    {item.kind === 'video' ? (
+                      <>
+                        {item.poster && <Image src={item.poster} alt={item.alt ?? product.name} fill className="object-cover" sizes="120px" />}
+                        <span className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                          <span className="w-8 h-8 rounded-full bg-[#F8F5F1]/85 flex items-center justify-center">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="#3B3A38"><path d="M7 4v16l13-8z" /></svg>
+                          </span>
+                        </span>
+                      </>
+                    ) : (
+                      <Image src={item.src} alt={item.alt ?? product.name} fill className="object-cover" sizes="120px" />
+                    )}
                   </button>
                 ))}
               </div>
