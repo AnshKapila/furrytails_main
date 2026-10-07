@@ -341,17 +341,26 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     <main className="pt-32 pb-24 md:pt-40 md:pb-32 min-h-screen bg-[#F8F5F1]">
       {/* Page Hero */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-8 mb-20 md:mb-28">
-        <span
-          className="block text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8"
-          style={{ fontFamily: 'var(--font-inter)' }}
-        >
-          The Ritual
-        </span>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#3B3A38] mb-6 max-w-2xl leading-[1.1]">
-          The complete ritual.
+        {/* Eyebrow is part of the H1 so the heading names what the page sells */}
+        <h1 className="mb-6 max-w-2xl">
+          <span
+            className="block text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8"
+            style={{ fontFamily: 'var(--font-inter)' }}
+          >
+            Natural dog &amp; cat grooming products
+          </span>
+          <span className="block text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#3B3A38] leading-[1.1]">
+            The complete ritual.
+          </span>
         </h1>
         <p className="text-[1rem] md:text-[1.125rem] font-light text-[#68735F] leading-[1.6] max-w-2xl">
-          Seven products. Four rituals. One formula standard. Every product in the Furry Tail range is built to the same certified natural-origin standard - the 99.5% Natural Origin Index per ISO 16128-2. None of them cut corners on preservation.
+          Seven products. Four rituals. One formula standard. Every shampoo, spray and cleaner in the Furrytail range is made to the same natural-origin standard - a 99.5% Natural Origin Index calculated per ISO 16128-2 - and none of them cut corners on preservation.
+        </p>
+        <p className="mt-6 text-[0.8125rem] tracking-[0.04em] text-[#3B3A38]/70">
+          Shopping for one pet?{' '}
+          <Link href="/dog-grooming" className="underline underline-offset-4 text-[#68735F] hover:text-[#3B3A38]">Natural dog grooming</Link>
+          {' · '}
+          <Link href="/cat-grooming" className="underline underline-offset-4 text-[#68735F] hover:text-[#3B3A38]">Natural cat grooming</Link>
         </p>
       </section>
 

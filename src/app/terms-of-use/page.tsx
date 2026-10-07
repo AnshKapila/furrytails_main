@@ -1,8 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+
+export const metadata: Metadata = {
+  title: 'Terms of Use | Furrytail',
+  description: 'The terms that apply when you browse furrytailjoy.com and buy Furrytail natural pet grooming products, including orders, delivery and returns.',
+  alternates: { canonical: '/terms-of-use' },
+};
 
 // Content structure
 const sections = [
@@ -171,5 +178,4 @@ export default function TermsOfUsePage() {
     </ClientProviders>
   );
 }
-
 

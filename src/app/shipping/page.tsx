@@ -5,7 +5,7 @@ import ClientProviders from '@/components/ClientProviders';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shipping & Returns — Furrytail',
+  title: 'Shipping & Returns — Pet Grooming Delivery Across India | Furrytail',
   description: 'How we ship, how long it takes, and what to do if something goes wrong. We keep this simple.',
   alternates: { canonical: '/shipping' },
 };

@@ -388,10 +388,10 @@ export default function ProductClient({
               )}
             </div>
 
-            {/* pdp__name */}
-            <h2 className="text-h2 text-[#3B3A38] mb-2">
+            {/* pdp__name - the page H1 */}
+            <h1 className="pdp-title text-h2 text-[#3B3A38] mb-2">
               {product.name}
-            </h2>
+            </h1>
 
             {/* pdp__fragrance & pdp__price */}
             <div className="flex flex-col gap-1">

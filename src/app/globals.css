@@ -38,6 +38,9 @@ h2 { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(2rem, 
 h1 em { font-weight: 300; }
 /* Price h1 on product detail pages â€” full H1 visual treatment, no centering constraint */
 h1.product-price { font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(3rem, 5vw, 4rem); font-weight: 300; line-height: 1.06; letter-spacing: -.03em; max-width: none; margin: 0; }
+/* An h1 styled as a section title (product name on detail pages, class pdp-title): the h1 is
+   for search engines, the look stays the h2 token. Beats the bare h1 rule above. */
+h1.pdp-title { font-size: clamp(2rem, 3.2vw, 2.625rem); line-height: 1.15; letter-spacing: -.01em; margin-bottom: .5rem; }
 /* .intro inside .hero-copy-left sits 8px below the h1; left-aligned, full container width */
 .hero-copy-left .intro { max-width: 520px; margin: 8px 0 0; text-align: left; font-size: 1rem; line-height: 1.65; }
 .intro { max-width: 550px; margin: 8px auto 0; font-size: 1rem; line-height: 1.65; }

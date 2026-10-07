@@ -1,8 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Furrytail',
+  description: 'How Furrytail collects, uses and protects your personal information when you shop natural dog and cat grooming products with us.',
+  alternates: { canonical: '/privacy-policy' },
+};
 
 // Content structure
 const sections = [
@@ -171,5 +178,4 @@ export default function PrivacyPolicyPage() {
     </ClientProviders>
   );
 }
-
 

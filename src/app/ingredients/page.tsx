@@ -6,17 +6,19 @@ import ClientProviders from '@/components/ClientProviders';
 import { getIngredientsContent } from '@/services/api';
 import IngredientRow from '@/components/IngredientRow';
 import type { Metadata } from 'next';
+import { pageOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Our Ingredients — Furrytail',
-  description: 'Every botanical Furrytail uses, explained across three chapters. What each ingredient is, why it is in the formula, and where it comes from.',
+  title: 'Natural Pet Shampoo Ingredients, Explained | Furrytail',
+  description:
+    'Every ingredient in Furrytail\'s natural dog and cat grooming range explained: what each botanical, cleanser and preservative is, why it is in the formula, and where it comes from.',
   alternates: { canonical: '/ingredients' },
-  openGraph: {
+  openGraph: pageOpenGraph({
     url: '/ingredients',
-    title: 'Our Ingredients — Furrytail',
+    title: 'Natural Pet Shampoo Ingredients, Explained | Furrytail',
     description: 'Every botanical Furrytail uses, explained across three chapters. What each ingredient is, why it is in the formula, and where it comes from.',
-    images: ['https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png'],
-  },
+    images: [{ url: 'https://static.kite.ai/image/upload/v1785786928/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-white-tea-editorial-r2.png' }],
+  }),
 };
 
 export default function IngredientsPage() {

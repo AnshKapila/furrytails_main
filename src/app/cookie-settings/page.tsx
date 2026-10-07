@@ -1,8 +1,16 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
+
+export const metadata: Metadata = {
+  title: 'Cookie Settings | Furrytail',
+  description: 'Manage how furrytailjoy.com uses cookies and similar technologies.',
+  alternates: { canonical: '/cookie-settings' },
+  robots: { index: false, follow: true },
+};
 
 // Content structure
 const sections = [
@@ -171,5 +179,4 @@ export default function CookieSettingsPage() {
     </ClientProviders>
   );
 }
-
 

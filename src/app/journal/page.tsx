@@ -8,7 +8,7 @@ import { getBaseUrl } from '@/lib/site-url';
 import { FEATURED_SLUG, JOURNAL_ARTICLES, PUBLISHER_NAME, articlePath, getArticle } from '@/lib/journal';
 
 export const metadata: Metadata = {
-  title: 'Journal: Dog & Cat Grooming Guides | Furry Tail',
+  title: 'Journal: Dog & Cat Grooming Guides | Furrytail',
   description:
     'Slow reading for the pet parent who pays attention. Pet grooming guides, ingredient deep-dives, tick and flea prevention, and the science behind the label.',
   alternates: { canonical: '/journal' },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: '/journal',
     siteName: PUBLISHER_NAME,
     locale: 'en_IN',
-    title: 'The Furry Tail Journal',
+    title: 'The Furrytail Journal',
     description: 'Slow reading for the pet parent who pays attention.',
     images: ['/journal_featured.webp'],
   },

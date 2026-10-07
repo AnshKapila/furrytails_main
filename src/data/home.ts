@@ -18,7 +18,10 @@ export const navLinks = [
 // ── Hero ─────────────────────────────────────────────────────────────────────
 
 export const hero = {
-  eyebrow: 'For the pet parent who reads every label.',
+  // Part of the homepage H1 - keep the search phrase in it.
+  eyebrow: 'Natural shampoo & care for dogs and cats',
+  // Brand sign-off under the hero button.
+  labelLine: 'For the pet parent who reads every label.',
   headline: 'Your standard. Now for your pet.',
   subline:
     "Formulated to the same standard you'd expect on your own skin. Because they deserve it too.",
@@ -496,12 +499,17 @@ export const ingredientStories = {
 
 export const footer = {
   tagline: 'Natural care, considered.',
+  // Real URLs with the words people search for: these links appear on every
+  // page, so they are the strongest internal links the site has. (Hash links
+  // like /shop#ritual all count as the same page to a search engine.)
   shopLinks: [
     { label: 'All Products', href: '/shop' },
-    { label: 'Ritual', href: '/shop#ritual' },
-    { label: 'Defense', href: '/shop#defense' },
-    { label: 'Remedy', href: '/shop#remedy' },
-    { label: 'Refresh', href: '/shop#refresh' },
+    { label: 'Dog Grooming', href: '/dog-grooming' },
+    { label: 'Cat Grooming', href: '/cat-grooming' },
+    { label: 'Natural Dog & Cat Shampoo', href: '/products/gentle-daily-shampoo-santal-white-tea' },
+    { label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' },
+    { label: 'Paw Cleaner', href: '/products/paw-cleaner' },
+    { label: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' },
   ],
   companyLinks: [
     { label: 'Our Story', href: '/about' },

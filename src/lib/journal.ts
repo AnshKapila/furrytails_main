@@ -6,7 +6,9 @@ import { getBaseUrl } from './site-url';
 // cross-links all read from here, so a new article only needs an entry below
 // plus its page.tsx.
 
-export const PUBLISHER_NAME = 'Furry Tail';
+// One spelling everywhere - search engines treat "Furry Tail" and "Furrytail" as
+// different entities. Must match ORG_NAME in lib/seo.ts.
+export const PUBLISHER_NAME = 'Furrytail';
 
 export interface JournalImage {
   src: string;

@@ -7,17 +7,19 @@ import SecondaryOutlineBtn from '@/components/SecondaryOutlineBtn';
 import { TrustMarkerItem } from '@/components/TrustMarkers';
 import { TRUST_MARKERS } from '@/components/TrustMarkersData';
 import type { Metadata } from 'next';
+import { pageOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Our Story — Furrytail',
-  description: 'Care, Extended. We didn\'t start with shampoo. We started with a question.',
+  title: 'Our Story — Why We Make Natural Dog & Cat Grooming Products | Furrytail',
+  description:
+    'Why Furrytail makes natural, probiotic-preserved dog and cat grooming products in India - the standard we hold every formula to, and what we leave out.',
   alternates: { canonical: '/about' },
-  openGraph: {
+  openGraph: pageOpenGraph({
     url: '/about',
-    title: 'Our Story — Furrytail',
+    title: 'Our Story — Why We Make Natural Dog & Cat Grooming Products | Furrytail',
     description: 'Care, Extended. We didn\'t start with shampoo. We started with a question.',
-    images: ['/about_hero_door.webp'],
-  },
+    images: [{ url: '/about_hero_door.webp' }],
+  }),
 };
 
 export default function AboutPage() {

@@ -17,6 +17,17 @@ import { parsePrice } from '@/lib/price';
 import { getBaseUrl } from '@/lib/site-url';
 import { getArticlesForProduct } from '@/lib/journal';
 import RelatedArticles from '@/components/journal/RelatedArticles';
+import {
+  GOOGLE_PRODUCT_CATEGORY,
+  breadcrumbJsonLd,
+  jsonLdString,
+  orgId,
+  pageOpenGraph,
+  plainProductText,
+  productMetaDescription,
+  productTitle,
+  speciesLabel,
+} from '@/lib/seo';
 
 // Catalogue changes are picked up within this window without a redeploy.
 export const revalidate = 300;
@@ -42,22 +53,21 @@ export async function generateMetadata({
     return { title: 'Product not found — Furrytail' };
   }
 
-  const title = `${product.name} — Furrytail`;
-  const description =
-    product.shortDesc?.slice(0, 160) ||
-    `${product.name} from Furrytail. ${product.volume ?? ''}`.trim();
+  const title = productTitle(product);
+  const description = productMetaDescription(product);
 
   return {
     title,
     description,
     alternates: { canonical: `/products/${product.id}` },
-    openGraph: {
-      type: 'website',
+    openGraph: pageOpenGraph({
       url: `/products/${product.id}`,
       title,
       description,
-      images: [{ url: product.image.src, alt: product.image.alt }],
-    },
+      images: (product.gallery?.length ? product.gallery : [product.image])
+        .slice(0, 4)
+        .map((img) => ({ url: img.src, alt: img.alt || product.name })),
+    }),
   };
 }
 
@@ -75,25 +85,51 @@ export default async function ProductPage({
     () => [],
   );
 
-  // Product structured data — drives rich results for a commerce listing.
+  // Product + BreadcrumbList. Feeds product rich results and Google Shopping's
+  // free listings (Merchant Center reads this alongside the feed). Only facts
+  // the page itself shows: no ratings or reviews until real ones exist.
+  const base = getBaseUrl();
+  const url = `${base}/products/${product.id}`;
+  const images = (product.gallery?.length ? product.gallery : [product.image]).map((i) => i.src);
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.name,
-    description: product.shortDesc ?? '',
-    image: product.image.src,
-    sku: product.sku ?? product.id,
-    brand: { '@type': 'Brand', name: 'Furrytail' },
-    offers: {
-      '@type': 'Offer',
-      url: `${getBaseUrl()}/products/${product.id}`,
-      priceCurrency: 'INR',
-      price: parsePrice(product.price),
-      availability:
-        product.inStock === false
-          ? 'https://schema.org/OutOfStock'
-          : 'https://schema.org/InStock',
-    },
+    '@graph': [
+      {
+        '@type': 'Product',
+        '@id': `${url}#product`,
+        name: product.name,
+        description: plainProductText(product).slice(0, 5000),
+        url,
+        image: [...new Set(images)].slice(0, 10),
+        sku: product.sku ?? product.id,
+        mpn: product.sku ?? product.id,
+        brand: { '@type': 'Brand', name: 'Furrytail' },
+        manufacturer: { '@id': orgId() },
+        category: GOOGLE_PRODUCT_CATEGORY,
+        ...(product.volume ? { size: product.volume } : {}),
+        audience: {
+          '@type': 'Audience',
+          audienceType: `${speciesLabel(product)} owners`,
+        },
+        offers: {
+          '@type': 'Offer',
+          url,
+          priceCurrency: 'INR',
+          price: parsePrice(product.price),
+          itemCondition: 'https://schema.org/NewCondition',
+          availability:
+            product.inStock === false
+              ? 'https://schema.org/OutOfStock'
+              : 'https://schema.org/InStock',
+          seller: { '@id': orgId() },
+        },
+      },
+      breadcrumbJsonLd([
+        ['Home', '/'],
+        ['Shop', '/shop'],
+        [product.name, `/products/${product.id}`],
+      ]),
+    ],
   };
 
   return (
@@ -101,7 +137,7 @@ export default async function ProductPage({
       <div className="min-h-screen bg-[#F8F5F1]">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }}
         />
         <Navbar />
         <ProductClient product={product} related={related} />
