@@ -292,3 +292,8 @@ nextjs-portal {
 }
 
 html { scroll-behavior: smooth; }
+
+/* Homepage expert carousel: soft fade between slides */
+.expert-slide { animation: expert-fade 500ms ease-out; }
+@keyframes expert-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .expert-slide { animation: none; } }

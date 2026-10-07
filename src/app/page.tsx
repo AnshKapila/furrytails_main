@@ -38,6 +38,9 @@ const { contact } = getGlobalSettings();
 const { stories } = getIngredientsContent();
 import { PawPrint } from 'lucide-react';
 import TrustTicker from '@/components/TrustTicker';
+import ExpertVoices from '@/components/ExpertVoices';
+import CommunityReels from '@/components/CommunityReels';
+import Certifications from '@/components/Certifications';
 
 // â”€â”€â”€ Scroll-reveal hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useReveal(threshold = 0.3) {
@@ -1161,42 +1164,7 @@ export default function Home() {
         {/* Running trust banner under the hero */}
         <TrustTicker />
 
-        {/* â”€â”€ 2. FOUR PILLARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-        <section id="pillars" className="py-16 md:py-20 bg-[#F8F5F1]" data-kite-surface="home.pillars" data-kite-surface-type="features">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-              <div>
-                <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">A Ritual Of Four Categories</p>
-                <h2 className="text-h2 text-[#3B3A38]">Every Ritual Has A Purpose.</h2>
-              </div>
-              <SecondaryOutlineBtn
-                href="/shop"
-                className="hidden sm:inline-flex"
-                data-kite-cta-id="pillars-explore-all"
-                data-kite-role="secondary"
-                data-kite-event="range_explored"
-              >
-                Shop Collection
-              </SecondaryOutlineBtn>
-            </div>
-            <PillarAccordionRow />
-            <div className="sm:hidden mt-8 flex justify-center">
-              <SecondaryOutlineBtn
-                href="/shop"
-                data-kite-cta-id="pillars-explore-all-mobile"
-                data-kite-role="secondary"
-                data-kite-event="range_explored"
-              >
-                Shop Collection
-              </SecondaryOutlineBtn>
-            </div>
-          </div>
-        </section>
-
-        {/* â”€â”€ 3. TRUST MARKERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-        <TrustMarkersSection />
-
-        {/* â”€â”€ 4. FEATURED PRODUCTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* â”€â”€ 2. FEATURED PRODUCTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <RevealSection id="best-sellers" className="group py-16 md:py-20 bg-[#EDE7DF]" data-kite-surface="home.best-sellers" data-kite-surface-type="features">
           <div className="max-w-[1200px] mx-auto px-6 md:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
@@ -1233,6 +1201,41 @@ export default function Home() {
             </div>
           </div>
         </RevealSection>
+
+        {/* â”€â”€ 3. FOUR PILLARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        <section id="pillars" className="py-16 md:py-20 bg-[#F8F5F1]" data-kite-surface="home.pillars" data-kite-surface-type="features">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-2">A Ritual Of Four Categories</p>
+                <h2 className="text-h2 text-[#3B3A38]">Every Ritual Has A Purpose.</h2>
+              </div>
+              <SecondaryOutlineBtn
+                href="/shop"
+                className="hidden sm:inline-flex"
+                data-kite-cta-id="pillars-explore-all"
+                data-kite-role="secondary"
+                data-kite-event="range_explored"
+              >
+                Shop Collection
+              </SecondaryOutlineBtn>
+            </div>
+            <PillarAccordionRow />
+            <div className="sm:hidden mt-8 flex justify-center">
+              <SecondaryOutlineBtn
+                href="/shop"
+                data-kite-cta-id="pillars-explore-all-mobile"
+                data-kite-role="secondary"
+                data-kite-event="range_explored"
+              >
+                Shop Collection
+              </SecondaryOutlineBtn>
+            </div>
+          </div>
+        </section>
+
+        {/* â”€â”€ 4. TRUST MARKERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        <TrustMarkersSection />
 
         {/* â”€â”€ 5. BRAND PHILOSOPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <section id="brand-philosophy" className="relative bg-[#F8F5F1] overflow-hidden" data-kite-surface="home.brand-philosophy" data-kite-surface-type="features">
@@ -1285,6 +1288,15 @@ export default function Home() {
 
         {/* â”€â”€ 6. OUR RANGE EXHIBITION GALLERY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <OurRangeGallery />
+
+        {/* Expert quotes carousel - content in data/experts.ts */}
+        <ExpertVoices />
+
+        {/* Customer video reels - content in data/reels.ts */}
+        <CommunityReels />
+
+        {/* Certifications */}
+        <Certifications />
 
         {/* â”€â”€ 7. FEATURED INGREDIENTS â€” scroll-pinned split editorial â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <FeaturedIngredients stories={stories.stories.slice(0, 4)} />
