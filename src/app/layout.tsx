@@ -6,6 +6,7 @@ import './globals.css';
 import Script from 'next/script';
 import WhatsAppNudge from '@/components/WhatsAppNudge';
 import NewsletterPopup from '@/components/NewsletterPopup';
+import NectorWidget from '@/components/NectorWidget';
 
 // Caps the shared-cache TTL on every page below this layout. Without it Next
 // serves prerendered pages with ``s-maxage=31536000``, and Hostinger's CDN -
@@ -76,6 +77,7 @@ export default function RootLayout({
         {children}
         <WhatsAppNudge />
         <NewsletterPopup />
+        <NectorWidget />
       </body>
     </html>
   );
