@@ -250,7 +250,7 @@ export default function ArticlePage() {
             </p>
 
             <p>
-              Pack the <Link href="/travel-essentials" className={LINK}>travel essentials</Link> before your next adventure.
+              Pack the <Link href="/travel-essentials" className={LINK}>travel essentials</Link> - or all four together in the <Link href="/products/travel-kit-bundle" className={LINK}>Travel Kit</Link> - before your next adventure.
             </p>
 
             <p>

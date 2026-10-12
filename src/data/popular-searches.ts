@@ -31,6 +31,7 @@ export const POPULAR_SEARCHES: { term: string; href: string }[] = [
   { term: 'summer dog care tips', href: '/journal/summer-dog-care-india' },
   { term: 'winter dog care tips', href: '/journal/winter-dog-care-india' },
   { term: 'dog travel essentials', href: '/travel-essentials' },
+  { term: 'dog travel kit', href: '/products/travel-kit-bundle' },
   { term: 'how to calm a dog during Diwali', href: '/journal/diwali-pet-safety-tips' },
   { term: 'can you bathe a cat', href: '/journal/can-you-bathe-a-cat' },
   { term: 'monsoon dog care', href: '/journal/the-monsoon-ritual' },

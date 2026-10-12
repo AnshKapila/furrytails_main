@@ -72,6 +72,33 @@ const shampooFaqs = ({ fragrance, inciBotanicals }: ShampooFacts): Faq[] => [
 ];
 
 export const PRODUCT_SEO: Record<string, ProductSeo> = {
+  'travel-kit-bundle': {
+    title: "Travel Kit Bundle – Waterless Dog Grooming Kit | Furrytail",
+    description:
+      "Dog travel kit: Dry Foam Shampoo, Paw Cleaner, Defense tick & flea spray and Refreshing Mist in one bundle. Waterless grooming for any trip - no rinse.",
+    faqs: [
+      {
+        q: 'What is in the Travel Kit?',
+        a: 'Four waterless essentials: [Dry Foam Shampoo](/products/dry-foam-shampoo) (Hinoki & Bamboo, 100 ml), [Paw Cleaner](/products/paw-cleaner) (Spearmint & Sea Salt, 150 ml), [Defense Anti-Tick & Flea Spray](/products/anti-tick-flea-spray) (Vetiver & Cypress, 100 ml) and [Refreshing Mist](/products/refreshing-mist) (Yuzu & White Musk, 100 ml).',
+      },
+      {
+        q: 'How do I use the Travel Kit on a trip?',
+        a: 'Before a walk in a new place, 6–8 sprays of Defense across the back, flanks and base of the tail, left to dry. At every pit stop, Paw Cleaner on each paw, massaged between the pads and wiped clean. On arrival, 3–5 sprays of Refreshing Mist, left to settle. When the coat gets messy, 4–6 sprays of Dry Foam Shampoo, massaged through and left to dry in 60–90 seconds - no rinsing.',
+      },
+      {
+        q: 'Is the Travel Kit suitable for cats?',
+        a: 'Only the Dry Foam Shampoo is made for dogs and cats. The Paw Cleaner, Defense spray and Refreshing Mist are for dogs only, so the kit is designed for travelling with a dog.',
+      },
+      {
+        q: 'Do I need water to use it?',
+        a: 'No. All four are no-rinse: no tub, no hose and no towelling for the Dry Foam Shampoo. They handle the in-between moments on a trip; a full bath at home is still right when the coat is genuinely dirty.',
+      },
+      {
+        q: 'Will it fit in my travel bag?',
+        a: 'Yes - three 100 ml bottles and one 150 ml bottle. More on what to pack in [travelling with your pet](/journal/travelling-with-your-pet-waterless-essentials).',
+      },
+    ],
+  },
   'gentle-daily-shampoo-santal-white-tea': {
     title: 'Santal & White Tea Sulphate-Free Dog Shampoo | Furrytail',
     description:
@@ -106,7 +133,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: [
       {
         q: 'Is it good for travelling with my pet?',
-        a: "Yes - it is a bath without the bath. The 100 ml bottle fits any bag, and it needs no water, no rinsing and no towelling: 4–6 sprays, massage through, dry in 60–90 seconds. Made for dogs and cats. See [travel essentials](/travel-essentials).",
+        a: "Yes - it is a bath without the bath. The 100 ml bottle fits any bag, and it needs no water, no rinsing and no towelling: 4–6 sprays, massage through, dry in 60–90 seconds. Made for dogs and cats. See [travel essentials](/travel-essentials), or get all four in the [Travel Kit](/products/travel-kit-bundle).",
       },
       {
         q: 'How do you use dry shampoo on a dog?',
@@ -141,7 +168,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: [
       {
         q: 'Is it good for travelling with my pet?',
-        a: "Yes - a few sprays on arrival freshen a coat that smells of the journey, ready for the next cuddle or family hello. 100 ml, for dogs. See [travel essentials](/travel-essentials).",
+        a: "Yes - a few sprays on arrival freshen a coat that smells of the journey, ready for the next cuddle or family hello. 100 ml, for dogs. See [travel essentials](/travel-essentials), or get all four in the [Travel Kit](/products/travel-kit-bundle).",
       },
       {
         q: 'Is Refreshing Mist a dog perfume?',
@@ -180,7 +207,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: [
       {
         q: 'Is it good for travelling with my pet?',
-        a: "Yes - clean paws at every pit stop before your dog gets back in the car, and before they settle on a hotel bed. The 150 ml no-rinse foam takes one pump and thirty seconds. See [travel essentials](/travel-essentials).",
+        a: "Yes - clean paws at every pit stop before your dog gets back in the car, and before they settle on a hotel bed. The 150 ml no-rinse foam takes one pump and thirty seconds. See [travel essentials](/travel-essentials), or get all four in the [Travel Kit](/products/travel-kit-bundle).",
       },
       {
         q: 'How do I use a paw cleaner on my dog?',
@@ -211,7 +238,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: [
       {
         q: 'Is it good for travelling with my pet?',
-        a: "Yes - a new place means new grass and new trails. Spray before walks in places your dog hasn’t been, and let it dry completely before walking. 100 ml, for dogs. See [travel essentials](/travel-essentials).",
+        a: "Yes - a new place means new grass and new trails. Spray before walks in places your dog hasn’t been, and let it dry completely before walking. 100 ml, for dogs. See [travel essentials](/travel-essentials), or get all four in the [Travel Kit](/products/travel-kit-bundle).",
       },
       {
         q: 'Is this a natural tick repellent for dogs?',

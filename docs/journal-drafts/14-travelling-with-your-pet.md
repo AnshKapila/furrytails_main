@@ -75,7 +75,7 @@ Pack alongside them: a microfibre towel, a soft brush, wet wipes for the face, a
 
 The best trips are the ones where your pet comes home as happy as they left. Our waterless range is built for exactly that: gentle care that fits in a bag and works anywhere.
 
-Pack the [travel essentials](/travel-essentials) before your next adventure.
+Pack the [travel essentials](/travel-essentials) - or all four together in the [Travel Kit](/products/travel-kit-bundle) - before your next adventure.
 
 Happily ever after.
 

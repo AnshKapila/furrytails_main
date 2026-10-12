@@ -197,7 +197,7 @@ export const TRAVEL_LANDING: LandingContent = {
   heading: 'Waterless essentials for travelling with your pet.',
   intro: [
     'A full bath on the road is rarely practical. Hotel bathrooms are not built for a wet Labrador, and a coat that stays damp in a cold car or an air-conditioned room is uncomfortable for your pet.',
-    'These four no-rinse essentials handle the in-between moments - the pit stop, the new trail, the hotel bed - with no tub, no hose and no rinse. Each comes in a 100–150 ml bottle that fits in a travel bag.',
+    'These four no-rinse essentials handle the in-between moments - the pit stop, the new trail, the hotel bed - with no tub, no hose and no rinse. Each comes in a 100–150 ml bottle that fits in a travel bag - or get all four together in the Travel Kit bundle.',
   ],
   routineHeading: 'A simple travel-day routine',
   routine: [
@@ -231,7 +231,7 @@ export const TRAVEL_LANDING: LandingContent = {
       question: 'What should I pack when travelling with my dog?',
       answer:
         'Your dog’s usual food, water bowl, bedding, lead and ID tag, plus a small grooming kit: a waterless dry shampoo, a no-rinse paw cleaner, a tick and flea repellent for new trails, a coat mist, a microfibre towel and a soft brush.',
-      links: [{ label: 'Travelling with your pet: the full guide', href: '/journal/travelling-with-your-pet-waterless-essentials' }],
+      links: [{ label: 'Travelling with your pet: the full guide', href: '/journal/travelling-with-your-pet-waterless-essentials' }, { label: 'Travel Kit bundle', href: '/products/travel-kit-bundle' }],
     },
     {
       question: 'How do I keep my dog clean while travelling?',
@@ -252,7 +252,7 @@ export const TRAVEL_LANDING: LandingContent = {
   ],
   journalSlugs: ['travelling-with-your-pet-waterless-essentials', 'dry-bath-vs-wet-bath-for-dogs', 'diwali-pet-safety-tips'],
   crossLink: { label: 'See the full dog grooming range', href: '/dog-grooming' },
-  productIds: ['dry-foam-shampoo', 'paw-cleaner', 'anti-tick-flea-spray', 'refreshing-mist'],
+  productIds: ['travel-kit-bundle', 'dry-foam-shampoo', 'paw-cleaner', 'anti-tick-flea-spray', 'refreshing-mist'],
   breadcrumbLabel: 'Travel essentials',
   productsHeading: 'Shop the travel essentials',
 };
