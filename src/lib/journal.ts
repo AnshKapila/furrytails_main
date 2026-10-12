@@ -47,6 +47,40 @@ export interface JournalArticle {
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
+    slug: 'why-your-dog-still-smells-after-a-bath',
+    title: 'Why Your Dog Still Smells After a Bath.',
+    seoTitle: 'Why Your Dog Still Smells After a Bath | Furry Tail Journal',
+    description:
+      'Why does your dog still smell after a bath? Learn how drying, shampoo residue, bedding, ears and skin may contribute—and when to call the vet.',
+    excerpt:
+      'The bath is over, but a musty smell never quite left. Before reaching for the shampoo again: how drying, rinsing, bedding, collars, ears and skin can each play a part, and where everyday freshness ends and veterinary care begins.',
+    ogDescription:
+      'Your dog has had a bath, but the smell is still there. Before reaching for the shampoo again, learn what the coat, ears, skin and everyday surroundings may be telling you.',
+    category: 'Care',
+    readTime: '6 min read',
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/dog-smells-after-bath/main.webp',
+      width: 1432,
+      height: 955,
+      alt: 'A wet golden retriever being towel-dried in a bright bathroom after a bath',
+    },
+    keywords: [
+      'dog smells after bath',
+      'dog still smells after bathing',
+      'wet dog smell after bath',
+      'dog smells musty after bath',
+      'how to dry a dog properly after a bath',
+      'dog ear smell after bath',
+      'why does my dog’s skin smell',
+      'how often should you bathe a dog',
+      'clean dog bedding and collars',
+    ],
+    related: ['how-often-should-you-bathe-your-dog', 'the-monsoon-ritual', 'reading-the-inci-list'],
+    products: ['refreshing-mist', 'gentle-daily-shampoo-santal-white-tea'],
+  },
+  {
     slug: 'what-does-natural-mean-in-pet-care',
     title: 'What Does “Natural” Actually Mean in Pet Care?',
     seoTitle: 'What Does Natural Mean in Pet Care? | Furry Tail',
@@ -208,7 +242,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'dog grooming routine',
       'gentle dog shampoo',
     ],
-    related: ['the-monsoon-ritual', 'what-we-found-in-most-pet-shampoos', 'ticks-fleas-and-the-indian-dog'],
+    related: ['why-your-dog-still-smells-after-a-bath', 'the-monsoon-ritual', 'what-we-found-in-most-pet-shampoos'],
     products: [
       'gentle-daily-shampoo-santal-white-tea',
       'gentle-daily-shampoo-fig-neroli',

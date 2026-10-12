@@ -41,7 +41,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "What if my dog smells even after bathing?",
-    a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate.",
+    a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate. We walk through the checks to make first in [why your dog still smells after a bath](/journal/why-your-dog-still-smells-after-a-bath).",
   },
 ];
 
