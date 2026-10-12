@@ -1,6 +1,6 @@
 # Dry Bath vs. Wet Bath: When Does Your Dog Actually Need Either?
 
-**Status:** draft, awaiting images · **Slug:** `/journal/dry-bath-vs-wet-bath-for-dogs`
+**Status:** published 2026-10-12 · **Slug:** `/journal/dry-bath-vs-wet-bath-for-dogs`
 
 | Field | Value |
 |---|---|

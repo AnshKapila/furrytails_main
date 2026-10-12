@@ -1,6 +1,6 @@
 # How to Bathe a Dog at Home: The Ritual, Step by Step
 
-**Status:** draft, awaiting images · **Slug:** `/journal/how-to-bathe-a-dog-at-home`
+**Status:** published 2026-10-12 · **Slug:** `/journal/how-to-bathe-a-dog-at-home`
 
 | Field | Value |
 |---|---|

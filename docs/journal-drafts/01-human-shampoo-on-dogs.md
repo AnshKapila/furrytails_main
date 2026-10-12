@@ -1,6 +1,6 @@
 # Why Human Shampoo Doesn't Belong in Your Dog's Bath
 
-**Status:** draft, awaiting images · **Slug:** `/journal/can-i-use-human-shampoo-on-my-dog`
+**Status:** published 2026-10-12 · **Slug:** `/journal/can-i-use-human-shampoo-on-my-dog`
 
 | Field | Value |
 |---|---|

@@ -1,6 +1,6 @@
 # Shih Tzu Grooming at Home: Coat, Face, Paws and Bath
 
-**Status:** draft, awaiting images · **Slug:** `/journal/shih-tzu-grooming-at-home`
+**Status:** published 2026-10-12 · **Slug:** `/journal/shih-tzu-grooming-at-home`
 
 | Field | Value |
 |---|---|

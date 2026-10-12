@@ -45,7 +45,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "Is dog shampoo pH different from human shampoo?",
-    a: "Yes. Human skin is mildly acidic, while canine skin generally has a higher and more variable pH. That is one reason a shampoo made for people is not automatically suitable for dogs: the pH and surfactant system of a pet shampoo should be formulated for the species it is meant for.",
+    a: "Yes. Human skin is mildly acidic, while canine skin generally has a higher and more variable pH. That is one reason a shampoo made for people is not automatically suitable for dogs: the pH and surfactant system of a pet shampoo should be formulated for the species it is meant for. More in [why human shampoo doesn't belong in your dog's bath](/journal/can-i-use-human-shampoo-on-my-dog).",
   },
 ];
 

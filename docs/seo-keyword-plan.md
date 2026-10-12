@@ -80,8 +80,9 @@ does not support them.
 From "Proposed Journal title.docx" + this plan. Published: How often to bathe,
 Ticks & fleas, The Paw Problem, What "natural" means, Why your dog still smells.
 
-Drafted in `docs/journal-drafts/` (text, SEO metadata, FAQs, links, image
-brief) - publish when images arrive:
+Published 2026-10-12 from `docs/journal-drafts/` (images generated with Gemini via the
+user's Google Cloud project - see memory). Drafts kept as the source text:
+
 
 1. Why Human Shampoo Doesn't Belong in Your Dog's Bath (`can-i-use-human-shampoo-on-my-dog`)
 2. Dry Bath vs. Wet Bath (`dry-bath-vs-wet-bath-for-dogs`) - absorbs "keep clean between baths"

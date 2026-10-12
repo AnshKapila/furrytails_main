@@ -45,7 +45,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Can a freshness product replace a bath?',
-    a: 'No. A between-bath freshness product such as [Refreshing Mist](/products/refreshing-mist) may support an everyday grooming routine when used according to its directions, but it does not replace appropriate cleansing or treat a medical cause of odour. Persistent ear or skin odour needs a different response.',
+    a: 'No. A between-bath freshness product such as [Refreshing Mist](/products/refreshing-mist) may support an everyday grooming routine when used according to its directions, but it does not replace appropriate cleansing or treat a medical cause of odour. More on when a [dry bath vs. a wet bath](/journal/dry-bath-vs-wet-bath-for-dogs) makes sense. Persistent ear or skin odour needs a different response.',
   },
   {
     q: "How do I get rid of dog smell on my dog naturally?",

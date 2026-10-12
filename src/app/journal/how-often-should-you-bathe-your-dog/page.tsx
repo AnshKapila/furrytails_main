@@ -41,7 +41,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "What if my dog smells even after bathing?",
-    a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate. We walk through the checks to make first in [why your dog still smells after a bath](/journal/why-your-dog-still-smells-after-a-bath).",
+    a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate. We walk through the checks to make first in [why your dog still smells after a bath](/journal/why-your-dog-still-smells-after-a-bath). Between baths, a [dry bath](/journal/dry-bath-vs-wet-bath-for-dogs) freshens the coat without water.",
   },
   {
     q: "Can I bathe my dog daily or twice a week?",
@@ -365,7 +365,7 @@ export default function ArticlePage() {
               <li>Brush according to the coat&rsquo;s needs.</li>
               <li>Check the skin while grooming &ndash; and <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">look for ticks</Link> after outdoor walks.</li>
               <li>Clean <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paws</Link> or visibly dirty areas after messy walks &ndash; <Link href="/journal/paw-cleaner-for-dogs-post-walk-paw-care" className="underline decoration-[#8D9A83] underline-offset-4">proportionately, not obsessively</Link>.</li>
-              <li>Dry the coat properly after getting wet.</li>
+              <li>Dry the coat properly after getting wet &ndash; <Link href="/journal/how-to-bathe-a-dog-at-home" className="underline decoration-[#8D9A83] underline-offset-4">here&rsquo;s the full bath, step by step</Link>.</li>
               <li>Use products <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">formulated specifically for dogs</Link>.</li>
               <li>Adjust the routine when lifestyle or seasons change.</li>
             </ul>
