@@ -30,7 +30,7 @@ export const REELS: Reel[] = [
   {
     src: '/reels/shih-tzu-paws.mp4',
     poster: '/reels/shih-tzu-paws.webp',
-    caption: 'Clean paws after a muddy walk',
+    caption: 'Clean paws after every walk',
     product: { name: 'Paw Cleaner', href: '/products/paw-cleaner' },
   },
   {

@@ -401,7 +401,7 @@ export const ingredientChapters = [
         ],
         product: 'Paw Cleaner',
         productId: 'paw-cleaner',
-        productDesc: 'Clean paws after muddy walks. Spearmint & Sea Salt.',
+        productDesc: 'Clean paws after every walk. Spearmint & Sea Salt.',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-spearmint-editorial-r2.png',
           alt: 'Fresh spearmint leaves with soft natural light',
@@ -422,14 +422,14 @@ export const ingredientChapters = [
         ],
         product: 'Dry Foam Shampoo',
         productId: 'dry-foam-shampoo',
-        productDesc: 'Waterless cleanse between baths. Mimosa & Tonka.',
+        productDesc: 'Waterless cleanse between baths. Hinoki & Bamboo.',
         ingredientImage: {
           src: '/ingredient-yuzu.webp',
           alt: 'Fresh whole and sliced Yuzu fruit on warm matte ceramic',
         },
         productImage: {
           src: 'https://static.kite.ai/image/upload/v1785646597/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter5/our-range-dry-foam-shampoo.png',
-          alt: 'Dry Foam Shampoo — Mimosa & Tonka',
+          alt: 'Dry Foam Shampoo — Hinoki & Bamboo',
         },
       },
     ],

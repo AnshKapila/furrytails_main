@@ -42,7 +42,7 @@ export const DOG_LANDING: LandingContent = {
   eyebrow: 'Dog shampoo & natural dog grooming',
   heading: 'Natural dog shampoo and grooming products.',
   intro: [
-    'A dog’s skin is thinner than ours and more easily stripped, so what goes into a dog shampoo matters more than how much it lathers. Every Furrytail product is made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic radish-root ferment instead of parabens, MIT or phenoxyethanol - a sulphate-free, paraben-free natural dog shampoo range made in India, gentle enough for sensitive skin.',
+    'A dog’s skin is thinner than ours and more easily stripped, so what goes into a dog shampoo matters more than how much it lathers. Every Furrytail product is made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), cleansed with amino acid-derived surfactants instead of sulphates, and preserved with a probiotic radish-root ferment instead of parabens, MIT or phenoxyethanol - a sulphate-free, paraben-free natural dog shampoo range made in India, gentle enough for sensitive skin.',
     'The range covers the whole week, not just bath day: a gentle daily shampoo, a waterless dry foam for between baths, a paw cleaner for after walks, a plant-based tick and flea spray for before them, and a coat mist for everything in between.',
   ],
   routineHeading: 'A natural dog grooming routine',
@@ -66,7 +66,7 @@ export const DOG_LANDING: LandingContent = {
       product: { name: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' },
     },
     {
-      when: 'After muddy walks',
+      when: 'After every walk',
       title: 'Clean paws at the door',
       body: 'A rinse-free foam with a built-in brush: massage each pad and between the toes, then wipe with a damp cloth.',
       product: { name: 'Paw Cleaner', href: '/products/paw-cleaner' },
@@ -82,7 +82,7 @@ export const DOG_LANDING: LandingContent = {
     {
       question: 'What is the best natural dog shampoo in India?',
       answer:
-        'Look for a shampoo that skips sulphates (SLS/SLES), parabens, MIT and phenoxyethanol, uses mild plant-derived surfactants, and lists every ingredient. Furrytail’s Gentle Daily Shampoo is made to a 99.5% Natural Origin Index, cleansed with coconut- and sugar-derived surfactants and preserved with a probiotic ferment.',
+        'Look for a shampoo that skips sulphates (SLS/SLES), parabens, MIT and phenoxyethanol, uses mild plant-derived surfactants, and lists every ingredient. Furrytail’s Gentle Daily Shampoo is made to a 99.5% Natural Origin Index, cleansed with amino acid-derived surfactants and preserved with a probiotic ferment.',
     },
     {
       question: 'How often should I bathe my dog?',
@@ -128,7 +128,7 @@ export const CAT_LANDING: LandingContent = {
   eyebrow: 'Cat shampoo & natural cat grooming',
   heading: 'Natural cat shampoo and grooming products.',
   intro: [
-    'Cats groom themselves, so anything left on the coat is eventually licked off. That is why only part of our range is made for cats: the Gentle Daily Shampoo in all three fragrances and the waterless Dry Foam Shampoo. Both are made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), with mild coconut- and sugar-derived cleansers and a probiotic preservative instead of parabens, MIT or phenoxyethanol.',
+    'Cats groom themselves, so anything left on the coat is eventually licked off. That is why only part of our range is made for cats: the Gentle Daily Shampoo in all three fragrances and the waterless Dry Foam Shampoo. Both are made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), with mild amino acid-derived cleansers and a probiotic preservative instead of parabens, MIT or phenoxyethanol.',
     'Our Anti-Tick & Flea Spray, Paw Cleaner and Refreshing Mist are for dogs only - they use fragrance actives and functional ingredients that are not suitable for cats.',
   ],
   routineHeading: 'A gentle cat grooming routine',
@@ -155,7 +155,7 @@ export const CAT_LANDING: LandingContent = {
     {
       question: 'What is the best natural cat shampoo?',
       answer:
-        'A mild, sulphate-free shampoo that is formulated for cats, not just dogs - cats lick off whatever is left on the coat. Furrytail’s Gentle Daily Shampoo is made for dogs and cats, cleansed with coconut- and sugar-derived surfactants and preserved with a probiotic ferment.',
+        'A mild, sulphate-free shampoo that is formulated for cats, not just dogs - cats lick off whatever is left on the coat. Furrytail’s Gentle Daily Shampoo is made for dogs and cats, cleansed with amino acid-derived surfactants and preserved with a probiotic ferment.',
       links: [{ label: 'Gentle Daily Shampoo', href: '/products/gentle-daily-shampoo-violet-leaf-muslin' }],
     },
     {

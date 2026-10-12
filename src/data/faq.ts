@@ -41,7 +41,7 @@ export const FAQS: Faq[] = [
   },
   {
     question: "Do I need to rinse the Paw Cleaner?",
-    answer: "No. The Paw Cleaner is a rinse-free foam formula. Apply a small amount directly onto each paw or onto a damp cloth, gently massage each pad and between the toes, then wipe off with a clean damp cloth. No rinsing required. Use it when paws come back muddy, wet or visibly dirty - after a clean, dry walk, a quick look may be all they need.",
+    answer: "No. The Paw Cleaner is a rinse-free foam formula. Apply a small amount directly onto each paw or onto a damp cloth, gently massage each pad and between the toes, then wipe off with a clean damp cloth. No rinsing required. Use after every walk.",
     links: [{ label: 'Paw Cleaner', href: '/products/paw-cleaner' }, { label: 'The paw problem', href: '/journal/paw-cleaner-for-dogs-post-walk-paw-care' }, { label: 'The monsoon ritual', href: '/journal/the-monsoon-ritual' }]
   },
   {
