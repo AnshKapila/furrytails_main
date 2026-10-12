@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getGlobalSettings } from '@/services/api';
+import { POPULAR_SEARCHES } from '@/data/popular-searches';
 
 export default function Footer() {
   const { logoUrl: LOGO_URL, footer } = getGlobalSettings();
@@ -85,6 +86,28 @@ export default function Footer() {
           </ul>
         </div>
       </div>
+
+      {/* Popular searches */}
+      <nav
+        aria-label="Popular searches"
+        className="border-t border-[#F8F5F1]/10 max-w-[1200px] mx-auto px-6 md:px-8 py-8"
+      >
+        <p className="text-[0.625rem] font-normal tracking-[0.2em] uppercase text-[#8D9A83] mb-4">Popular searches</p>
+        <ul className="flex flex-wrap gap-x-4 gap-y-2">
+          {POPULAR_SEARCHES.map((s) => (
+            <li key={s.term}>
+              <Link
+                href={s.href}
+                className="text-[0.75rem] font-light text-[#BEB8AF] underline decoration-[#BEB8AF]/30 underline-offset-4 hover:text-[#F8F5F1] hover:decoration-[#F8F5F1]/60 transition-colors duration-[800ms] focus:outline-none focus-visible:text-[#F8F5F1]"
+                data-kite-nav={`footer-search-${s.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                data-kite-nav-location="footer"
+              >
+                {s.term}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* Lower footer */}
       <div className="border-t border-[#F8F5F1]/10 max-w-[1200px] mx-auto px-6 md:px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
