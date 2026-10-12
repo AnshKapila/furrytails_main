@@ -45,6 +45,41 @@ export interface JournalArticle {
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
+    slug: 'paw-cleaner-for-dogs-post-walk-paw-care',
+    title: 'The Paw Problem: What Happens Between Walks.',
+    seoTitle: 'Paw Cleaner for Dogs: The Post-Walk Paw Routine | Furry Tail',
+    description:
+      'How to clean dog paws after walks without overdoing it. A practical guide to paw hygiene, drying, monsoon care and when paws need a vet.',
+    excerpt:
+      'A walk doesn’t really end at the front door. The paws are where the outside world meets the home, and good paw care is about knowing when to clean, when simply to inspect, and when to pay closer attention.',
+    ogDescription:
+      'The walk ends at the door. The paws don’t. A proportionate, post-walk approach to dog paw care.',
+    category: 'Care',
+    readTime: '6 min read',
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/paw-problem/main.webp',
+      width: 1432,
+      height: 955,
+      alt: 'A happy dog with muddy legs standing at an apartment front door after a walk, on a woven doormat',
+    },
+    keywords: [
+      'paw cleaner for dogs',
+      'dog paw cleaning',
+      'how to clean dog paws after a walk',
+      'clean dog paws after walk',
+      'muddy dog paws',
+      'paw hygiene for dogs',
+      'dog paw care',
+      'dog paw cleaning during monsoon',
+      'do I need to clean my dog’s paws after every walk',
+      'can I use human soap on dog paws',
+    ],
+    related: ['the-monsoon-ritual', 'how-often-should-you-bathe-your-dog', 'reading-the-inci-list'],
+    products: ['paw-cleaner'],
+  },
+  {
     slug: 'santal-a-primer',
     title: 'Santal: a primer.',
     seoTitle: 'Sandalwood Oil in Pet Shampoo: A Primer | Furry Tail',
@@ -203,7 +238,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'dog paw cleaner',
       'bathing dog in monsoon',
     ],
-    related: ['ticks-fleas-and-the-indian-dog', 'how-often-should-you-bathe-your-dog', 'what-we-found-in-most-pet-shampoos'],
+    related: ['paw-cleaner-for-dogs-post-walk-paw-care', 'ticks-fleas-and-the-indian-dog', 'how-often-should-you-bathe-your-dog'],
     products: ['paw-cleaner', 'anti-tick-flea-spray', 'refreshing-mist', 'dry-foam-shampoo'],
   },
   {

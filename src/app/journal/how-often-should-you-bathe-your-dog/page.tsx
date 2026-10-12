@@ -360,7 +360,7 @@ export default function ArticlePage() {
             <ul className="space-y-2 list-disc pl-5">
               <li>Brush according to the coat&rsquo;s needs.</li>
               <li>Check the skin while grooming &ndash; and <Link href="/journal/ticks-fleas-and-the-indian-dog" className="underline decoration-[#8D9A83] underline-offset-4">look for ticks</Link> after outdoor walks.</li>
-              <li>Clean <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paws</Link> or visibly dirty areas after messy walks.</li>
+              <li>Clean <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paws</Link> or visibly dirty areas after messy walks &ndash; <Link href="/journal/paw-cleaner-for-dogs-post-walk-paw-care" className="underline decoration-[#8D9A83] underline-offset-4">proportionately, not obsessively</Link>.</li>
               <li>Dry the coat properly after getting wet.</li>
               <li>Use products <Link href="/journal/what-we-found-in-most-pet-shampoos" className="underline decoration-[#8D9A83] underline-offset-4">formulated specifically for dogs</Link>.</li>
               <li>Adjust the routine when lifestyle or seasons change.</li>

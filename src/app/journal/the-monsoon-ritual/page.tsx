@@ -138,7 +138,7 @@ export default function ArticlePage() {
               This is where a <Link href="/products/paw-cleaner" className="underline decoration-[#8D9A83] underline-offset-4">paw cleaner</Link> makes sense in the ritual.
             </p>
             <p>
-              Not as another product to add to the shelf, but as a way of solving a very specific problem: the four surfaces of the dog that have just travelled through the city.
+              Not as another product to add to the shelf, but as a way of solving a very specific problem: the four surfaces of the dog that have just travelled through the city. (We go deeper on that in <Link href="/journal/paw-cleaner-for-dogs-post-walk-paw-care" className="underline decoration-[#8D9A83] underline-offset-4">the paw problem</Link>.)
             </p>
 
             <h2 className="text-3xl font-display mt-16 mb-6">2. Then deal with the wet coat</h2>
