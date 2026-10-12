@@ -74,3 +74,21 @@ does not support them.
 | 11 | Neem, coconut oil and other home remedies: what the evidence says | neem for dogs skin, coconut oil for dogs skin/paws, homemade dog shampoo | natural, INCI |
 | 12 | Summer dog care in India | summer dog care tips, how to take care of dogs in summer | monsoon (seasonal pair) |
 | 13 | Dog dandruff and dry skin: grooming vs a vet visit | dog dandruff causes, dog dry skin | how often, vet boundary |
+
+## C. Journal pipeline (2026-10-12)
+
+From "Proposed Journal title.docx" + this plan. Published: How often to bathe,
+Ticks & fleas, The Paw Problem, What "natural" means, Why your dog still smells.
+
+Drafted in `docs/journal-drafts/` (text, SEO metadata, FAQs, links, image
+brief) - publish when images arrive:
+
+1. Why Human Shampoo Doesn't Belong in Your Dog's Bath (`can-i-use-human-shampoo-on-my-dog`)
+2. Dry Bath vs. Wet Bath (`dry-bath-vs-wet-bath-for-dogs`) - absorbs "keep clean between baths"
+3. How to Bathe a Dog at Home (`how-to-bathe-a-dog-at-home`) - built on the carton bath ritual
+4. Shih Tzu Grooming at Home (`shih-tzu-grooming-at-home`) - first of the breed series
+
+Later: #9 "What makes a good dog shampoo" only as a short buying guide (overlaps
+What We Found + INCI); #10 humid weather -> expand The Monsoon Ritual or retarget
+to summer heat; #6 essential oils -> on hold (products contain essential oils;
+user does not want them raised as a concern).
