@@ -30,6 +30,10 @@ export type LandingContent = {
   faqs: Faq[];
   journalSlugs: string[];
   crossLink: { label: string; href: string };
+  /** Curated pages list their products explicitly instead of by species. */
+  productIds?: string[];
+  breadcrumbLabel?: string;
+  productsHeading?: string;
 };
 
 export const DOG_LANDING: LandingContent = {
@@ -179,4 +183,76 @@ export const CAT_LANDING: LandingContent = {
   ],
   journalSlugs: ['can-you-bathe-a-cat', 'what-we-found-in-most-pet-shampoos', 'reading-the-inci-list'],
   crossLink: { label: 'Grooming a dog? See the full dog range', href: '/dog-grooming' },
+};
+
+// Curated, not species-filtered: the four no-rinse products customers say they
+// pack for trips. Directions and claims follow the product cartons.
+export const TRAVEL_LANDING: LandingContent = {
+  species: 'dog',
+  path: '/travel-essentials',
+  seoTitle: 'Dog Travel Essentials: Waterless Grooming Kit | Furrytail',
+  description:
+    'Travelling with your dog? Four waterless essentials - dry foam shampoo, paw cleaner, tick & flea spray and coat mist - keep pets clean on any trip. No rinse.',
+  eyebrow: 'Dog travel essentials',
+  heading: 'Waterless essentials for travelling with your pet.',
+  intro: [
+    'A full bath on the road is rarely practical. Hotel bathrooms are not built for a wet Labrador, and a coat that stays damp in a cold car or an air-conditioned room is uncomfortable for your pet.',
+    'These four no-rinse essentials handle the in-between moments - the pit stop, the new trail, the hotel bed - with no tub, no hose and no rinse. Each comes in a 100–150 ml bottle that fits in a travel bag.',
+  ],
+  routineHeading: 'A simple travel-day routine',
+  routine: [
+    {
+      when: 'Before you head out',
+      title: 'Protect before new trails',
+      body: '6–8 sprays of Defense across the back, flanks and base of the tail, avoiding the eyes and mouth. Let it dry completely before walking. Helps deter ticks and fleas - for dogs.',
+      product: { name: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' },
+    },
+    {
+      when: 'At every pit stop',
+      title: 'Clean paws before the car',
+      body: 'One pump of no-rinse foam on each paw or a damp cloth, massage between the pads and wipe clean. Thirty seconds, done at the car door - for dogs.',
+      product: { name: 'Paw Cleaner', href: '/products/paw-cleaner' },
+    },
+    {
+      when: 'On arrival',
+      title: 'Freshen the coat',
+      body: '3–5 sprays of Refreshing Mist over the back and flanks from 25 cm. Let it settle naturally - it dries into the coat in seconds. For dogs.',
+      product: { name: 'Refreshing Mist', href: '/products/refreshing-mist' },
+    },
+    {
+      when: 'When it gets messy',
+      title: 'A bath without the bath',
+      body: '4–6 sprays of Dry Foam Shampoo from neck to tail, massage through and allow 60–90 seconds to dry. No rinsing, no towelling - for dogs and cats.',
+      product: { name: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' },
+    },
+  ],
+  faqs: [
+    {
+      question: 'What should I pack when travelling with my dog?',
+      answer:
+        'Your dog’s usual food, water bowl, bedding, lead and ID tag, plus a small grooming kit: a waterless dry shampoo, a no-rinse paw cleaner, a tick and flea repellent for new trails, a coat mist, a microfibre towel and a soft brush.',
+      links: [{ label: 'Travelling with your pet: the full guide', href: '/journal/travelling-with-your-pet-waterless-essentials' }],
+    },
+    {
+      question: 'How do I keep my dog clean while travelling?',
+      answer:
+        'Clean only what needs it, where you are: paws at every pit stop, a dry foam shampoo when the coat gets messy, and a light coat mist on arrival. Save full baths for home.',
+    },
+    {
+      question: 'Which travel essentials are safe for cats?',
+      answer:
+        'The Dry Foam Shampoo is made for dogs and cats. The Paw Cleaner, Anti-Tick & Flea Spray and Refreshing Mist are for dogs only.',
+    },
+    {
+      question: 'Do these replace a bath?',
+      answer:
+        'They handle the in-between moments on a trip. When the coat is genuinely dirty, a full bath at home is still the right call.',
+      links: [{ label: 'Dry bath vs. wet bath', href: '/journal/dry-bath-vs-wet-bath-for-dogs' }],
+    },
+  ],
+  journalSlugs: ['travelling-with-your-pet-waterless-essentials', 'dry-bath-vs-wet-bath-for-dogs', 'diwali-pet-safety-tips'],
+  crossLink: { label: 'See the full dog grooming range', href: '/dog-grooming' },
+  productIds: ['dry-foam-shampoo', 'paw-cleaner', 'anti-tick-flea-spray', 'refreshing-mist'],
+  breadcrumbLabel: 'Travel essentials',
+  productsHeading: 'Shop the travel essentials',
 };

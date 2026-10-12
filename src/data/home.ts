@@ -506,6 +506,7 @@ export const footer = {
     { label: 'All Products', href: '/shop' },
     { label: 'Dog Grooming', href: '/dog-grooming' },
     { label: 'Cat Grooming', href: '/cat-grooming' },
+    { label: 'Travel Essentials', href: '/travel-essentials' },
     { label: 'Natural Dog & Cat Shampoo', href: '/products/gentle-daily-shampoo-santal-white-tea' },
     { label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' },
     { label: 'Paw Cleaner', href: '/products/paw-cleaner' },

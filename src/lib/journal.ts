@@ -47,6 +47,29 @@ export interface JournalArticle {
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
+    slug: 'travelling-with-your-pet-waterless-essentials',
+    title: 'Travelling With Your Pet? Pack These Waterless Essentials.',
+    seoTitle: "Travelling With Your Dog: Waterless Essentials | Furrytail",
+    description:
+      "What to pack when travelling with your dog or cat: four waterless essentials that keep your pet clean, fresh and protected on any trip - no tub, no rinse.",
+    excerpt:
+      'Four waterless essentials keep your pet clean, fresh and protected on any trip, with no tub, no hose and no rinse. What to pack, when to use each one, and a simple travel-day routine.',
+    ogDescription: 'Four waterless essentials keep your pet clean, fresh and protected on any trip - no tub, no hose, no rinse.',
+    category: 'Travel',
+    readTime: '5 min read',
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/travel/main.webp',
+      width: 1184,
+      height: 864,
+      alt: 'A golden retriever on the back seat of a car on a hill road trip, with a travel bag and towel beside it',
+    },
+    keywords: ['travelling with dog', 'dog travel essentials', 'travelling with pets in india', 'road trip with dog', 'how to keep dog clean while travelling', 'waterless dog shampoo', 'dog travel kit'],
+    related: ['dry-bath-vs-wet-bath-for-dogs', 'diwali-pet-safety-tips', 'winter-dog-care-india'],
+    products: ['dry-foam-shampoo', 'paw-cleaner', 'anti-tick-flea-spray', 'refreshing-mist'],
+  },
+  {
     slug: "winter-dog-care-india",
     title: "Winter Dog Care in India: Cold, Smog and Dry Skin.",
     seoTitle: "Winter Dog Care in India: Cold, Smog & Dry Skin | Furrytail",

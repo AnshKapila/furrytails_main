@@ -16,10 +16,13 @@ import type { LandingContent } from '@/data/landing';
 
 export default async function GroomingLanding({ content }: { content: LandingContent }) {
   const all = await getAllProducts();
-  const products = all.filter((p) => p.species === 'both' || p.species === content.species);
+  // A curated page (e.g. /travel-essentials) lists its products explicitly, in order.
+  const products = content.productIds
+    ? content.productIds.flatMap((id) => all.filter((p) => p.id === id))
+    : all.filter((p) => p.species === 'both' || p.species === content.species);
   const base = getBaseUrl();
   const url = `${base}${content.path}`;
-  const label = content.species === 'dog' ? 'Dog grooming' : 'Cat grooming';
+  const label = content.breadcrumbLabel ?? (content.species === 'dog' ? 'Dog grooming' : 'Cat grooming');
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -98,7 +101,8 @@ export default async function GroomingLanding({ content }: { content: LandingCon
           <section className="bg-[#EDE7DF] py-14 md:py-20" aria-labelledby="landing-products">
             <div className="max-w-[1200px] mx-auto px-6 md:px-8">
               <h2 id="landing-products" className="mb-8 md:mb-10">
-                {content.species === 'dog' ? 'Shop natural dog grooming' : 'Shop natural cat grooming'}
+                {content.productsHeading ??
+                  (content.species === 'dog' ? 'Shop natural dog grooming' : 'Shop natural cat grooming')}
               </h2>
               <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {products.map((p) => (

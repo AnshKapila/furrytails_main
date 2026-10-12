@@ -9,7 +9,7 @@ import { fetchProducts } from '@/lib/woo';
 import { getBaseUrl } from '@/lib/site-url';
 import { FAQS } from '@/data/faq';
 import { JOURNAL_ARTICLES, articlePath } from '@/lib/journal';
-import { DOG_LANDING, CAT_LANDING } from '@/data/landing';
+import { DOG_LANDING, CAT_LANDING, TRAVEL_LANDING } from '@/data/landing';
 import { DEFAULT_DESCRIPTION, INSTAGRAM_URL, ORG_NAME, plainProductText, speciesPlural } from '@/lib/seo';
 
 export const revalidate = 3600;
@@ -48,6 +48,7 @@ ${productLines.join('\n')}
 
 - [${DOG_LANDING.heading.replace(/\.$/, '')}](${base}${DOG_LANDING.path}): ${DOG_LANDING.description}
 - [${CAT_LANDING.heading.replace(/\.$/, '')}](${base}${CAT_LANDING.path}): ${CAT_LANDING.description}
+- [${TRAVEL_LANDING.heading.replace(/\.$/, '')}](${base}${TRAVEL_LANDING.path}): ${TRAVEL_LANDING.description}
 - [All products](${base}/shop)
 - [Ingredients, explained](${base}/ingredients)
 

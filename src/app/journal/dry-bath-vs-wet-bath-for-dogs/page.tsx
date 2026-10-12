@@ -147,7 +147,7 @@ export default function ArticlePage() {
 
             <ul className="space-y-3 pl-5 list-disc">
               <li>the coat is <strong>clean but a little oily or stale</strong> between bath days;</li>
-              <li>a full bath <strong>isn&rsquo;t practical</strong> &ndash; travel, a busy week, a cold evening;</li>
+              <li>a full bath <strong>isn&rsquo;t practical</strong> &ndash; <Link href="/journal/travelling-with-your-pet-waterless-essentials" className={LINK}>travel</Link>, a busy week, a cold evening;</li>
               <li>it&rsquo;s <strong>monsoon</strong> and a wet coat would take hours to dry;</li>
               <li>your pet <strong>hates water</strong> &ndash; common with cats;</li>
               <li>you only need to <strong>spot-clean</strong> one area.</li>

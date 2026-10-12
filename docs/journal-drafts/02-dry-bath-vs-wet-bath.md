@@ -42,7 +42,7 @@ A dry bath - a waterless or no-rinse shampoo - works on the surface of the coat.
 That makes it the right call when:
 
 - the coat is **clean but a little oily or stale** between bath days;
-- a full bath **isn't practical** - travel, a busy week, a cold evening;
+- a full bath **isn't practical** - [travel](/journal/travelling-with-your-pet-waterless-essentials), a busy week, a cold evening;
 - it's **monsoon** and a wet coat would take hours to dry;
 - your pet **hates water** - common with cats;
 - you only need to **spot-clean** one area.

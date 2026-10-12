@@ -105,6 +105,10 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       'Waterless dry shampoo for dogs & cats: no-rinse, leave-on safe foam that absorbs surface oils and neutralises odour between baths. Hinoki & Bamboo.',
     faqs: [
       {
+        q: 'Is it good for travelling with my pet?',
+        a: "Yes - it is a bath without the bath. The 100 ml bottle fits any bag, and it needs no water, no rinsing and no towelling: 4–6 sprays, massage through, dry in 60–90 seconds. Made for dogs and cats. See [travel essentials](/travel-essentials).",
+      },
+      {
         q: 'How do you use dry shampoo on a dog?',
         a: 'Shake well, hold 15 cm from the coat and apply 4–6 sprays from neck to tail. Massage gently through with your hands or a soft brush and allow 60–90 seconds to dry. No rinsing required. Use between bath days as needed.',
       },
@@ -135,6 +139,10 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     description:
       'A light dog perfume spray: IFRA-compliant, leave-on coat mist in Yuzu & White Musk that dries in seconds and lingers. Wear it daily. For dogs, 100 ml.',
     faqs: [
+      {
+        q: 'Is it good for travelling with my pet?',
+        a: "Yes - a few sprays on arrival freshen a coat that smells of the journey, ready for the next cuddle or family hello. 100 ml, for dogs. See [travel essentials](/travel-essentials).",
+      },
       {
         q: 'Is Refreshing Mist a dog perfume?',
         a: 'Yes - it is a fine-mist coat fragrance for dogs, for the moments that matter: before guests arrive, before a car ride, before the evening cuddle on the sofa. Hold it 25 cm from the coat, apply 3 to 5 sprays over the back and flanks and let it settle naturally; do not rub it in. It dries into the coat within seconds.',
@@ -171,6 +179,10 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       'No-rinse dog paw cleaner foam with spearmint & sea salt, amino acid surfactants and probiotic preservation. Use after every walk. For dogs, 150 ml.',
     faqs: [
       {
+        q: 'Is it good for travelling with my pet?',
+        a: "Yes - clean paws at every pit stop before your dog gets back in the car, and before they settle on a hotel bed. The 150 ml no-rinse foam takes one pump and thirty seconds. See [travel essentials](/travel-essentials).",
+      },
+      {
         q: 'How do I use a paw cleaner on my dog?',
         a: 'Pump a small amount directly onto each paw or onto a damp cloth. Gently massage across each pad and between the toes, then wipe clean with a damp cloth or towel. No rinsing required. One pump, thirty seconds - done at the door.',
       },
@@ -197,6 +209,10 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     description:
       'Natural tick & flea spray for dogs with vetiver, cypress and neem. No permethrin, pyrethroids, DEET or fipronil. Spray before every walk. 100 ml.',
     faqs: [
+      {
+        q: 'Is it good for travelling with my pet?',
+        a: "Yes - a new place means new grass and new trails. Spray before walks in places your dog hasn’t been, and let it dry completely before walking. 100 ml, for dogs. See [travel essentials](/travel-essentials).",
+      },
       {
         q: 'Is this a natural tick repellent for dogs?',
         a: 'Yes - it helps deter ticks and fleas through scent. Vetiver root oil and cypress oil are plant-derived aromatic compounds that ticks and fleas actively avoid, and neem extract adds a biological deterrent layer. What’s out of it: permethrin, synthetic pyrethroids, DEET, fipronil and synthetic pesticides.',
