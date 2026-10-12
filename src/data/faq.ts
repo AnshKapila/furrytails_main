@@ -46,7 +46,7 @@ export const FAQS: Faq[] = [
   },
   {
     question: "How does the Anti-Tick & Flea Spray work?",
-    answer: "The spray uses plant-derived actives - vetiver root oil and cypress oil - alongside citronella and neem extract. These help deter ticks and fleas through scent masking and natural insect-repellent properties. It is not a pesticide and does not use synthetic chemical actives. It is designed to be used before every walk in tick or flea-active environments, not as a treatment after infestation. For an established infestation, consult your vet.",
+    answer: "The spray uses plant-derived actives - vetiver root oil and hinoki cypress oil - alongside eucalyptus oil and neem extract. These help deter ticks and fleas through scent masking and natural insect-repellent properties. It is not a pesticide and does not use synthetic chemical actives. It is designed to be used before every walk in tick or flea-active environments, not as a treatment after infestation. For an established infestation, consult your vet.",
     links: [{ label: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' }, { label: 'Ticks, fleas & the Indian dog', href: '/journal/ticks-fleas-and-the-indian-dog' }]
   },
   {

@@ -62,7 +62,7 @@ export const DOG_LANDING: LandingContent = {
     {
       when: 'Before every walk',
       title: 'Deter ticks and fleas, naturally',
-      body: 'Plant-derived actives - vetiver, cypress, citronella and neem - instead of synthetic pesticides. A deterrent for tick-season walks, not a treatment for an existing infestation.',
+      body: 'Plant-derived actives - vetiver, hinoki cypress, eucalyptus and neem - instead of synthetic pesticides. A deterrent for tick-season walks, not a treatment for an existing infestation.',
       product: { name: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' },
     },
     {

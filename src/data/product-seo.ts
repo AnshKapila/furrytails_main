@@ -18,7 +18,20 @@ export interface ProductSeo {
   faqs: Faq[];
 }
 
-const shampooFaqs = (fragrance: string): Faq[] => [
+// Full INCI per label, supplied 2026-10-12. A shampoo whose INCI or essential
+// oil is not yet confirmed passes null and those two questions are left out.
+const SHAMPOO_INCI = (botanicals: string) =>
+  'Aqua, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Decyl Glucoside, Aloe Barbadensis Leaf Juice, Avena Sativa Kernel Flour, Glycerin, Guar Hydroxypropyltrimonium Chloride, Camellia Japonica Seed Oil, Azadirachta Indica Leaf Extract, Tocopherol, ' + botanicals + ', Leuconostoc/Radish Root Ferment Filtrate, Citric Acid, Xanthan Gum.';
+
+interface ShampooFacts {
+  fragrance: string;
+  /** INCI names of the fragrance botanicals, in label order. */
+  inciBotanicals: string | null;
+  /** Plain-English essential oil in the formula, if confirmed. */
+  essentialOil: string | null;
+}
+
+const shampooFaqs = ({ fragrance, inciBotanicals, essentialOil }: ShampooFacts): Faq[] => [
   {
     q: 'Is this a sulphate-free and paraben-free dog shampoo?',
     a: `Yes. ${fragrance} Gentle Daily Shampoo is cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic ferment (Leuconostoc/Radish Root Ferment Filtrate) instead of parabens. [Reading the ingredient list](/journal/reading-the-inci-list) shows how to check this on any bottle.`,
@@ -35,6 +48,22 @@ const shampooFaqs = (fragrance: string): Faq[] => [
     q: 'Is it a neem and aloe vera dog shampoo?',
     a: 'Neem extract and aloe vera are both in the formula, alongside colloidal oatmeal, a coconut-derived cleanser, a guar conditioner and vitamin E. It is a gentle cleansing shampoo - not a medicated or anti-tick shampoo.',
   },
+  ...(inciBotanicals
+    ? [
+        {
+          q: 'What are the full ingredients?',
+          a: `In label (INCI) order: ${SHAMPOO_INCI(inciBotanicals)} Unfamiliar names are not a warning sign - [reading the INCI list](/journal/reading-the-inci-list) explains what each part does.`,
+        },
+      ]
+    : []),
+  ...(essentialOil
+    ? [
+        {
+          q: 'Does it contain essential oils?',
+          a: `One: ${essentialOil}, which carries the ${fragrance} fragrance. It is a rinse-off shampoo, so rinse thoroughly - especially for cats, who lick off anything left on the coat. If your pet reacts to fragrance, stop and ask your vet.`,
+        },
+      ]
+    : []),
   {
     q: 'Will my dog smell nice after a bath?',
     a: `Yes - fragrance is the point of the range. ${fragrance} is an IFRA-compliant fine-fragrance identity: a grounding scent, not a heavy perfume. For a top-up between baths, the [Refreshing Mist](/products/refreshing-mist) is a light dog perfume spray.`,
@@ -54,19 +83,27 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     title: 'Santal & White Tea Sulphate-Free Dog Shampoo | Furrytail',
     description:
       'Sulphate-free, paraben-free natural dog shampoo for dogs and cats, gentle on sensitive skin. Santal & White Tea, probiotic-preserved, 250 ml.',
-    faqs: shampooFaqs('Santal & White Tea'),
+    faqs: shampooFaqs({
+      fragrance: 'Santal & White Tea',
+      inciBotanicals: 'Camellia Sinensis Leaf Extract, Santalum Album Oil',
+      essentialOil: 'sandalwood oil (Santalum Album Oil)',
+    }),
   },
   'gentle-daily-shampoo-fig-neroli': {
     title: 'Fig & Neroli Sulphate-Free Dog Shampoo | Furrytail',
     description:
       'Sulphate-free, paraben-free natural dog shampoo for dogs and cats, gentle on sensitive skin. Fig & Neroli, probiotic-preserved, 250 ml.',
-    faqs: shampooFaqs('Fig & Neroli'),
+    faqs: shampooFaqs({
+      fragrance: 'Fig & Neroli',
+      inciBotanicals: 'Ficus Carica Fruit Extract, Citrus Aurantium Amara Flower Oil',
+      essentialOil: 'neroli oil (Citrus Aurantium Amara Flower Oil)',
+    }),
   },
   'gentle-daily-shampoo-violet-leaf-muslin': {
     title: 'Violet Leaf & Muslin Sulphate-Free Dog Shampoo | Furrytail',
     description:
       'Sulphate-free, paraben-free natural dog shampoo for dogs and cats, gentle on sensitive skin. Violet Leaf & Muslin, probiotic-preserved, 250 ml.',
-    faqs: shampooFaqs('Violet Leaf & Muslin'),
+    faqs: shampooFaqs({ fragrance: 'Violet Leaf & Muslin', inciBotanicals: null, essentialOil: null }),
   },
   'dry-foam-shampoo': {
     title: 'Dry Foam Shampoo – Waterless Dog & Cat Shampoo | Furrytail',
@@ -136,19 +173,27 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
         a: 'Look at the paws first, clean only what is dirty, then dry - wet fur between the toes is the part most often missed. In [the monsoon](/journal/the-monsoon-ritual), drying the coat matters as much as cleaning the paws.',
       },
       {
+        q: 'What is in the paw cleaner?',
+        a: 'Aloe vera, oat extract, calendula, witch hazel water, panthenol (pro-vitamin B5) and allantoin to care for the pads; mild coconut- and sugar-derived cleansers with salt and baking soda; and spearmint oil for a cooling finish. In label (INCI) order: Aqua, Aloe Barbadensis Leaf Juice, Cocamidopropyl Betaine, Decyl Glucoside, Glycerin, Panthenol, Sodium Chloride, Sodium Bicarbonate, Leuconostoc/Radish Root Ferment Filtrate, Avena Sativa Kernel Extract, Calendula Officinalis Flower Extract, Hamamelis Virginiana Water, Mentha Spicata Herb Oil, Allantoin, Citric Acid.',
+      },
+      {
         q: 'Can I use it on my cat?',
-        a: 'No. The Paw Cleaner is formulated for dogs and is not suitable for cats.',
+        a: 'No. The Paw Cleaner is formulated for dogs and is not suitable for cats - it contains spearmint essential oil.',
       },
     ],
   },
   'anti-tick-flea-spray': {
     title: 'Natural Tick Spray for Dogs – Anti-Tick & Flea | Furrytail',
     description:
-      'Natural tick repellent spray for dogs with vetiver, cypress and neem. No permethrin, pyrethroids or DEET. Spray before walks in tick-active areas.',
+      'Natural tick repellent spray for dogs with vetiver, hinoki cypress, eucalyptus and neem. No permethrin, pyrethroids or DEET. Spray before walks.',
     faqs: [
       {
         q: 'Is this a natural tick repellent for dogs?',
-        a: 'Yes. It repels through scent, using plant-derived vetiver root oil, cypress oil and neem extract. It contains no synthetic pesticides, no permethrin, no pyrethroids and no DEET.',
+        a: 'Yes. It repels through scent, using plant-derived vetiver root oil, hinoki cypress oil and eucalyptus oil with neem extract and aloe vera. It contains no synthetic pesticides, no permethrin, no pyrethroids and no DEET.',
+      },
+      {
+        q: 'What are the full ingredients?',
+        a: 'In label (INCI) order: Aqua, Aloe Barbadensis Leaf Juice, Azadirachta Indica Leaf Extract, Glycerin, Caprylyl/Capryl Glucoside, Leuconostoc/Radish Root Ferment Filtrate, Vetiveria Zizanoides Root Oil, Chamaecyparis Obtusa Leaf Oil, Eucalyptus Globulus Leaf Oil, Citric Acid.',
       },
       {
         q: 'How do I use tick spray on my dog?',
@@ -160,7 +205,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'Can I use it on street dogs or puppies?',
-        a: 'For street and community dogs the same directions apply - patch-test first, and a dog with a heavy tick load needs a vet rather than a repellent. Check with your vet before using it on a puppy. It is not suitable for cats.',
+        a: 'For street and community dogs the same directions apply - patch-test first, and a dog with a heavy tick load needs a vet rather than a repellent. Check with your vet before using it on a puppy. It is not suitable for cats: it contains essential oils, including eucalyptus.',
       },
     ],
   },
