@@ -186,7 +186,7 @@ export const pillars = [
     name: 'Refresh',
       subheading: 'Between baths.',
       tagline: 'Refreshing Mist',
-    body: 'Refreshing Mist. No water, no fuss. Yuzu and white musk in a light mist that freshens the coat. The between-bath ritual, properly done.',
+    body: 'Refreshing Mist. Wear it daily. Yuzu and white musk in a light, leave-on mist that dries into the coat in seconds. The between-bath ritual, properly done.',
     badge: 'Dogs only',
     image: {
       src: 'https://static.kite.ai/image/upload/v1785571363/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/pillar-refresh-livingroom-r2.png',

@@ -133,11 +133,15 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
   'refreshing-mist': {
     title: 'Refreshing Mist – Dog Perfume & Coat Spray | Furrytail',
     description:
-      'A light dog perfume spray: fine coat mist in Yuzu & White Musk that dries in seconds, with a musk that lingers. For daily use between baths. 100 ml.',
+      'A light dog perfume spray: IFRA-compliant, leave-on coat mist in Yuzu & White Musk that dries in seconds and lingers. Wear it daily. For dogs, 100 ml.',
     faqs: [
       {
         q: 'Is Refreshing Mist a dog perfume?',
-        a: 'Yes - it is a fine-mist coat fragrance for dogs. Hold it 25 cm from the coat, apply 3 to 5 sprays over the back and flanks and let it settle; do not rub it in. It dries into the coat within seconds.',
+        a: 'Yes - it is a fine-mist coat fragrance for dogs, for the moments that matter: before guests arrive, before a car ride, before the evening cuddle on the sofa. Hold it 25 cm from the coat, apply 3 to 5 sprays over the back and flanks and let it settle naturally; do not rub it in. It dries into the coat within seconds.',
+      },
+      {
+        q: 'Is it safe to use every day?',
+        a: 'Yes - it is a leave-on, IFRA-compliant formula made for daily use. What’s out of it: synthetic fragrance, alcohol in harmful concentrations, synthetic preservatives, parabens and heavy fragrance allergens. For external use only; avoid the eyes and mouth, and if irritation occurs stop using it and consult your vet.',
       },
       {
         q: 'Is it a dog deodorant or smell remover spray?',
@@ -145,11 +149,15 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'Is it a long-lasting dog perfume?',
-        a: 'The bright yuzu opens on contact and fades first; the ambrette seed musk is warm and skin-close and lingers long after. It is a light mist by design - reapply between baths as needed.',
+        a: 'A light water base carries the fragrance through the coat and evaporates clean, leaving yuzu - bright Japanese citrus that opens on contact - and ambrette seed musk, warm and skin-close, that lingers long after. Light enough to layer, present enough to be noticed.',
       },
       {
         q: 'How often can I use the dog perfume spray?',
         a: 'It can be used daily or as needed between baths.',
+      },
+      {
+        q: 'What are the full ingredients?',
+        a: 'As printed on the carton (INCI): Aqua, Decyl Glucoside, Cocamidopropyl Betaine, Sodium Lauroyl Sarcosinate, Panthenol, Betaine, Aloe Barbadensis Leaf Juice, Sodium Benzoate, Potassium Sorbate, Menthol.',
       },
       {
         q: 'Can I use it on my cat?',
