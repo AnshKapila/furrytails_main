@@ -35,12 +35,12 @@ export type LandingContent = {
 export const DOG_LANDING: LandingContent = {
   species: 'dog',
   path: '/dog-grooming',
-  seoTitle: 'Natural Dog Shampoo, Paw Cleaner & Tick Spray | Furrytail',
+  seoTitle: 'Dog Shampoo & Natural Dog Grooming Products | Furrytail',
   description:
     'Natural dog grooming: sulphate-free dog shampoo, dry foam shampoo, paw cleaner and plant-based tick & flea spray. ' +
     '99.5% natural origin, probiotic-preserved.',
-  eyebrow: 'Natural dog grooming',
-  heading: 'Natural grooming products for dogs.',
+  eyebrow: 'Dog shampoo & natural dog grooming',
+  heading: 'Natural dog shampoo and grooming products.',
   intro: [
     'A dog’s skin is thinner than ours and more easily stripped, so what goes into a dog shampoo matters more than how much it lathers. Every Furrytail product is made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic radish-root ferment instead of parabens, MIT or phenoxyethanol - a sulphate-free, paraben-free natural dog shampoo range made in India, gentle enough for sensitive skin.',
     'The range covers the whole week, not just bath day: a gentle daily shampoo, a waterless dry foam for between baths, a paw cleaner for after walks, a plant-based tick and flea spray for before them, and a coat mist for everything in between.',
@@ -121,12 +121,12 @@ export const DOG_LANDING: LandingContent = {
 export const CAT_LANDING: LandingContent = {
   species: 'cat',
   path: '/cat-grooming',
-  seoTitle: 'Natural Cat Shampoo & Waterless Dry Shampoo | Furrytail',
+  seoTitle: 'Cat Shampoo: Natural & Waterless Cat Grooming | Furrytail',
   description:
     'Natural cat grooming: a gentle sulphate-free cat shampoo and a waterless dry foam shampoo for cats who hate baths. ' +
     '99.5% natural origin, probiotic-preserved.',
-  eyebrow: 'Natural cat grooming',
-  heading: 'Natural grooming products for cats.',
+  eyebrow: 'Cat shampoo & natural cat grooming',
+  heading: 'Natural cat shampoo and grooming products.',
   intro: [
     'Cats groom themselves, so anything left on the coat is eventually licked off. That is why only part of our range is made for cats: the Gentle Daily Shampoo in all three fragrances and the waterless Dry Foam Shampoo. Both are made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), with mild coconut- and sugar-derived cleansers and a probiotic preservative instead of parabens, MIT or phenoxyethanol.',
     'Our Anti-Tick & Flea Spray, Paw Cleaner and Refreshing Mist are for dogs only - they use fragrance actives and functional ingredients that are not suitable for cats.',
@@ -162,6 +162,12 @@ export const CAT_LANDING: LandingContent = {
       question: 'How do I clean a cat that hates baths?',
       answer:
         'Use a cat dry shampoo: a waterless foam lets you clean the coat without a tub. Spray a little onto the coat, massage it through with your hands or a soft brush and let it dry - no rinsing. Furrytail’s Dry Foam Shampoo is made for both cats and dogs.',
+      links: [{ label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' }],
+    },
+    {
+      question: 'Which cat shampoo is suitable for a Persian or long-haired cat?',
+      answer:
+        'Any cat shampoo you use should be formulated for cats. For long, dense coats like a Persian’s, lather lightly, rinse very thoroughly so nothing is left to be licked off, and dry the coat right down to the skin. Between baths, the waterless Dry Foam Shampoo avoids a full wash.',
       links: [{ label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' }],
     },
     {

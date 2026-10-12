@@ -12,10 +12,10 @@ import { breadcrumbJsonLd, jsonLdString, pageOpenGraph, websiteId } from '@/lib/
 
 export const revalidate = 300;
 
-const SHOP_TITLE = 'Shop Natural Dog & Cat Grooming Products | Furrytail';
+const SHOP_TITLE = 'Pet Shampoo & Natural Grooming Products | Furrytail';
 const SHOP_DESCRIPTION =
-  'Shop natural dog & cat grooming: sulphate-free shampoos, waterless dry foam shampoo, paw cleaner, ' +
-  'plant-based tick & flea spray and coat mist. Ships across India.';
+  'Natural pet shampoo and grooming: sulphate-free dog & cat shampoo, waterless dry foam, paw cleaner, ' +
+  'tick & flea spray and coat mist. Ships across India.';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

@@ -36,6 +36,27 @@ copy is in `src/data/landing.ts`; journal FAQs are in each article's page.
 | Journal: how often to bathe | can I bathe my dog once a week / daily / twice a week |
 | Journal: what we found / natural | dog shampoo ingredients to avoid, dog shampoo pH level vs human |
 
+## Amazon.in search suggestions (2026-10-12)
+
+Read from the amazon.in search box. Buyers there search by **head term + need**:
+
+- dog shampoo: tick and flea, and conditioner, for itchy skin, for hair fall control, for shih tzu / golden retriever / labrador / german shepherd / pomeranian / husky / poodle, **neem**, natural, **nice smell**, no tears, 1 ltr / 5 litre
+- cat shampoo: for persian cat, for kitten, for ticks and fleas, and conditioner, under 100
+- pet shampoo: for dogs, for cats, for dogs shih tzu, and conditioner, combo
+- puppy shampoo: for small dogs, for shih tzu, gentle formula, organic
+- dog perfume: spray, **long lasting**, for shih tzu, vanilla
+- dog dry shampoo: spray, foam, waterless, powder
+- dog paw cleaner: foam / foaming (cups and machines dominate otherwise)
+- tick spray for dogs: natural, and cats, lick safe, tick and flea spray
+
+Acted on: "dog shampoo" / "cat shampoo" / "pet shampoo" now lead the titles and
+H1s of /dog-grooming, /cat-grooming and /shop; shampoo FAQs cover neem & aloe
+vera, nice smell and conditioner; Refreshing Mist covers long-lasting; cat page
+covers Persian / long-haired cats. Breed demand on Amazon confirms B5 (add
+German Shepherd, Pomeranian and Persian cat to the series). Do **not** target
+"no tears", "itchy skin" or "hair fall control" as product claims - the label
+does not support them.
+
 ## B. New articles, in priority order
 
 | # | Working title | Core queries | Links to |

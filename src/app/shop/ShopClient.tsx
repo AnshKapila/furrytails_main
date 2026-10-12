@@ -347,7 +347,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
             className="block text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-6 md:mb-8"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            Natural dog &amp; cat grooming products
+            Natural pet shampoo &amp; grooming for dogs and cats
           </span>
           <span className="block text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#3B3A38] leading-[1.1]">
             The complete ritual.

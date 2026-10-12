@@ -6,9 +6,10 @@
 // the destination would satisfy someone who typed it.
 
 export const POPULAR_SEARCHES: { term: string; href: string }[] = [
+  { term: 'dog shampoo', href: '/dog-grooming' },
   { term: 'natural dog shampoo', href: '/dog-grooming' },
   { term: 'sulphate-free dog shampoo', href: '/products/gentle-daily-shampoo-santal-white-tea' },
-  { term: 'natural cat shampoo', href: '/cat-grooming' },
+  { term: 'cat shampoo', href: '/cat-grooming' },
   { term: 'dry shampoo for cats', href: '/products/dry-foam-shampoo' },
   { term: 'waterless dog shampoo', href: '/products/dry-foam-shampoo' },
   { term: 'paw cleaner for dogs', href: '/products/paw-cleaner' },
@@ -28,5 +29,8 @@ export const POPULAR_SEARCHES: { term: string; href: string }[] = [
   { term: 'is natural dog shampoo safer', href: '/journal/what-does-natural-mean-in-pet-care' },
   { term: 'pet shampoo ingredients to avoid', href: '/journal/what-we-found-in-most-pet-shampoos' },
   { term: 'dog grooming FAQ', href: '/faq' },
+  { term: 'pet shampoo', href: '/shop' },
+  { term: 'neem & aloe vera dog shampoo', href: '/products/gentle-daily-shampoo-fig-neroli' },
+  { term: 'dog shampoo with a nice smell', href: '/products/gentle-daily-shampoo-santal-white-tea' },
   { term: 'pet grooming products India', href: '/shop' },
 ];

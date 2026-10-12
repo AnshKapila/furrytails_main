@@ -32,6 +32,18 @@ const shampooFaqs = (fragrance: string): Faq[] => [
     a: 'Yes. The Gentle Daily Shampoo is formulated for dogs and cats. Lather lightly, take extra care around the face and rinse until the water runs clean.',
   },
   {
+    q: 'Is it a neem and aloe vera dog shampoo?',
+    a: 'Neem extract and aloe vera are both in the formula, alongside colloidal oatmeal, a coconut-derived cleanser, a guar conditioner and vitamin E. It is a gentle cleansing shampoo - not a medicated or anti-tick shampoo.',
+  },
+  {
+    q: 'Will my dog smell nice after a bath?',
+    a: `Yes - fragrance is the point of the range. ${fragrance} is an IFRA-compliant fine-fragrance identity: a grounding scent, not a heavy perfume. For a top-up between baths, the [Refreshing Mist](/products/refreshing-mist) is a light dog perfume spray.`,
+  },
+  {
+    q: 'Do I need a separate dog conditioner?',
+    a: 'Usually not. The formula includes a guar-based conditioner with camellia oil and vitamin E for a soft, conditioned coat, so for most coats one product does both jobs.',
+  },
+  {
     q: 'How often can I bathe my dog with it?',
     a: 'As often as the coat actually needs - the surfactants are mild enough for regular bathing. There is no universal schedule; [how often to bathe your dog](/journal/how-often-should-you-bathe-your-dog) depends on coat, lifestyle and skin.',
   },
@@ -59,7 +71,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
   'dry-foam-shampoo': {
     title: 'Dry Foam Shampoo – Waterless Dog & Cat Shampoo | Furrytail',
     description:
-      'Waterless dry shampoo for dogs and cats: a no-rinse foam that absorbs surface oils and freshens the coat between baths. Hinoki & Bamboo, 100 ml.',
+      'Waterless dry shampoo for dogs and cats: a spray-on, no-rinse foam that absorbs surface oils and freshens the coat between baths. Hinoki & Bamboo.',
     faqs: [
       {
         q: 'How do you use dry shampoo on a dog?',
@@ -82,7 +94,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
   'refreshing-mist': {
     title: 'Refreshing Mist – Dog Perfume & Coat Spray | Furrytail',
     description:
-      'A light dog perfume spray: fine coat mist in Yuzu & White Musk that dries in seconds. For daily use between baths. Made for dogs, 100 ml.',
+      'A light dog perfume spray: fine coat mist in Yuzu & White Musk that dries in seconds, with a musk that lingers. For daily use between baths. 100 ml.',
     faqs: [
       {
         q: 'Is Refreshing Mist a dog perfume?',
@@ -91,6 +103,10 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       {
         q: 'Is it a dog deodorant or smell remover spray?',
         a: 'It is a fragrance, not an odour treatment. It freshens a clean coat, but it will not fix the cause of a persistent smell - [why your dog still smells after a bath](/journal/why-your-dog-still-smells-after-a-bath) walks through what to check. For a coat that feels oily or stale between baths, the [Dry Foam Shampoo](/products/dry-foam-shampoo) absorbs surface oils and neutralises odour.',
+      },
+      {
+        q: 'Is it a long-lasting dog perfume?',
+        a: 'The bright yuzu opens on contact and fades first; the ambrette seed musk is warm and skin-close and lingers long after. It is a light mist by design - reapply between baths as needed.',
       },
       {
         q: 'How often can I use the dog perfume spray?',
