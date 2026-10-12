@@ -47,6 +47,52 @@ export interface JournalArticle {
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
+    slug: "winter-dog-care-india",
+    title: "Winter Dog Care in India: Cold, Smog and Dry Skin.",
+    seoTitle: "Winter Dog Care in India: Cold, Smog & Dry Skin | Furrytail",
+    description:
+      "Winter care for dogs in Delhi NCR and North India: keeping warm, walking in smog and fog, bathing in the cold, dry skin and paws, and heater safety.",
+    excerpt:
+      "North Indian winters bring cold mornings, thick smog and dry air. Who feels the cold most, keeping warm safely, walking in smog and fog, bathing in winter, dry skin and paws, and heater safety.",
+    ogDescription: "North Indian winters bring cold mornings, thick smog and dry air. Your dog’s routine should change with them.",
+    category: "Seasonal",
+    readTime: "7 min read",
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/winter/main.webp',
+      width: 1184,
+      height: 864,
+      alt: "An indie dog in a knitted sweater on a misty winter morning walk in a Delhi park",
+    },
+    keywords: ["winter dog care tips","how to take care of dog in winter","dog care in winter india","dog bath in winter","dog dry skin in winter","do dogs need sweaters","air pollution and dogs"],
+    related: ["diwali-pet-safety-tips","summer-dog-care-india","dry-bath-vs-wet-bath-for-dogs"],
+    products: ["gentle-daily-shampoo-santal-white-tea","dry-foam-shampoo","paw-cleaner"],
+  },
+  {
+    slug: "diwali-pet-safety-tips",
+    title: "Diwali and Your Pet: Firecrackers, Smoke and a Calmer Festival.",
+    seoTitle: "Diwali Pet Safety: Calm a Dog During Crackers | Furrytail",
+    description:
+      "How to keep your dog or cat calm and safe this Diwali: firecracker anxiety, a safe den, smoke and air quality, diyas, sweets, and keeping pets from bolting.",
+    excerpt:
+      "The festival of lights is also, for a dog, the loudest week of the year. Signs of fear, building a safe den, what to do during the crackers, smoke and air quality, diyas, sweets, and keeping pets from getting lost.",
+    ogDescription: "The festival of lights is also, for a dog, the loudest week of the year. A little planning makes it gentler.",
+    category: "Seasonal",
+    readTime: "7 min read",
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/diwali/main.webp',
+      width: 1184,
+      height: 864,
+      alt: "A golden retriever asleep on its bed in a living room decorated for Diwali, with lit diyas on a high shelf out of reach",
+    },
+    keywords: ["diwali pet safety tips","how to calm dog during diwali","dog scared of crackers","diwali dog anxiety","firecrackers and pets","diwali tips for pet parents","cats and diwali"],
+    related: ["winter-dog-care-india","how-to-get-rid-of-dog-smell-in-house","can-you-bathe-a-cat"],
+    products: ["paw-cleaner","dry-foam-shampoo"],
+  },
+  {
     slug: 'how-to-choose-a-dog-shampoo',
     title: 'How to Choose a Dog Shampoo: A Checklist for Indian Pet Parents.',
     seoTitle: "How to Choose a Dog Shampoo: Buyer's Checklist | Furrytail",
@@ -112,7 +158,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       alt: "A dog drinking from a ceramic water bowl in the shade on a sunlit Indian apartment balcony",
     },
     keywords: ["summer dog care tips","how to take care of dogs in summer","dog care in summer india","dog grooming in summer","hot pavement dog paws","heatstroke in dogs","should i shave my dog in summer"],
-    related: ["the-monsoon-ritual","ticks-fleas-and-the-indian-dog","golden-retriever-grooming-at-home"],
+    related: ["winter-dog-care-india","the-monsoon-ritual","ticks-fleas-and-the-indian-dog"],
     products: ["anti-tick-flea-spray","paw-cleaner","gentle-daily-shampoo-santal-white-tea","dry-foam-shampoo"],
   },
   {

@@ -91,7 +91,7 @@ export default function ArticlePage() {
           {/* Article Content */}
           <article className="max-w-[700px] mx-auto px-6 md:px-8 font-light text-[#3B3A38] leading-[1.8] text-[1.0625rem] space-y-8">
             <p className="text-[1.25rem] leading-[1.6]">
-              From Delhi&rsquo;s dry 45°C afternoons to Chennai&rsquo;s sticky humidity, Indian summers are hard on dogs. They can&rsquo;t sweat the way we do &ndash; they cool down mostly by panting and through their paws &ndash; and they&rsquo;re walking on surfaces that can be far hotter than the air.
+              From Delhi&rsquo;s dry 45°C afternoons to Chennai&rsquo;s sticky humidity, Indian summers are hard on dogs. (Winter brings its own challenges - see <Link href="/journal/winter-dog-care-india" className={LINK}>winter dog care in India</Link>.) They can&rsquo;t sweat the way we do &ndash; they cool down mostly by panting and through their paws &ndash; and they&rsquo;re walking on surfaces that can be far hotter than the air.
             </p>
 
             <p>
