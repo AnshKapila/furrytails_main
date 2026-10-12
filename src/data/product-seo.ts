@@ -18,8 +18,8 @@ export interface ProductSeo {
   faqs: Faq[];
 }
 
-// Full INCI per label, supplied 2026-10-12. A shampoo whose INCI or essential
-// oil is not yet confirmed passes null and those two questions are left out.
+// Full INCI per label, supplied 2026-10-12. A shampoo whose INCI is not yet
+// confirmed passes null and that question is left out.
 const SHAMPOO_INCI = (botanicals: string) =>
   'Aqua, Sodium Cocoyl Isethionate, Cocamidopropyl Betaine, Decyl Glucoside, Aloe Barbadensis Leaf Juice, Avena Sativa Kernel Flour, Glycerin, Guar Hydroxypropyltrimonium Chloride, Camellia Japonica Seed Oil, Azadirachta Indica Leaf Extract, Tocopherol, ' + botanicals + ', Leuconostoc/Radish Root Ferment Filtrate, Citric Acid, Xanthan Gum.';
 
@@ -27,11 +27,9 @@ interface ShampooFacts {
   fragrance: string;
   /** INCI names of the fragrance botanicals, in label order. */
   inciBotanicals: string | null;
-  /** Plain-English essential oil in the formula, if confirmed. */
-  essentialOil: string | null;
 }
 
-const shampooFaqs = ({ fragrance, inciBotanicals, essentialOil }: ShampooFacts): Faq[] => [
+const shampooFaqs = ({ fragrance, inciBotanicals }: ShampooFacts): Faq[] => [
   {
     q: 'Is this a sulphate-free and paraben-free dog shampoo?',
     a: `Yes. ${fragrance} Gentle Daily Shampoo is cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic ferment (Leuconostoc/Radish Root Ferment Filtrate) instead of parabens. [Reading the ingredient list](/journal/reading-the-inci-list) shows how to check this on any bottle.`,
@@ -53,14 +51,6 @@ const shampooFaqs = ({ fragrance, inciBotanicals, essentialOil }: ShampooFacts):
         {
           q: 'What are the full ingredients?',
           a: `In label (INCI) order: ${SHAMPOO_INCI(inciBotanicals)} Unfamiliar names are not a warning sign - [reading the INCI list](/journal/reading-the-inci-list) explains what each part does.`,
-        },
-      ]
-    : []),
-  ...(essentialOil
-    ? [
-        {
-          q: 'Does it contain essential oils?',
-          a: `One: ${essentialOil}, which carries the ${fragrance} fragrance. It is a rinse-off shampoo, so rinse thoroughly - especially for cats, who lick off anything left on the coat. If your pet reacts to fragrance, stop and ask your vet.`,
         },
       ]
     : []),
@@ -86,7 +76,6 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: shampooFaqs({
       fragrance: 'Santal & White Tea',
       inciBotanicals: 'Camellia Sinensis Leaf Extract, Santalum Album Oil',
-      essentialOil: 'sandalwood oil (Santalum Album Oil)',
     }),
   },
   'gentle-daily-shampoo-fig-neroli': {
@@ -96,14 +85,13 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
     faqs: shampooFaqs({
       fragrance: 'Fig & Neroli',
       inciBotanicals: 'Ficus Carica Fruit Extract, Citrus Aurantium Amara Flower Oil',
-      essentialOil: 'neroli oil (Citrus Aurantium Amara Flower Oil)',
     }),
   },
   'gentle-daily-shampoo-violet-leaf-muslin': {
     title: 'Violet Leaf & Muslin Sulphate-Free Dog Shampoo | Furrytail',
     description:
       'Sulphate-free, paraben-free natural dog shampoo for dogs and cats, gentle on sensitive skin. Violet Leaf & Muslin, probiotic-preserved, 250 ml.',
-    faqs: shampooFaqs({ fragrance: 'Violet Leaf & Muslin', inciBotanicals: null, essentialOil: null }),
+    faqs: shampooFaqs({ fragrance: 'Violet Leaf & Muslin', inciBotanicals: null }),
   },
   'dry-foam-shampoo': {
     title: 'Dry Foam Shampoo – Waterless Dog & Cat Shampoo | Furrytail',
@@ -178,7 +166,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'Can I use it on my cat?',
-        a: 'No. The Paw Cleaner is formulated for dogs and is not suitable for cats - it contains spearmint essential oil.',
+        a: 'No. The Paw Cleaner is formulated for dogs and is not suitable for cats.',
       },
     ],
   },
@@ -205,7 +193,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'Can I use it on street dogs or puppies?',
-        a: 'For street and community dogs the same directions apply - patch-test first, and a dog with a heavy tick load needs a vet rather than a repellent. Check with your vet before using it on a puppy. It is not suitable for cats: it contains essential oils, including eucalyptus.',
+        a: 'For street and community dogs the same directions apply - patch-test first, and a dog with a heavy tick load needs a vet rather than a repellent. Check with your vet before using it on a puppy. It is not suitable for cats.',
       },
     ],
   },
