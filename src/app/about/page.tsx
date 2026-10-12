@@ -10,13 +10,13 @@ import type { Metadata } from 'next';
 import { pageOpenGraph } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Our Story — Why We Make Natural Dog & Cat Grooming Products | Furrytail',
+  title: 'Our Story: Natural Dog & Cat Grooming | Furrytail',
   description:
     'Why Furrytail makes natural, probiotic-preserved dog and cat grooming products in India - the standard we hold every formula to, and what we leave out.',
   alternates: { canonical: '/about' },
   openGraph: pageOpenGraph({
     url: '/about',
-    title: 'Our Story — Why We Make Natural Dog & Cat Grooming Products | Furrytail',
+    title: 'Our Story: Natural Dog & Cat Grooming | Furrytail',
     description: 'Care, Extended. We didn\'t start with shampoo. We started with a question.',
     images: [{ url: '/about_hero_door.webp' }],
   }),

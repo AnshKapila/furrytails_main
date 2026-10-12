@@ -35,7 +35,7 @@ export type LandingContent = {
 export const DOG_LANDING: LandingContent = {
   species: 'dog',
   path: '/dog-grooming',
-  seoTitle: 'Natural Dog Grooming Products: Shampoo, Paw Cleaner, Tick Spray | Furrytail',
+  seoTitle: 'Natural Dog Shampoo, Paw Cleaner & Tick Spray | Furrytail',
   description:
     'Natural dog grooming: sulphate-free dog shampoo, dry foam shampoo, paw cleaner and plant-based tick & flea spray. ' +
     '99.5% natural origin, probiotic-preserved.',
@@ -109,7 +109,7 @@ export const DOG_LANDING: LandingContent = {
 export const CAT_LANDING: LandingContent = {
   species: 'cat',
   path: '/cat-grooming',
-  seoTitle: 'Natural Cat Grooming: Cat Shampoo & Waterless Dry Shampoo | Furrytail',
+  seoTitle: 'Natural Cat Shampoo & Waterless Dry Shampoo | Furrytail',
   description:
     'Natural cat grooming: a gentle sulphate-free cat shampoo and a waterless dry foam shampoo for cats who hate baths. ' +
     '99.5% natural origin, probiotic-preserved.',

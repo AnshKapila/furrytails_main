@@ -25,6 +25,7 @@ import {
   pageOpenGraph,
   plainProductText,
   productMetaDescription,
+  offerPolicyJsonLd,
   productTitle,
   speciesLabel,
 } from '@/lib/seo';
@@ -122,6 +123,7 @@ export default async function ProductPage({
               ? 'https://schema.org/OutOfStock'
               : 'https://schema.org/InStock',
           seller: { '@id': orgId() },
+          ...offerPolicyJsonLd(),
         },
       },
       breadcrumbJsonLd([

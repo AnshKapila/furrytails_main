@@ -7,7 +7,7 @@ import { FAQS } from '@/data/faq';
 import { getBaseUrl } from '@/lib/site-url';
 import { breadcrumbJsonLd, jsonLdString, pageOpenGraph, websiteId } from '@/lib/seo';
 
-const TITLE = 'Dog & Cat Grooming FAQ: Natural Shampoo, Tick Spray, Paw Care | Furrytail';
+const TITLE = 'Dog & Cat Grooming FAQ: Shampoo, Ticks & Paws | Furrytail';
 const DESCRIPTION =
   'Straight answers on natural dog & cat grooming: 99.5% natural origin, probiotic preservation, ' +
   'what is safe for cats and puppies, and how the tick spray works.';

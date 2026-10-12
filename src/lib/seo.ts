@@ -15,7 +15,7 @@ export const ORG_ALTERNATE_NAMES = ['Furry Tail', 'Furrytail Joy'];
 export const INSTAGRAM_URL = 'https://www.instagram.com/furrytailjoy/';
 export const WHATSAPP_NUMBER = '+91-8796786531';
 
-export const DEFAULT_TITLE = 'Furrytail — Natural Dog & Cat Grooming Products | Natural Pet Care';
+export const DEFAULT_TITLE = 'Furrytail — Natural Dog & Cat Grooming Products, India';
 export const DEFAULT_DESCRIPTION =
   'Natural pet care for dogs and cats: sulphate-free, paraben-free dog & cat shampoo, ' +
   'dry foam shampoo, paw cleaner, natural tick & flea spray and coat mist. 99.5% natural ' +
@@ -152,7 +152,84 @@ export function speciesPlural(p: ProductLike) {
 /** "Paw Cleaner – Natural Dog Grooming | Furrytail" */
 export function productTitle(p: ProductLike) {
   const kind = p.productType === 'Shampoo' || /shampoo/i.test(p.name) ? 'Shampoo' : 'Grooming';
-  return `${p.name} – Natural ${speciesLabel(p)} ${kind} | ${ORG_NAME}`;
+  const suffix = `Natural ${speciesLabel(p)} ${kind} | ${ORG_NAME}`;
+  // Woo names variants "Gentle Daily Shampoo-Fig & Neroli". The space-before
+  // test leaves real hyphenated words ("Anti-Tick") alone.
+  const parts = p.name.match(/^(.* \S+)-(\S.*)$/);
+  const name = parts ? `${parts[1]} – ${parts[2]}` : p.name;
+  // Google cuts titles at ~60 characters: drop the line name for variants,
+  // then the descriptor, so the keyword and brand survive.
+  const candidates = [
+    `${name} – ${suffix}`,
+    ...(parts ? [`${parts[2]} ${suffix}`] : []),
+    `${name} | ${ORG_NAME}`,
+  ];
+  return candidates.find((t) => t.length <= TITLE_MAX) ?? candidates[candidates.length - 1];
+}
+
+const TITLE_MAX = 60;
+
+// Shipping and returns facts for Product structured data. Google needs a rate
+// and a return window in days; neither is published yet (see /shipping), and
+// structured data must not say more than the page does. Fill these in - and
+// publish the same numbers on /shipping - to switch the markup on.
+export const SHIPPING_POLICY: {
+  /** Flat shipping fee in INR (0 for free shipping). */
+  rateInr: number | null;
+  /** Order value at or above which shipping is free, if any. */
+  freeOverInr: number | null;
+  handlingDays: [number, number];
+  transitDays: [number, number];
+  /** Days a customer has to return an unopened product. */
+  returnDays: number | null;
+} = {
+  rateInr: null,
+  freeOverInr: null,
+  handlingDays: [1, 2],
+  transitDays: [3, 5],
+  returnDays: null,
+};
+
+/** OfferShippingDetails + MerchantReturnPolicy, or nothing until the facts exist. */
+export function offerPolicyJsonLd() {
+  const s = SHIPPING_POLICY;
+  const out: Record<string, unknown> = {};
+  if (s.rateInr !== null) {
+    const days = (d: [number, number]) => ({ '@type': 'QuantitativeValue', minValue: d[0], maxValue: d[1], unitCode: 'DAY' });
+    const details = (rate: number, extra: Record<string, unknown> = {}) => ({
+      '@type': 'OfferShippingDetails',
+      shippingRate: { '@type': 'MonetaryAmount', value: rate, currency: 'INR' },
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: days(s.handlingDays),
+        transitTime: days(s.transitDays),
+      },
+      ...extra,
+    });
+    // A free-shipping threshold is a second, zero-rate option that only
+    // applies to orders at or above it.
+    out.shippingDetails =
+      s.freeOverInr !== null && s.rateInr > 0
+        ? [
+            details(s.rateInr),
+            details(0, {
+              eligibleTransactionVolume: { '@type': 'PriceSpecification', minPrice: s.freeOverInr, priceCurrency: 'INR' },
+            }),
+          ]
+        : details(s.rateInr);
+  }
+  if (s.returnDays !== null) {
+    out.hasMerchantReturnPolicy = {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'IN',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: s.returnDays,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      merchantReturnLink: `${getBaseUrl()}/shipping`,
+    };
+  }
+  return out;
 }
 
 /**

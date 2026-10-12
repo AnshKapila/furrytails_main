@@ -49,7 +49,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'why-your-dog-still-smells-after-a-bath',
     title: 'Why Your Dog Still Smells After a Bath.',
-    seoTitle: 'Why Your Dog Still Smells After a Bath | Furry Tail Journal',
+    seoTitle: 'Why Your Dog Still Smells After a Bath | Furrytail Journal',
     description:
       'Why does your dog still smell after a bath? Learn how drying, shampoo residue, bedding, ears and skin may contribute—and when to call the vet.',
     excerpt:
@@ -83,7 +83,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'what-does-natural-mean-in-pet-care',
     title: 'What Does “Natural” Actually Mean in Pet Care?',
-    seoTitle: 'What Does Natural Mean in Pet Care? | Furry Tail',
+    seoTitle: 'What Does Natural Mean in Pet Care? | Furrytail',
     description:
       'Is natural dog shampoo always safer? Understand ingredient origin, ISO 16128-2, formulation quality and what to look for on a pet-care label.',
     excerpt:
@@ -119,7 +119,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'paw-cleaner-for-dogs-post-walk-paw-care',
     title: 'The Paw Problem: What Happens Between Walks.',
-    seoTitle: 'Paw Cleaner for Dogs: The Post-Walk Paw Routine | Furry Tail',
+    seoTitle: 'Paw Cleaner for Dogs: The Post-Walk Paw Routine | Furrytail',
     description:
       'How to clean dog paws after walks without overdoing it. A practical guide to paw hygiene, drying, monsoon care and when paws need a vet.',
     excerpt:
@@ -154,7 +154,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'santal-a-primer',
     title: 'Santal: a primer.',
-    seoTitle: 'Sandalwood Oil in Pet Shampoo: A Primer | Furry Tail',
+    seoTitle: 'Sandalwood Oil in Pet Shampoo: A Primer | Furrytail',
     description:
       'What sandalwood oil is, how it’s distilled from Santalum album heartwood, natural vs synthetic sandalwood, GC-MS and IFRA, and what it means in pet shampoo.',
     excerpt:
@@ -187,7 +187,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'ticks-fleas-and-the-indian-dog',
     title: 'Ticks, fleas & the Indian dog.',
-    seoTitle: 'Tick & Flea Prevention for Dogs in India | Furry Tail',
+    seoTitle: 'Tick & Flea Prevention for Dogs in India | Furrytail',
     description:
       'Where Indian dogs pick up ticks, why grooming isn’t parasite control, how to remove a tick safely, and a five-step tick and flea prevention routine.',
     excerpt:
@@ -218,7 +218,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'how-often-should-you-bathe-your-dog',
     title: 'How often should you bathe your dog?',
-    seoTitle: 'How Often Should You Bathe Your Dog? | Furry Tail',
+    seoTitle: 'How Often Should You Bathe Your Dog? | Furrytail',
     description:
       'There is no universal dog bath schedule. How coat type, lifestyle, outdoor exposure, skin health and the Indian climate decide how often to bathe your dog.',
     excerpt:
@@ -254,7 +254,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'reading-the-inci-list',
     title: 'Reading the INCI list.',
-    seoTitle: 'How to Read a Pet Shampoo Ingredient (INCI) List | Furry Tail',
+    seoTitle: 'How to Read a Pet Shampoo Ingredient (INCI) List | Furrytail',
     description:
       'What INCI means, how to read a pet-care ingredient list without memorising it, and why “natural” is a description rather than a safety verdict.',
     excerpt:
@@ -284,7 +284,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'the-monsoon-ritual',
     title: 'The monsoon ritual.',
-    seoTitle: 'Monsoon Dog Grooming Guide: Paws, Drying & Ticks | Furry Tail',
+    seoTitle: 'Monsoon Dog Grooming Guide: Paws, Drying & Ticks | Furrytail',
     description:
       'A practical monsoon grooming routine for dogs in Mumbai, Chennai and Bengaluru: paw cleaning, drying a wet coat, bathing frequency and tick prevention.',
     excerpt:
@@ -316,7 +316,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'the-probiotic-question',
     title: 'The probiotic question.',
-    seoTitle: 'Probiotic Pet Shampoo: What It Really Means | Furry Tail',
+    seoTitle: 'Probiotic Pet Shampoo: What It Really Means | Furrytail',
     description:
       'What “probiotic” means on a pet shampoo bottle: Leuconostoc/Radish Root Ferment Filtrate, the skin microbiome, and why preservation is a formulation decision.',
     excerpt:
@@ -352,7 +352,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     slug: 'what-we-found-in-most-pet-shampoos',
     title: 'What We Found in Most Pet Shampoos.',
-    seoTitle: 'Pet Shampoo Ingredients: What We Found | Furry Tail',
+    seoTitle: 'Pet Shampoo Ingredients: What We Found | Furrytail',
     description:
       'A closer look at pet shampoo ingredients: surfactants, fragrance, preservatives, essential oils and what a well-formulated dog or cat shampoo should do.',
     excerpt:

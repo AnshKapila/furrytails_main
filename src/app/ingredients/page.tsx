@@ -11,7 +11,7 @@ import { pageOpenGraph } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Natural Pet Shampoo Ingredients, Explained | Furrytail',
   description:
-    'Every ingredient in Furrytail\'s natural dog and cat grooming range explained: what each botanical, cleanser and preservative is, why it is in the formula, and where it comes from.',
+    'Every ingredient in Furrytail\'s natural dog and cat grooming range explained: what each botanical, cleanser and preservative is and why it is in the formula.',
   alternates: { canonical: '/ingredients' },
   openGraph: pageOpenGraph({
     url: '/ingredients',
