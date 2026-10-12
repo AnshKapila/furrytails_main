@@ -29,6 +29,8 @@ export interface JournalArticle {
   excerpt: string;
   /** Social share line. */
   ogDescription: string;
+  /** Social share title, when it should differ from the display title. */
+  ogTitle?: string;
   category: string;
   readTime: string;
   datePublished: string;
@@ -44,6 +46,42 @@ export interface JournalArticle {
 }
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
+  {
+    slug: 'what-does-natural-mean-in-pet-care',
+    title: 'What Does “Natural” Actually Mean in Pet Care?',
+    seoTitle: 'What Does Natural Mean in Pet Care? | Furry Tail',
+    description:
+      'Is natural dog shampoo always safer? Understand ingredient origin, ISO 16128-2, formulation quality and what to look for on a pet-care label.',
+    excerpt:
+      'The word natural sounds reassuring. But an ingredient’s origin cannot tell you everything about its safety, concentration or purpose. A practical guide to reading pet-care claims with more clarity – and less marketing noise.',
+    ogTitle: 'Natural Doesn’t Automatically Mean Better',
+    ogDescription:
+      'The word natural tells you something about an ingredient’s origin. It does not, by itself, tell you whether a product is safe, effective or right for your pet.',
+    category: 'Ingredients',
+    readTime: '7 min read',
+    datePublished: '2026-10-12',
+    dateModified: '2026-10-12',
+    image: {
+      src: '/images/journal/what-natural-means/main.webp',
+      width: 1432,
+      height: 955,
+      alt: 'Botanical ingredients – green tea leaves, white blossoms, sea salt, mint, wood and a glass flask of oil – on a sunlit stone surface',
+    },
+    keywords: [
+      'natural dog shampoo',
+      'natural pet care products',
+      'natural vs synthetic ingredients',
+      'naturally derived ingredients for dogs',
+      'natural origin index',
+      'ISO 16128-2',
+      'dog shampoo ingredients',
+      'is natural dog shampoo safer',
+      'are synthetic ingredients bad for dogs',
+      'how to read dog shampoo labels',
+    ],
+    related: ['reading-the-inci-list', 'santal-a-primer', 'what-we-found-in-most-pet-shampoos'],
+    products: ['gentle-daily-shampoo-santal-white-tea'],
+  },
   {
     slug: 'paw-cleaner-for-dogs-post-walk-paw-care',
     title: 'The Paw Problem: What Happens Between Walks.',
@@ -206,7 +244,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       'are essential oils safe for cats',
       'natural pet shampoo ingredients',
     ],
-    related: ['what-we-found-in-most-pet-shampoos', 'santal-a-primer', 'the-probiotic-question'],
+    related: ['what-does-natural-mean-in-pet-care', 'what-we-found-in-most-pet-shampoos', 'santal-a-primer'],
     products: ['gentle-daily-shampoo-santal-white-tea', 'anti-tick-flea-spray'],
   },
   {
@@ -350,7 +388,7 @@ export function articleMetadata(slug: string): Metadata {
   const a = getArticle(slug);
   const path = articlePath(slug);
   const ogImage = { url: a.image.src, width: a.image.width, height: a.image.height, alt: a.image.alt };
-  const ogTitle = a.title.replace(/\.$/, '');
+  const ogTitle = a.ogTitle ?? a.title.replace(/\.$/, '');
   return {
     title: a.seoTitle,
     description: a.description,

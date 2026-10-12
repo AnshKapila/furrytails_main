@@ -163,7 +163,7 @@ export default function ArticlePage() {
               An ingredient can be natural and still be inappropriate for a particular animal, concentration or formulation. An ingredient can also have a chemical-sounding <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">INCI</Link> name and perform a perfectly useful job.
             </p>
             <p>
-              The word "natural" tells you very little on its own.
+              The word "natural" tells you very little on its own. (We unpack <Link href="/journal/what-does-natural-mean-in-pet-care" className="underline decoration-[#8D9A83] underline-offset-4">what &ldquo;natural&rdquo; actually means in pet care</Link> separately.)
             </p>
             <p>
               Take fragrance. A botanical essential oil may sound gentler than a synthetic fragrance molecule. But some <Link href="/journal/reading-the-inci-list" className="underline decoration-[#8D9A83] underline-offset-4">essential oils</Link> and their constituents can present species-specific risks, particularly for cats. Feline grooming behaviour also matters because topical substances may eventually be ingested through licking.
