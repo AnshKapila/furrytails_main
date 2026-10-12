@@ -66,7 +66,7 @@ export const DOG_LANDING: LandingContent = {
       product: { name: 'Anti-Tick & Flea Spray', href: '/products/anti-tick-flea-spray' },
     },
     {
-      when: 'After every walk',
+      when: 'After muddy walks',
       title: 'Clean paws at the door',
       body: 'A rinse-free foam with a built-in brush: massage each pad and between the toes, then wipe with a damp cloth.',
       product: { name: 'Paw Cleaner', href: '/products/paw-cleaner' },

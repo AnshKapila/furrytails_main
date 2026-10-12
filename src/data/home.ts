@@ -401,7 +401,7 @@ export const ingredientChapters = [
         ],
         product: 'Paw Cleaner',
         productId: 'paw-cleaner',
-        productDesc: 'Clean paws after every walk. Spearmint & Sea Salt.',
+        productDesc: 'Clean paws after muddy walks. Spearmint & Sea Salt.',
         ingredientImage: {
           src: 'https://static.kite.ai/image/upload/v1785786927/app/eaccac4c-a287-4e55-89be-8007fdbfaef1/iter3/ingredient-spearmint-editorial-r2.png',
           alt: 'Fresh spearmint leaves with soft natural light',
