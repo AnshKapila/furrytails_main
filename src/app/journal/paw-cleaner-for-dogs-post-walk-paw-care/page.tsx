@@ -344,7 +344,7 @@ export default function ArticlePage() {
               Persistent redness, swelling, pain, limping, bleeding, discharge, significant odour, repeated licking or chewing, wounds or suspected chemical exposure are reasons to consider veterinary assessment.
             </p>
             <p>
-              Paw licking in particular is not a diagnosis. It can occur with several different skin problems, including allergies, <Link href="/journal/ticks-fleas-and-the-indian-dog" className={LINK}>parasites</Link> and infections.
+              Paw licking in particular is not a diagnosis (<Link href="/journal/why-is-my-dog-licking-its-paws" className="underline decoration-[#8D9A83] underline-offset-4">why dogs lick their paws</Link>). It can occur with several different skin problems, including allergies, <Link href="/journal/ticks-fleas-and-the-indian-dog" className={LINK}>parasites</Link> and infections.
             </p>
             <p>
               So if something keeps happening, don&rsquo;t simply increase the cleaning routine.

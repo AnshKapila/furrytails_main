@@ -17,7 +17,7 @@ export const metadata: Metadata = articleMetadata(SLUG);
 const FAQS: Faq[] = [
   {
     q: "What ingredients should be in a dog shampoo?",
-    a: "A routine dog shampoo generally needs an appropriate cleansing system plus ingredients that support the coat and skin, such as conditioners or moisturising components where appropriate. There is no universal \"best\" ingredient list because formulation depends on the product's purpose, the dog's skin and coat, and whether the shampoo is routine or medicated.",
+    a: "A routine dog shampoo generally needs an appropriate cleansing system plus ingredients that support the coat and skin, such as conditioners or moisturising components where appropriate. There is no universal \"best\" ingredient list because formulation depends on the product's purpose, the dog's skin and coat, and whether the shampoo is routine or medicated. For a practical checklist, see [how to choose a dog shampoo](/journal/how-to-choose-a-dog-shampoo).",
   },
   {
     q: "What ingredients should I avoid in pet shampoo?",

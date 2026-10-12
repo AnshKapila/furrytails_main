@@ -83,6 +83,7 @@ export const DOG_LANDING: LandingContent = {
       question: 'What is the best natural dog shampoo in India?',
       answer:
         'Look for a shampoo that skips sulphates (SLS/SLES), parabens, MIT and phenoxyethanol, uses mild plant-derived surfactants, and lists every ingredient. Furrytail’s Gentle Daily Shampoo is made to a 99.5% Natural Origin Index, cleansed with amino acid-derived surfactants and preserved with a probiotic ferment.',
+      links: [{ label: 'How to choose a dog shampoo', href: '/journal/how-to-choose-a-dog-shampoo' }],
     },
     {
       question: 'How often should I bathe my dog?',
@@ -114,7 +115,7 @@ export const DOG_LANDING: LandingContent = {
         'Consult your vet for puppies under 12 weeks. For puppies over 12 weeks the gentle shampoos are suitable for regular use; check with your vet before using the Anti-Tick & Flea Spray on a puppy.',
     },
   ],
-  journalSlugs: ['how-often-should-you-bathe-your-dog', 'ticks-fleas-and-the-indian-dog', 'the-monsoon-ritual'],
+  journalSlugs: ['how-to-bathe-a-dog-at-home', 'how-often-should-you-bathe-your-dog', 'ticks-fleas-and-the-indian-dog'],
   crossLink: { label: 'Grooming a cat? See the products made for cats', href: '/cat-grooming' },
 };
 
@@ -176,6 +177,6 @@ export const CAT_LANDING: LandingContent = {
         'Only if the shampoo is made for cats too - many dog products contain ingredients cats should not ingest when they groom. Furrytail’s Gentle Daily Shampoo and Dry Foam Shampoo are formulated for both.',
     },
   ],
-  journalSlugs: ['what-we-found-in-most-pet-shampoos', 'reading-the-inci-list', 'the-probiotic-question'],
+  journalSlugs: ['can-you-bathe-a-cat', 'what-we-found-in-most-pet-shampoos', 'reading-the-inci-list'],
   crossLink: { label: 'Grooming a dog? See the full dog range', href: '/dog-grooming' },
 };

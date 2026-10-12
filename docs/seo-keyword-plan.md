@@ -93,3 +93,14 @@ Later: #9 "What makes a good dog shampoo" only as a short buying guide (overlaps
 What We Found + INCI); #10 humid weather -> expand The Monsoon Ritual or retarget
 to summer heat; #6 essential oils -> on hold (products contain essential oils;
 user does not want them raised as a concern).
+
+Second batch published 2026-10-12 (drafts 05-11): Golden Retriever grooming,
+dog hair fall vs shedding, why is my dog licking its paws, dog smell in the
+house, summer dog care in India, can you bathe a cat, and #9 reframed as
+"How to Choose a Dog Shampoo" (buying checklist). Original roadmap now
+complete except #6 (essential oils - skipped by decision) and #10 (humid
+weather - covered by The Monsoon Ritual + Summer Dog Care).
+
+Next candidates: breed series (Labrador, German Shepherd, Pomeranian, Persian
+cat), puppy grooming basics, dog dandruff / dry skin, home remedies (neem,
+coconut oil) with evidence, dog ear cleaning.

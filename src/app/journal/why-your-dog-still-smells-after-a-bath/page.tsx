@@ -37,7 +37,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Can dog bedding or a collar make a clean dog smell again?',
-    a: 'Yes, these are sensible places to investigate. Wash washable bedding, towels and collars according to their care instructions, then dry them fully. If the smell remains when your dog is clean, dry and away from these items, investigate other sources.',
+    a: 'Yes, these are sensible places to investigate. Wash washable bedding, towels and collars according to their care instructions, then dry them fully. If the smell remains when your dog is clean, dry and away from these items, investigate other sources. More in [how to get rid of dog smell in the house](/journal/how-to-get-rid-of-dog-smell-in-house).',
   },
   {
     q: 'When should I take my dog to the vet for a bad smell?',

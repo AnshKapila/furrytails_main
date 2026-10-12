@@ -414,6 +414,7 @@ export default function ArticlePage() {
             <p className="font-medium">Look for preservatives and fragrance.</p>
             <p className="font-medium">Understand the botanical names rather than fearing them.</p>
             <p className="font-medium">Check the intended species and directions &ndash; and use the product <Link href="/journal/how-often-should-you-bathe-your-dog" className="underline decoration-[#8D9A83] underline-offset-4">only as often as your dog actually needs</Link>, <Link href="/journal/the-monsoon-ritual" className="underline decoration-[#8D9A83] underline-offset-4">monsoon included</Link>.</p>
+            <p className="font-medium">Choosing a shampoo? Use <Link href="/journal/how-to-choose-a-dog-shampoo" className="underline decoration-[#8D9A83] underline-offset-4">our buying checklist</Link>.</p>
             <p className="font-medium">Treat &ldquo;natural&rdquo; as a description, <Link href="/journal/what-does-natural-mean-in-pet-care" className="underline decoration-[#8D9A83] underline-offset-4">not a safety verdict</Link>.</p>
             <p>
               And if your pet has a known allergy, skin condition or unusual reaction, take the complete product label to your veterinarian rather than trying to diagnose the problem from an ingredient list.
