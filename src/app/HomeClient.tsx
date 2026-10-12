@@ -325,16 +325,16 @@ function ProductCard({ product }: { product: ProductItem }) {
 const CORE_COMMITMENTS = [
   {
     id: 'certified-natural',
-    numberTag: '01 Â· Standard',
-    title: 'The 99.5% is certified. Not estimated.',
+    numberTag: '01 · Standard',
+    title: 'The 99.5% is calculated. Not estimated.',
     description:
-      'Most brands that say "natural" use a loosely defined term. Ours is calculated under ISO 16128-2, the international standard for natural origin measurement. Every batch has a number that can be verified.',
+      'Most brands that say "natural" use a loosely defined term. Ours is a Natural Origin Index calculated under ISO 16128-2, the international standard for natural origin measurement. It describes where our ingredients come from - not a safety certificate - and every batch has a number that can be verified.',
     imageSrc: '/commitment_certified_natural.webp',
     imageAlt: 'Calm golden retriever resting peacefully beside natural botanical extracts',
   },
   {
     id: 'probiotic-preservation',
-    numberTag: '02 Â· Safety',
+    numberTag: '02 · Safety',
     title: 'We replaced the preservatives. All of them.',
     description:
       'Standard pet care uses MIT, MCIT, parabens, or phenoxyethanol. We use a probiotic system â€” Leuconostoc/Radish Root Ferment â€” that does the same job without any of those.',
@@ -343,7 +343,7 @@ const CORE_COMMITMENTS = [
   },
   {
     id: 'fine-fragrance',
-    numberTag: '03 Â· Wellness',
+    numberTag: '03 · Wellness',
     title: 'Fine fragrance, not cover-up scent.',
     description:
       'IFRA-compliant fragrance profiles built from the same raw material vocabulary as premium personal care.',

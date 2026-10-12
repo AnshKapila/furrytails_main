@@ -12,8 +12,8 @@ export type Faq = {
 export const FAQS: Faq[] = [
   {
     question: "What does 99.5% Natural Origin Index actually mean?",
-    answer: "It means 99.5% of the formula, by weight, is derived from natural sources - calculated under ISO 16128-2, the international standard for natural origin measurement. It is not a marketing claim. It is a calculated number that can be verified per batch. The 0.5% is disclosed. There is no ambiguity in it.",
-    links: [{ label: 'What we found in most pet shampoos', href: '/journal/what-we-found-in-most-pet-shampoos' }, { label: 'Reading the INCI list', href: '/journal/reading-the-inci-list' }]
+    answer: "It is a Natural Origin Index of 99.5%, calculated under ISO 16128-2 - the international standard for working out how much of a formula's ingredient content is of natural origin. It is a calculated number, not a loose adjective, and it can be verified per batch. What it measures is ingredient origin. It is not a safety certification or a veterinary approval, and it does not mean the formula contains no synthetic ingredients - the full ingredient list is disclosed so you can read exactly what is in it.",
+    links: [{ label: 'What does natural actually mean in pet care?', href: '/journal/what-does-natural-mean-in-pet-care' }, { label: 'Reading the INCI list', href: '/journal/reading-the-inci-list' }]
   },
   {
     question: "What is probiotic preservation?",
