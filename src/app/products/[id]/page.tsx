@@ -17,6 +17,8 @@ import { parsePrice } from '@/lib/price';
 import { getBaseUrl } from '@/lib/site-url';
 import { getArticlesForProduct } from '@/lib/journal';
 import RelatedArticles from '@/components/journal/RelatedArticles';
+import ArticleFaqs, { faqPlainText } from '@/components/journal/ArticleFaqs';
+import { PRODUCT_SEO } from '@/data/product-seo';
 import {
   GOOGLE_PRODUCT_CATEGORY,
   breadcrumbJsonLd,
@@ -54,8 +56,9 @@ export async function generateMetadata({
     return { title: 'Product not found — Furrytail' };
   }
 
-  const title = productTitle(product);
-  const description = productMetaDescription(product);
+  const seo = PRODUCT_SEO[product.id];
+  const title = seo?.title ?? productTitle(product);
+  const description = seo?.description ?? productMetaDescription(product);
 
   return {
     title,
@@ -92,6 +95,7 @@ export default async function ProductPage({
   const base = getBaseUrl();
   const url = `${base}/products/${product.id}`;
   const images = (product.gallery?.length ? product.gallery : [product.image]).map((i) => i.src);
+  const faqs = PRODUCT_SEO[product.id]?.faqs ?? [];
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -131,6 +135,19 @@ export default async function ProductPage({
         ['Shop', '/shop'],
         [product.name, `/products/${product.id}`],
       ]),
+      ...(faqs.length
+        ? [
+            {
+              '@type': 'FAQPage',
+              '@id': `${url}#faq`,
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: faqPlainText(f.a) },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -143,6 +160,7 @@ export default async function ProductPage({
         />
         <Navbar />
         <ProductClient product={product} related={related} />
+        {faqs.length > 0 && <ArticleFaqs faqs={faqs} />}
         <div className="pb-24">
           <RelatedArticles
             articles={getArticlesForProduct(product.id).slice(0, 3)}

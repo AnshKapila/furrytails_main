@@ -40,12 +40,20 @@ const FAQS: Faq[] = [
     a: "Yes. Flea eggs can fall from an infested animal into bedding, carpets and other protected areas, where immature stages develop. Consequently, an established flea infestation may involve both the pet and its environment.",
   },
   {
-    q: "What should I do if I find a tick on my dog?",
+    q: "How do I remove a tick from my dog at home?",
     a: "Remove an attached tick promptly using an appropriate tick-removal tool or fine-tipped tweezers, grasping close to the skin and pulling steadily. Avoid petroleum jelly, chemicals and heat-based methods. If there are many ticks, repeated infestations or signs of illness, contact a veterinarian.",
   },
   {
     q: "Can grooming replace tick and flea prevention?",
     a: "No. Grooming is valuable because it helps maintain coat hygiene and makes inspection easier, but it does not automatically prevent parasites. Effective parasite management may require veterinary preventives, environmental measures and ongoing inspection depending on the dog’s circumstances.",
+  },
+  {
+    q: "Where do ticks hide on dogs?",
+    a: "Check inside and around the ears, along the neck and under the collar, between the toes, in the armpits and groin, and around the base of the tail. These warm, less-groomed areas are where ticks are easiest to miss, so run your fingers through them after walks in grass or shrubs.",
+  },
+  {
+    q: "What attracts ticks to dogs?",
+    a: "Ticks wait on grass and low vegetation and latch on to passing animals, responding to body heat, breath and movement. Long grass, shrubs, garden edges and places used by many other dogs raise exposure, and Indian research links tick numbers to rainfall, humidity and temperature - so monsoon walks deserve closer checks.",
   },
 ];
 

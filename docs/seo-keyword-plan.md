@@ -19,6 +19,10 @@ queries we already get impressions for - those beat any tool.
 
 ## A. Quick wins: work these into existing pages
 
+**Done 2026-10-12.** Product pages take their title, meta description and an
+FAQ block (with FAQPage JSON-LD) from `src/data/product-seo.ts`; landing-page
+copy is in `src/data/landing.ts`; journal FAQs are in each article's page.
+
 | Page | Add these phrases (title, intro, H2s or FAQs) |
 |---|---|
 | `/products/refreshing-mist` | dog perfume spray, dog deodorant spray, dog smell remover spray |

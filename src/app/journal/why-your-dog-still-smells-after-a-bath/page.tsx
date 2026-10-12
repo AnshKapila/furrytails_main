@@ -16,11 +16,11 @@ export const metadata: Metadata = articleMetadata(SLUG);
 
 const FAQS: Faq[] = [
   {
-    q: 'Why does my dog smell after a bath?',
+    q: 'Why does my dog smell bad even after a bath?',
     a: 'A dog may smell after bathing because the coat is still damp, the shampoo has not been rinsed out completely, the smell is coming from bedding or a collar, or the source lies in the ears or skin. If the smell persists or returns repeatedly, a veterinary examination may be appropriate.',
   },
   {
-    q: 'Why does my dog smell musty after getting wet?',
+    q: 'Why does my dog smell bad or musty when wet?',
     a: 'A wet coat can make an existing odour more noticeable, and dense or long hair may take longer to dry. A musty smell alone does not confirm a skin infection. Dry the coat thoroughly and watch for accompanying skin changes or persistent odour.',
   },
   {
@@ -46,6 +46,10 @@ const FAQS: Faq[] = [
   {
     q: 'Can a freshness product replace a bath?',
     a: 'No. A between-bath freshness product such as [Refreshing Mist](/products/refreshing-mist) may support an everyday grooming routine when used according to its directions, but it does not replace appropriate cleansing or treat a medical cause of odour. Persistent ear or skin odour needs a different response.',
+  },
+  {
+    q: "How do I get rid of dog smell on my dog naturally?",
+    a: "Start with the source rather than a stronger scent: rinse shampoo out thoroughly, dry the coat right down to the skin, brush regularly, and wash bedding, towels and collars until they are fully dry. If the smell persists or comes with itching, redness or ear changes, see your vet rather than masking it.",
   },
 ];
 

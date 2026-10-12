@@ -43,6 +43,10 @@ const FAQS: Faq[] = [
     q: "What if my dog smells even after bathing?",
     a: "Persistent or unusual odour should not automatically be treated with more frequent bathing. Odour can have different causes, including skin or coat issues. If the smell persists or occurs alongside itching, redness, sores, hair loss or other changes, veterinary assessment is appropriate. We walk through the checks to make first in [why your dog still smells after a bath](/journal/why-your-dog-still-smells-after-a-bath).",
   },
+  {
+    q: "Can I bathe my dog daily or twice a week?",
+    a: "Daily bathing is rarely needed and repeated washing can irritate some dogs, especially those with existing skin problems. Twice a week can suit some dogs - or be part of a vet-directed routine - but only when the coat or skin genuinely calls for it. In between, spot-clean paws and dry a wet coat rather than giving a full bath.",
+  },
 ];
 
 export default function ArticlePage() {

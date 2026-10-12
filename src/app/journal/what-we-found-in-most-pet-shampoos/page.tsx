@@ -43,6 +43,10 @@ const FAQS: Faq[] = [
     q: "Does more foam mean a better pet shampoo?",
     a: "No. Foam is largely a sensory and formulation characteristic; it is not a reliable measure of cleansing quality. A shampoo can clean effectively with a lower-lather surfactant system. What matters is how well the finished formula removes dirt and excess oil while remaining appropriate for the animal's skin and coat.",
   },
+  {
+    q: "Is dog shampoo pH different from human shampoo?",
+    a: "Yes. Human skin is mildly acidic, while canine skin generally has a higher and more variable pH. That is one reason a shampoo made for people is not automatically suitable for dogs: the pH and surfactant system of a pet shampoo should be formulated for the species it is meant for.",
+  },
 ];
 
 export default function ArticlePage() {

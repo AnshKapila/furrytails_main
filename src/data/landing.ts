@@ -42,7 +42,7 @@ export const DOG_LANDING: LandingContent = {
   eyebrow: 'Natural dog grooming',
   heading: 'Natural grooming products for dogs.',
   intro: [
-    'A dog’s skin is thinner than ours and more easily stripped, so what goes into a dog shampoo matters more than how much it lathers. Every Furrytail product is made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic radish-root ferment instead of parabens, MIT or phenoxyethanol.',
+    'A dog’s skin is thinner than ours and more easily stripped, so what goes into a dog shampoo matters more than how much it lathers. Every Furrytail product is made to a 99.5% Natural Origin Index (calculated per ISO 16128-2), cleansed with coconut- and sugar-derived surfactants instead of sulphates, and preserved with a probiotic radish-root ferment instead of parabens, MIT or phenoxyethanol - a sulphate-free, paraben-free natural dog shampoo range made in India, gentle enough for sensitive skin.',
     'The range covers the whole week, not just bath day: a gentle daily shampoo, a waterless dry foam for between baths, a paw cleaner for after walks, a plant-based tick and flea spray for before them, and a coat mist for everything in between.',
   ],
   routineHeading: 'A natural dog grooming routine',
@@ -80,21 +80,33 @@ export const DOG_LANDING: LandingContent = {
   ],
   faqs: [
     {
-      question: 'What is the best natural shampoo for dogs?',
+      question: 'What is the best natural dog shampoo in India?',
       answer:
         'Look for a shampoo that skips sulphates (SLS/SLES), parabens, MIT and phenoxyethanol, uses mild plant-derived surfactants, and lists every ingredient. Furrytail’s Gentle Daily Shampoo is made to a 99.5% Natural Origin Index, cleansed with coconut- and sugar-derived surfactants and preserved with a probiotic ferment.',
     },
     {
       question: 'How often should I bathe my dog?',
       answer:
-        'Weekly or fortnightly is typical for most dogs. A gentle, sulphate-free shampoo can be used that often without stripping the coat’s natural oils; your vet can advise for your dog’s coat type, skin and activity level.',
+        'There is no universal schedule - it depends on coat type, lifestyle, outdoor exposure and skin health. A gentle, sulphate-free shampoo can be used as often as the coat genuinely needs; your vet can advise if your dog has a skin condition.',
       links: [{ label: 'How often should you bathe your dog?', href: '/journal/how-often-should-you-bathe-your-dog' }],
     },
     {
-      question: 'Is a natural tick and flea spray enough?',
+      question: 'Is a natural tick spray for dogs enough?',
       answer:
         'A plant-based spray like Furrytail’s Anti-Tick & Flea Spray helps deter ticks and fleas before walks in tick-active areas. It is a deterrent, not a pesticide treatment - for an established infestation, consult your vet.',
       links: [{ label: 'Ticks, fleas & the Indian dog', href: '/journal/ticks-fleas-and-the-indian-dog' }],
+    },
+    {
+      question: 'Which natural dog shampoo is best for sensitive skin?',
+      answer:
+        'Choose a mild, sulphate-free shampoo with a short, readable ingredient list and no harsh preservatives. The Gentle Daily Shampoo adds colloidal oatmeal, aloe vera and glycerin to support the skin barrier. Persistent itching or redness needs a vet, not a new shampoo.',
+      links: [{ label: 'Gentle Daily Shampoo', href: '/products/gentle-daily-shampoo-santal-white-tea' }],
+    },
+    {
+      question: 'Is there a dog shampoo without water?',
+      answer:
+        'Yes - a waterless dry foam shampoo. Furrytail’s Dry Foam Shampoo is sprayed on, massaged through and left to dry in 60–90 seconds, with no rinsing. It is for between baths, not instead of one.',
+      links: [{ label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' }],
     },
     {
       question: 'Can I use these products on puppies?',
@@ -141,13 +153,19 @@ export const CAT_LANDING: LandingContent = {
         'The Gentle Daily Shampoo (Santal & White Tea, Fig & Neroli, Violet Leaf & Muslin) and the Dry Foam Shampoo are made for both dogs and cats. The Anti-Tick & Flea Spray, Paw Cleaner and Refreshing Mist are for dogs only.',
     },
     {
+      question: 'What is the best natural cat shampoo?',
+      answer:
+        'A mild, sulphate-free shampoo that is formulated for cats, not just dogs - cats lick off whatever is left on the coat. Furrytail’s Gentle Daily Shampoo is made for dogs and cats, cleansed with coconut- and sugar-derived surfactants and preserved with a probiotic ferment.',
+      links: [{ label: 'Gentle Daily Shampoo', href: '/products/gentle-daily-shampoo-violet-leaf-muslin' }],
+    },
+    {
       question: 'How do I clean a cat that hates baths?',
       answer:
-        'A waterless dry foam shampoo lets you clean the coat without a tub: work a small amount into the fur with your hands and towel it off. Furrytail’s Dry Foam Shampoo is made for both cats and dogs.',
+        'Use a cat dry shampoo: a waterless foam lets you clean the coat without a tub. Spray a little onto the coat, massage it through with your hands or a soft brush and let it dry - no rinsing. Furrytail’s Dry Foam Shampoo is made for both cats and dogs.',
       links: [{ label: 'Dry Foam Shampoo', href: '/products/dry-foam-shampoo' }],
     },
     {
-      question: 'Can I use dog shampoo on my cat?',
+      question: 'Can you bathe a cat with dog shampoo?',
       answer:
         'Only if the shampoo is made for cats too - many dog products contain ingredients cats should not ingest when they groom. Furrytail’s Gentle Daily Shampoo and Dry Foam Shampoo are formulated for both.',
     },
