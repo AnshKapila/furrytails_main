@@ -45,8 +45,7 @@ REQUIRED = [
     "tsconfig.json",
     "next-env.d.ts",        # TypeScript needs it or the build errors
     "postcss.config.js",    # Tailwind pipeline
-    "middleware.ts",        # active - "Proxy (Middleware)" in the build output
-    "src",
+    "src",                  # includes src/proxy.ts (Next 16 middleware)
     "public",               # ~25 MB; next.config.js reads from it
 ]
 
