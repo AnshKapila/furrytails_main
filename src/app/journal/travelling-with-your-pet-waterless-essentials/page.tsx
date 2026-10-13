@@ -6,7 +6,7 @@ import ClientProviders from '@/components/ClientProviders';
 import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
 import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
 import RelatedArticles from '@/components/journal/RelatedArticles';
-import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles } from '@/lib/journal';
+import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles, ARTICLE_BYLINE } from '@/lib/journal';
 import type { Metadata } from 'next';
 
 const SLUG = 'travelling-with-your-pet-waterless-essentials';
@@ -57,7 +57,7 @@ export default function ArticlePage() {
         <main className="pt-32 pb-24 md:pt-40 md:pb-32">
           {/* Header */}
           <header className="max-w-[800px] mx-auto px-6 md:px-8 mb-16 md:mb-20">
-            <div className="flex items-center gap-2 text-[0.6875rem] font-normal tracking-[0.06em] text-[#8D9A83] uppercase mb-6">
+            <div className="flex flex-wrap items-center gap-2 text-[0.6875rem] font-normal tracking-[0.06em] text-[#8D9A83] uppercase mb-6">
               <Link href="/journal" className="hover:text-[#3B3A38] transition-colors">Journal</Link>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <span>{ARTICLE.category}</span>
@@ -65,6 +65,8 @@ export default function ArticlePage() {
               <span>{ARTICLE.readTime}</span>
               <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
               <time dateTime={ARTICLE.datePublished}>{formatArticleDate(ARTICLE.datePublished)}</time>
+              <span className="w-1 h-1 rounded-full bg-[#E9E2D7]" />
+              <span>{ARTICLE_BYLINE}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#3B3A38] leading-[1.1] mb-8 font-display">
               Travelling With Your Pet? Pack These Waterless Essentials

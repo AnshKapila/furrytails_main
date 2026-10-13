@@ -16,7 +16,17 @@ export function logoUrl(): string {
 
 export const ORG_NAME = 'Furrytail';
 export const ORG_ALTERNATE_NAMES = ['Furry Tail', 'Furrytail Joy'];
-export const INSTAGRAM_URL = 'https://www.instagram.com/furrytailjoy/';
+export {
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+  YOUTUBE_URL,
+  AMAZON_STORE_URL,
+  FLIPKART_STORE_URL,
+  GOOGLE_BUSINESS_URL,
+  GOOGLE_REVIEW_URL,
+  BRAND_PROFILES,
+} from '@/lib/brand';
+import { BRAND_PROFILES } from '@/lib/brand';
 export const WHATSAPP_NUMBER = '+91-8796786531';
 
 export const DEFAULT_TITLE = 'Furrytail — Natural Dog & Cat Grooming Products, India';
@@ -77,7 +87,7 @@ export function siteJsonLd() {
           'Probiotic preservation',
           'Natural tick and flea prevention',
         ],
-        sameAs: [INSTAGRAM_URL],
+        sameAs: BRAND_PROFILES,
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'customer support',
@@ -174,9 +184,9 @@ export function productTitle(p: ProductLike) {
 const TITLE_MAX = 60;
 
 // Shipping and returns facts for Product structured data. Google needs a rate
-// and a return window in days; neither is published yet (see /shipping), and
-// structured data must not say more than the page does. Fill these in - and
-// publish the same numbers on /shipping - to switch the markup on.
+// and a return window in days. These match /shipping (free delivery, 3–5 days,
+// 7-day returns on unopened products); structured data must never say more
+// than the page does, so change both together.
 export const SHIPPING_POLICY: {
   /** Flat shipping fee in INR (0 for free shipping). */
   rateInr: number | null;
@@ -187,11 +197,12 @@ export const SHIPPING_POLICY: {
   /** Days a customer has to return an unopened product. */
   returnDays: number | null;
 } = {
-  rateInr: null,
+  rateInr: 0, // free delivery on every order
   freeOverInr: null,
-  handlingDays: [1, 2],
-  transitDays: [3, 5],
-  returnDays: null,
+  // "Delivery in 3–5 days" from order: 1 day to dispatch, 2–4 in transit.
+  handlingDays: [1, 1],
+  transitDays: [2, 4],
+  returnDays: 7, // unopened products, published on /shipping
 };
 
 /** OfferShippingDetails + MerchantReturnPolicy, or nothing until the facts exist. */

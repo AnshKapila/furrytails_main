@@ -10,6 +10,11 @@ import { getBaseUrl } from './site-url';
 // different entities. Must match ORG_NAME in lib/seo.ts.
 export const PUBLISHER_NAME = 'Furrytail';
 
+// The people who write the journal. Shown as the byline on every article and
+// emitted as Person authors in its BlogPosting JSON-LD.
+export const ARTICLE_AUTHORS = ['Kopal', 'Santana'] as const;
+export const ARTICLE_BYLINE = `By ${ARTICLE_AUTHORS.join(' & ')}`;
+
 export interface JournalImage {
   src: string;
   width: number;
@@ -781,7 +786,7 @@ export function articleMetadata(slug: string): Metadata {
     title: a.seoTitle,
     description: a.description,
     keywords: a.keywords,
-    authors: [{ name: PUBLISHER_NAME, url: getBaseUrl() }],
+    authors: ARTICLE_AUTHORS.map((name) => ({ name })),
     alternates: { canonical: path },
     openGraph: {
       type: 'article',

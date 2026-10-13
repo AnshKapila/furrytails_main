@@ -62,6 +62,16 @@ export const FAQS: Faq[] = [
     answer: "Furrytail is India-made. Formulated and manufactured in India to the same standards we would hold a European or US product to - which is the point. The 99.5% Natural Origin Index is calculated and verified per batch. Made here. Held to the same standard as anywhere."
   },
   {
+    question: "Is delivery free, and how long does it take?",
+    answer: "Yes. Delivery is free on every order across India, with no minimum order value, and orders arrive in 3–5 days depending on your location. You will receive a tracking link by email once your order has been dispatched.",
+    links: [{ label: 'Shipping & Returns', href: '/shipping' }]
+  },
+  {
+    question: "Can I return a product?",
+    answer: "Yes. You can return unopened products in their original condition within 7 days of delivery. Write to us before sending anything back so we can guide you through it. If you have opened a product and it is not working for your pet, write to us anyway - we would rather understand what happened.",
+    links: [{ label: 'Shipping & Returns', href: '/shipping' }]
+  },
+  {
     question: "How do I contact you?",
     answer: "Email hello@furrytailjoy.com. We respond within one business day. You can also reach the contact page for the full form."
   }

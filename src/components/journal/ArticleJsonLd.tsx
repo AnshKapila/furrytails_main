@@ -1,5 +1,5 @@
 import { getBaseUrl } from '@/lib/site-url';
-import { PUBLISHER_NAME, articlePath, getArticle } from '@/lib/journal';
+import { ARTICLE_AUTHORS, PUBLISHER_NAME, articlePath, getArticle } from '@/lib/journal';
 import { faqPlainText, type Faq } from './ArticleFaqs';
 import { logoUrl } from '@/lib/seo';
 
@@ -33,7 +33,11 @@ export default function ArticleJsonLd({ slug, faqs }: { slug: string; faqs: Faq[
       },
       datePublished: a.datePublished,
       dateModified: a.dateModified,
-      author: publisher,
+      author: ARTICLE_AUTHORS.map((name) => ({
+        '@type': 'Person',
+        name,
+        worksFor: { '@id': `${base}/#organization` },
+      })),
       publisher,
       articleSection: a.category,
       keywords: a.keywords.join(', '),

@@ -43,6 +43,7 @@ import CommunityReels from '@/components/CommunityReels';
 import Certifications from '@/components/Certifications';
 import Price from '@/components/Price';
 import { singleProducts } from '@/lib/catalogue';
+import { AMAZON_STORE_URL, FLIPKART_STORE_URL } from '@/lib/brand';
 
 // â”€â”€â”€ Scroll-reveal hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useReveal(threshold = 0.3) {
@@ -525,10 +526,10 @@ function RetailersSection() {
           Present at multiple places for your convenience.
         </h2>
         <div className="flex items-center justify-center gap-10 md:gap-16">
-          <a href="https://www.amazon.in/stores/Furrytailhappilyeverafter/page/97B098CD-267D-4C57-A394-8BBFDC3D4593?lp_asin=B0HGMDL3MN&ref_=cm_sw_r_apin_ast_store_JVCNK509GKQG866QJWKN" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Amazon">
+          <a href={AMAZON_STORE_URL} target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Amazon">
             <img src="/amazon_logo.webp" alt="Amazon" className="w-full object-contain" />
           </a>
-          <a href="https://dl.flipkart.com/s/ufyiOXNNNN" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Flipkart">
+          <a href={FLIPKART_STORE_URL} target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 saturate-50 hover:saturate-100 transition-all duration-300 w-[100px] md:w-[130px] flex justify-center items-center" aria-label="Flipkart">
             <img src="/flipkart_logo.webp" alt="Flipkart" className="w-full object-contain" />
           </a>
         </div>

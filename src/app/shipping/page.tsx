@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Shipping & Returns Across India | Furrytail',
-  description: 'How we ship, how long it takes, and what to do if something goes wrong. We keep this simple.',
+  description: 'Free delivery across India in 3–5 days, and 7-day returns on unopened products. How we ship, and what to do if something goes wrong.',
   alternates: { canonical: '/shipping' },
 };
 
@@ -26,11 +26,11 @@ const sections = [
       },
       {
         label: 'Delivery',
-        body: 'We ship across India. Delivery times vary by location. You will receive a tracking link by email once your order has been dispatched.',
+        body: 'We ship across India. Orders arrive in 3–5 days, depending on your location. You will receive a tracking link by email once your order has been dispatched.',
       },
       {
-        label: 'Shipping cost',
-        body: 'Shipping details including any free-shipping threshold will be shown clearly at checkout before you confirm your order.',
+        label: 'Free delivery',
+        body: 'Delivery is free on every order, with no minimum order value.',
       },
       {
         label: 'Tracking',
@@ -48,7 +48,7 @@ const sections = [
       },
       {
         label: 'Change of mind',
-        body: 'We accept returns on unopened products in their original condition. Please reach out to us before sending anything back so we can guide you through the process.',
+        body: 'You can return unopened products in their original condition within 7 days of delivery. Please reach out to us before sending anything back so we can guide you through the process.',
       },
       {
         label: 'Opened products',

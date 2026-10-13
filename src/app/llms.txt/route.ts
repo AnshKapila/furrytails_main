@@ -37,7 +37,7 @@ ${ORG_NAME} (also written "Furry Tail") is an Indian natural pet care brand maki
 - Fragrances are IFRA-compliant (within International Fragrance Association limits).
 - Vet consulted. No paid vet endorsements.
 - Safe for cats: the Gentle Daily Shampoo (all three fragrances) and the Dry Foam Shampoo. Dogs only: Anti-Tick & Flea Spray, Paw Cleaner, Refreshing Mist.
-- Ships across India; cash on delivery available on most pincodes.
+- Free delivery across India on every order, in 3–5 days. Returns accepted on unopened products within 7 days of delivery.
 - Contact: hello@furrytailjoy.com · Instagram: ${INSTAGRAM_URL}
 
 ## Products
