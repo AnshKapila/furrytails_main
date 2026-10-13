@@ -1,65 +1,191 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ClientProviders from '@/components/ClientProviders';
+import PolicyPage, { COMPANY, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
 
 export const metadata: Metadata = {
   title: 'Terms of Use | Furrytail',
-  description: 'The terms that apply when you browse furrytailjoy.com and buy Furrytail natural pet grooming products, including orders, delivery and returns.',
+  description:
+    'The terms for using furrytailjoy.com and buying Furrytail natural pet grooming products: orders, payment, free delivery, returns and liability.',
   alternates: { canonical: '/terms-of-use' },
 };
 
-// Content structure
-const sections = [
+// Delivery and returns here must match /shipping (free delivery, 3-5 days,
+// 7-day returns on unopened products, return shipping paid by Furrytail).
+const sections: PolicySection[] = [
   {
-    number: '01',
-    heading: 'Products & Ingredients',
+    heading: 'About these terms',
     items: [
       {
-        label: 'Are your products safe for both dogs and cats?',
-        body: 'Yes, our core range is formulated to be perfectly safe and pH-balanced for both dogs and cats, using natural origin ingredients.',
+        label: 'Who you are dealing with',
+        body: (
+          <p>
+            furrytailjoy.com and store.furrytailjoy.com are run by {COMPANY.legalName} (&ldquo;Furrytail&rdquo;, &ldquo;we&rdquo;),
+            GSTIN {COMPANY.gstin}, {COMPANY.address}.
+          </p>
+        ),
       },
       {
-        label: 'Do you use artificial fragrances?',
-        body: 'No. All our fragrances are IFRA-compliant and made without harsh synthetic chemicals, ensuring they are gentle on your pet\'s sensitive nose.',
+        label: 'Agreeing to them',
+        body: (
+          <p>
+            By using the site or placing an order you agree to these terms and to our{' '}
+            <Link href="/privacy-policy" className={POLICY_LINK}>Privacy Policy</Link>. If you do not agree, please do not use the
+            site. We may update these terms; the version on this page when you place an order applies to that order.
+          </p>
+        ),
       },
       {
-        label: 'Is the Paw Cleaner safe if my dog licks their paws?',
-        body: 'Yes, the Paw Cleaner is made with natural botanical extracts and probiotic preservation. While it is not meant to be ingested, it is entirely safe if they lick their paws after cleaning.',
+        label: 'Using the site',
+        body: (
+          <p>
+            You must be 18 or older to buy from us. Please give accurate details, keep your account password private, and do not
+            misuse the site - for example by attempting to break its security or copying its content at scale.
+          </p>
+        ),
       },
     ],
   },
   {
-    number: '02',
-    heading: 'Orders & Shipping',
+    heading: 'Products and advice',
     items: [
       {
-        label: 'How long does shipping take?',
-        body: 'Orders are typically dispatched within 1-2 business days. Delivery generally takes 3-5 working days depending on your location.',
+        label: 'Using our products',
+        body: (
+          <p>
+            Use every product as directed on its label and product page, and only on the pets it is made for - each page states
+            whether a product is for dogs, cats or both. All products are for external use only. If irritation occurs, stop using
+            the product and consult your vet.
+          </p>
+        ),
       },
       {
-        label: 'Do you offer Cash on Delivery?',
-        body: 'No. Cash on delivery is not available - you pay online at checkout by UPI, card or net banking.',
+        label: 'Not veterinary advice',
+        body: (
+          <p>
+            Our products are grooming products, not medicines, and are not intended to diagnose, treat or cure any condition. Our
+            journal articles and FAQs are general information; they do not replace advice from your own vet about your pet.
+          </p>
+        ),
       },
       {
-        label: 'How can I track my order?',
-        body: 'Once your order ships, we will send you a tracking link via email and SMS.',
+        label: 'Product information',
+        body: (
+          <p>
+            We describe and photograph our products as accurately as we can, and list ingredients as printed on the packaging. Colours
+            and packaging may vary slightly between batches and screens.
+          </p>
+        ),
       },
     ],
   },
   {
-    number: '03',
-    heading: 'Returns & Support',
+    heading: 'Orders and payment',
     items: [
       {
-        label: 'What is your return policy?',
-        body: 'We accept returns on unopened products in their original condition. Please refer to our Shipping & Returns page for detailed information.',
+        label: 'Prices',
+        body: (
+          <p>
+            Prices are in Indian Rupees (₹). The final amount, including any applicable taxes, is shown at checkout before you pay. We
+            may change prices at any time, but not for an order we have already confirmed.
+          </p>
+        ),
       },
       {
-        label: 'How can I get in touch?',
-        body: 'You can reach us through our contact form, or connect with us directly on WhatsApp using the icon on the bottom right of your screen.',
+        label: 'Payment',
+        body: <p>Payment is made online at checkout by UPI, card or net banking through Razorpay. Cash on delivery is not available.</p>,
+      },
+      {
+        label: 'When an order is confirmed',
+        body: (
+          <p>
+            Your order is confirmed when payment succeeds and you receive our order confirmation. We may cancel an order - for example
+            if an item is out of stock or a price was shown in error - and if we do, we refund you in full.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: 'Delivery and returns',
+    items: [
+      {
+        label: 'Delivery',
+        body: <p>Delivery is free on every order across India and usually takes 3–5 days, depending on your location.</p>,
+      },
+      {
+        label: 'Returns and refunds',
+        body: (
+          <p>
+            You can return unopened products in their original condition within 7 days of delivery, and we pay the return shipping.
+            Damaged, wrong or missing items are replaced or refunded. Refunds go back to your original payment method. Full details
+            are on our <Link href="/shipping" className={POLICY_LINK}>Shipping &amp; Returns</Link> page.
+          </p>
+        ),
+      },
+      {
+        label: 'Marketplace orders',
+        body: <p>Orders placed on Amazon or Flipkart follow that marketplace&rsquo;s delivery and return terms.</p>,
+      },
+    ],
+  },
+  {
+    heading: 'Rewards, content and liability',
+    items: [
+      {
+        label: 'Rewards programme',
+        body: (
+          <p>
+            The Furrytail rewards programme is run with our partner Nector. Points have no cash value, cannot be transferred, and the
+            programme&rsquo;s rules may change or end with notice on the site.
+          </p>
+        ),
+      },
+      {
+        label: 'Our content',
+        body: (
+          <p>
+            The Furrytail name, logo, photographs, product designs and written content belong to us. You may share links to our pages,
+            but not copy or reuse our content commercially without written permission.
+          </p>
+        ),
+      },
+      {
+        label: 'Reviews and messages you send',
+        body: (
+          <p>
+            If you send us a review, photo or testimonial, you allow us to show it on our site and social media. Please do not send
+            anything unlawful, misleading or that belongs to someone else.
+          </p>
+        ),
+      },
+      {
+        label: 'Our liability',
+        body: (
+          <p>
+            Nothing in these terms limits your rights under the Consumer Protection Act, 2019. Beyond those rights, our liability for any
+            order is limited to the amount you paid for it, and we are not responsible for losses caused by using a product other
+            than as directed, or by events outside our reasonable control.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: 'Law and complaints',
+    items: [
+      {
+        label: 'Governing law',
+        body: <p>These terms are governed by the laws of India. Courts in Gurugram, Haryana have jurisdiction, without affecting your right to approach a consumer commission.</p>,
+      },
+      {
+        label: 'Grievance Officer',
+        body: (
+          <p>
+            {COMPANY.legalName}, {COMPANY.address}. Email{' '}
+            <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a>, phone {COMPANY.phone}. We acknowledge
+            complaints within 48 hours and aim to resolve them within one month.
+          </p>
+        ),
       },
     ],
   },
@@ -67,115 +193,12 @@ const sections = [
 
 export default function TermsOfUsePage() {
   return (
-    <ClientProviders>
-    <div className="min-h-screen bg-[#F8F5F1]">
-      <Navbar />
-
-      <main
-        className="bg-[#F8F5F1] pt-24"
-        data-kite-page-id="faq"
-        data-kite-page-type="policy"
-      >
-
-        {/* Header */}
-        <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
-          <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4"
-            style={{ fontFamily: 'var(--font-inter)' }}>
-            Support
-          </p>
-          <h1
-            className="text-[#3B3A38] max-w-[640px] !mx-0 text-left"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 300, lineHeight: 1.06, letterSpacing: '-0.02em' }}
-          >
-            Terms of Use
-          </h1>
-          <p className="mt-5 text-[0.875rem] font-light text-[#68735F] leading-[1.6] max-w-[500px]">
-            The terms and conditions for using our website.
-          </p>
-        </section>
-
-        {/* Sections */}
-        {sections.map((section) => (
-          <section
-            key={section.number}
-            className="max-w-[1200px] mx-auto px-6 md:px-8 py-14 md:py-16 border-b border-[#E9E2D7]"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-              <div className="flex flex-col gap-1">
-                <p
-                  className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF]"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  {section.number}
-                </p>
-                <h2
-                  className="text-[#3B3A38]"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-                >
-                  {section.heading}
-                </h2>
-              </div>
-
-              <div className="flex flex-col gap-0">
-                {section.items.map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`flex flex-col gap-2 py-6 ${i < section.items.length - 1 ? "border-b border-[#E9E2D7]" : ""}`}
-                  >
-                    <p
-                      className="text-[0.875rem] font-medium text-[#3B3A38] tracking-wide"
-                      style={{ fontFamily: 'var(--font-inter)' }}
-                    >
-                      {item.label}
-                    </p>
-                    <p className="text-[0.875rem] font-light text-[#68735F] leading-[1.6]">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
-        {/* CTA */}
-        <section
-          className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20"
-        >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-              <p
-                className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                Still have a question?
-              </p>
-              <h2
-                className="text-[#3B3A38]"
-                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-              >
-                We read every message ourselves.
-              </h2>
-            </div>
-            <Link
-              href="/#contact"
-              className="hero-btn-primary flex-shrink-0"
-              style={{ minHeight: '48px', padding: '0 28px' }}
-            >
-              Get in touch
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className="btn-arrow flex-shrink-0">
-                <line x1="1" y1="7" x2="13" y2="7" />
-                <polyline points="8,2 13,7 8,12" />
-              </svg>
-            </Link>
-          </div>
-        </section>
-
-      </main>
-
-      <Footer />
-    </div>
-    </ClientProviders>
+    <PolicyPage
+      pageId="terms-of-use"
+      title="Terms of Use"
+      lastUpdated="2026-10-13"
+      intro={<p>The terms that apply when you use furrytailjoy.com and buy Furrytail products: orders, payment, delivery, returns and the rest.</p>}
+      sections={sections}
+    />
   );
 }
-

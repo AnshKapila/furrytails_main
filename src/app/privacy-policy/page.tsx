@@ -1,65 +1,243 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ClientProviders from '@/components/ClientProviders';
+import PolicyPage, { COMPANY, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Furrytail',
-  description: 'How Furrytail collects, uses and protects your personal information when you shop natural dog and cat grooming products with us.',
+  description:
+    'How Furrytail (Clamique Personal Care Pvt Ltd) collects, uses and protects your personal data when you shop natural dog and cat grooming products.',
   alternates: { canonical: '/privacy-policy' },
 };
 
-// Content structure
-const sections = [
+// Written from what the site actually does: WooCommerce checkout on
+// store.furrytailjoy.com, Razorpay payments, Google Analytics, Nector rewards,
+// newsletter sign-up (email marketing provider), contact form (sent by email
+// through Brevo), WhatsApp chat, and cart/wishlist kept in the browser.
+// Update this page whenever one of those changes.
+const sections: PolicySection[] = [
   {
-    number: '01',
-    heading: 'Products & Ingredients',
+    heading: 'Who we are',
     items: [
       {
-        label: 'Are your products safe for both dogs and cats?',
-        body: 'Yes, our core range is formulated to be perfectly safe and pH-balanced for both dogs and cats, using natural origin ingredients.',
+        label: 'The data fiduciary',
+        body: (
+          <>
+            <p>
+              Furrytail is a brand of {COMPANY.legalName} (GSTIN {COMPANY.gstin}), {COMPANY.address}. We decide how and why your
+              personal data is used on furrytailjoy.com and store.furrytailjoy.com, and we are responsible for it under the Digital
+              Personal Data Protection Act, 2023 and the Information Technology Act, 2000.
+            </p>
+          </>
+        ),
       },
       {
-        label: 'Do you use artificial fragrances?',
-        body: 'No. All our fragrances are IFRA-compliant and made without harsh synthetic chemicals, ensuring they are gentle on your pet\'s sensitive nose.',
-      },
-      {
-        label: 'Is the Paw Cleaner safe if my dog licks their paws?',
-        body: 'Yes, the Paw Cleaner is made with natural botanical extracts and probiotic preservation. While it is not meant to be ingested, it is entirely safe if they lick their paws after cleaning.',
+        label: 'What this policy covers',
+        body: (
+          <p>
+            Our website, our online store and checkout, our newsletter, our rewards programme and messages you send us. If you buy
+            Furrytail on Amazon or Flipkart, that marketplace collects your order details under its own privacy policy.
+          </p>
+        ),
       },
     ],
   },
   {
-    number: '02',
-    heading: 'Orders & Shipping',
+    heading: 'What we collect',
     items: [
       {
-        label: 'How long does shipping take?',
-        body: 'Orders are typically dispatched within 1-2 business days. Delivery generally takes 3-5 working days depending on your location.',
+        label: 'When you order',
+        body: (
+          <p>
+            Your name, email address, phone number, billing and delivery address, and what you ordered. If you create an account, your
+            login email and password (stored encrypted) and your order history.
+          </p>
+        ),
       },
       {
-        label: 'Do you offer Cash on Delivery?',
-        body: 'No. Cash on delivery is not available - you pay online at checkout by UPI, card or net banking.',
+        label: 'When you pay',
+        body: (
+          <p>
+            Payments are handled by Razorpay. You enter card, UPI or net banking details on Razorpay&rsquo;s secure payment page - we
+            never see or store your full card number, UPI PIN or banking password. We receive confirmation of the payment and a
+            transaction reference.
+          </p>
+        ),
       },
       {
-        label: 'How can I track my order?',
-        body: 'Once your order ships, we will send you a tracking link via email and SMS.',
+        label: 'When you contact us or sign up',
+        body: (
+          <p>
+            Your name, email and message when you use our contact form; your email address when you join the newsletter; and your
+            phone number and messages if you chat with us on WhatsApp.
+          </p>
+        ),
+      },
+      {
+        label: 'When you browse',
+        body: (
+          <p>
+            Pages visited, the device and browser you use, your approximate location (city level) and how you arrived on the site,
+            collected through Google Analytics. Your cart and wishlist are stored only in your own browser. See our{' '}
+            <Link href="/cookie-settings" className={POLICY_LINK}>Cookie Policy</Link>.
+          </p>
+        ),
       },
     ],
   },
   {
-    number: '03',
-    heading: 'Returns & Support',
+    heading: 'How we use it',
     items: [
       {
-        label: 'What is your return policy?',
-        body: 'We accept returns on unopened products in their original condition. Please refer to our Shipping & Returns page for detailed information.',
+        label: 'To fulfil your order',
+        body: <p>Processing payment, packing and delivering your order, sending order and tracking updates, and handling returns and refunds.</p>,
       },
       {
-        label: 'How can I get in touch?',
-        body: 'You can reach us through our contact form, or connect with us directly on WhatsApp using the icon on the bottom right of your screen.',
+        label: 'To support you',
+        body: <p>Answering your messages and resolving problems with an order.</p>,
+      },
+      {
+        label: 'To run rewards and offers',
+        body: (
+          <p>
+            Tracking points in the Furrytail rewards programme, and - only if you sign up - sending our newsletter. Every newsletter
+            has an unsubscribe link.
+          </p>
+        ),
+      },
+      {
+        label: 'To improve the site and meet our obligations',
+        body: (
+          <p>
+            Understanding which pages and products people use, preventing fraud, and keeping the invoices and records that tax and
+            other laws require.
+          </p>
+        ),
+      },
+      {
+        label: 'Our basis for using it',
+        body: (
+          <p>
+            Your consent, which you give when you place an order, create an account, sign up or contact us - and which you can
+            withdraw at any time - and the purposes the law allows without separate consent, such as keeping tax records. We do not
+            sell your personal data.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: 'Who we share it with',
+    items: [
+      {
+        label: 'Service providers who work for us',
+        body: (
+          <>
+            <p>We share only what each one needs to do its job:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Razorpay - payment processing</li>
+              <li>Courier and logistics partners - delivering your order (name, address, phone)</li>
+              <li>Our website and store hosting providers</li>
+              <li>Google Analytics - website usage statistics</li>
+              <li>Nector - the rewards programme</li>
+              <li>Our email providers - newsletters and contact-form messages</li>
+              <li>WhatsApp (Meta) - if you message us there</li>
+            </ul>
+            <p>They may only use your data to provide their service to us.</p>
+          </>
+        ),
+      },
+      {
+        label: 'When the law requires it',
+        body: <p>We disclose personal data to government authorities only when we are legally required to.</p>,
+      },
+      {
+        label: 'Outside India',
+        body: (
+          <p>
+            Some of these providers store or process data outside India. Where they do, it is under their own safeguards and only as
+            permitted by Indian law.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: 'How long we keep it',
+    items: [
+      {
+        label: 'Orders and invoices',
+        body: <p>For as long as the GST and income tax laws require us to keep accounting records - currently at least six years.</p>,
+      },
+      {
+        label: 'Your account',
+        body: <p>Until you ask us to delete it, subject to the order records above.</p>,
+      },
+      {
+        label: 'Newsletter and messages',
+        body: <p>Your email stays on the newsletter list until you unsubscribe. Contact messages are kept while we deal with them, and then only as long as needed.</p>,
+      },
+    ],
+  },
+  {
+    heading: 'Your rights',
+    items: [
+      {
+        label: 'What you can ask us',
+        body: (
+          <>
+            <p>Under the Digital Personal Data Protection Act, 2023 you can:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>ask what personal data we hold about you and how we use it</li>
+              <li>ask us to correct, complete or update it</li>
+              <li>ask us to erase it, unless we must keep it by law</li>
+              <li>withdraw your consent at any time</li>
+              <li>nominate someone to exercise these rights for you</li>
+              <li>raise a grievance with us, and then with the Data Protection Board of India</li>
+            </ul>
+            <p>
+              Email <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a> from the address you shopped with,
+              and we will respond within 30 days.
+            </p>
+          </>
+        ),
+      },
+      {
+        label: 'Children',
+        body: (
+          <p>
+            Our store is for adults. We do not knowingly collect personal data from anyone under 18; if you believe a child has given
+            us their details, contact us and we will delete them.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: 'Security and contact',
+    items: [
+      {
+        label: 'Keeping it safe',
+        body: (
+          <p>
+            The site and checkout use encrypted (HTTPS) connections, payments are handled by Razorpay, and access to customer data is
+            limited to the people who need it. No system is perfectly secure; if we become aware of a breach that affects you, we will
+            tell you and the authorities as the law requires.
+          </p>
+        ),
+      },
+      {
+        label: 'Grievance Officer',
+        body: (
+          <p>
+            {COMPANY.legalName}, {COMPANY.address}. Email{' '}
+            <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a>, phone {COMPANY.phone}. We acknowledge
+            complaints within 48 hours and aim to resolve them within one month.
+          </p>
+        ),
+      },
+      {
+        label: 'Changes to this policy',
+        body: <p>When we change this policy we update the date at the top of this page. Significant changes will also be highlighted on the site.</p>,
       },
     ],
   },
@@ -67,115 +245,17 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <ClientProviders>
-    <div className="min-h-screen bg-[#F8F5F1]">
-      <Navbar />
-
-      <main
-        className="bg-[#F8F5F1] pt-24"
-        data-kite-page-id="faq"
-        data-kite-page-type="policy"
-      >
-
-        {/* Header */}
-        <section className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20 border-b border-[#E9E2D7]">
-          <p className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-4"
-            style={{ fontFamily: 'var(--font-inter)' }}>
-            Support
-          </p>
-          <h1
-            className="text-[#3B3A38] max-w-[640px] !mx-0 text-left"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: 300, lineHeight: 1.06, letterSpacing: '-0.02em' }}
-          >
-            Privacy Policy
-          </h1>
-          <p className="mt-5 text-[0.875rem] font-light text-[#68735F] leading-[1.6] max-w-[500px]">
-            Our privacy practices and how we handle your data.
-          </p>
-        </section>
-
-        {/* Sections */}
-        {sections.map((section) => (
-          <section
-            key={section.number}
-            className="max-w-[1200px] mx-auto px-6 md:px-8 py-14 md:py-16 border-b border-[#E9E2D7]"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-16">
-              <div className="flex flex-col gap-1">
-                <p
-                  className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#BEB8AF]"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  {section.number}
-                </p>
-                <h2
-                  className="text-[#3B3A38]"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-                >
-                  {section.heading}
-                </h2>
-              </div>
-
-              <div className="flex flex-col gap-0">
-                {section.items.map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`flex flex-col gap-2 py-6 ${i < section.items.length - 1 ? "border-b border-[#E9E2D7]" : ""}`}
-                  >
-                    <p
-                      className="text-[0.875rem] font-medium text-[#3B3A38] tracking-wide"
-                      style={{ fontFamily: 'var(--font-inter)' }}
-                    >
-                      {item.label}
-                    </p>
-                    <p className="text-[0.875rem] font-light text-[#68735F] leading-[1.6]">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
-        {/* CTA */}
-        <section
-          className="max-w-[1200px] mx-auto px-6 md:px-8 py-16 md:py-20"
-        >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-              <p
-                className="text-[0.625rem] font-normal tracking-[0.25em] uppercase text-[#8D9A83] mb-3"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                Still have a question?
-              </p>
-              <h2
-                className="text-[#3B3A38]"
-                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: 'clamp(2rem, 3.2vw, 2.625rem)', fontWeight: 300, lineHeight: 1.15 }}
-              >
-                We read every message ourselves.
-              </h2>
-            </div>
-            <Link
-              href="/#contact"
-              className="hero-btn-primary flex-shrink-0"
-              style={{ minHeight: '48px', padding: '0 28px' }}
-            >
-              Get in touch
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" className="btn-arrow flex-shrink-0">
-                <line x1="1" y1="7" x2="13" y2="7" />
-                <polyline points="8,2 13,7 8,12" />
-              </svg>
-            </Link>
-          </div>
-        </section>
-
-      </main>
-
-      <Footer />
-    </div>
-    </ClientProviders>
+    <PolicyPage
+      pageId="privacy-policy"
+      title="Privacy Policy"
+      lastUpdated="2026-10-13"
+      intro={
+        <p>
+          What personal data Furrytail collects when you shop with us, why, who it is shared with, and the rights you have over it.
+          In short: we collect what we need to deliver your order, we never see your card details, and we do not sell your data.
+        </p>
+      }
+      sections={sections}
+    />
   );
 }
-
