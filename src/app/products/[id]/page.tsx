@@ -121,6 +121,18 @@ export default async function ProductPage({
           url,
           priceCurrency: 'INR',
           price: parsePrice(product.price),
+          // On sale: the regular price as a strikethrough, so Google can show
+          // "₹828 ₹689" the way the page does.
+          ...(product.standardPrice && product.standardPrice !== product.price
+            ? {
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  priceType: 'https://schema.org/StrikethroughPrice',
+                  price: parsePrice(product.standardPrice),
+                  priceCurrency: 'INR',
+                },
+              }
+            : {}),
           itemCondition: 'https://schema.org/NewCondition',
           availability:
             product.inStock === false

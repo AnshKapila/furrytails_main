@@ -28,7 +28,7 @@ const ITEMS: { label: string; icon: React.ReactNode }[] = [
     ),
   },
   { label: 'IFRA-compliant fragrance', icon: markerIcon('ifra') },
-  { label: 'Vet reviewed', icon: markerIcon('vet-reviewed') },
+  { label: 'Vet consulted', icon: markerIcon('vet-reviewed') },
   {
     label: 'Made for dogs & cats',
     // Paw print

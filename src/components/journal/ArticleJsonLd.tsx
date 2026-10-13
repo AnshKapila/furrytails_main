@@ -1,7 +1,7 @@
 import { getBaseUrl } from '@/lib/site-url';
 import { PUBLISHER_NAME, articlePath, getArticle } from '@/lib/journal';
 import { faqPlainText, type Faq } from './ArticleFaqs';
-import { LOGO_URL } from '@/data/home';
+import { logoUrl } from '@/lib/seo';
 
 // BlogPosting + BreadcrumbList + FAQPage for one article, emitted as a single
 // @graph so search engines and AI crawlers read them as related entities.
@@ -14,7 +14,7 @@ export default function ArticleJsonLd({ slug, faqs }: { slug: string; faqs: Faq[
     '@id': `${base}/#organization`,
     name: PUBLISHER_NAME,
     url: base,
-    logo: { '@type': 'ImageObject', url: LOGO_URL },
+    logo: { '@type': 'ImageObject', url: logoUrl() },
   };
 
   const graph = [

@@ -44,7 +44,7 @@ export const TRUST_MARKERS = [
   },
   {
     id: 'vet-reviewed',
-    label: 'Vet Reviewed',
+    label: 'Vet Consulted',
     caption: 'Formulated with Veterinary Guidance',
     external: false,
     icon: (

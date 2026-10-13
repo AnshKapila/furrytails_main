@@ -58,6 +58,26 @@ If you register GS1 barcodes, add them to WooCommerce and to the feed as
 bing.com/webmasters → import from Search Console. Feeds ChatGPT search and
 Copilot, which use Bing's index.
 
+### 5. IndexNow (after every deploy)
+`node scripts/indexnow.mjs` pings Bing, Yandex and the other IndexNow engines
+with every URL in the live sitemap, so new pages are recrawled within hours.
+The key file `public/9eac5253fc25b8929efc8a8eaf1ff3a8.txt` must stay deployed.
+
+## Host and caching (src/proxy.ts)
+- `www.furrytailjoy.com` 301-redirects to `furrytailjoy.com` so search engines
+  see one copy of each page.
+- HTML documents are sent `max-age=0, must-revalidate` so Hostinger's CDN
+  never serves a page that points at the previous build's CSS.
+- The file must stay in `src/` (Next only looks there when a `src/` directory
+  exists) and is named `proxy.ts`, Next 16's name for middleware. Until
+  2026-10-13 it sat at the project root and neither rule ran.
+
+## Sale prices
+WooCommerce sale prices flow through as a strikethrough everywhere: on the
+page (`components/Price.tsx`), in Product JSON-LD (`priceSpecification` with
+`StrikethroughPrice`) and in the Merchant feed (`g:price` = regular,
+`g:sale_price` = sale).
+
 ## Content that still needs fixing in WooCommerce
 - Product descriptions say "Furry Tail" - change to "Furrytail" so the brand
   is one entity everywhere.

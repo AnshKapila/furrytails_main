@@ -36,6 +36,10 @@ function item(p: WooProduct, base: string) {
   const link = `${base}/products/${p.id}`;
   const images = [...new Set((p.gallery?.length ? p.gallery : [p.image]).map((i) => i.src))];
   const price = parsePrice(p.price);
+  // Google wants the regular price in g:price and the discount in g:sale_price;
+  // sending only the sale price hides the sale badge in Shopping.
+  const regular = p.standardPrice ? parsePrice(p.standardPrice) : 0;
+  const onSale = regular > price;
   const id = p.sku || p.id;
 
   return (
@@ -47,7 +51,8 @@ function item(p: WooProduct, base: string) {
     tag('image_link', images[0]) +
     images.slice(1, 11).map((src) => tag('additional_image_link', src)).join('') +
     tag('availability', p.inStock === false ? 'out_of_stock' : 'in_stock') +
-    tag('price', `${price.toFixed(2)} INR`) +
+    tag('price', `${(onSale ? regular : price).toFixed(2)} INR`) +
+    (onSale ? tag('sale_price', `${price.toFixed(2)} INR`) : '') +
     tag('brand', ORG_NAME) +
     tag('condition', 'new') +
     tag('google_product_category', GOOGLE_PRODUCT_CATEGORY) +

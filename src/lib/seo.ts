@@ -8,7 +8,11 @@
 // no ratings, no review counts, no return window until one is published.
 
 import { getBaseUrl } from '@/lib/site-url';
-import { LOGO_URL } from '@/data/home';
+// Brand logo for structured data, served from our own domain so the brand
+// entity (Organization logo, article publisher) is self-contained.
+export function logoUrl(): string {
+  return `${getBaseUrl()}/furrytail-logo.png`;
+}
 
 export const ORG_NAME = 'Furrytail';
 export const ORG_ALTERNATE_NAMES = ['Furry Tail', 'Furrytail Joy'];
@@ -19,7 +23,7 @@ export const DEFAULT_TITLE = 'Furrytail — Natural Dog & Cat Grooming Products,
 export const DEFAULT_DESCRIPTION =
   'Natural pet care for dogs and cats: sulphate-free, paraben-free dog & cat shampoo, ' +
   'dry foam shampoo, paw cleaner, natural tick & flea spray and coat mist. 99.5% natural ' +
-  'origin, probiotic-preserved, vet reviewed. Shipped across India.';
+  'origin, probiotic-preserved, vet consulted. Shipped across India.';
 
 /** Homepage meta description - kept under ~155 characters so Google shows all of it. */
 export const HOME_META_DESCRIPTION =
@@ -59,8 +63,8 @@ export function siteJsonLd() {
         name: ORG_NAME,
         alternateName: ORG_ALTERNATE_NAMES,
         url: base,
-        logo: { '@type': 'ImageObject', url: LOGO_URL },
-        image: LOGO_URL,
+        logo: { '@type': 'ImageObject', url: logoUrl(), width: 720, height: 274 },
+        image: logoUrl(),
         description: DEFAULT_DESCRIPTION + ' Formulated and made in India.',
         email: 'hello@furrytailjoy.com',
         slogan: 'Your standard. Now for your pet.',

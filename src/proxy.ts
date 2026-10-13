@@ -1,6 +1,10 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
-// Pass-through middleware, plus a Cache-Control correction for HTML documents.
+// Request proxy (Next 16's name for middleware): the www -> apex redirect and
+// a Cache-Control correction for HTML documents.
+//
+// It must live in src/ - with a src/ directory Next only looks there. It sat at
+// the project root until 2026-10-13, so for a while none of this ran.
 //
 // Previously re-exported ``@appsmithorg/template-shared/middleware`` (a
 // prerender-for-bots helper), but that file uses ``return fetch(req)`` for the
@@ -11,7 +15,17 @@ import { NextResponse, type NextRequest } from 'next/server';
 //
 // Re-enable prerender once the upstream package is fixed to use
 // ``NextResponse.next()`` for pass-through.
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
+  // One host for search engines: www.furrytailjoy.com served every page with
+  // a 200, a duplicate of the whole site. 301 it to the apex. Built from the
+  // Host header because behind Hostinger's proxy req.nextUrl may carry an
+  // internal host.
+  const host = req.headers.get('host') ?? '';
+  if (host.startsWith('www.')) {
+    const { pathname, search } = req.nextUrl;
+    return NextResponse.redirect(`https://${host.slice(4)}${pathname}${search}`, 301);
+  }
+
   const res = NextResponse.next();
 
   // Next serves prerendered pages with ``Cache-Control: s-maxage=31536000``,
