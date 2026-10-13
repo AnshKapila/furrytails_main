@@ -3,10 +3,10 @@ import { getBaseUrl } from '@/lib/site-url';
 import { HOME_META_DESCRIPTION as DEFAULT_DESCRIPTION, DEFAULT_TITLE, KEYWORD_THEMES, OG_IMAGE, ORG_NAME, jsonLdString, siteJsonLd } from '@/lib/seo';
 import { cormorant, inter } from './fonts';
 import './globals.css';
-import Script from 'next/script';
 import WhatsAppNudge from '@/components/WhatsAppNudge';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import NectorWidget from '@/components/NectorWidget';
+import CookieConsent from '@/components/CookieConsent';
 
 // Caps the shared-cache TTL on every page below this layout. Without it Next
 // serves prerendered pages with ``s-maxage=31536000``, and Hostinger's CDN -
@@ -65,15 +65,8 @@ export default function RootLayout({
       <body className={`${cormorant.variable} ${inter.variable}`}>
         {/* Brand + website entity for search engines and AI answer engines */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(siteJsonLd()) }} />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-V1STLY9M7V" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-V1STLY9M7V');
-          `}
-        </Script>
+        {/* Google Analytics loads only after the visitor accepts cookies */}
+        <CookieConsent />
         {children}
         <WhatsAppNudge />
         <NewsletterPopup />

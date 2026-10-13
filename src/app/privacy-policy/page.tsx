@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import PolicyPage, { COMPANY, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
+import PolicyPage, { COMPANY, GrievanceOfficer, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Furrytail',
@@ -76,8 +76,9 @@ const sections: PolicySection[] = [
         label: 'When you browse',
         body: (
           <p>
-            Pages visited, the device and browser you use, your approximate location (city level) and how you arrived on the site,
-            collected through Google Analytics. Your cart and wishlist are stored only in your own browser. See our{' '}
+            If you accept analytics cookies: pages visited, the device and browser you use, your approximate location (city level)
+            and how you arrived on the site, collected through Google Analytics. Your cart and wishlist are stored only in your own
+            browser. See our{' '}
             <Link href="/cookie-settings" className={POLICY_LINK}>Cookie Policy</Link>.
           </p>
         ),
@@ -227,13 +228,7 @@ const sections: PolicySection[] = [
       },
       {
         label: 'Grievance Officer',
-        body: (
-          <p>
-            {COMPANY.legalName}, {COMPANY.address}. Email{' '}
-            <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a>, phone {COMPANY.phone}. We acknowledge
-            complaints within 48 hours and aim to resolve them within one month.
-          </p>
-        ),
+        body: <GrievanceOfficer />,
       },
       {
         label: 'Changes to this policy',

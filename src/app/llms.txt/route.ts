@@ -39,6 +39,7 @@ ${ORG_NAME} (also written "Furry Tail") is an Indian natural pet care brand maki
 - Safe for cats: the Gentle Daily Shampoo (all three fragrances) and the Dry Foam Shampoo. Dogs only: Anti-Tick & Flea Spray, Paw Cleaner, Refreshing Mist.
 - Free delivery across India on every order, in 3–5 days. Unopened products can be returned within 7 days of delivery; Furrytail pays the return shipping.
 - Payment online at checkout by UPI, card or net banking. Cash on delivery is not available.
+- Orders can be cancelled within 6 hours of placing them; after that, undispatched orders are cancelled on request and dispatched ones must be returned. Damaged, wrong or missing items are replaced, not refunded.
 - Contact: hello@furrytailjoy.com · Instagram: ${INSTAGRAM_URL}
 
 ## Products

@@ -62,19 +62,37 @@ const sections = [
   },
   {
     number: '03',
-    heading: 'Damaged or missing orders',
+    heading: 'Damaged, wrong or missing',
     items: [
       {
         label: 'Damaged on arrival',
-        body: 'Please get in touch through our contact form with your order details and a photo. We will arrange a replacement or refund as quickly as we can.',
+        body: 'Please get in touch through our contact form with your order details and a photo, and we will send a replacement as quickly as we can. Damaged, wrong or missing items are replaced rather than refunded.',
+      },
+      {
+        label: 'Wrong item',
+        body: 'If you receive a product you did not order, contact us with your order details and a photo and we will send the right one.',
       },
       {
         label: 'Missing items',
-        body: 'If your order is missing an item, please contact us soon after delivery. We check every order before it ships, but if something went wrong we will make it right.',
+        body: 'If your order is missing an item, please contact us soon after delivery. We check every order before it ships, but if something went wrong we will send the missing item.',
       },
       {
         label: 'Lost in transit',
         body: 'If tracking shows your order as delivered but you have not received it, give it a little time — carriers sometimes mark early. If it still has not arrived, contact us and we will look into it.',
+      },
+    ],
+  },
+  {
+    number: '04',
+    heading: 'Cancellations',
+    items: [
+      {
+        label: 'Within 6 hours',
+        body: 'You can cancel an order within 6 hours of placing it. Write to us with your order number and we will cancel it and refund the full amount to your original payment method.',
+      },
+      {
+        label: 'After 6 hours',
+        body: 'After 6 hours your order may already have been dispatched. If it has not been dispatched yet, we will still cancel it on request. If it has, it can no longer be cancelled - instead, return it unopened within 7 days of delivery under our returns policy.',
       },
     ],
   },

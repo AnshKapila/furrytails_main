@@ -26,7 +26,21 @@ export const COMPANY = {
   address: 'Booth No. 460, 219, 2F, ILD Trade Centre, Sector 47, Sohna Road, Gurugram, Haryana 122018, India',
   email: 'hello@furrytailjoy.com',
   phone: '+91 87967 86531',
+  // Named Grievance Officer, as the IT Rules and Consumer Protection
+  // (E-Commerce) Rules require.
+  grievanceOfficer: 'BD',
 } as const;
+
+/** Grievance Officer contact, shared by the privacy policy and terms. */
+export function GrievanceOfficer() {
+  return (
+    <p>
+      {COMPANY.grievanceOfficer}, Grievance Officer, {COMPANY.legalName}, {COMPANY.address}. Email{' '}
+      <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a>, phone {COMPANY.phone}. We acknowledge
+      complaints within 48 hours and aim to resolve them within one month.
+    </p>
+  );
+}
 
 export const POLICY_LINK =
   'underline decoration-[#8D9A83]/40 underline-offset-4 hover:text-[#3B3A38] hover:decoration-[#3B3A38]/60 transition-colors';

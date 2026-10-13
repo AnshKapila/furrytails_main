@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import PolicyPage, { COMPANY, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
+import PolicyPage, { COMPANY, GrievanceOfficer, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
 
 export const metadata: Metadata = {
   title: 'Terms of Use | Furrytail',
@@ -103,6 +103,16 @@ const sections: PolicySection[] = [
           </p>
         ),
       },
+      {
+        label: 'Cancelling an order',
+        body: (
+          <p>
+            You can cancel within 6 hours of placing an order, for a full refund to your original payment method. After 6 hours the
+            order may already have been dispatched: if it has not, we will still cancel it on request; if it has, it cannot be
+            cancelled and must be returned unopened within 7 days of delivery instead.
+          </p>
+        ),
+      },
     ],
   },
   {
@@ -117,7 +127,7 @@ const sections: PolicySection[] = [
         body: (
           <p>
             You can return unopened products in their original condition within 7 days of delivery, and we pay the return shipping.
-            Damaged, wrong or missing items are replaced or refunded. Refunds go back to your original payment method. Full details
+            Damaged, wrong or missing items are replaced, not refunded. Refunds for returns go back to your original payment method. Full details
             are on our <Link href="/shipping" className={POLICY_LINK}>Shipping &amp; Returns</Link> page.
           </p>
         ),
@@ -179,13 +189,7 @@ const sections: PolicySection[] = [
       },
       {
         label: 'Grievance Officer',
-        body: (
-          <p>
-            {COMPANY.legalName}, {COMPANY.address}. Email{' '}
-            <a href={`mailto:${COMPANY.email}`} className={POLICY_LINK}>{COMPANY.email}</a>, phone {COMPANY.phone}. We acknowledge
-            complaints within 48 hours and aim to resolve them within one month.
-          </p>
-        ),
+        body: <GrievanceOfficer />,
       },
     ],
   },

@@ -72,6 +72,11 @@ export const FAQS: Faq[] = [
     links: [{ label: 'Shipping & Returns', href: '/shipping' }]
   },
   {
+    question: "Can I cancel my order?",
+    answer: "Yes, within 6 hours of placing it - write to us with your order number and we will cancel it and refund you in full. After 6 hours your order may already have been dispatched: if it has not, we will still cancel it on request; if it has, it can no longer be cancelled, but you can return it unopened within 7 days of delivery.",
+    links: [{ label: 'Shipping & Returns', href: '/shipping' }]
+  },
+  {
     question: "How do I contact you?",
     answer: "Email hello@furrytailjoy.com. We respond within one business day. You can also reach the contact page for the full form."
   }

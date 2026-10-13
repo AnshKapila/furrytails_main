@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PolicyPage, { COMPANY, POLICY_LINK, type PolicySection } from '@/components/PolicyPage';
+import { CookieChoiceButton } from '@/components/CookieConsent';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy | Furrytail',
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
 
 // Matches what the site loads: Google Analytics (src/app/layout.tsx), Nector
 // rewards widget, cart / wishlist / newsletter flag in localStorage, and
-// WooCommerce + Razorpay on the store subdomain. There is no consent banner,
-// so this page must not describe one.
+// WooCommerce + Razorpay on the store subdomain. Google Analytics loads only
+// after the visitor accepts in the CookieConsent banner.
 const sections: PolicySection[] = [
   {
     heading: 'What cookies are',
@@ -46,9 +47,10 @@ const sections: PolicySection[] = [
         label: 'Analytics - Google Analytics',
         body: (
           <p>
-            Google Analytics sets cookies (named <code>_ga</code> and <code>_ga_…</code>) to count visits and show us which pages and
-            products people use, which devices they browse on and roughly where they are (city level). It does not tell us who you
-            are. Google processes this data under its own privacy policy.
+            Only if you click Accept in our cookie banner, Google Analytics sets cookies (named <code>_ga</code> and <code>_ga_…</code>)
+            to count visits and show us which pages and products people use, which devices they browse on and roughly where they are
+            (city level). It does not tell us who you are. Google processes this data under its own privacy policy. If you decline,
+            Google Analytics does not load at all.
           </p>
         ),
       },
@@ -75,6 +77,18 @@ const sections: PolicySection[] = [
   {
     heading: 'Your choices',
     items: [
+      {
+        label: 'Change your cookie choice',
+        body: (
+          <>
+            <p>
+              Your Accept or Decline is saved in your browser. To change it, reopen the cookie banner. Declining after accepting
+              deletes the Google Analytics cookies.
+            </p>
+            <CookieChoiceButton />
+          </>
+        ),
+      },
       {
         label: 'Control cookies in your browser',
         body: (
@@ -115,7 +129,7 @@ export default function CookiePolicyPage() {
       pageId="cookie-settings"
       title="Cookie Policy"
       lastUpdated="2026-10-13"
-      intro={<p>The cookies and browser storage furrytailjoy.com uses, what each one is for, and how to turn them off.</p>}
+      intro={<p>The cookies and browser storage furrytailjoy.com uses, what each one is for, and how to turn them off. Analytics cookies are only set if you accept them.</p>}
       sections={sections}
     />
   );
