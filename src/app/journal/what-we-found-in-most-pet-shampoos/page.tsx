@@ -81,9 +81,9 @@ export default function ArticlePage() {
             <div className="relative aspect-[16/9] md:aspect-[21/9] w-full bg-[#E9E2D7] overflow-hidden rounded-[2px]">
               <Image 
                 src="/images/journal/what-we-found/main.webp"
-                alt="Pet shampoo bottle beside an open ingredient label and grooming essentials"
+                alt="Furrytail Gentle Daily Shampoo beside a folded towel, a ceramic vase and violet leaves"
                 fill
-                className="object-cover"
+                className="object-cover object-[center_22%]"
                 priority
                 sizes="(max-width: 1000px) 100vw, 1000px"
               />

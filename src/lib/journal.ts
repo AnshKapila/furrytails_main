@@ -719,9 +719,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dateModified: '2026-10-06',
     image: {
       src: '/images/journal/what-we-found/main.webp',
-      width: 367,
-      height: 457,
-      alt: 'Pet shampoo bottle beside an open ingredient label and grooming essentials',
+      width: 1184,
+      height: 864,
+      alt: 'Furrytail Gentle Daily Shampoo beside a folded towel, a ceramic vase and violet leaves',
     },
     keywords: [
       'pet shampoo ingredients',
