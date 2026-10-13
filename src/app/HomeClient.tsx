@@ -42,6 +42,7 @@ import ExpertVoices from '@/components/ExpertVoices';
 import CommunityReels from '@/components/CommunityReels';
 import Certifications from '@/components/Certifications';
 import Price from '@/components/Price';
+import { singleProducts } from '@/lib/catalogue';
 
 // â”€â”€â”€ Scroll-reveal hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useReveal(threshold = 0.3) {
@@ -128,8 +129,6 @@ function SpeciesBadge({ species, className = '' }: { species?: 'dog' | 'cat' | '
 // Hover: card scale+tilt, image zoom 3-4%, border â†’ sage
 type ProductItem = WooProduct;
 
-// WooCommerce categories of the single products; anything else is a bundle.
-const SINGLE_CATEGORIES = new Set(['Daily Ritual', 'Defense', 'Remedy', 'Refresh']);
 
 function ProductCard({ product }: { product: ProductItem }) {
   const [quickAdded, setQuickAdded] = useState(false);
@@ -804,7 +803,8 @@ function PillarAccordionRow() {
 // Uses the canonical website-scroll-management horizontal-motion contract.
 
 function OurRangeGallery() {
-  const { products } = useProducts();
+  // "Seven products, made with care" - the core range; bundles live on /shop.
+  const products = singleProducts(useProducts().products);
   const sectionRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
@@ -1072,16 +1072,9 @@ export default function Home() {
   const [heroVisible, setHeroVisible] = useState(false);
   // "Where most people begin" shows a subset of the range as an introduction.
   const { products } = useProducts();
-  // WooCommerce lists newest first, so a plain slice would fill the rail with
-  // bundles. Lead with the single products, then the one kit that is the whole
-  // routine; other bundles fill any gap.
-  const RAIL_KIT = 'the-complete-ritual-santal-white-tea';
-  const isBundle = (p: WooProduct) => !SINGLE_CATEGORIES.has(p.category);
-  const bestSellersGrid = [
-    ...products.filter((p) => !isBundle(p)),
-    ...products.filter((p) => p.id === RAIL_KIT),
-    ...products.filter((p) => isBundle(p) && p.id !== RAIL_KIT),
-  ].slice(0, 8);
+  // The homepage introduces the seven single products; bundles live on /shop.
+  // (WooCommerce lists newest first, so an unfiltered slice would be bundles.)
+  const bestSellersGrid = singleProducts(products).slice(0, 8);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
