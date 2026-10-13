@@ -220,8 +220,21 @@ const CATEGORY_MAP = [
     id: 'Refresh',
     title: 'Refresh',
     note: 'Between baths.',
+  },
+  {
+    id: 'Bundles',
+    title: 'Bundles',
+    note: 'Made to work together.',
   }
 ];
+
+// The shop is grouped by WooCommerce category. A product with no category, or
+// one not in CATEGORY_MAP (e.g. the Travel Kit bundle), lands in Bundles rather
+// than silently dropping off the page.
+const KNOWN_CATEGORIES = new Set(CATEGORY_MAP.map((c) => c.id));
+function shopSection(p: WooProduct): string {
+  return KNOWN_CATEGORIES.has(p.category) ? p.category : 'Bundles';
+}
 
 function ShopContent({ products }: { products: WooProduct[] }) {
   const SORT_OPTIONS = [
@@ -264,7 +277,8 @@ function ShopContent({ products }: { products: WooProduct[] }) {
     { label: 'Ritual', id: 'Daily Ritual' },
     { label: 'Defense', id: 'Defense' },
     { label: 'Refresh', id: 'Refresh' },
-    { label: 'Remedy', id: 'Remedy' }
+    { label: 'Remedy', id: 'Remedy' },
+    { label: 'Bundles', id: 'Bundles' }
   ];
   const PET_FILTERS = ['Dog', 'Cat', 'Dog & Cat'];
   const SCENT_FILTERS = ['Santal & White Tea', 'Fig & Neroli', 'Hinoki & Bamboo', 'Yuzu & White Musk'];
@@ -309,7 +323,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
 
   const baseFiltered = products.filter((p) => {
     const prod = p as any;
-    const ritualMatch = activeRitual === 'All' || p.category === activeRitual;
+    const ritualMatch = activeRitual === 'All' || shopSection(p) === activeRitual;
     
     let petMatch = activePet === 'All pets';
     if (!petMatch && prod.species) {
@@ -461,7 +475,7 @@ function ShopContent({ products }: { products: WooProduct[] }) {
         </section>
       ) : (
         CATEGORY_MAP.map((cat) => {
-          const catProducts = filtered.filter(p => p.category === cat.id);
+          const catProducts = filtered.filter(p => shopSection(p) === cat.id);
           
           if (catProducts.length === 0) return null;
 

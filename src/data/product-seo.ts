@@ -28,11 +28,13 @@ const SHAMPOO_INCI = (botanicals: string) =>
 
 interface ShampooFacts {
   fragrance: string;
+  /** Slug suffix shared by the shampoo and its Complete Ritual, e.g. 'fig-neroli'. */
+  scent: string;
   /** INCI names of the fragrance botanicals, in carton order. */
   inciBotanicals: string;
 }
 
-const shampooFaqs = ({ fragrance, inciBotanicals }: ShampooFacts): Faq[] => [
+const shampooFaqs = ({ fragrance, scent, inciBotanicals }: ShampooFacts): Faq[] => [
   {
     q: 'Is this a sulphate-free and paraben-free dog shampoo?',
     a: `Yes. ${fragrance} Gentle Daily Shampoo is cleansed with amino acid-derived surfactants instead of sulphates and preserved with probiotics - Leuconostoc/Radish Root Ferment Filtrate - instead of synthetic preservatives. What's out of it: sulphates, parabens, MIT, synthetic preservatives and synthetic fragrance.`,
@@ -55,7 +57,7 @@ const shampooFaqs = ({ fragrance, inciBotanicals }: ShampooFacts): Faq[] => [
   },
   {
     q: 'Will my dog smell nice after a bath?',
-    a: `Yes. ${fragrance} is IFRA-compliant, with no synthetic fragrance, and stays close to the coat for up to 48 hours as it dries softer and calmer.`,
+    a: `Yes. ${fragrance} is IFRA-compliant, with no synthetic fragrance, and stays close to the coat for up to 48 hours as it dries softer and calmer. Can’t choose? The [Bath Ritual Trio](/products/bath-ritual-trio) has all three scents, and [The Complete Ritual – ${fragrance}](/products/the-complete-ritual-${scent}) adds Defense, the Paw Cleaner and Refreshing Mist for dogs.`,
   },
   {
     q: 'Is it a neem and aloe vera dog shampoo?',
@@ -71,7 +73,145 @@ const shampooFaqs = ({ fragrance, inciBotanicals }: ShampooFacts): Faq[] => [
   },
 ];
 
+// The Complete Ritual: one Gentle Daily Shampoo plus Defense, Paw Cleaner and
+// Refreshing Mist. Three products, one per shampoo scent.
+const completeRitual = ({ fragrance, scent }: Omit<ShampooFacts, 'inciBotanicals'>): ProductSeo => ({
+  title: `Complete Ritual – ${fragrance} Dog Kit | Furrytail`,
+  description:
+    `Dog grooming kit: ${fragrance} Gentle Daily Shampoo, Defense tick & flea spray, Paw Cleaner and Refreshing Mist. The whole routine.`,
+  faqs: [
+    {
+      q: 'What is in The Complete Ritual?',
+      a: `The whole Furrytail routine in four products: [${fragrance} Gentle Daily Shampoo](/products/gentle-daily-shampoo-${scent}) (250 ml), [Defense Anti-Tick & Flea Spray](/products/anti-tick-flea-spray) (Vetiver & Cypress, 100 ml), [Paw Cleaner](/products/paw-cleaner) (Spearmint & Sea Salt, 150 ml) and [Refreshing Mist](/products/refreshing-mist) (Yuzu & White Musk, 100 ml).`,
+    },
+    {
+      q: 'How do I use it?',
+      a: 'Bath day: brush the coat, wet it right down to the skin, lather the shampoo slowly from neck to tail and rinse until the water runs clean - two passes give the best result. Before a walk: 6–8 sprays of Defense across the back, flanks and base of the tail, left to dry completely. After the walk: Paw Cleaner on each paw, massaged between the pads and wiped clean - no rinsing. Between baths: 3–5 sprays of Refreshing Mist from 25 cm, left to settle.',
+    },
+    {
+      q: 'Is The Complete Ritual suitable for cats?',
+      a: 'No - it is a set for dogs. The Gentle Daily Shampoo is made for dogs and cats, but Defense, the Paw Cleaner and Refreshing Mist are formulated for dogs.',
+    },
+    {
+      q: 'Which scent should I choose?',
+      a: `The set comes with one shampoo scent: this one is ${fragrance}. The Complete Ritual is also available with [Santal & White Tea](/products/the-complete-ritual-santal-white-tea), [Fig & Neroli](/products/the-complete-ritual-fig-neroli) or [Violet Leaf & Muslin](/products/the-complete-ritual-violet-leaf-muslin) - the shampoo formula is the same, only the fragrance changes.`,
+    },
+    {
+      q: 'How is it different from the other kits?',
+      a: 'It is the bath and the walk together. The [Walk Ritual Kit](/products/walk-ritual-kit) is Defense, Paw Cleaner and Refreshing Mist without the shampoo; the [Bath Ritual Trio](/products/bath-ritual-trio) is all three shampoo scents.',
+    },
+  ],
+});
+
+// Duos: two of the four single products. Directions restate the cartons.
+type DuoItem = 'paw' | 'defense' | 'mist' | 'dryfoam';
+const DUO_ITEMS: Record<DuoItem, { link: string; use: string; cats: boolean }> = {
+  paw: {
+    link: '[Paw Cleaner](/products/paw-cleaner) (Spearmint & Sea Salt, 150 ml)',
+    use: 'After the walk, pump Paw Cleaner onto each paw or a damp cloth, massage across the pads and between the toes, and wipe clean - no rinsing.',
+    cats: false,
+  },
+  defense: {
+    link: '[Defense Anti-Tick & Flea Spray](/products/anti-tick-flea-spray) (Vetiver & Cypress, 100 ml)',
+    use: 'Before the walk, shake Defense and apply 6–8 sprays from 20 cm across the back, flanks and base of the tail, avoiding the eyes and mouth, and let it dry completely.',
+    cats: false,
+  },
+  mist: {
+    link: '[Refreshing Mist](/products/refreshing-mist) (Yuzu & White Musk, 100 ml)',
+    use: 'To finish, hold Refreshing Mist 25 cm from the coat, apply 3–5 sprays over the back and flanks and let it settle - do not rub it in.',
+    cats: false,
+  },
+  dryfoam: {
+    link: '[Dry Foam Shampoo](/products/dry-foam-shampoo) (Hinoki & Bamboo, 100 ml)',
+    use: 'When the coat feels oily or smells stale, shake Dry Foam Shampoo and apply 4–6 sprays from 15 cm, neck to tail, massage through and let it dry in 60–90 seconds - no rinsing.',
+    cats: true,
+  },
+};
+
+interface DuoFacts {
+  name: string;
+  title: string;
+  description: string;
+  /** In routine order - the order the directions are given in. */
+  items: [DuoItem, DuoItem];
+  /** One line on when the duo is for. */
+  moment: string;
+  /** Where to go for the fuller routine. */
+  more: string;
+}
+
+const duo = ({ name, title, description, items, moment, more }: DuoFacts): ProductSeo => {
+  const [a, b] = items.map((i) => DUO_ITEMS[i]);
+  const hasCatProduct = items.some((i) => DUO_ITEMS[i].cats);
+  return {
+    title,
+    description,
+    faqs: [
+      { q: `What is in the ${name}?`, a: `Two Furrytail essentials: ${a.link} and ${b.link}. ${moment}` },
+      { q: `How do I use the ${name}?`, a: `${a.use} ${b.use}` },
+      {
+        q: `Is the ${name} suitable for cats?`,
+        a: hasCatProduct
+          ? 'Only the Dry Foam Shampoo is made for dogs and cats; the other product is formulated for dogs, so the duo is for dogs.'
+          : 'No. Both products are formulated for dogs, so the duo is for dogs only.',
+      },
+      { q: 'Is there a fuller kit?', a: more },
+    ],
+  };
+};
+
 export const PRODUCT_SEO: Record<string, ProductSeo> = {
+  'after-walk-duo-paw-cleaner-refreshing-mist': duo({
+    name: 'After-Walk Duo',
+    title: 'After-Walk Duo – Dog Paw Cleaner & Mist | Furrytail',
+    description: 'Dog paw cleaner and coat mist for coming home: no-rinse Paw Cleaner after every walk, then Refreshing Mist to finish. Two dog essentials, one duo.',
+    items: ['paw', 'mist'],
+    moment: 'Clean paws and a fresh coat when you get home from a walk.',
+    more: 'Add Defense before the walk with the [Walk Ritual Kit](/products/walk-ritual-kit), or get the whole routine in [The Complete Ritual](/products/the-complete-ritual-santal-white-tea).',
+  }),
+  'out-back-duo': duo({
+    name: 'Out & Back Duo',
+    title: 'Out & Back Duo – Tick Spray & Paw Cleaner | Furrytail',
+    description: 'Natural tick & flea spray before the walk and no-rinse paw cleaner after it. Defense and Paw Cleaner in one dog walk duo.',
+    items: ['defense', 'paw'],
+    moment: 'Defense on the way out, Paw Cleaner on the way back in.',
+    more: 'Add Refreshing Mist to finish with the [Walk Ritual Kit](/products/walk-ritual-kit), or get the whole routine in [The Complete Ritual](/products/the-complete-ritual-santal-white-tea).',
+  }),
+  'fresh-walk-duo': duo({
+    name: 'Fresh Walk Duo',
+    title: 'Fresh Walk Duo – Tick Spray & Dog Mist | Furrytail',
+    description: 'Natural tick & flea spray before the walk and Refreshing Mist after it. Defense and a light dog coat fragrance in one duo.',
+    items: ['defense', 'mist'],
+    moment: 'Protection before the walk and a fresh coat after it.',
+    more: 'Add the Paw Cleaner with the [Walk Ritual Kit](/products/walk-ritual-kit), or get the whole routine in [The Complete Ritual](/products/the-complete-ritual-santal-white-tea).',
+  }),
+  'between-baths-duo-remedy-dry-foam-shampoo-refresh-refreshing-mist': duo({
+    name: 'Between-Baths Duo',
+    title: 'Between-Baths Duo – Dry Shampoo & Dog Mist | Furrytail',
+    description: 'Waterless dry foam shampoo and Refreshing Mist for the days between baths - no tub, no rinse. Two no-rinse dog essentials in one duo.',
+    items: ['dryfoam', 'mist'],
+    moment: 'For the days between baths: a waterless clean, then a light fragrance.',
+    more: 'For a full bath day, add a [Gentle Daily Shampoo](/products/gentle-daily-shampoo-santal-white-tea); for trips, the [Travel Kit](/products/travel-kit-bundle) has all four waterless essentials.',
+  }),
+  'no-rinse-duo-remedy-paw-cleaner-dry-foam-shampoo': duo({
+    name: 'No-Rinse Duo',
+    title: 'No-Rinse Duo – Dry Shampoo & Paw Cleaner | Furrytail',
+    description: 'Waterless dry foam shampoo and no-rinse paw cleaner: clean coat and clean paws with no water. Two no-rinse dog essentials in one duo.',
+    items: ['paw', 'dryfoam'],
+    moment: 'Clean paws and a clean coat without water - for muddy, rainy days.',
+    more: 'The [Travel Kit](/products/travel-kit-bundle) adds Defense and Refreshing Mist - all four waterless essentials.',
+  }),
+  'trail-duo-defense-anti-tick-flea-spray-remedy-dry-foam-shampoo': duo({
+    name: 'Trail Duo',
+    title: 'Trail Duo – Dry Shampoo & Tick Spray | Furrytail',
+    description: 'Natural tick & flea spray before the trail and waterless dry foam shampoo after it. Defense and Dry Foam Shampoo in one dog duo.',
+    items: ['defense', 'dryfoam'],
+    moment: 'Defense before a walk in grass and woods; Dry Foam Shampoo for the coat afterwards.',
+    more: 'The [Travel Kit](/products/travel-kit-bundle) adds the Paw Cleaner and Refreshing Mist - all four waterless essentials.',
+  }),
+  'the-complete-ritual-santal-white-tea': completeRitual({ fragrance: 'Santal & White Tea', scent: 'santal-white-tea' }),
+  'the-complete-ritual-fig-neroli': completeRitual({ fragrance: 'Fig & Neroli', scent: 'fig-neroli' }),
+  'the-complete-ritual-violet-leaf-muslin': completeRitual({ fragrance: 'Violet Leaf & Muslin', scent: 'violet-leaf-muslin' }),
   'travel-kit-bundle': {
     title: "Travel Kit Bundle – Waterless Dog Grooming Kit | Furrytail",
     description:
@@ -99,12 +239,67 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
     ],
   },
+  'bath-ritual-trio': {
+    title: 'Bath Ritual Trio – Sulphate-Free Dog Shampoo Set | Furrytail',
+    description:
+      'All three Gentle Daily Shampoos: Santal & White Tea, Fig & Neroli, Violet Leaf & Muslin. Sulphate-free, probiotic-preserved, for dogs & cats. 3 × 250 ml.',
+    faqs: [
+      {
+        q: 'What is in the Bath Ritual Trio?',
+        a: 'All three 250 ml Gentle Daily Shampoos: [Santal & White Tea](/products/gentle-daily-shampoo-santal-white-tea), [Fig & Neroli](/products/gentle-daily-shampoo-fig-neroli) and [Violet Leaf & Muslin](/products/gentle-daily-shampoo-violet-leaf-muslin).',
+      },
+      {
+        q: 'Are the three shampoos the same formula?',
+        a: 'Yes - only the fragrance changes. All three are cleansed with amino acid-derived surfactants, preserved with probiotics and pH-balanced for sensitive skin, with colloidal oatmeal, aloe vera, neem and camellia oil. What’s out of them: sulphates, parabens, MIT, synthetic preservatives and synthetic fragrance.',
+      },
+      {
+        q: 'Can I use it on my cat?',
+        a: 'Yes. The Gentle Daily Shampoos are made for dogs and cats. Lather slowly, keep clear of the eyes, take extra care around the face and rinse until the water runs clean.',
+      },
+      {
+        q: 'How do I bathe my dog with it?',
+        a: 'Brush the coat thoroughly to remove tangles first. Wet the coat right down to the skin, apply a small amount and lather slowly from neck to tail, keeping clear of the eyes, then rinse until the water runs clean. Two passes give the best result - expect less lather than a sulphate shampoo.',
+      },
+      {
+        q: 'Why three scents?',
+        a: 'So the bath can change with the mood or the season - warm Santal & White Tea, bright Fig & Neroli or soft Violet Leaf & Muslin. Each is IFRA-compliant, with no synthetic fragrance, and stays close to the coat for up to 48 hours.',
+      },
+    ],
+  },
+  'walk-ritual-kit': {
+    title: 'Walk Ritual Kit – Dog Walk Care Bundle | Furrytail',
+    description:
+      'Dog walk kit: Defense tick & flea spray before the walk, Paw Cleaner after it and Refreshing Mist to finish. Three dog essentials in one bundle.',
+    faqs: [
+      {
+        q: 'What is in the Walk Ritual Kit?',
+        a: 'Three dog essentials for every walk: [Defense Anti-Tick & Flea Spray](/products/anti-tick-flea-spray) (Vetiver & Cypress, 100 ml), [Paw Cleaner](/products/paw-cleaner) (Spearmint & Sea Salt, 150 ml) and [Refreshing Mist](/products/refreshing-mist) (Yuzu & White Musk, 100 ml).',
+      },
+      {
+        q: 'How do I use the Walk Ritual Kit?',
+        a: 'Before the walk, shake Defense and apply 6–8 sprays from 20 cm across the back, flanks and base of the tail, avoiding the eyes and mouth, and let it dry completely. After the walk, pump Paw Cleaner onto each paw or a damp cloth, massage across the pads and between the toes, and wipe clean - no rinsing. To finish, hold Refreshing Mist 25 cm from the coat, apply 3–5 sprays over the back and flanks and let it settle; do not rub it in.',
+      },
+      {
+        q: 'Can I use it every day?',
+        a: 'Yes. The Paw Cleaner is a no-rinse, daily-use formula made to be used after every walk, and Refreshing Mist is made to wear daily. Repeat Defense before each walk in tick-active environments.',
+      },
+      {
+        q: 'Is the Walk Ritual Kit suitable for cats?',
+        a: 'No. Defense, the Paw Cleaner and Refreshing Mist are all formulated for dogs, so the kit is for dogs only.',
+      },
+      {
+        q: 'How is it different from the Travel Kit?',
+        a: 'The Walk Ritual Kit is the everyday routine at home - before, after and to finish. The [Travel Kit](/products/travel-kit-bundle) adds the [Dry Foam Shampoo](/products/dry-foam-shampoo) for trips, when a bath is not an option.',
+      },
+    ],
+  },
   'gentle-daily-shampoo-santal-white-tea': {
     title: 'Santal & White Tea Sulphate-Free Dog Shampoo | Furrytail',
     description:
       'Sulphate-free dog & cat shampoo cleansed with amino acids, preserved with probiotics. pH-balanced for sensitive skin. Santal & White Tea, 250 ml.',
     faqs: shampooFaqs({
       fragrance: 'Santal & White Tea',
+      scent: 'santal-white-tea',
       inciBotanicals: 'Camellia Sinensis Leaf Extract, Santalum Album Oil',
     }),
   },
@@ -114,6 +309,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       'Sulphate-free dog & cat shampoo cleansed with amino acids, preserved with probiotics. pH-balanced for sensitive skin. Fig & Neroli, 250 ml.',
     faqs: shampooFaqs({
       fragrance: 'Fig & Neroli',
+      scent: 'fig-neroli',
       inciBotanicals: 'Ficus Carica Fruit Extract, Citrus Aurantium Amara Flower Oil',
     }),
   },
@@ -123,6 +319,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       'Sulphate-free dog & cat shampoo cleansed with amino acids, preserved with probiotics. pH-balanced for sensitive skin. Violet Leaf & Muslin, 250 ml.',
     faqs: shampooFaqs({
       fragrance: 'Violet Leaf & Muslin',
+      scent: 'violet-leaf-muslin',
       inciBotanicals: 'Viola Odorata Leaf Extract, Muslin Essential Oil',
     }),
   },
@@ -188,7 +385,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'How often can I use the dog perfume spray?',
-        a: 'It can be used daily or as needed between baths.',
+        a: 'It can be used daily or as needed between baths. After a walk, it finishes the [Walk Ritual Kit](/products/walk-ritual-kit) - Defense before, Paw Cleaner after, then the Mist.',
       },
       {
         q: 'What are the full ingredients?',
@@ -215,7 +412,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'Should I clean my dog’s paws after every walk?',
-        a: 'Yes - the Paw Cleaner is a no-rinse, daily-use formula made to be used after every walk. Urban walks leave more on paws than visible mud: construction dust, monsoon bacteria and road residue all travel inside on your dog’s pads.',
+        a: 'Yes - the Paw Cleaner is a no-rinse, daily-use formula made to be used after every walk. Urban walks leave more on paws than visible mud: construction dust, monsoon bacteria and road residue all travel inside on your dog’s pads. The [Walk Ritual Kit](/products/walk-ritual-kit) pairs it with Defense before the walk and Refreshing Mist to finish.',
       },
       {
         q: 'Is it safe if my dog licks its paws?',
@@ -246,7 +443,7 @@ export const PRODUCT_SEO: Record<string, ProductSeo> = {
       },
       {
         q: 'How do I use tick spray on my dog?',
-        a: 'Shake well. Hold 20 cm from the coat and apply 6–8 sprays across the back, flanks and base of the tail, avoiding the eyes and mouth. Let it dry completely before walking, and repeat before each walk in tick-active environments.',
+        a: 'Shake well. Hold 20 cm from the coat and apply 6–8 sprays across the back, flanks and base of the tail, avoiding the eyes and mouth. Let it dry completely before walking, and repeat before each walk in tick-active environments. The [Walk Ritual Kit](/products/walk-ritual-kit) pairs it with the Paw Cleaner and Refreshing Mist for after the walk.',
       },
       {
         q: 'Is it suitable for dogs with sensitive skin?',

@@ -202,6 +202,24 @@ async function storeFetch<T>(path: string): Promise<T> {
 
 // ─── Adapter ──────────────────────────────────────────────────────────────────
 
+// Pet species for products whose Pet (pa_pet) attribute is not set in
+// WooCommerce. The attribute always wins when present; remove an entry once the
+// product is tagged in wp-admin.
+const SPECIES_FALLBACK: Record<string, 'dog' | 'cat' | 'both'> = {
+  'travel-kit-bundle': 'dog',
+  'walk-ritual-kit': 'dog',
+  'bath-ritual-trio': 'both',
+  'the-complete-ritual-santal-white-tea': 'dog',
+  'the-complete-ritual-fig-neroli': 'dog',
+  'the-complete-ritual-violet-leaf-muslin': 'dog',
+  'after-walk-duo-paw-cleaner-refreshing-mist': 'dog',
+  'out-back-duo': 'dog',
+  'fresh-walk-duo': 'dog',
+  'between-baths-duo-remedy-dry-foam-shampoo-refresh-refreshing-mist': 'dog',
+  'no-rinse-duo-remedy-paw-cleaner-dry-foam-shampoo': 'dog',
+  'trail-duo-defense-anti-tick-flea-spray-remedy-dry-foam-shampoo': 'dog',
+};
+
 /**
  * Map a Store API product onto the WooProduct shape the components already use.
  *
@@ -228,7 +246,7 @@ function toWooProduct(
     return null;
   }
 
-  const species = term(p, 'pa_pet')?.slug;
+  const species = term(p, 'pa_pet')?.slug ?? SPECIES_FALLBACK[p.slug];
 
   return {
     id: p.slug, // slug is the public identifier: /products/<slug>
