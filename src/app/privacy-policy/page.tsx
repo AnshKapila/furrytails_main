@@ -41,7 +41,7 @@ const sections = [
       },
       {
         label: 'Do you offer Cash on Delivery?',
-        body: 'Yes, we offer Cash on Delivery (COD) across most pincodes in India.',
+        body: 'No. Cash on delivery is not available - you pay online at checkout by UPI, card or net banking.',
       },
       {
         label: 'How can I track my order?',

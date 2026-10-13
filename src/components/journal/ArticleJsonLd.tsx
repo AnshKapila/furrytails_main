@@ -33,9 +33,12 @@ export default function ArticleJsonLd({ slug, faqs }: { slug: string; faqs: Faq[
       },
       datePublished: a.datePublished,
       dateModified: a.dateModified,
-      author: ARTICLE_AUTHORS.map((name) => ({
+      author: ARTICLE_AUTHORS.map((a) => ({
         '@type': 'Person',
-        name,
+        name: a.name,
+        jobTitle: a.jobTitle,
+        description: a.role,
+        knowsAbout: ['Veterinary medicine', 'Dog grooming', 'Cat grooming', 'Pet skin and coat care'],
         worksFor: { '@id': `${base}/#organization` },
       })),
       publisher,

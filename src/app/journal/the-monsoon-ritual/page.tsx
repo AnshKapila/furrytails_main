@@ -6,6 +6,7 @@ import ClientProviders from '@/components/ClientProviders';
 import ArticleFaqs, { type Faq } from '@/components/journal/ArticleFaqs';
 import ArticleJsonLd from '@/components/journal/ArticleJsonLd';
 import RelatedArticles from '@/components/journal/RelatedArticles';
+import ArticleAuthors from '@/components/journal/ArticleAuthors';
 import { articleMetadata, formatArticleDate, getArticle, getRelatedArticles, ARTICLE_BYLINE } from '@/lib/journal';
 import type { Metadata } from 'next';
 
@@ -387,6 +388,8 @@ export default function ArticlePage() {
 
           </article>
           <ArticleFaqs faqs={FAQS} />
+
+          <ArticleAuthors />
 
           <RelatedArticles articles={getRelatedArticles(SLUG)} />
 

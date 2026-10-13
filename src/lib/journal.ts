@@ -12,8 +12,19 @@ export const PUBLISHER_NAME = 'Furrytail';
 
 // The people who write the journal. Shown as the byline on every article and
 // emitted as Person authors in its BlogPosting JSON-LD.
-export const ARTICLE_AUTHORS = ['Kopal', 'Santana'] as const;
-export const ARTICLE_BYLINE = `By ${ARTICLE_AUTHORS.join(' & ')}`;
+export const ARTICLE_AUTHORS = [
+  {
+    name: 'Dr. Kopal Chandra',
+    jobTitle: 'Veterinarian',
+    role: 'Veterinarian & Professional Pet Care and Boarding Specialist',
+  },
+  {
+    name: 'Dr. Santana',
+    jobTitle: 'Senior Veterinarian',
+    role: 'Senior Veterinarian & Animal Lover',
+  },
+] as const;
+export const ARTICLE_BYLINE = `By ${ARTICLE_AUTHORS.map((a) => a.name).join(' & ')}`;
 
 export interface JournalImage {
   src: string;
@@ -786,7 +797,7 @@ export function articleMetadata(slug: string): Metadata {
     title: a.seoTitle,
     description: a.description,
     keywords: a.keywords,
-    authors: ARTICLE_AUTHORS.map((name) => ({ name })),
+    authors: ARTICLE_AUTHORS.map((a) => ({ name: a.name })),
     alternates: { canonical: path },
     openGraph: {
       type: 'article',

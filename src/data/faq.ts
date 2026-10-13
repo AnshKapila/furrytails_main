@@ -68,7 +68,7 @@ export const FAQS: Faq[] = [
   },
   {
     question: "Can I return a product?",
-    answer: "Yes. You can return unopened products in their original condition within 7 days of delivery. Write to us before sending anything back so we can guide you through it. If you have opened a product and it is not working for your pet, write to us anyway - we would rather understand what happened.",
+    answer: "Yes. You can return unopened products in their original condition within 7 days of delivery, and we pay the return shipping. Write to us before sending anything back so we can guide you through it. If you have opened a product and it is not working for your pet, write to us anyway - we would rather understand what happened.",
     links: [{ label: 'Shipping & Returns', href: '/shipping' }]
   },
   {

@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Shipping & Returns Across India | Furrytail',
-  description: 'Free delivery across India in 3–5 days, and 7-day returns on unopened products. How we ship, and what to do if something goes wrong.',
+  description: 'Free delivery across India in 3–5 days, and free 7-day returns on unopened products. How we ship, and what to do if something goes wrong.',
   alternates: { canonical: '/shipping' },
 };
 
@@ -48,7 +48,7 @@ const sections = [
       },
       {
         label: 'Change of mind',
-        body: 'You can return unopened products in their original condition within 7 days of delivery. Please reach out to us before sending anything back so we can guide you through the process.',
+        body: 'You can return unopened products in their original condition within 7 days of delivery, and we cover the return shipping. Please reach out to us before sending anything back so we can guide you through the process.',
       },
       {
         label: 'Opened products',

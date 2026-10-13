@@ -241,6 +241,8 @@ export function offerPolicyJsonLd() {
       returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
       merchantReturnDays: s.returnDays,
       returnMethod: 'https://schema.org/ReturnByMail',
+      // Furrytail pays return shipping (published on /shipping).
+      returnFees: 'https://schema.org/FreeReturn',
       merchantReturnLink: `${getBaseUrl()}/shipping`,
     };
   }
