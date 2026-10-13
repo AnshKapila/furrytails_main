@@ -41,6 +41,7 @@ import TrustTicker from '@/components/TrustTicker';
 import ExpertVoices from '@/components/ExpertVoices';
 import CommunityReels from '@/components/CommunityReels';
 import Certifications from '@/components/Certifications';
+import Price from '@/components/Price';
 
 // â”€â”€â”€ Scroll-reveal hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useReveal(threshold = 0.3) {
@@ -127,6 +128,9 @@ function SpeciesBadge({ species, className = '' }: { species?: 'dog' | 'cat' | '
 // Hover: card scale+tilt, image zoom 3-4%, border â†’ sage
 type ProductItem = WooProduct;
 
+// WooCommerce categories of the single products; anything else is a bundle.
+const SINGLE_CATEGORIES = new Set(['Daily Ritual', 'Defense', 'Remedy', 'Refresh']);
+
 function ProductCard({ product }: { product: ProductItem }) {
   const [quickAdded, setQuickAdded] = useState(false);
   const { addItem, openDrawer } = useCart();
@@ -138,6 +142,7 @@ function ProductCard({ product }: { product: ProductItem }) {
   const hasVariants = 'variants' in prod && Array.isArray(prod.variants) && prod.variants.length > 0;
   const firstVariant = hasVariants ? prod.variants[0] : null;
   const displayPrice = firstVariant ? firstVariant.price : product.price;
+  const displayStandardPrice = firstVariant ? firstVariant.standardPrice : product.standardPrice;
   const displayImage = firstVariant?.image?.src ? firstVariant.image : product.image;
   // Single-variant label shown on card
   const singleVariantLabel: string | undefined = !hasVariants && prod.variantLabel ? prod.variantLabel : undefined;
@@ -243,12 +248,12 @@ function ProductCard({ product }: { product: ProductItem }) {
         {/* â”€â”€ DESKTOP LAYOUT (md:flex) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="hidden md:flex items-center justify-between gap-2 pt-3">
           <div className="flex items-baseline gap-2">
-            <span
-              className="text-[1.125rem] text-[#3B3A38] leading-none"
-              style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }}
-            >
-              {displayPrice}
-            </span>
+            <Price
+                price={displayPrice}
+                standardPrice={displayStandardPrice}
+                className="text-[1.125rem] text-[#3B3A38] leading-none"
+                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }}
+              />
           </div>
           {/* Add to Cart */}
           <button
@@ -282,12 +287,12 @@ function ProductCard({ product }: { product: ProductItem }) {
               {volume ?? ''}
             </span>
             <div className="flex items-baseline gap-1.5 ml-auto">
-              <span
+              <Price
+                price={displayPrice}
+                standardPrice={displayStandardPrice}
                 className="text-[1.125rem] text-[#3B3A38] leading-none"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontWeight: 300 }}
-              >
-                {displayPrice}
-              </span>
+              />
             </div>
           </div>
 
@@ -1067,7 +1072,16 @@ export default function Home() {
   const [heroVisible, setHeroVisible] = useState(false);
   // "Where most people begin" shows a subset of the range as an introduction.
   const { products } = useProducts();
-  const bestSellersGrid = products.slice(0, 8);
+  // WooCommerce lists newest first, so a plain slice would fill the rail with
+  // bundles. Lead with the single products, then the one kit that is the whole
+  // routine; other bundles fill any gap.
+  const RAIL_KIT = 'the-complete-ritual-santal-white-tea';
+  const isBundle = (p: WooProduct) => !SINGLE_CATEGORIES.has(p.category);
+  const bestSellersGrid = [
+    ...products.filter((p) => !isBundle(p)),
+    ...products.filter((p) => p.id === RAIL_KIT),
+    ...products.filter((p) => isBundle(p) && p.id !== RAIL_KIT),
+  ].slice(0, 8);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);

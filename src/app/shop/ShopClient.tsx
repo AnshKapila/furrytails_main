@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { WooProduct } from '@/services/types';
 import { useCart, parsePrice } from '@/lib/cart';
 import { useWishlist } from '@/lib/wishlist';
+import Price from '@/components/Price';
 
 // Icons
 function BagIconOutline() {
@@ -147,12 +148,12 @@ function ProductCard({ product }: { product: WooProduct }) {
           >
             {product.name}
           </h3>
-          <span
+          <Price
+            price={displayPrice}
+            standardPrice={product.standardPrice}
             className="text-[0.875rem] font-normal text-[#3B3A38] whitespace-nowrap"
             style={{ fontFamily: 'var(--font-inter)' }}
-          >
-            {displayPrice}
-          </span>
+          />
         </div>
 
         {product.variantLabel && (

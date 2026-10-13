@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientProviders from '@/components/ClientProviders';
 import RelatedArticles from '@/components/journal/RelatedArticles';
+import Price from '@/components/Price';
 import { getAllProducts } from '@/services/api';
 import { getBaseUrl } from '@/lib/site-url';
 import { getArticle } from '@/lib/journal';
@@ -119,7 +120,7 @@ export default async function GroomingLanding({ content }: { content: LandingCon
                       </div>
                       <p className="mt-3 text-[0.9375rem] text-[#3B3A38] leading-snug">{p.name}</p>
                       <p className="mt-1 text-[0.8125rem] text-[#3B3A38]/60">
-                        {p.price}
+                        <Price price={p.price} standardPrice={p.standardPrice} />
                         {p.volume ? ` · ${p.volume}` : ''}
                       </p>
                     </Link>

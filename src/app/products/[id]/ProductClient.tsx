@@ -8,6 +8,7 @@ import { useWishlist } from '@/lib/wishlist';
 import type { WooProduct } from '@/services/types';
 import { useProducts } from '@/hooks/useProducts';
 import { REELS } from '@/data/reels';
+import Price from '@/components/Price';
 
 function BagIconOutline() {
   return (
@@ -147,12 +148,12 @@ function ProductCard({ product }: { product: WooProduct }) {
           >
             {product.name}
           </h3>
-          <span
+          <Price
+            price={displayPrice}
+            standardPrice={product.standardPrice}
             className="text-[0.875rem] font-normal text-[#3B3A38] flex-shrink-0"
             style={{ fontFamily: 'var(--font-inter)' }}
-          >
-            {displayPrice}
-          </span>
+          />
         </div>
         
 
@@ -402,18 +403,28 @@ export default function ProductClient({
               )}
               
               <div className="flex items-end gap-3 mt-1">
-                <div className="text-h2 text-[#3B3A38]">
-                  {displayPrice}
-                </div>
+                <Price
+                  price={displayPrice}
+                  standardPrice={displayStandardPrice}
+                  className="text-h2 text-[#3B3A38]"
+                />
+                {displayStandardPrice && displayStandardPrice !== displayPrice && (
+                  <span className="mb-1.5 text-[0.75rem] tracking-[0.04em] text-[#68735F]" style={{ fontFamily: 'var(--font-inter)' }}>
+                    You save ₹{(parsePrice(displayStandardPrice) - parsePrice(displayPrice)).toLocaleString('en-IN')}
+                  </span>
+                )}
               </div>
             </div>
 
             {/* pdp__size */}
             <div className="flex items-center gap-2 mt-3">
-              <span className="text-p2 text-[#68735F] uppercase tracking-[0.1em]">
-                {volume || '300ml'}
-              </span>
-              <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>
+              {/* Bundles carry no volume in WooCommerce - show nothing rather than guess */}
+              {volume && (
+                <span className="text-p2 text-[#68735F] uppercase tracking-[0.1em]">
+                  {volume}
+                </span>
+              )}
+              {volume && product.species && <span className="text-[#8D9A83]" aria-hidden="true">&middot;</span>}
               <span className="inline-flex flex-row items-center gap-1.5 text-[#68735F] text-p2 uppercase tracking-[0.1em]">
                 {product.species === 'dog' && <><DogIcon /> Dogs</>}
                 {product.species === 'cat' && <><CatIcon /> Cats</>}
